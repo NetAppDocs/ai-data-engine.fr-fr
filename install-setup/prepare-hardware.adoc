@@ -1,0 +1,122 @@
+---
+sidebar: sidebar 
+permalink: install-setup/prepare-hardware.html 
+keywords: aide, ai, data engine, ai data engine, dcn, data compute node, prepare, hardware installation, afx, afx 1k, 
+summary: Préparez-vous à installer les nœuds de calcul de données pour AI Data Engine dans votre environnement ONTAP et à enregistrer le matériel pour accéder aux avantages du support. 
+---
+= Préparez-vous à installer vos nœuds de calcul de données pour AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Préparez-vous à installer vos nœuds de calcul de données pour AI Data Engine en préparant le site, en déballant les boîtes et en comparant le contenu des boîtes au bon de livraison, puis en enregistrant le système pour accéder aux avantages du support.
+
+
+
+== Étape 1: Préparer le site
+
+Pour installer vos nœuds de calcul de données, assurez-vous que le site et l'armoire ou le rack que vous prévoyez d'utiliser répondent aux spécifications de votre configuration.
+
+.Étapes
+. Utilisez  https://hwu.netapp.com["NetApp Hardware Universe"^] pour confirmer que votre site répond aux exigences environnementales et électriques de vos nœuds de calcul de données.
+. Assurez-vous de disposer d'un espace suffisant dans l'armoire pour vos nœuds de calcul de données au sein de l'installation du système de stockage AFX 1K existant.
++
+** 1U pour chaque nœud de calcul de données
+** 2U pour chaque nœud de contrôleur AFX 1K
+** 2U pour chaque shelf NX224
+** 1U ou 2U par commutateur, selon le modèle de commutateur.
+
+
+
+
+
+
+== Étape 2 : Déballez les cartons
+
+Après avoir vérifié que le site et l'armoire ou le rack que vous prévoyez d'utiliser pour vos nœuds de calcul de données répondent aux spécifications requises, déballez tous les cartons et comparez leur contenu aux éléments figurant sur le bon de livraison.
+
+.Étapes
+. Ouvrez soigneusement toutes les boîtes et disposez le contenu de manière organisée.
+. Comparez les articles déballés avec le bon de livraison et notez toute anomalie.
++
+Vous pouvez obtenir votre liste de colisage en scannant le code QR sur le côté du carton d'expédition.
+
++
+Les éléments suivants sont quelques-uns des contenus que vous pourriez voir dans les boîtes.
+
++
+[cols="12,9,4"]
+|===
+
+
+| *Matériel* | *Câbles* |  
+
+
+ a| 
+** panneau
+** Kits de rails avec instructions
+** Nœud(s) de calcul de données
+
+ a| 
+** cordons d'alimentation
+
+|  
+|===
+
+
+
+
+== Étape 3 : Enregistrez vos nœuds de calcul de données
+
+Après avoir vérifié que votre site répond aux exigences des spécifications de votre nœud de calcul de données et que vous avez confirmé que vous disposez de toutes les pièces commandées, vous devez enregistrer votre système.
+
+.Étapes
+. Repérez les numéros de série de vos nœuds de calcul de données.
++
+Vous trouverez les numéros de série aux emplacements suivants :
+
++
+** Sur le bordereau d'expédition
+** Dans votre courriel de confirmation
+** Sur chaque nœud de calcul de données, ou sur certains systèmes, sur le module de gestion système de chaque nœud de calcul de données.
++
+image::../media/drw_ssn_label.svg[Exemple de numéro de série du système]
+
+
+
+. Accédez à http://mysupport.netapp.com/["Site de support NetApp"^].
+. Déterminez si vous devez enregistrer votre système de stockage :
++
+[cols="1a,2a"]
+|===
+| Si vous êtes un... | Suivez ces étapes... 
+
+
+ a| 
+Client NetApp existant
+ a| 
+.. Sign in avec votre nom d'utilisateur et votre mot de passe.
+.. Sélectionnez *Systems* > *My Systems*.
+.. Confirmez que le nouveau numéro de série est indiqué.
+.. Si le numéro de série n'est pas indiqué, suivez les instructions destinées aux nouveaux NetApp clients.
+
+
+
+
+ a| 
+Nouveau NetApp client
+ a| 
+.. Cliquez sur *Register Now* pour créer un compte.
+.. Sélectionnez *Systems* > *Register Systems*.
+.. Saisissez le numéro de série du système de stockage et les détails demandés.
+
+
+Une fois NetApp a approuvé votre inscription, vous pouvez télécharger le logiciel requis. L'approbation peut prendre jusqu'à 24 heures.
+
+|===
+
+
+.Et ensuite ?
+Une fois que vous avez préparé l'installation de vos nœuds de calcul de données, vous link:deploy-hardware.html["installer les Data Compute Node"].

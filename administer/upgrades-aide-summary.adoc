@@ -1,0 +1,103 @@
+---
+sidebar: sidebar 
+permalink: administer/upgrades-aide-summary.html 
+keywords: update, firmware, system files, automatic updates, ai data engine, aide 
+summary: 'Découvrez les différents composants d"un AI Data Engine system qui doivent être maintenus à jour.' 
+---
+= Mises à jour et compatibilité du système AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Maintenez les composants du système AI Data Engine (AIDE) à jour pour garantir des performances optimales et l'accès aux nouvelles fonctionnalités. Mettez à jour les composants après le déploiement, lorsque de nouveaux logiciels ou micrologiciels sont disponibles, lorsque vous ajoutez ou remplacez des nœuds, ou périodiquement pour les mises à jour de fonctionnalités.
+
+
+
+== Composants du système AIDE
+
+Il y a deux composants principaux qui nécessitent des mises à jour dans un système AIDE : le logiciel ONTAP et le logiciel AIDE, qui inclut le firmware DCN.
+
+
+
+=== Logiciel ONTAP
+
+ONTAP est le système d'exploitation qui fonctionne sur les systèmes de stockage NetApp, y compris ceux utilisés dans les déploiements AIDE. Maintenez ONTAP à jour pour préserver la stabilité, la sécurité et la compatibilité du système avec les composants AIDE. Les composants AIDE sont mis à jour séparément.
+
+
+
+=== Mises à jour du logiciel AIDE
+
+Les mises à jour du logiciel AIDE Console et du firmware DCN sont distribuées ensemble sous forme d'un seul package (.tgz) et ne sont pas intégrées dans les images ONTAP. Les mises à jour garantissent le bon fonctionnement des composants matériels au sein du système AIDE et apportent de nouvelles fonctionnalités, des améliorations de performance et des corrections de bogues.
+
+
+
+== Comprendre le processus de mise à jour
+
+Les mises à jour du logiciel AIDE peuvent être gérées via ONTAP System Manager.
+
+AIDE ne prend pas en charge la fonctionnalité de mises à jour logicielles automatiques ONTAP. Vous pouvez vous inscrire pour recevoir des notifications de link:https://mysupport.netapp.com/site/downloads["NetApp Support Site téléchargements"^], mais toutes les mises à jour du logiciel AIDE sont effectuées manuellement par l'administrateur.
+
+Types et étendue des versions :
+
+* Les versions majeures d'ONTAP (9.x.x) et d'AIDE (9.x.x U0) introduisent de nouvelles fonctionnalités, des API ou des modifications qui affectent l'intégration d'ONTAP.
+* Les versions correctives ONTAP (9.x.x Px) et les versions de mise à jour AIDE (9.x.x Ux) contiennent des correctifs et des mises à jour qui n'ont pas d'impact sur l'intégration ONTAP.
+
+
+
+
+== Matrice de compatibilité
+
+Assurez la compatibilité entre ONTAP et AI Data Engine software lors de la planification des mises à jour.
+
+AIDE software est distribué sous forme de versions « U ». Une version majeure d'AIDE est une version « U0 » et les versions mineures suivantes seront « U1 » et ultérieures.
+
+
+
+=== Compatibilité ONTAP et AIDE
+
+[cols="1,1"]
+|===
+| Versions AIDE | Versions ONTAP prises en charge 
+
+
+| 9.18.1 U0 | 9.18.1 GA et tous les 9.18.1 Px 
+
+
+| 9.18.1 U1 et versions ultérieures | 9.18.1 GA et tous les 9.18.1 Px 
+|===
+[NOTE]
+====
+« Px » désigne toutes les versions correctives ONTAP dans une version majeure (par exemple, 9.18.1 P1, 9.18.2 et autres).
+
+====
+
+
+=== Voies de mise à niveau AIDE
+
+Les exemples suivants utilisent des versions futures hypothétiques pour montrer les chemins de mise à niveau et de mise à jour autorisés à partir de AIDE 9.18.1 U0 et 9.18.1 U1.
+
+[cols="25,25,50"]
+|===
+| Si votre version actuelle d'AIDE est… | Et votre version cible d'AIDE est… | Votre chemin de mise à niveau ou de mise à jour est… 
+
+
+| 9.18.1 U0 | 9.18.1 U1 | Direct 
+
+
+| 9.18.1 U0 | 9.18.1 U3 | Direct (vous pouvez effectuer une mise à jour depuis n'importe quelle version Ux vers n'importe quelle version Ux ultérieure dans 9.18.1) 
+
+
+| 9.18.1 U1 | 9.18.1 U3 | Direct (vous pouvez effectuer une mise à jour depuis n'importe quelle version Ux vers n'importe quelle version Ux ultérieure dans 9.18.1) 
+|===
+
+
+== Rétablir les limitations
+
+Les systèmes AIDE ne prennent pas en charge les opérations de restauration pour le firmware DCN, les mises à jour logicielles AIDE ou ONTAP sur les systèmes de stockage AFX. Après avoir installé une mise à jour ou une mise à niveau, vous ne pouvez pas revenir à une version précédente. Examinez <<Matrice de compatibilité,exigences de compatibilité>> avant de procéder à la mise à jour ou à la mise à niveau.
+
+.Informations connexes
+* https://docs.netapp.com/us-en/ontap-afx/administer/upgrade-ontap.html["Mettre à niveau le logiciel ONTAP pour les systèmes AFX"^]
+* link:update-aide-firmware-software.html["Mettre à jour le logiciel AIDE"]
+

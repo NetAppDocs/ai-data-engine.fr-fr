@@ -1,0 +1,24 @@
+---
+section: administer
+title: Administrer et surveiller
+entries:
+- title: Surveiller les processus du cluster
+  entries:
+  - title: Afficher le tableau de bord et l'état du cluster
+    url: "/administer/view-dashboard.html"
+  - title: Afficher les insights
+    url: "/administer/view-insights.html"
+  - title: Consultez les événements, les tâches et le journal des audits
+    url: "/administer/view-events-log.html"
+- title: Gérer les espaces de travail
+  url: "/administer/manage-workspace.html"
+- title: Mettez à niveau et entretenez votre système AIDE
+  entries:
+  - title: Mises à jour et compatibilité du système AIDE
+    url: "/administer/upgrades-aide-summary.html"
+  - title: Mettre à jour le logiciel AIDE
+    url: "/administer/update-aide-firmware-software.html"
+  - title: Ajoutez des nœuds à votre cluster AIDE
+    url: "/administer/dcn-add-node.html"
+  - title: Remplacer un nœud AIDE
+    url: "/administer/aide-node-replace.html"

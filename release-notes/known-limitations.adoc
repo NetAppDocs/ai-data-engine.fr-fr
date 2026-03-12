@@ -1,0 +1,84 @@
+---
+sidebar: sidebar 
+permalink: release-notes/known-limitations.html 
+keywords: limitations, known issues, AI Data Engine, AIDE, metadata engine, ONTAP 9.18.1 
+summary: Les limitations connues indiquent les plateformes, les appareils ou les fonctions non pris en charge par cette version du produit, ou qui ne fonctionnent pas correctement avec celle-ci. Examinez attentivement ces limitations. 
+---
+= Limitations connues de AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les limitations connues indiquent les plateformes, les appareils ou les fonctions non pris en charge par cette version du produit, ou qui ne fonctionnent pas correctement avec celle-ci. Examinez attentivement ces limitations.
+
+
+
+== Limitations connues pour la version initiale d'AIDE 9.18.1
+
+Ces limitations s'appliquent au Metadata Engine, aux nœuds de calcul de données et aux flux de travail de gestion dans AIDE 9.18.1.
+
+
+
+=== Exigences et gestion des nœuds de calcul
+
+* **Exigence minimale pour les nœuds de calcul de données**
++
+Les clusters AIDE nécessitent un minimum et un maximum de 3 nœuds de calcul de données (DCN) pour la fonctionnalité Metadata Engine. Les clusters comportant moins de 3 DCN ne peuvent pas activer les fonctionnalités Metadata Engine.
+
+* **Aucune prise en charge de l'ajout de nœuds DCN via la NetApp Console**
++
+Les mises à niveau et les ajouts de nœuds DCN doivent être effectués à l'aide de ONTAP System Manager, pas via NetApp Console.
+
+
+
+
+
+=== Sources de données prises en charge
+
+* **Aucune prise en charge des compartiments ONTAP S3 ni de StorageGRID comme sources de données**
++
+Seuls les volumes ONTAP (locaux ou distants) sont pris en charge comme sources de données pour les espaces de travail et le catalogage des métadonnées. Les compartiments ONTAP S3 et les objets StorageGRID ne peuvent pas être ajoutés aux espaces de travail et ne sont pas indexés par le Metadata Engine dans cette version.
+
+* **Aucune prise en charge de la création d'espace de travail avec les volumes FlexCache®**
++
+FlexCache volumes ne peuvent pas être ajoutés en tant que sources de données aux espaces de travail.
+
+
+
+
+
+=== Limitations de mise à jour et de restauration du logiciel
+
+* **Mises à jour logicielles manuelles pour les nœuds DCN uniquement**
++
+Les mises à jour logicielles automatiques pour DCN clusters ne sont pas prises en charge dans AIDE 9.18.1. Le logiciel des nœuds DCN ne peut être mis à jour que par le chargement de l'image depuis un client local. Le téléchargement d'images depuis des serveurs externes (HTTP/FTP) n'est pas pris en charge.
+
+* **Aucune restauration du logiciel du cluster DCN**
++
+Le logiciel du cluster DCN ne peut pas être restauré à une version antérieure. Seules les mises à niveau vers des versions ultérieures sont autorisées.
+
+* **Aucune restauration ONTAP des clusters de stockage AFX**
++
+Les clusters de stockage AFX ne peuvent pas être restaurés vers des versions antérieures d'ONTAP. Seules les mises à niveau vers des versions ultérieures sont autorisées.
+
+
+
+
+
+=== Cycle de vie de l'espace de travail et configuration d'accès
+
+* **Aucune suppression réversible ni restauration pour les espaces de travail**
++
+La suppression d'un espace de travail est définitive. Il n'y a aucune option pour restaurer les espaces de travail supprimés.
+
+* **Aucune prise en charge de la configuration OIDC lors de la configuration initiale du cluster**
++
+La configuration OIDC/OAuth doit être effectuée après la création du cluster à l'aide de ONTAP System Manager.
+
+
+
+.Informations connexes
+* link:whats-new.html["Nouveautés dans AI Data Engine"]
+

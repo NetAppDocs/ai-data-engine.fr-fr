@@ -1,0 +1,177 @@
+---
+sidebar: sidebar 
+permalink: guardrails/define-data-policies.html 
+keywords: aide, policies, global exclusion, classifiers, guardrails, ai data engine, data governance 
+summary: 'Définissez des politiques de données globales dans AI Data Engine Console pour contrôler quelles données peuvent être utilisées pour l"IA, comment elles sont classifiées et comment les guardrails sont appliqués lors des requêtes.' 
+---
+= Définissez vos politiques de Data Guardrails dans AI Data Engine pour votre domaine de données
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+En tant que propriétaire de données ou de plateforme, vous utilisez AI Data Engine Console pour définir quelles données sont concernées par l'IA, quelles données sont toujours interdites et quelles règles de sécurité s'appliquent lorsque ces données sont utilisées pour la classification et la génération augmentée par récupération (RAG).
+
+Utilisez ces procédures pour définir ces politiques dans AI Data Engine Console afin que ONTAP System Manager puisse les appliquer à toutes les données des espaces de travail.
+
+.Avant de commencer
+* Vous avez besoin de privilèges d'administrateur de stockage dans AI Data Engine Console (`\https://<cluster_management_ip>/console` pour créer et gérer des politiques globales.
+* Vous disposez d'un AIDE cluster avec des nœuds de calcul de données déployés et opérationnels.
+* link:../install-setup/configure-oidc.html["OpenID Connect (OIDC)"] est configuré, et votre rôle IdP est associé à un rôle d'administrateur AIDE qui permet la gestion des politiques de données.
+* La licence AI Data Engine software est installée afin que les fonctionnalités de garde-fou et d'inférence soient activées.
+* Au moins un espace de travail existe, ou vous vous êtes coordonné avec l'administrateur pour comprendre quelles sources de données (volumes) seront utilisées dans les espaces de travail.
+
+
+
+
+== Comprendre les types de stratégies
+
+AIDE Console expose ces types de politiques qui structurent votre patrimoine de données :
+
+* *Classificateurs* : Activez les classificateurs pour détecter les PII, les problèmes de sécurité ou d’autres modèles dans tous les espaces de travail.
+* *Catégories de classificateurs* : Regroupez les classificateurs en catégories de conformité pour l'organisation et la gestion.
+* *Politiques de Data Guardrails* : règles de sécurité et de rédaction appliquées au moment de la récupération ou de l’inférence.
+
+
+Vous ne pouvez pas utiliser ONTAP System Manager pour créer ou gérer ces guardrail policies. Il ne fait que les lire et les appliquer lorsqu'un administrateur de stockage les applique aux espaces de travail. Toute la définition et la maintenance des politiques s'effectuent dans AIDE Console.
+
+
+
+== Activer les classificateurs
+
+Les classificateurs analysent les métadonnées et le contenu pour annoter les fichiers et les objets (par exemple, en détectant les PII ou les catégories sensibles). Avant que les classificateurs puissent s'exécuter sur les données de l'espace de travail, vous devez les activer dans AI Data Engine Console.
+
+.À propos de cette tâche
+Le comportement des classificateurs est contrôlé globalement dans AIDE Console. Tous les classificateurs activés s'exécutent sur chaque espace de travail. Étant donné qu'ils sont appliqués globalement, ils ne peuvent pas être activés ou désactivés pour un espace de travail individuel. Ils peuvent être activés ou désactivés uniquement globalement.
+
+.Étapes
+. Dans AI Data Engine Console, accédez à *Data Guardrails > Classifiers*.
+. Sélectionnez une catégorie de classificateur pour afficher les classificateurs qu'elle contient.
+. Cochez les cases correspondant aux classificateurs que vous souhaitez activer, ou sélectionnez toutes les lignes pour activer les classificateurs en masse.
+. Sélectionnez *Enable*.
++
+
+TIP: Utilisez l'option de sélection groupée pour activer plusieurs classificateurs simultanément. Chaque fois que vous activez un classificateur, une actualisation de l'ensemble des espaces de travail est déclenchée. Pour minimiser les actualisations inutiles, activez plusieurs classificateurs à la fois plutôt qu'un par un.
+
+
+
+.Résultat
+Tous les espaces de travail nouvellement créés et existants exécutent les classificateurs activés lors du traitement des métadonnées.
+
+Les étiquettes de classification sont inscrites dans le catalogue de métadonnées et deviennent disponibles pour les ingénieurs de données pour le filtrage lors de la création de collections de données.
+
+
+
+== Gérer les catégories de classificateur
+
+Les classificateurs sont organisés en catégories (telles que « PII » ou « Financial data »). Les catégories permettent de regrouper les classificateurs apparentés pour une gestion simplifiée et une meilleure visibilité de la conformité. Vous pouvez utiliser les catégories par défaut fournies par AIDE ou créer des catégories personnalisées pour répondre à vos exigences de conformité.
+
+.Étapes
+. Dans AI Data Engine Console, accédez à *Data Guardrails > Classifiers*.
+. Consultez les catégories de classification existantes. Il existe deux grandes catégories de classification :
++
+** Contenu ou données : détecte des types de données particuliers dans les fichiers.
+** Document : Classifie le type de document en fonction du contenu.
+
+
+. Déterminez si les sous-catégories de classificateur par défaut sont suffisantes ou si vous souhaitez créer votre propre sous-catégorie.
++
+** Si vous utilisez une sous-catégorie de classificateur par défaut (par exemple, *General Privacy*) :
++
+... Sélectionnez le nom de la catégorie dans Classifier categories pour afficher les classificateurs associés.
+... Examinez la liste des classificateurs.
+... Sélectionnez *Ajouter* pour rechercher et ajouter des classificateurs non répertoriés à partir de la liste complète des classificateurs disponibles.
+
+
+** Si vous souhaitez créer une catégorie personnalisée, sélectionnez image:icon_add_white_bg.png["Signe plus bleu suivi du mot Ajouter"].
++
+... Ajoutez un nom unique, une description et attribuez les classificateurs disponibles à la catégorie.
+... Sélectionnez *Add*
+
+
+
+
+. Pour désactiver un classificateur au sein d'une catégorie, sélectionnez image:icon_kabob_horizontal.png["trois points bleus horizontaux"] pour le classificateur et choisissez *Désactiver*. Vous pouvez également sélectionner toutes les lignes pour modifier leur état en une seule opération.
+
+
+.Résultat
+Les catégories organisent les classificateurs pour la visibilité de la conformité. Les ingénieurs de données peuvent utiliser les étiquettes de classification lors du filtrage et de la création de collectes de données.
+
+
+
+== Créer et gérer des politiques de Data Guardrails
+
+Les politiques de Data Guardrails déterminent comment AIDE réagit lorsque les classificateurs détectent du contenu sensible ou lorsque les invites et les résultats de récupération violent les règles de contenu.
+
+Les comportements typiques des Data Guardrails comprennent :
+
+* Masquage ou suppression des PII dans les extraits récupérés.
+* Blocage des réponses qui enfreignent les règles de conformité.
+* Enregistrement ou étiquetage des violations à des fins d'audit.
+
+
+.À propos de cette tâche
+Vous créez et gérez les politiques de garde-fous uniquement dans AI Data Engine Console.
+
+Vous ne pouvez associer des espaces de travail dans ONTAP System Manager qu'à une seule stratégie de Data Guardrails à la fois.
+
+.Étapes
+. Dans AI Data Engine Console, accédez à *Data Guardrails* > *Guardrail policies*.
+. Sélectionnez *Add*.
+. Saisissez un nom et une description qui décrivent clairement la portée (par exemple, `Customer PII redaction for support KB`).
+. Configurer les conditions requises pour l'activation du garde-fou pilotées par le classificateur de données :
++
+.. Définissez les conditions d'activation du garde-corps :
++
+... Choisissez la catégorie de classificateur ou le type de classificateur pour chaque condition.
+... Ajoutez et définissez des conditions supplémentaires au besoin.
+... Définissez des critères de recherche spécifiques dans *Search*, puis sélectionnez *Accept*.
+
+
+.. Définissez les actions de la politique de Data Guardrails, telles que l'anonymisation du contenu ou le blocage et la suppression d'un fichier d'une collecte de données.
+
+
+. Sélectionnez l'espace de travail auquel le guardrail sera appliqué.
+. Définissez l'état de la politique :
++
+** *Activé* : Active la stratégie immédiatement.
+** *Mode test* : Permet de valider l’impact de la policy avant de l’activer.
+** *Désactivé* : Enregistre le Data Guardrails sans l’appliquer.
+
+
+. Sélectionnez *Add* pour enregistrer la stratégie et l'appliquer à l'espace de travail.
++
+
+TIP: Utilisez le *mode test* avec un espace de travail pilote et une collecte de données non productive pour comprendre combien de réponses seraient affectées avant d'activer l'application stricte.
+
+
+
+.Résultat
+La nouvelle politique de Data Guardrails est active et limitée à l'espace de travail sélectionné.
+
+
+
+== Comment les politiques interagissent avec les espaces de travail
+
+Une fois les politiques définies :
+
+* L'administrateur du stockage utilise ONTAP System Manager pour créer des espaces de travail, sélectionner des conteneurs de données et associer une politique de Data Guardrails.
+* Les classificateurs s'exécutent automatiquement sur le contenu de l'espace de travail en fonction de ce que vous avez activé.
+* Les Data Guardrails associés à l'espace de travail influencent le comportement des points de terminaison de récupération.
+
+
+Pour les ingénieurs et les scientifiques des données :
+
+* L'ensemble des données visibles (espaces de travail et collections de données) est déjà filtré par attribution de rôle.
+* Les métadonnées que vous interrogez (par exemple, les balises PII) sont déterminées par les classificateurs activés.
+* Les réponses reçues par vos pipelines RAG sont limitées par les Data Guardrails configurés au niveau de l'espace de travail.
+
+
+
+
+== Informations connexes
+
+* link:../vectorization/view-data-collections.html["Consultez les collections de données dans AI Data Engine"]
+* link:../vectorization/zero-to-rag.html["Démarrage rapide Data-to-RAG pour AI Data Engine"]
+

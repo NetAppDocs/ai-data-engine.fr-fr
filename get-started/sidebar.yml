@@ -1,0 +1,52 @@
+---
+section: get-started
+title: Commencer
+entries:
+- title: Découvrez votre système AI Data Engine
+  entries:
+  - title: En savoir plus sur AIDE
+    url: "/get-started/learn-about.html"
+  - title: Architecture AIDE
+    url: "/get-started/aide-architecture.html"
+  - title: Composantes et responsabilités d'AIDE par rôle
+    entries:
+    - title: Composants et rôles d'AIDE
+      url: "/get-started/aide-components.html"
+    - title: Interfaces AIDE
+      url: "/get-started/aide-interfaces.html"
+    - title: Administrateurs et composants de stockage
+      url: "/get-started/aide-components-storage-admin.html"
+    - title: Ingénieurs de données et scientifiques des données et composants
+      url: "/get-started/aide-components-data-users.html"
+- title: Démarrage rapide
+  url: "/get-started/quick-start.html"
+- title: Installer AIDE
+  entries:
+  - title: exigences d'installation
+    url: "/install-setup/aide-hardware-requirements.html"
+  - title: Installez votre système de stockage AFX
+    url: "/install-setup/aide-afx-install.html"
+  - title: Installez vos nœuds de calcul de données
+    entries:
+    - title: Installer le workflow
+      url: "/install-setup/install-workflow.html"
+    - title: Vérifiez les exigences matérielles
+      url: "/install-setup/install-setup-requirements.html"
+    - title: Préparez-vous à installer
+      url: "/install-setup/prepare-hardware.html"
+    - title: Installer des nœuds de calcul de données
+      url: "/install-setup/deploy-hardware.html"
+    - title: Examiner les exigences de câblage
+      url: "/install-setup/cable-overview.html"
+    - title: matériel de câblage
+      url: "/install-setup/cable-hardware.html"
+    - title: Mettez le système sous tension
+      url: "/install-setup/power-on-hardware.html"
+- title: Configurez votre système AIDE
+  entries:
+  - title: Configurer AIDE avec un cluster AFX
+    url: "/install-setup/cluster-setup-afx.html"
+  - title: Installer une licence AIDE
+    url: "/install-setup/install-license-task.html"
+  - title: Configurer l'authentification OIDC
+    url: "/install-setup/configure-oidc.html"

@@ -1,0 +1,88 @@
+---
+permalink: release-notes/whats-new.html 
+sidebar: sidebar 
+keywords: release notes, new features, AI Data Engine, AIDE, metadata engine, ONTAP 9.18.1 
+summary: 'Découvrez les nouvelles fonctionnalités disponibles dans AI Data Engine (AIDE).' 
+---
+= Nouveautés dans AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+AI Data Engine (AIDE) 9.18.1 est la version initiale de la plateforme de gestion des données AI de NetApp. Cette version introduit un moteur de métadonnées et des flux de travail de gestion permettant aux organisations de cataloguer et d'organiser les données non structurées pour les charges de travail d'IA, fournissant la base pour des capacités avancées de gouvernance et de vectorisation. La gouvernance avancée (garde-fous) et la vectorisation sont disponibles pour les clients disposant des licences AI Data Engine appropriées.
+
+
+
+== Nouveautés de la version initiale de AIDE 9.18.1
+
+AIDE 9.18.1 introduit les fonctionnalités fondamentales suivantes :
+
+.link:../get-started/aide-architecture.html#metadata-engine["Metadata Engine pour le catalogage des données d'IA"]
+La version initiale comprend un Metadata Engine qui catalogue les fichiers et les objets sur les clusters ONTAP.
+
+Les principales caractéristiques sont les suivantes :
+
+* Extraction automatisée des métadonnées (attributs de base et étendus, balises d'objet) à partir de volumes ONTAP locaux et distants sur des clusters appariés.
+* API REST centralisées pour l'interrogation et le filtrage, destinées aux applications nécessitant une vue globale des données d'entreprise.
+* Stockage de métadonnées évolutif.
+* Extraction automatique des métadonnées déclenchée lors de la création de l'espace de travail.
+
+
+.link:../workspaces/create-workspace.html["Gestion de l'espace de travail"]
+Les espaces de travail permettent un regroupement logique des sources de données (volumes) pour les projets d'IA.
+
+La version initiale prend en charge :
+
+* Création d'espaces de travail couvrant des volumes ONTAP locaux et distants (à l'aide du peering de clusters).
+* Attribution de contrôles d'accès aux espaces de travail, prenant en charge les environnements multi-utilisateurs et multi-locataires.
+* Extraction automatique des métadonnées et remplissage du catalogue lors de la création de workspace.
+
+
+.link:../get-started/aide-architecture.html#data-sync["Synchronisation des données pour une actualisation automatisée des données"]
+Data Sync permet de maintenir à jour les catalogues de métadonnées et les collections de données au fur et à mesure que les données sources changent, sans intervention manuelle.
+
+Les principales caractéristiques sont les suivantes :
+
+* Synchronisation automatisée des données à partir de clusters ONTAP distants ou locaux à l'aide de la réplication SnapMirror pilotée par des politiques.
+* Des mises à jour incrémentales qui ne propagent que les données modifiées, réduisant la surcharge.
+* Intervalles d'actualisation configurables par espace de travail.
+* Surveillance au niveau de l'espace de travail de l'état de synchronisation et de l'activité.
+
+
+.link:../install-setup/cluster-setup-afx.html["Configuration et gestion du cluster"]
+La version initiale comprend les workflows suivants :
+
+* Découverte et ajout de nœuds de calcul de données (DCN) lors de la configuration du cluster.
+* Création de machines virtuelles de stockage de métadonnées dédiées pour le Metadata Engine.
+* Configuration des interfaces de service AI Data Engine pour l'accès aux métadonnées à l'échelle du cluster.
+* Interconnexion avec d'autres ONTAP clusters pour étendre le catalogage des métadonnées à l'ensemble du patrimoine de données.
+
+
+.link:../install-setup/configure-oidc.html["Authentification OpenID Connect (OIDC)"]
+* Authentification basée sur OIDC/OAuth pour un accès sécurisé à ONTAP System Manager et Data Engine Console avec Microsoft Entra ID et Active Directory Federation Services (ADFS).
+* Contrôles d'accès basés sur les rôles pour la gestion de l'espace de travail et des métadonnées.
+
+
+.link:../vectorization/zero-to-rag.html["Capacités avancées de curation et de gouvernance des données"]
+Les fonctionnalités suivantes sont disponibles pour les clients disposant des licences AI Data Engine appropriées :
+
+* *Vectorisation et RAG* : Création de collectes de données, d’embeddings et de points de terminaison de récupération dans la AI Data Engine Console, à l’aide des métadonnées des espaces de travail AIDE.
+* *Gouvernance basée sur des garde-fous* : Définition des politiques de garde-fous dans l'AI Data Engine Console et association de ces politiques avec les espaces de travail dans ONTAP System Manager.
+
+
+
+
+=== Matériel et plateformes pris en charge
+
+AI Data Engine 9.18.1 s'exécute sur des clusters de la plateforme de données ONTAP AI qui combinent :
+
+* Nœuds de stockage AFX 1K
+* Nœuds de calcul de données NetApp
+
+
+.Informations connexes
+* link:known-limitations.html["Limitations connues de AI Data Engine"]
+* link:../get-started/learn-about.html["Découvrez l'architecture et les composants d'AI Data Engine"]
+

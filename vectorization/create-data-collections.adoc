@@ -1,0 +1,134 @@
+---
+sidebar: sidebar 
+permalink: vectorization/create-data-collections.html 
+keywords: aide, create data collection, rag, data engineer, data scientist, embeddings, ai data engine, indexing 
+summary: 'Créez et publiez des collections de données à partir des métadonnées de l"espace de travail dans AI Data Engine Console pour alimenter la génération augmentée par récupération (RAG) et d"autres charges de travail d"IA.' 
+---
+= Créez des collectes de données dans AI Data Engine Console
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les collections de données constituent les éléments de base RAG dans AI Data Engine (AIDE). En tant qu’ingénieur ou scientifique des données, vous définissez les fichiers qui doivent figurer dans une collection, configurez les options d’intégration et d’indexation, et publiez la collection afin que les applications puissent l’interroger via un point de terminaison de récupération.
+
+Vous effectuerez toutes les tâches de collecte de données dans la AI Data Engine Console.
+
+.Avant de commencer
+* Vous devez disposer des privilèges d’_data engineer_ ou d’_data scientist_ dans AI Data Engine Console (`\https://<cluster_management_ip>/console`).
+* Vous avez accès à au moins un espace de travail avec des métadonnées extraites et à l’état  `Ready`.
+* Vous avez exploré les métadonnées de l'espace de travail et identifié des requêtes ou des filtres qui définissent des sous-ensembles de données significatifs.
+* La licence AI Data Engine software est installée et les fonctionnalités d'inférence sont activées.
+
+
+
+
+== Créer une collecte de données à partir des métadonnées de workspace
+
+.Étapes
+. Accédez à *Data Curator > Workspaces* et sélectionnez l'espace de travail qui contient vos données cibles.
+. Sélectionnez *Add data collection*.
+. Sur la page *Créer une nouvelle collecte de données*, procédez comme suit :
++
+.. Saisissez un nom et une description pour la collecte (par exemple, `Support_KB_RAG_EN`).
+.. Choisissez si la collecte de données doit être :
++
+*** *Dynamique* : Les nouveaux fichiers sont automatiquement identifiés et ajoutés à la collecte de données en fonction des critères de filtrage que vous définissez. Cela se produit lors des actualisations de l’espace de travail.
+*** *Statique* : Vous choisissez les fichiers à inclure dans la collecte de données. Vous pouvez modifier les fichiers si la collecte de données est en  `draft` état. Après le passage de la collecte de données à l’ `Published` état, elle ne peut plus être modifiée.
+
+
+
+
+. Spécifiez le sous-ensemble source :
++
+.. Utilisez des mots-clés et des filtres (type de fichier, horodatages et autres attributs) pour trouver les fichiers pertinents à inclure.
++
+
+NOTE: Vous pouvez sélectionner un nom de fichier pour ouvrir une fenêtre d'aperçu du contenu.
+
+
+
+. Ajoutez ces fichiers à la collecte de données.
+. Sélectionnez *Enregistrer* pour finaliser la collecte.
+
+
+.Résultat
+Vous avez défini le périmètre de la collecte de données et y avez ajouté les fichiers requis. AIDE génère les embeddings et construit l'index vectoriel lorsque vous publiez la collecte.
+
+
+TIP: Créez des collections restreintes et ciblées (par exemple, par cas d'utilisation ou domaine) plutôt qu'une seule collection "everything". Cela améliore la pertinence de la récupération et la gestion.
+
+
+
+== Publier une collecte de données
+
+Publiez la collecte de données pour la rendre interrogeable par les applications d'IA via un point d'accès de récupération RAG. La publication génère des vector embeddings à partir des fichiers sélectionnés et les indexe pour la recherche sémantique. Après que la collection ait atteint l'état `Ready`, son point d'accès devient disponible pour que les data scientists puissent l'intégrer dans des notebooks, des pipelines et des applications d'IA pour la retrieval-augmented generation (RAG) et la recherche.
+
+
+TIP: Pour les grandes collections, envisagez de programmer la publication initiale et les principales republications pendant les heures creuses afin de minimiser la concurrence pour les ressources.
+
+.Étapes
+. Accédez à *Data Curator > Data collections* et sélectionnez le menu des options (image:icon_kabob_horizontal.png["trois points bleus horizontaux"]) pour votre collecte de données.
+. Sélectionnez *Publier*.
+. Sélectionnez une configuration d'optimisation par défaut ou personnalisée.
+. Sélectionnez *Publier* pour lancer la transformation des données.
+. Dans AIDE Console, ouvrez la vue détaillée de la collecte (*Data Curator > Data collections*) pour les mises à jour de statut.
+
+
+.Résultat
+La collecte atteint l' `Ready`état et est disponible pour une utilisation par les applications en aval et les data scientists.
+
+Dans *Data Curator > Data collections*, vous pouvez sélectionner *Copy URI* pour obtenir les informations nécessaires pour accéder à la collecte de données à l'aide d'une API.
+
+
+
+== Mettre à jour ou supprimer une collecte de données
+
+Au fil du temps, vous pourriez avoir besoin d'affiner ou de retirer des collections de données. L'affinage d'une collection peut impliquer l'ajustement des filtres pour ajouter ou supprimer des fichiers, la modification des paramètres d'intégration ou la mise à jour de la description de la collection. La suppression d'une collection la retire définitivement et rend son point de terminaison de récupération indisponible.
+
+
+
+=== Mettre à jour une collecte de données
+
+Vous pouvez mettre à jour une collecte de données lorsqu'elle est dans `draft` un état donné.
+
+.Étapes
+. Accédez à *Data Curator > collecte de données*.
+. Sélectionnez la collection que vous souhaitez modifier.
+. Choisissez *Modifier*.
+. Modifiez l’un des éléments suivants :
++
+** Nom et description
+** Filtres (chemins, types de fichiers, classification tags).
+** Paramètres d'intégration et de segmentation.
+
+
+. Enregistrez vos modifications.
+. Republiez la collection afin que la nouvelle définition et les nouveaux embeddings prennent effet.
+
+
+.Résultat
+Une nouvelle tâche d'indexation s'exécute avec la configuration mise à jour, et la collection revient à un `Ready` état une fois terminée.
+
+
+
+=== Supprimer une collection
+
+La suppression d'une collection est définitive. Assurez-vous qu'aucune application de production ne dépende encore du point de terminaison de récupération de la collection avant de la supprimer.
+
+.Étapes
+. Accédez à *Data Curator > Data collections*, et sélectionnez le menu des options (image:icon_kabob_horizontal.png["trois points bleus horizontaux"]) pour la collection.
+. Choisissez *Delete*.
+. Confirmez la suppression.
+
+
+.Résultat
+La définition de la collection et ses représentations vectorielles ont été supprimées d'AI Data Engine. Les applications tentant d'interroger l'ancien point de terminaison de récupération échoueront après la suppression de la collection.
+
+
+
+== Et ensuite ?
+
+* link:view-data-collections.html["Afficher les collectes de données"]
+

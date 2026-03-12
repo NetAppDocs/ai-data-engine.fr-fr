@@ -1,0 +1,62 @@
+---
+sidebar: sidebar 
+permalink: vectorization/explore-workspace-metadata.html 
+keywords: aide, explore metadata, workspace, metadata catalog, ai data engine, data engineer, data scientist, search 
+summary: 'En tant qu"ingénieur des données ou data scientist, utilisez AI Data Engine Console pour explorer les métadonnées de l"espace de travail, découvrir les fichiers et objets pertinents et préparer des sous-ensembles candidats pour les collectes de données.' 
+---
+= Explorez les métadonnées de l'espace de travail dans AI Data Engine Console
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+En tant qu'ingénieur de données ou data scientist, votre première tâche dans AI Data Engine (AIDE) est de comprendre quelles données sont disponibles dans vos espaces de travail. Vous utilisez AI Data Engine Console pour interroger le catalogue de métadonnées, rechercher les fichiers pertinents et identifier les sous-ensembles de données à transformer en collecte de données.
+
+.Avant de commencer
+* Vous devez disposer des privilèges de _data engineer_ ou de _data scientist_ dans AI Data Engine Console et d'un accès à au moins un workspace.
+* Un administrateur de stockage a :
++
+** Créé un ou plusieurs espaces de travail dans ONTAP System Manager.
+** Attribuez à votre utilisateur ou groupe l'accès aux espaces de travail concernés.
+
+
+* L'extraction des métadonnées de l'espace de travail est terminée et l'espace de travail est dans l'état  `Ready`.
+* Les classificateurs sont activés, de sorte que les métadonnées incluent des balises de classification (par exemple, des indicateurs PII).
+
+
+
+
+== Sign in à AI Data Engine Console en tant qu'ingénieur de données ou data scientist
+
+.Étapes
+. Dans un navigateur, accédez à l’URL de la AI Data Engine Console :
++
+`\https://<cluster_management_ip>/console`
+
+. Authentifiez-vous via le fournisseur OIDC de votre organisation.
+. Vérifiez que votre rôle est bien reconnu comme étant celui d'un data engineer ou d'un data scientist (par exemple, par l'espace de travail disponible et les actions de collecte de données). Pour plus d'informations, consultez link:../get-started/aide-components-data-users.html["Documentation relative au rôle d'AIDE"] pour savoir comment les data engineers et les data scientists travaillent avec les composants AIDE.
+
+
+.Résultat
+Vous êtes connecté à AI Data Engine Console et vous ne voyez que les espaces de travail auxquels vous avez été autorisé à accéder.
+
+
+
+== Consultez vos espaces de travail accessibles
+
+.Étapes
+. Dans AI Data Engine Console, accédez à *Data Curator > Workspaces*.
+. Consultez la liste des espaces de travail auxquels vous avez accès.
+. Sélectionnez un espace de travail pour ouvrir ses détails.
+
+
+.Résultat
+Vous disposez désormais d'une vue limitée à votre espace de travail de l'ensemble des données que les administrateurs de stockage ont mises à disposition pour vos projets.
+
+
+
+== Et ensuite ?
+
+* link:create-data-collections.html["Créer des collectes de données pour RAG à partir d'un workspace"]
+

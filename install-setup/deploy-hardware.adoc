@@ -1,0 +1,37 @@
+---
+sidebar: sidebar 
+permalink: install-setup/deploy-hardware.html 
+keywords: aide, ai, data engine, ai data engine, dcn, data compute node, afx, afx 1k, install, setup, hardware, deploy, 
+summary: 'Apprenez comment installer les kits de rails et fixer les nœuds de calcul de données dans l"armoire.' 
+---
+= Installez vos nœuds de calcul de données pour AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Installez et sécurisez vos nœuds de calcul de données dans l'armoire.
+
+.Avant de commencer
+* Assurez-vous d'avoir les instructions emballées avec le kit de rails.
+* Comprenez les préoccupations de sécurité liées au poids du nœud de calcul de données, du système de stockage et de l'étagère de stockage.
+* Il faut comprendre que le flux d'air à travers le système de stockage entre par l'avant, là où le panneau ou les embouts sont installés, et s'évacue par l'arrière, là où se trouvent les ports.
+
+
+
+NOTE: En général, les commutateurs doivent être installés au centre de l'armoire. Les étagères de stockage doivent être installées sous le commutateur et au-dessus d'un second commutateur installé. Les nœuds de contrôleur peuvent être installés au-dessus ou en dessous des commutateurs dans l'armoire. Les nœuds de calcul de données peuvent être installés au-dessus ou en dessous des nœuds de contrôleur dans l'armoire.
+
+.Étapes
+. Installez les kits de rails pour vos nœuds de calcul de données, selon les besoins, en utilisant les instructions incluses avec les kits.
+. Installez et sécurisez vos nœuds de calcul de données dans l'armoire :
++
+.. Positionnez le nœud de calcul de données sur les rails au milieu de l'armoire, puis soutenez l'appliance par le bas et faites-la glisser en place.
+.. Fixez le nœud de calcul de données à l'armoire à l'aide des vis de montage fournies.
+
+
+. Fixez le panneau à l'avant du nœud de calcul de données.
+
+
+.Et ensuite ?
+Après avoir installé les nœuds de calcul de données, vous link:cable-hardware.html["câbler les nœuds de calcul de données pour AIDE"].

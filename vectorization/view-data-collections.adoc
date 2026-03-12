@@ -1,0 +1,120 @@
+---
+sidebar: sidebar 
+permalink: vectorization/view-data-collections.html 
+keywords: aide, data collections, monitor collections, vector database, ai data engine, data engineer, data scientist, activity 
+summary: 'Utilisez les outils AI Data Engine pour visualiser les collections de données, suivre les tâches d"indexation et de publication, et comprendre l"encombrement des vecteurs dans les espaces de travail.' 
+---
+= Consultez les collections de données dans AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Après que les ingénieurs de données ou les data scientists créent et publient des collectes de données à partir des espaces de travail, vous avez besoin de visibilité sur leur statut, leur taille et leur impact sur le cluster AI Data Engine.
+
+Si vous êtes administrateur de stockage, ingénieur de données ou data scientist, vous pouvez consulter les data collections via ONTAP System Manager et AIDE Console.
+
+.Avant de commencer
+* Vous devez disposer des privilèges d'administrateur de stockage dans ONTAP System Manager ou des privilèges d'ingénieur de données ou de scientifique des données dans AI Data Engine Console (`\https://<cluster_management_ip>/console` pour visualiser les collectes de données.
+* Au moins un espace de travail existe avec des métadonnées extraites avec succès.
+* Les ingénieurs ou scientifiques des données ont créé et publié au moins une collecte de données à partir de AI Data Engine Console.
+* La licence AI Data Engine software est installée et les fonctionnalités d'inférence sont activées, de sorte que les points de terminaison de vectorisation et de récupération sont actifs.
+
+
+
+
+== Afficher les collectes de données à l'échelle du cluster
+
+Pour les administrateurs de stockage, ONTAP System Manager offre une vue d'ensemble des collections de données et de leur encombrement mais ne permet pas aux administrateurs de les créer ou de les modifier.
+
+.Étapes
+. Dans System Manager, accédez à *Data Engine > Data collections*.
+. Consultez le récapitulatif de l'inventaire en haut de la page :
++
+** Nombre total de collecte de données par statut
+** Espace total occupé par la base de données vectorielle dans toutes les collections
+** Espace vectoriel en pourcentage de la capacité globale du cluster
+
+
+. Sélectionnez une collecte de données individuelle et examinez-la :
++
+** Nom et description de la collection
+** UUID
+** Espace de travail associé
+** Statut
+** Taille de la collection
+** Créateur
+** Dernière actualisation
+
+
+
+
+.Résultat
+Vous disposez désormais d'une vue d'ensemble de toutes les collections de données du cluster et de leur impact sur le stockage. Utilisez cette vue pour identifier les collections volumineuses, obsolètes ou bloquées dans un état non prêt.
+
+Vous pouvez également voir si une collecte de données est activement mise à jour et si des défaillances bloquent l'utilisation de RAG.
+
+
+
+== Surveiller les tâches et les événements liés à la collecte
+
+En tant qu'administrateur de stockage, vous pouvez surveiller les tâches qui créent et mettent à jour les collections à partir de la page *Activity* à l'échelle du cluster et à partir des détails de l'espace de travail.
+
+.Étapes
+. Dans System Manager, accédez à *Data Engine > Activity*.
+. Dans l’onglet *Événements* :
++
+.. Filtrer par type (par exemple, espace de travail, collecte de données) ou gravité.
+.. Développez n'importe quel événement lié à la collecte de données (par exemple, « Data collection publish failed ») pour voir plus de détails.
+
+
+. Dans l'onglet *Jobs* :
++
+.. Filtrer pour se concentrer sur l’indexation de la collecte de données et les tâches de publication.
+.. Pour chaque tâche, ouvrez l'aperçu pour voir :
++
+*** Pourcentage de progression.
+*** Heures de début et de fin.
+*** Tous les messages d'erreur ou avertissements signalés.
+
+
+
+
+. Vous pouvez également revenir à l'espace de travail concerné (*Data Engine > Workspaces*) et ouvrir son onglet *Activité* pour voir les événements et les tâches limités à cet espace de travail.
+
+
+.Résultat
+Vous pouvez suivre le cycle de vie des collectes de données, identifier les tâches bloquées ou ayant échoué et recueillir des informations contextuelles à transmettre aux data engineers, data scientists ou au support.
+
+
+TIP: Lorsqu'une collecte de données reste dans l'état  `Publishing` pendant une période prolongée, vérifiez s'il existe une tâche de longue durée correspondante sur la page Activité avant de conclure à une panne.
+
+
+
+== Afficher les collectes de données depuis la console AIDE
+
+Les ingénieurs et les scientifiques des données surveillent généralement les collectes de données directement depuis AI Data Engine Console, où elles sont créées et publiées.
+
+.Étapes
+. Connectez-vous à AI Data Engine Console en tant qu’ingénieur de données ou scientifique des données.
+. Accédez à *Data Collections* et sélectionnez la collecte de données souhaitée.
+. Pour chaque collection :
++
+.. Vérifiez l'état (`Draft`, `Publishing`, `Ready`, ou `Failed`).
+.. Sélectionnez le nom de la collecte de données pour consulter les détails de la définition (filtres, types de fichiers inclus, options du classificateur, paramètres d'intégration).
+.. Vérifiez les horodatages de la dernière publication ou de la dernière mise à jour.
+
+
+. Si nécessaire, ouvrez les détails de la tâche ou les journaux (lorsqu'ils sont disponibles) pour comprendre les échecs ou les exécutions incomplètes.
+
+
+.Résultat
+Les ingénieurs et les scientifiques des données peuvent itérer sur les définitions de collections et les republier tout en surveillant leur état et leur santé, sans impliquer les administrateurs de stockage.
+
+
+
+== Et ensuite ?
+
+* link:create-data-collections.html["Créer des collections de données pour RAG dans AI Data Engine Console"]
+

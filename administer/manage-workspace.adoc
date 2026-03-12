@@ -1,0 +1,167 @@
+---
+sidebar: sidebar 
+permalink: administer/manage-workspace.html 
+keywords: aide, ai data engine, workspaces, metadata engine, manage workspaces, add data containers, users 
+summary: 'Gérez le cycle de vie des espaces de travail AI Data Engine, notamment la visualisation, la modification, l"ajout de conteneurs de données, la gestion des utilisateurs et la suppression des espaces de travail.' 
+---
+= Gérer les espaces de travail AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Un espace de travail est un ensemble de sources de données (volumes) que l'AI Data Engine (AIDE) utilise pour créer et actualiser un catalogue de métadonnées pour un projet ou un cas d'utilisation particulier. En tant qu'administrateur de stockage, vous pouvez utiliser ONTAP System Manager pour surveiller l'état de l'espace de travail, ajuster la configuration, contrôler les sources de données, gérer les utilisateurs et supprimer les espaces de travail lorsqu'ils ne sont plus nécessaires.
+
+.Avant de commencer
+* Vous devez disposer des privilèges d'administrateur de stockage pour gérer les espaces de travail.
+
+
+
+
+== Vérifier l'état de l'espace de travail
+
+Vérifiez l'état de l'espace de travail, l'utilisation de la capacité et l'état des métadonnées pour vous assurer que le Metadata Engine fonctionne comme prévu et ne consomme pas de ressources inattendues.
+
+.Étapes
+. Depuis ONTAP System Manager, dans le volet de navigation, sélectionnez *Data engine > Workspaces*.
+. Consultez le résumé en haut de la page pour le nombre total d'espaces de travail, l'état général des espaces de travail et l'utilisation de la capacité.
+. Pour obtenir des informations spécifiques à un espace de travail, sélectionnez un nom d'espace de travail. Dans l'onglet *Aperçu*, confirmez :
++
+** État et taille de l'espace de travail.
+** Conteneurs de données (volumes) inclus dans le workspace.
+** Nombre d'éléments et date de dernière mise à jour par source de données.
+** Avertissements au niveau de l'espace de travail.
+
+
++
+
+NOTE: Si un espace de travail ou une collecte de données affiche un état d'erreur, vérifiez que tous les volumes sources sont en ligne et accessibles.
+
+. Sélectionnez l'onglet *Data collections* pour voir :
++
+** Toutes les collections de données associées à cet espace de travail.
+** État (tel que `Published` ou `Error`), taille et date de dernière mise à jour.
++
+
+NOTE: Le System Manager est en lecture seule pour les collections de données. Les ingénieurs de données peuvent créer et gérer des collections de données dans l'AI Data Engine Console.
+
+
+
+. Sélectionnez l'onglet *Users* pour afficher :
++
+** La liste des utilisateurs ayant accès à cet espace de travail.
+
+
+. Sélectionnez l’onglet *Activité* pour voir les événements et les tâches liés uniquement à cet espace de travail.
+
+
+
+
+== Modifier les propriétés de l'espace de travail et le calendrier d'actualisation
+
+Vous pouvez modifier le nom, la description, l'intervalle d'actualisation d'un espace de travail et (si vous disposez d'une licence) sa politique de garde-fous.
+
+.Étapes
+. Dans *Data engine > Workspaces*, sélectionnez image:icon_kabob.gif["trois points bleus verticaux"] à côté d'un workspace et sélectionnez *Edit*.
+. Modifier les propriétés de l'espace de travail :
++
+** Mettez à jour *Name* et *Description* si nécessaire.
+** Ajustez l’*intervalle d’actualisation* (fréquence de mise à jour des métadonnées) dans la plage autorisée (heures et jours).
+** Si une licence AIDE est installée, vous pouvez sélectionner *stratégie Guardrail*.
+
+
+. Sélectionnez *Save*.
+
+
+
+NOTE: Les modifications apportées à l’intervalle d’actualisation ou au traitement des métadonnées peuvent affecter la fréquence à laquelle les relations distantes SnapMirror sont mises à jour pour cet espace de travail.
+
+
+
+== Ajouter des containers de données à un espace de travail existant
+
+Vous pouvez ajouter des volumes montés supplémentaires (locaux ou provenant d'un cluster distant apparié) afin que leurs métadonnées soient incluses dans le catalogue de l'espace de travail.
+
+. Dans *Data Engine > Workspaces*, effectuez l'une des opérations suivantes :
++
+** Sélectionnez image:icon_kabob.gif["trois points bleus verticaux"] à côté de l'espace de travail et sélectionnez *Ajouter des containers de données*.
+** Ouvrez l'espace de travail, sélectionnez l'onglet *Aperçu*, puis sélectionnez *Ajouter* dans la section des containers de données.
+
+
+. Dans la boîte de dialogue *Ajouter des containers de données à l'espace de travail* :
++
+** Localisez les volumes locaux sur le cluster AIDE.
+** Développez les clusters appariés pour sélectionner les volumes distants (les volumes distants nécessitent un peering de cluster et de SVM).
+
+
++
+
+NOTE: Seuls les volumes en ligne éligibles qui ne sont pas exclus globalement et qui ne font pas déjà partie de l'espace de travail peuvent être sélectionnés.
+
+. Si vous êtes invité à mapper un volume distant :
++
+** Sélectionnez la machine virtuelle de stockage cible sur le cluster AIDE pour recevoir les destinations SnapMirror pour les volumes distants choisis.
+
+
+. Sélectionnez *Add*.
+. Utilisez l'onglet *Activité* de l'espace de travail ou *Data engine > Activité* pour suivre l'extraction des métadonnées et toute initialisation SnapMirror pour les nouvelles sources de données.
+
+
+
+
+== Supprimer les containers de données d'un workspace
+
+Vous pouvez supprimer un container de données lorsqu'il n'est plus pertinent pour l'objectif de l'espace de travail ou si vous souhaitez réduire la portée de la gestion des métadonnées pour cet espace de travail. La suppression d'un container de données interrompt l'actualisation des métadonnées pour ce volume et supprime ses métadonnées du catalogue de métadonnées.
+
+
+IMPORTANT: Ne supprimez pas un volume source d'ONTAP qui a été ajouté à un espace de travail. Si vous supprimez le volume, l'espace de travail passera en état d'échec. Supprimez toujours le container de données de l'espace de travail avant de supprimer tout volume ONTAP sous-jacent.
+
+.Étapes
+. Accédez à *Data engine > Workspaces* et sélectionnez l'espace de travail qui contient le container de données.
+. Dans l'onglet *Aperçu*, repérez le container de données à supprimer.
+. Sélectionnez *Supprimer* à côté du container de données.
+. Examinez la boîte de dialogue de confirmation et sélectionnez *Remove*.
+
+
+
+NOTE: La suppression d'un container de données d'un espace de travail ne supprime pas le volume ONTAP sous-jacent ni sa relation SnapMirror. Elle affecte uniquement l'utilisation des métadonnées au sein de l'AI Data Engine.
+
+
+
+== Gérer les utilisateurs de l'espace de travail
+
+Vous pouvez accorder ou révoquer l'accès pour les utilisateurs data engineer et data scientist à un workspace. Ces utilisateurs sont définis dans votre identity provider (OIDC) et associés à des rôles ONTAP. Voir la documentation link:../workspaces/assign-users-to-workspace.html["affecter des utilisateurs à des espaces de travail"] pour savoir comment gérer l'accès des utilisateurs.
+
+
+
+== Supprimer un espace de travail
+
+Vous pouvez supprimer un espace de travail pour supprimer la définition de l'espace de travail et les métadonnées AIDE associées. Toutes les collections de données et les plongements vectoriels liées à l'espace de travail sont également supprimées.
+
+
+NOTE: Les données ONTAP sous-jacentes (volumes, SnapMirror relationships) ne sont pas supprimées.
+
+.Étapes
+. Dans *Data Engine > Workspaces*, effectuez l'une des opérations suivantes :
++
+** Supprimez un seul espace de travail, sélectionnez image:icon_kabob.gif["trois points bleus verticaux"] et sélectionnez *Supprimer*.
+** Supprimez plusieurs espaces de travail, cochez les cases des espaces de travail, puis sélectionnez *Supprimer*.
+
+
+. Dans la boîte de dialogue de confirmation, examinez les conséquences de l'action avant de poursuivre :
++
+** Les métadonnées de l'espace de travail sont définitivement supprimées.
+** Les collections de données et les embeddings associés à l'espace de travail sont définitivement supprimés.
+
+
++
+
+NOTE: Il n'existe aucune option de suppression ou de restauration logicielle.
+
+. Cochez la case pour confirmer votre compréhension, puis sélectionnez *Delete*.
+
+
+.Informations connexes
+* link:../workspaces/assign-users-to-workspace.html["Attribuer des utilisateurs aux espaces de travail"]
+

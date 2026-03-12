@@ -1,0 +1,19 @@
+---
+sidebar: sidebar 
+permalink: install-setup/aide-afx-install.html 
+keywords: ai data engine, afx, afx 1k, install, hardware, storage system, data compute node, aide 
+summary: 'Installez le système de stockage AFX comme première étape du déploiement de l"AI Data Engine. Le système AFX fournit l"infrastructure de stockage nécessaire au déploiement d"AIDE.' 
+---
+= Installez le système de stockage AFX pour AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Installez le système de stockage AFX en première étape du déploiement de l'AI Data Engine. Le système de stockage AFX constitue la base de l'infrastructure de stockage et est requis avant l'installation des Data Compute Node.
+
+Suivez les link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html["Documentation d'installation AFX 1K"^] pour installer le système de stockage AFX.
+
+.Et ensuite
+Après avoir terminé l'installation du système de stockage AFX, link:install-workflow.html["installer les Data Compute Node"].

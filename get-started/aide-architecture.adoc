@@ -1,0 +1,150 @@
+---
+sidebar: sidebar 
+permalink: get-started/aide-architecture.html 
+keywords: aide, architecture, ontap, physical components, logical components, networking, security 
+summary: AIDE repose sur une architecture évolutive et tolérante aux pannes qui sépare le stockage et le calcul, permettant des performances et une flexibilité élevées pour les charges de travail AI. 
+---
+= Architecture de l'AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+AIDE repose sur une architecture évolutive et tolérante aux pannes qui sépare le stockage et le calcul, permettant des performances et une flexibilité élevées pour les charges de travail AI.
+
+
+
+== Composants physiques
+
+image::../media/aide-system-architecture.png[Diagramme d'architecture AI Data Engine]
+
+
+
+=== nœuds de contrôleur AFX
+
+Les nœuds de contrôle AFX exécutent une version spécialisée du logiciel ONTAP conçue pour répondre aux exigences de l'environnement AFX. Les clients accèdent aux nœuds via plusieurs protocoles, notamment NFS et SMB. Chaque nœud dispose d'une vue complète du stockage, à laquelle il peut accéder en fonction des requêtes des clients. Les nœuds sont dotés d'une mémoire non volatile permettant de conserver les informations d'état critiques et intègrent des améliorations supplémentaires spécifiques aux charges de travail cibles.
+
+Au moins quatre nœuds de contrôleur AFX sont nécessaires pour les déploiements AIDE afin de garantir une haute disponibilité et des performances élevées.
+
+
+
+=== Nœuds de calcul de données
+
+Les nœuds de calcul de données (DCN) sont des serveurs Linux dotés de ressources CPU, RAM et GPU élevées, dédiés aux tâches de traitement des données d'IA. Ils hébergent des services spécifiques à l'IA tels que le catalogage des métadonnées, la recherche vectorielle et les pipelines d'embedding.
+
+Exactement _trois_ DCN sont nécessaires pour les déploiements AIDE.
+
+
+
+=== Commutateurs de cluster/stockage
+
+Des commutateurs redondants à haut débit (100GbE ou plus) connectent ONTAP et les DCN pour un transfert de données à faible latence et une haute disponibilité.
+
+
+
+=== Étagères de stockage
+
+Les baies NVMe-oF avec des SSD haute densité offrent une latence ultra-faible et une redondance, prenant en charge le stockage à l'échelle du pétaoctet.
+
+
+
+== Réseautique
+
+Tous les nœuds DCN et les nœuds de stockage ONTAP sont connectés par des commutateurs de cluster redondants à haut débit (minimum 100GbE). Cette architecture sépare les ressources de calcul et de stockage, permettant à chacune d'évoluer indépendamment et en optimisant à la fois les performances et l'utilisation des ressources.
+
+La mise en réseau entre les DCN et les nœuds ONTAP est isolée à l'aide de VLAN dédiés et d'IPspaces sur les commutateurs du cluster. Cela garantit que toutes les communications, telles que l'accès aux données, les API de gestion et le trafic des services internes, restent sécurisées, efficaces et n'interfèrent pas avec les autres opérations réseau.
+
+
+
+== Fonctionnalités principales de l'AI Data Engine
+
+Les principales fonctionnalités de l'AI Data Engine (AIDE) fonctionnent ensemble pour automatiser, sécuriser et accélérer le cycle de vie des données d'IA. Chaque fonctionnalité est implémentée sous forme d'un ensemble de microservices s'exécutant sur des DCN, intégrés au stockage ONTAP et exposés via des API REST et des interfaces de gestion.
+
+
+
+=== Metadata Engine
+
+Le Metadata Engine génère automatiquement une vue structurée, à jour et interactive de votre patrimoine de données NetApp.
+
+.Licence et accès
+Le Metadata Engine est inclus avec la licence de base ONTAP One et est disponible lors de l'installation d'AIDE.
+
+Vous pouvez y accéder via ONTAP System Manager.
+
+.Capacités
+* Catalogue les métadonnées de toutes les sources de données, y compris les volumes stockés localement sur le cluster AFX et ceux synchronisés à partir de clusters ONTAP distants.
+* Extrait automatiquement les métadonnées et alimente le catalogue au fur et à mesure que les données sont ingérées ou modifiées.
+* Fournit un accès à l'API REST pour interroger les métadonnées, permettant aux spécialistes des données et aux administrateurs de stockage de découvrir, classer et comprendre les données.
+* Décharge les requêtes de métadonnées du chemin d'accès aux données, réduisant la charge de trafic NFS sur les systèmes de stockage.
+* Prend en charge les enregistrements de métadonnées volumineux avec des fonctionnalités d'indexation et de recherche.
+* S'intègre aux abstractions d'espace de travail et de collecte de données pour appliquer le contrôle d'accès et la gouvernance.
+
+
+
+
+=== Synchronisation des données
+
+La synchronisation des données est un service automatisé en arrière-plan qui garantit que le catalogue de métadonnées et les collections de données restent à jour et cohérents avec les sources de données sous-jacentes, même lorsque les données sources changent.
+
+.Licence et accès
+La fonctionnalité Data Sync n'est pas incluse avec la licence de base ONTAP One et nécessite une licence AIDE distincte.
+
+.Capacités
+* Synchronise les données des clusters ONTAP distants ou locaux à l'aide de la réplication SnapMirror basée sur des politiques. Les données des clusters distants sont copiées vers le cluster AFX local pour le traitement AIDE.
+* Mise à jour progressive basée sur les modifications détectées, en ne propageant que les données modifiées.
+* Assure une mobilité des données et une synchronisation sécurisées et progressives à travers l'ensemble du parc de données.
+* Planifie et surveille les intervalles de synchronisation avec des taux d'actualisation configurables par espace de travail.
+* S'intègre aux flux de travail de création de workspace pour extraire et mettre à jour les métadonnées à mesure que de nouvelles sources de données sont ajoutées.
+
+
+
+
+=== Data Guardrails
+
+Le service Data Guardrails assure une gouvernance et une protection continues et automatisées des données sensibles tout au long du cycle de vie de l'IA.
+
+.Licence et accès
+La fonctionnalité Data Guardrails n'est pas incluse avec la licence de base ONTAP One et nécessite une licence AIDE distincte.
+
+Vous pouvez accéder à la fonctionnalité Data Guardrails via l'AI Data Engine Console.
+
+.Capacités
+* Analyse, classe et catégorise les données en continu.
+* Identifie les données sensibles et les risques grâce à des classificateurs intégrés et personnalisables pour des tâches telles que la détection de PII.
+* Automatise la gestion des données sensibles grâce à la rédaction, au masquage et aux restrictions d'accès pilotés par des règles.
+* Fait respecter les normes de l'entreprise et les réglementations grâce à des politiques de Data Guardrails appliquées aux espaces de travail.
+* Restreint l'accès aux fichiers ou volumes sensibles selon la configuration, avec journalisation des audits et rapports de conformité.
+* S'intègre à la gestion des espaces de travail et de la collecte de données pour appliquer des Data Guardrails de manière cohérente aux workflows de données d'IA.
+
+
+
+
+=== Data Curator
+
+Le service Data Curator permet une découverte, une recherche, une vectorisation et une récupération rapides des données pour les applications d'IA et de GenAI.
+
+.Licence et accès
+La fonctionnalité Data Curator n'est pas incluse avec la licence de base ONTAP One et nécessite une licence AIDE distincte.
+
+Vous pouvez accéder à Data Curator via la AI Data Engine Console.
+
+.Capacités
+* Recherche les données pertinentes dans le stockage à l'aide du catalogue de métadonnées centralisé.
+* Fournit aux data scientists des outils pour créer des collections de données organisées.
+* Génère automatiquement des plongements vectoriels au niveau de la couche de stockage.
+* Fournit un point de terminaison de récupération sécurisé pour les applications d'IA, prenant en charge la recherche sémantique vectorielle et le réordonnancement.
+* S'intègre aux outils et technologies d'IA, y compris les pipelines de Retrieval-Augmented Generation (RAG) et les frameworks d'IA agentiques.
+* Fournit des API REST pour l'accès programmatique aux collections de données, la recherche vectorielle et les points de terminaison de récupération.
+
+
+
+
+== Sécurité et multi-location
+
+La plateforme applique à la fois le contrôle d'accès basé sur les rôles (RBAC) et les listes de contrôle d'accès (ACL) au niveau des ressources. Toutes les actions des API et des utilisateurs sont auditées, et toutes les données sont chiffrées au repos et en transit. Chaque locataire est isolé pour les données et les métadonnées.
+
+.Informations connexes
+* link:../install-setup/install-license-task.html["Installer une licence AIDE"]
+* link:../vectorization/zero-to-rag.html["Démarrage rapide Data-to-RAG"]
+

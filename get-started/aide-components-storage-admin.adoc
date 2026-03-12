@@ -1,0 +1,50 @@
+---
+sidebar: sidebar 
+permalink: get-started/aide-components-storage-admin.html 
+keywords: aide, architecture, ontap, storage administrator, system manager, workspaces, guardrails 
+summary: 'Découvrez comment les administrateurs de stockage interagissent avec les composants AIDE pour gérer l"infrastructure du cluster, provisionner des espaces de travail et appliquer des politiques de gouvernance.' 
+---
+= Découvrez comment les administrateurs de stockage AI Data Engine travaillent avec les composants AIDE
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+En tant qu'administrateur de stockage, vous gérez l'infrastructure AIDE via ONTAP et la AI Data Engine Console, en provisionnant des espaces de travail, en appliquant des politiques de garde-fou et en surveillant l'état du système. Votre rôle consiste à garantir un stockage des données fiable, sécurisé et conforme pour les charges de travail d'IA.
+
+
+
+== Accès au composant d'administrateur de stockage
+
+[cols="2h,2,3"]
+|===
+| Composant | Niveau d'accès | Flux de travail de l'administrateur de stockage 
+
+
+| ONTAP System Manager | Gérer (créer, modifier, supprimer) | Vous utilisez ONTAP System Manager comme interface principale pour l'administration du cluster, le provisionnement de l'espace de travail, la gestion des politiques de garde-fou et la surveillance de l'état du système. 
+
+
+| AI Data Engine Console | Gérer (créer, modifier, supprimer) | Vous utilisez l'AI Data Engine Console pour surveiller les espaces de travail, consulter l'état des collections et superviser l'activité du système dans l'environnement AIDE. 
+
+
+| API REST ONTAP | Gérer (créer, modifier, supprimer) | Vous utilisez l'API REST pour automatiser les tâches d'infrastructure, gérer les espaces de travail et les politiques de protection par programmation, et intégrer l'administration d'AIDE avec des outils et des flux de travail externes. 
+
+
+| Espaces de travail | Gérer (créer, modifier, supprimer) | Vous créez et gérez des espaces de travail à l'aide de ONTAP System Manager. Vous sélectionnez les sources de données incluses, attribuez des autorisations aux data engineers et aux data scientists, et appliquez des politiques de garde-fou pour garantir la gouvernance et la conformité. Vous surveillez également l'état et l'accès aux espaces de travail. 
+
+
+| Collecte de données | Afficher (lecture seule) | Vous consultez l'état et l'intégrité des collections de données dans chaque espace de travail à l'aide de System Manager. Vous vous assurez que les sources de données sous-jacentes sont disponibles et protégées, mais vous ne créez ni ne modifiez les collections. 
+
+
+| Garde-fous | Gérer (créer, modifier, supprimer) | Vous définissez et associez des politiques de garde-fou aux espaces de travail à l'aide de System Manager. Vous surveillez l'état des garde-fous et les rapports de conformité. Vous veillez à ce que les politiques soient appliquées et mises à jour selon les besoins. 
+
+
+| Catalogue de métadonnées | Surveiller (afficher la santé, l'état, l'activité) | Vous veillez à ce que le catalogue de métadonnées soit rempli et à jour. Vous surveillez l'état du catalogue et soutenez le contrôle d'accès. 
+
+
+| base de données vectorielle | Provisionnement/Surveillance (déployer, configurer, afficher l'état) | Vous provisionnez et supervisez l'infrastructure de base de données vectorielle, en veillant à ce que les nœuds de calcul de données disposent de ressources GPU et des licences appropriées. Vous assurez le support de l'environnement, mais ne gérez pas directement les embeddings ni les requêtes. 
+
+
+| Classificateurs | Gérer (créer, modifier, supprimer) | Vous créez, configurez et gérez les classificateurs et leurs catégories. Vous appliquez les classificateurs aux espaces de travail et surveillez leur efficacité. 
+|===

@@ -1,0 +1,47 @@
+---
+sidebar: sidebar 
+permalink: workspaces/assign-users-to-workspace.html 
+keywords: aide, workspaces, assign users, user management, ai data engine 
+summary: 'Après avoir créé un espace de travail, vous pouvez y affecter des utilisateurs qui travailleront avec des ressources d"IA dans cet espace de travail.' 
+---
+= Attribuer l'accès utilisateur aux espaces de travail AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+En tant qu'administrateur de stockage, vous affectez les utilisateurs à un espace de travail en fonction de leur rôle : data engineers, data scientists ou autres rôles selon la structure et les besoins de votre organisation. Les utilisateurs se connectent à la AI Data Engine Console à l'aide de leurs identifiants et accèdent aux ressources du data container au sein de l'espace de travail qui leur est attribué.
+
+ONTAP System Manager vous permet de gérer quels utilisateurs ont accès aux espaces de travail AI Data Engine. Vous pouvez ajouter ou supprimer des utilisateurs pour contrôler qui peut consulter, modifier et interagir avec les données et les activités des espaces de travail.
+
+.Avant de commencer
+* Vous devez disposer des privilèges de _storage administrator_ pour gérer l'accès des utilisateurs aux espaces de travail.
+* Confirmez que vous avez créé l'espace de travail et qu'il est actif dans l'inventaire des espaces de travail.
+* Vérifiez que tous les container de données pertinents ont été ajoutés à l'espace de travail et sont accessibles.
+* link:../install-setup/configure-oidc.html["Confirmez que OIDC est activé et configuré pour le cluster"]. Le mappage des rôles de l'IdP vers les rôles ONTAP doit être effectué pour chaque utilisateur ou groupe IdP concerné, ingénieur de données ou data scientist.
+
+
+.Étapes
+* Ajouter un utilisateur à un espace de travail :
++
+.. Dans ONTAP System Manager, accédez à *AI Data Engine > Workspaces*.
+.. Sélectionnez le nom de l'espace de travail pour ouvrir sa page de détails.
+.. Accédez à l'onglet Utilisateurs.
+.. Sélectionnez le bouton *Ajouter* pour ouvrir la boîte de dialogue d'ajout d'utilisateurs.
+.. Saisissez les informations d'un ou plusieurs utilisateurs. Saisissez les informations sous forme de liste d'utilisateurs OIDC séparés par des virgules.
+.. Sélectionnez *Ajouter* pour accorder à l'utilisateur l'accès à l'espace de travail.
+
+
+* Supprimer un utilisateur d'un workspace :
++
+.. Dans l'onglet Utilisateurs de la page de détails de l'espace de travail, localisez et sélectionnez l'utilisateur que vous souhaitez supprimer.
+.. Sélectionnez le bouton *Remove*.
+.. Confirmez la suppression dans la boîte de dialogue.
+.. Le système supprime immédiatement l'utilisateur et révoque son accès à l'espace de travail.
+
+
+
+
+.Résultat
+Seuls les utilisateurs listés dans l'onglet Utilisateurs de l'espace de travail peuvent accéder et interagir avec les données et les activités de l'espace de travail.

@@ -1,0 +1,86 @@
+---
+sidebar: sidebar 
+permalink: administer/aide-node-replace.html 
+keywords:  
+summary:  
+---
+= Remplacez un nœud de votre cluster AIDE
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez remplacer un nœud de calcul de données (DCN) dans votre AI Data Engine (AIDE) cluster s'il cesse de fonctionner ou s'il doit être remplacé en raison d'une défaillance matérielle, d'une mise à niveau ou d'une opération de maintenance. Cela garantit que le cluster AIDE reste sain et opérationnel. La procédure peut être effectuée sans perturber les services en cours.
+
+
+
+== Préparez à remplacer un nœud
+
+Plusieurs éléments sont à prendre en compte avant de remplacer un nœud dans votre AIDE cluster.
+
+.Identifiants System Manager
+Vous devez disposer des privilèges d'administrateur de stockage pour effectuer les tâches de remplacement de nœud de cluster AIDE.
+
+
+
+=== Restrictions
+
+Vous devez être conscient des restrictions suivantes lors du remplacement d'un nœud dans votre AIDE cluster :
+
+* Le remplacement de nœud n'est pris en charge qu'à l'aide du CLI et, en option, de l'API REST.
+* Vous ne pouvez pas effectuer de remplacement de nœud à l'aide de System Manager.
+* Le nouveau nœud doit correspondre à la version logicielle du cluster's ; ONTAP le mettra à jour si nécessaire.
+* Le nœud défaillant ne doit pas être mis sous tension lorsqu'il est connecté au réseau du cluster afin d'éviter les conflits d'adresses IP.
+
+
+
+
+=== Exigences
+
+Vous aurez besoin des éléments suivants :
+
+* Numéro de série du nouveau nœud de remplacement
+
+
+
+
+== Remplacez un nœud DCN dans votre cluster AIDE
+
+Vous pouvez remplacer un nœud DCN dans votre cluster AIDE en utilisant la procédure suivante.
+
+.Étapes
+. Retirez physiquement le nœud défaillant
++
+Mettez le nœud hors tension et déconnectez-le du réseau du cluster. Assurez-vous que le nœud ne soit pas démarré sur le réseau pendant la procédure de remplacement.
+
+. Supprimez le nœud défaillant du cluster à l'aide de la commande suivante :
++
+`dcn cluster node delete -name <node_name> -force true`
+
++
+Indiquez le nom exact pour la valeur <node_name>.
+
+. Connectez physiquement le nouveau nœud au cluster
++
+Assurez-vous que le nœud est connecté par câble, sous tension et détectable.
+
+. Consultez les nœuds détectables et non configurés pour vérifier que le nouveau nœud est en ligne :
++
+`dcn cluster node show -membership available`
+
+. Ajoutez le nœud au cluster à l'aide de la commande suivante :
++
+`dcn cluster node create -serial-number <new_node_serial>`
+
++
+ONTAP attribuera une adresse IP au nouveau nœud. Si la version logicielle du nœud ne correspond pas à celle du cluster, ONTAP mettra automatiquement le nœud à jour.
+
+. Vérifiez l'état du cluster et l'intégration des nœuds à l'aide de l'une des commandes suivantes :
++
+`dcn cluster node show`
+
++
+`dcn cluster node show -instance`
+
+

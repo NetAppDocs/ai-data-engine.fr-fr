@@ -1,0 +1,89 @@
+---
+sidebar: sidebar 
+permalink: workspaces/create-workspace.html 
+keywords: aide, workspaces, create workspace, ai data engine 
+summary: 'Après avoir créé un cluster, vous pouvez créer des espaces de travail qui vous permettent de segmenter les données, de contrôler l"accès aux données et d"exclure les données auxquelles AIDE ne doit pas accéder.' 
+---
+= Créez un espace de travail dans AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Une fois votre cluster configuré, vous pouvez créer un espace de travail. Les espaces de travail vous permettent de segmenter les données du cluster, de contrôler l'accès aux données pour chaque utilisateur et d'exclure les données auxquelles AI Data Engine (AIDE) ne doit pas accéder.
+
+Si vous administrez le stockage, vous utiliserez ONTAP System Manager pour créer et gérer des workspaces.
+
+Les organisations créent des espaces de travail en fonction des équipes, des projets, des niveaux de sensibilité des données ou d'autres critères pertinents. Par exemple, si vous travaillez dans le domaine de la santé, vous pouvez segmenter les données cliniques dans un espace de travail, mais exclure les données relatives à l'informatique, au service juridique ou à d'autres départements.
+
+.À propos de cette tâche
+Les limites de traitement du système affectent la création d'espaces de travail (généralement jusqu'à 15 Go par jour par cluster). Si vous créez plusieurs espaces de travail en parallèle ou en succession rapide, chaque espace de travail peut prendre plus de temps à traiter et vous pourriez rencontrer des retards importants.
+
+Suivez l'état de la création des espaces de travail depuis la page d'inventaire des espaces de travail. Pour de meilleurs résultats, évitez de créer plusieurs espaces de travail à la fois si vous avez besoin d'accéder immédiatement à ces fonctionnalités.
+
+.Avant de commencer
+* Vous devez disposer des privilèges d'administrateur de stockage pour créer des espaces de travail et associer des collectes de données.
+* Vous avez déterminé les sources de données distantes (pairées) et locales que vous avez l'intention d'utiliser avec l'espace de travail et avec AI Data Engine.
+* Vous avez link:prepare-data-for-aide.html["créé au moins un container de données"] que l'espace de travail peut utiliser, tel qu'un volume local ou un volume provenant d'un cluster apparié.
++
+
+IMPORTANT: Ajoutez un volume à un espace de travail que vous ne supprimerez pas pendant la durée de vie prévue de cet espace de travail. Si vous supprimez un volume après l'avoir ajouté à un espace de travail, l'espace de travail passera en état d'échec. Confirmez la viabilité à plus long terme du volume avant de créer un espace de travail.
+
+
+
+* Assurez-vous que NFS est activé sur le volume, mais que CIFS ne l'est pas. Les espaces de travail prennent uniquement en charge les volumes avec NFS. Les volumes avec CIFS (SMB) ne sont pas pris en charge.
+
+
+
+
+== Créer un espace de travail
+
+Créez un espace de travail et associez des container de données contenant les données que vous souhaitez utiliser avec AI Data Engine.
+
+.Étapes
+. Dans ONTAP System Manager, accédez à *AI Data Engine > Workspaces*.
+. Sélectionnez *Add*.
+. Dans la boîte de dialogue *Ajouter un espace de travail*, sélectionnez au moins un container de données disponible à associer à l'espace de travail.
+. Configurez link:prepare-data-for-aide.html["clusters appariés"] afin que les données de ces clusters puissent être accessibles dans l'espace de travail
+. Si vous souhaitez configurer l'accès des utilisateurs à l'espace de travail, vous pouvez le faire maintenant ou link:assign-users-to-workspace.html["Attendez que l'espace de travail soit créé"].
+. Configurez un intervalle d'actualisation pour la fréquence à laquelle l'espace de travail se synchronise avec les data containers associés afin de capturer les données nouvelles ou mises à jour (par exemple, six heures).
++
+
+TIP: Choisissez un intervalle qui assure un bon équilibre entre la fraîcheur des données et les performances du système. Si vous ajoutez un container de données à plusieurs espaces de travail, le système utilise automatiquement l'intervalle le plus agressif (le plus court). Pour en savoir plus, consultez la documentation sur <<Actualisation et versionnage de l'espace de travail,Actualisation et versionnage de l'espace de travail>>.
+
+. Sélectionnez *Continue*.
+. Dans la boîte de dialogue *Finaliser workspace*, saisissez un nom et une description pour l'espace de travail.
+. Sélectionnez *Add* pour créer l'espace de travail.
+
+
+.Résultat
+Le processus de création de l'espace de travail prend de plusieurs minutes à plusieurs heures, selon l'ensemble de données associé, le nombre de fichiers, la taille des fichiers et d'autres facteurs.
+
+Le système extrait automatiquement les métadonnées de toutes les sources de données et les stocke dans un catalogue de métadonnées que les utilisateurs peuvent utiliser pour localiser les fichiers dont ils ont besoin pour leurs projets. Après avoir affecté les utilisateurs à l'espace de travail, les ingénieurs de données peuvent configurer et interagir avec les composants affiliés à l'espace de travail depuis AI Data Engine Console.
+
+Le nouvel espace de travail apparaît sur la page Espaces de travail dans l'état  `Creating` jusqu'à ce que le processus soit terminé et que l'état passe à  `ready`.
+
+
+
+== Examiner les détails de l'espace de travail
+
+Après la création de l'espace de travail, vérifiez les détails de l'espace de travail.
+
+.Étapes
+. Examinez les détails de l'espace de travail, y compris la taille totale, le pourcentage de capacité du cluster utilisé et la date de la dernière actualisation de l'espace de travail.
+. Sélectionnez le nom de l'espace de travail pour ouvrir la page de détails.
+. Dans l'onglet Vue d'ensemble, consultez les détails de l'espace de travail, notamment les containers de données associés, les utilisateurs et l'activité.
+
+
+
+
+== Actualisation et versionnage de l'espace de travail
+
+Chaque actualisation d'un espace de travail crée une version immuable qui capture l'état actuel de tous les fichiers et objets dans l'espace de travail. Les versions incluent des métadonnées complètes, des références aux instantanés utilisés lors de l'extraction et un identifiant de tâche pour la traçabilité. Cela prend en charge la traçabilité des données, la reproductibilité et l'audit.
+
+Les actualisations s'effectuent soit selon la planification que vous configurez (par exemple, toutes les six heures), soit lorsque vous les déclenchez manuellement. L'intervalle d'actualisation minimal pris en charge est d'une heure ; le maximum est d'un an. Si un container de données est inclus dans plusieurs espaces de travail, le système utilise l'intervalle d'actualisation le plus fréquent et de plus courte durée pour planifier l'extraction des métadonnées.
+
+Par défaut, le système conserve les versions précédentes, actuelles et suivantes (en cours). Le système conserve les versions plus anciennes conformément à la politique de votre organisation et peut les supprimer si nécessaire.
+
+Vous pouvez lister toutes les versions d'un espace de travail et visualiser les différences entre versions afin d'identifier les fichiers ou objets ajoutés, modifiés ou supprimés. Cela vous permet de suivre les modifications au fil du temps et de comprendre l'évolution des données de votre espace de travail.

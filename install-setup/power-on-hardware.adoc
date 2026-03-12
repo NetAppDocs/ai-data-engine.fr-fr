@@ -1,0 +1,60 @@
+---
+sidebar: sidebar 
+permalink: install-setup/power-on-hardware.html 
+keywords: aide, ai, data engine, ai data engine dcn, data compute node, afx, afx 1k, power on, 
+summary: 'Mettez chaque étagère sous tension pour lui attribuer un identifiant unique, mettez sous tension les nœuds du contrôleur AFX et fixez les câbles d"alimentation.' 
+---
+= Mettez sous tension vos nœuds de calcul de données pour AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Après avoir installé le matériel du rack et câblé vos nœuds de calcul de données, vous devez mettre sous tension vos DCN et vos nœuds de contrôle pour le système de stockage AFX si ceux-ci ne sont pas déjà sous tension.
+
+.Avant de commencer
+* Assurez-vous que vos étagères sont alimentées et que chacune possède un identifiant unique. Pour plus d'informations sur l'attribution des identifiants d'étagère pour le système de stockage AFX, consultez la link:https://docs.netapp.com/us-en/ontap-afx/install-setup/power-on-hardware.html#step-1-power-on-the-shelf-and-assign-shelf-id["Attribuer des identifiants d'étagère uniques"^].
+
+
+.Étapes
+Après avoir allumé vos étagères de stockage et attribué les identifiants uniques, mettez sous tension vos DCN et mettez sous tension les nœuds de contrôleur de stockage s'ils ne sont pas déjà allumés.
+
+. Connectez votre ordinateur portable au port console série. Cela vous permet de surveiller la séquence de démarrage lorsque les contrôleurs sont mis sous tension.
++
+.. Configurez le port de console série de l'ordinateur portable à 115 200 bauds avec N-8-1.
++
+Consultez l'aide en ligne de votre ordinateur portable pour obtenir des instructions sur la façon de configurer le port de console série.
+
+.. Connectez le câble de la console à l'ordinateur portable, puis connectez le port de console série du contrôleur à l'aide du câble de console fourni avec votre système de stockage.
+.. Connectez l'ordinateur portable au commutateur du sous-réseau de gestion.
++
+image::../media/drw_afx_1k_console_connection_ieops-2708.svg[Connexions de la NetApp Console]
+
+
+
+
+
+. Attribuez une adresse TCP/IP à l'ordinateur portable, en utilisant une adresse qui se trouve sur le sous-réseau de gestion.
+. Branchez les cordons d'alimentation aux blocs d'alimentation du contrôleur, puis connectez-les à des sources d'alimentation sur des circuits différents.
++
+image::../media/drw_affa1k_power_source_icon_ieops-1700.svg[Schéma de connexion électrique]
+
++
+** Le système commence à démarrer. Le démarrage initial peut prendre jusqu'à huit minutes.
+** Les LED clignotent et les ventilateurs se mettent en marche, ce qui indique que les contrôleurs sont en cours de mise sous tension.
+** Les ventilateurs peuvent être bruyants au démarrage, ce qui est normal.
+
+
+
+
+. Branchez les cordons d'alimentation aux alimentations des nœuds de calcul de données, puis connectez-les à des sources d'alimentation sur des circuits différents.
+. Fixez les cordons d'alimentation à l'aide du dispositif de fixation présent sur chaque alimentation.
+. Mettez sous tension les nœuds de calcul de données.
++
+Il vous faudra peut-être retirer le panneau pour accéder à l'interrupteur d'alimentation ; si c'est le cas, n'oubliez pas de le remettre en place ensuite.
+
+
+
+.Et ensuite ?
+Une fois vos nœuds de calcul de données activés, vous link:../install-setup/cluster-setup-afx.html["configurer un cluster ONTAP AIDE"].

@@ -1,0 +1,171 @@
+---
+sidebar: sidebar 
+permalink: administer/view-dashboard.html 
+keywords: aide, aide system, dashboard, view dashboard, cluster status 
+summary: 'Accédez à ONTAP System Manager comme première étape avant de commencer vos tâches d"administration AIDE.' 
+---
+= Afficher l'état du système AIDE et l'état du cluster
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+En tant qu'administrateur de stockage, vous pouvez utiliser ONTAP System Manager pour accéder au tableau de bord et afficher l'état du cluster. Il s'agit d'une bonne première étape avant de commencer vos tâches d'administration AIDE ou si vous suspectez un problème opérationnel.
+
+.Avant de commencer
+* Vous devez disposer des privilèges d'administrateur de stockage pour effectuer des tâches administratives liées à AIDE ONTAP.
+
+
+
+
+== Surveillez la santé et la capacité d'AIDE depuis le tableau de bord
+
+. Connectez-vous à ONTAP System Manager en utilisant l'adresse de gestion du cluster :
++
+`\https://$FQDN_OR_IP/`
+
+. Sign in avec un compte administrateur.
+. Sélectionnez *Dashboard* dans le volet de navigation de gauche.
+. Consultez la vignette *Health* :
++
+** Confirmer l'état général du cluster.
+** Vérifiez le nombre et l'état des **Data compute nodes** et leur statut.
+** Vérifiez les alertes :
++
+*** Problèmes de nœud DCN ou problèmes de connectivité
+*** Espaces de travail ou collecte de données en erreur (par exemple, échecs de publication de collecte)
+
+
+
+
+. Consultez la tuile *Capacité* :
++
+** Notez la capacité totale du cluster et la capacité utilisée.
+** Pour les clusters AIDE, vérifiez :
++
+*** Capacité utilisée par les métadonnées AIDE et les volumes d'applications (VM de stockage de métadonnées)
+*** Capacité utilisée par les espaces de travail et les collectes de données (si disponible)
+
+
+
+
+. Vous pouvez également consulter les vignettes *Réseau* et *Performances* pour comprendre le comportement global du cluster qui pourrait avoir un impact sur les charges de travail AIDE (par exemple, la congestion du réseau ou le retard de protection).
+
+
+
+
+== Consulter les données DCN sur la santé et l'utilisation
+
+. Dans le volet de navigation, sélectionnez *Cluster* et ensuite *Overview*.
+. Sélectionnez l’onglet *Data compute*.
++
+Cet onglet affiche tous les nœuds DCN du cluster avec :
+
++
+** Nom du nœud, modèle, numéro de série et version logicielle
+** État global du nœud
+** Utilisation du CPU et de la mémoire
+** Utilisation du GPU (si des GPU sont présents)
+** Indicateurs d'erreur au niveau des nœuds
+
+
+. Développez un nœud DCN pour ouvrir la vue détaillée et vérifiez :
++
+** Utilisation du processeur et de la mémoire du système
+** Utilisation de la mémoire GPU
+** Problèmes matériels ou de service signalés
+
+
+. Sélectionnez *Câblage* sur la page *Cluster > Vue d'ensemble* pour vérifier que les nœuds DCN sont correctement câblés aux commutateurs du cluster et pour identifier tout problème de port ou de liaison.
+
+
+
+
+== Surveiller les espaces de travail et l'encombrement des métadonnées
+
+. Dans le volet de navigation, sélectionnez *Data engine* puis *Workspaces*.
+. Consultez le résumé de l'espace de travail en haut de la page :
++
+** Nombre d'espaces de travail et leurs états (par exemple,  `Processing`,  `Healthy`,  `Error`).
+** Taille totale de l'espace de travail.
+** Pourcentage de la capacité du cluster consommée par tous les espaces de travail.
+
+
+. Examinez la grille de l'espace de travail :
++
+** Vérifiez que les espaces de travail critiques affichent un état *Healthy*.
+** Vérifiez les tailles des espaces de travail et la consommation de capacité.
+** Recherchez les espaces de travail en  `Error` ou en  `Processing` état de longue durée.
+
+
+. Pour consulter les détails d'un espace de travail spécifique, sélectionnez son nom :
++
+** Dans l'onglet *Aperçu*, confirmez :
++
+*** État et taille de l'espace de travail
+*** Conteneurs de données (volumes) inclus et leur nombre d'éléments
+*** Dernière heure de mise à jour pour chaque source de données
+
+
+** Dans l'onglet *Collecte de données*, confirmez :
++
+*** Quelles collections de données existent pour cet espace de travail (les collections de données sont en lecture seule dans System Manager)
+*** Leur état, leur taille et leur dernière date de mise à jour
+
+
+** Dans l'onglet *Utilisateurs*, vérifiez quels utilisateurs AI Data Engine Console ont accès.
+
+
+
+
+
+
+== Surveillez les métadonnées Storage VM et la protection gérée par AIDE
+
+. Dans le volet de navigation, sélectionnez *Cluster* puis *Storage VMs*.
+. Localisez la Storage VM avec le sous-type `data-engine` (la metadata SVM) :
++
+** Confirmez que le SVM de métadonnées est en ligne.
+** Vous pouvez également ouvrir ses détails pour voir les comptes pour :
++
+*** Volumes
+*** LIFs avec type `Data compute network` (utilisées pour la communication DCN-ONTAP)
+
+
+
+
+. Sélectionnez *Protection* puis *Relationships* pour afficher la protection des sources de données distantes utilisées dans les espaces de travail :
++
+** Identifiez les relations SnapMirror créées par AIDE selon le modèle de dénomination :
++
+*** Volume de destination `<source_volume_name>_dest_<source_volume_UUID>`
+*** Politique: `<source_volume_name>_dest_aide_policy_<source_volume_UUID>`
+
+
+** Utilisez cette vue pour vérifier que les relations sont saines et que le délai de latence correspond aux attentes de rafraîchissement de l'espace de travail.
+
+
+
+
+
+IMPORTANT: Ne modifiez pas la machine virtuelle de stockage des métadonnées, les relations SnapMirror créées par AIDE, ni les snapshots gérés par AIDE (ou leurs plannings) directement dans ONTAP. Les modifications peuvent perturber l'historique des versions d'AIDE. link:../administer/manage-workspace.html#edit-workspace-properties-and-refresh-schedule["Ajuster les paramètres d'actualisation de l'espace de travail"] si vous devez ajuster le comportement d'actualisation.
+
+
+
+== Consultez les alertes et notifications relatives à AIDE
+
+. Dans le volet de navigation, sélectionnez *Events & Jobs* puis *System alerts*.
+. Passez en revue toutes les alertes actives liées à :
++
+** État ou connectivité du nœud DCN
+** Problèmes de réseau du data engine
+** Erreurs d'espace de travail ou de collecte de données
+** Incompatibilités de versions logicielles entre ONTAP et le cluster DCN
+
+
+. Au besoin, configurez les destinations de notification (par exemple, e-mail, syslog) dans *Cluster > Settings > Notification management* pour vous assurer que les alertes liées à AIDE sont transmises à vos outils d'exploitation.
+
+
+.Informations connexes
+https://docs.netapp.com/us-en/ontap-afx/get-started/prepare-cluster-admin.html["Préparez-vous à administrer votre système de stockage AFX"^]

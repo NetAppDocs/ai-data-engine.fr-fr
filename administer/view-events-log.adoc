@@ -1,0 +1,138 @@
+---
+sidebar: sidebar 
+permalink: administer/view-events-log.html 
+keywords: aide, aide system, events, audit log, jobs, activity 
+summary: 'Vous pouvez consulter les événements, les tâches et les messages du journal des audits générés par AIDE afin de suivre le traitement interne et de diagnostiquer les problèmes potentiels. Le système AIDE peut être configuré pour transmettre ces informations, ainsi que d"autres données connexes, pour un traitement et un archivage ultérieurs.' 
+---
+= Afficher les événements système AIDE, les tâches et le journal des audits
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+En tant qu'administrateur de stockage, vous pouvez consulter les événements, les tâches et les messages du journal des audits générés par AIDE afin de suivre le traitement interne et de diagnostiquer les problèmes potentiels. Le système AIDE peut être configuré pour transmettre ces informations, ainsi que d'autres données connexes, pour un traitement et un archivage ultérieurs.
+
+.Avant de commencer
+* Vous devez disposer des privilèges d'administrateur de stockage pour effectuer des tâches administratives liées à AIDE ONTAP.
+
+
+
+
+== Surveiller les activités, les événements et les tâches d'AIDE
+
+Vous pouvez utiliser la vue centralisée *Activité* pour surveiller les événements et les tâches spécifiques à AIDE dans tous les espaces de travail, ou consulter l'activité limitée à des espaces de travail individuels.
+
+
+
+=== Afficher l'activité AIDE à l'échelle du cluster
+
+Surveillez les opérations de l'espace de travail, résolvez les problèmes d'extraction de métadonnées et suivez la publication de la collecte de données sur l'ensemble de votre déploiement AIDE.
+
+. Dans ONTAP System Manager, dans le volet de navigation, sélectionnez *Data engine* puis *Activity*.
+. Sélectionnez l’onglet *Events* :
++
+** Passez en revue les événements récents propres à AIDE, tels que les suivants :
++
+*** Création, mise à jour ou suppression d'espace de travail
+*** Opérations d'ajout/suppression de conteneurs de données
+*** Publication de la collecte de données (le cas échéant)
+
+
+** Utilisez des filtres (par gravité, type d'objet, espace de travail ou plage horaire) pour vous concentrer sur les événements actifs ou critiques.
+
+
+. Sélectionnez un événement individuel à ouvrir et à examiner :
++
+** Description et horodatage
+** Espace de travail, collecte de données ou source de données concernés
+** Action recommandée, si elle est fournie
+
+
+. Sélectionnez l'onglet *Jobs* :
++
+** Surveillez les tâches de longue durée telles que :
++
+*** Extraction initiale des métadonnées d'un espace de travail
+*** Actualisations de l'espace de travail / mises à jour du catalogue
+*** Tâches de publication ou de mise à jour de la collecte de données
+
+
+** Vérifiez l'état et la progression du travail.
+
+
+. Sélectionnez un job pour ouvrir l'aperçu et le consulter :
++
+** Heure de début et de fin
+** Pourcentage d'avancement et phase (par exemple, *Scanning*, *Publishing*)
+** Espace de travail, collecte de données ou source de données concernés
+** Messages d'erreur pour les tâches ayant échoué
+
+
+
+
+
+
+=== Afficher l'activité spécifique à l'espace de travail
+
+Pour dépanner un espace de travail spécifique, ouvrez les détails de l'espace de travail (*Data engine > Workspaces*, sélectionnez un espace de travail) et utilisez l'onglet *Activité* :
+
+* Examinez les événements et les tâches limités à cet espace de travail uniquement.
+* Utilisez cette vue pour isoler les problèmes tels qu’un espace de travail bloqué dans `Processing` un état.
+
+
+
+
+== Afficher les événements à l'échelle du cluster
+
+Consultez les messages d'événements pour obtenir un précieux historique de l'activité du système. Chaque événement comprend une description et un identifiant unique ainsi qu'une action recommandée.
+
+. Dans ONTAP System Manager, sélectionnez *Events & jobs* puis *Events*.
+. Examinez et répondez aux actions recommandées en haut de la page, telles que l’activation de la mise à jour automatique.
+. Sélectionnez l'onglet *Events log* pour afficher une liste des messages.
+. Sélectionnez un message d'événement pour l'examiner plus en détail, y compris le numéro de séquence, la description, l'événement et l'action recommandée.
+. Vous pouvez également sélectionner l’onglet *Active IQ suggestions* et vous inscrire auprès de Active IQ pour obtenir des informations détaillées sur les risques du cluster.
+
+
+
+
+== Afficher les tâches à l'échelle du cluster
+
+Consultez toutes les tâches en cours d'exécution sur le cluster AIDE, y compris les tâches spécifiques à AIDE et les tâches ONTAP générales.
+
+. Dans ONTAP System Manager, sélectionnez *Events & Jobs* puis *Jobs*.
+. Personnalisez l'affichage ainsi que la recherche et le téléchargement des informations sur les emplois selon vos besoins.
+
+
+
+
+== Consulter le journal des audits
+
+Utilisez le journal des audits pour consulter un enregistrement de l'activité du système basé sur l'utilisation de protocoles d'accès tels que HTTP.
+
+. Dans ONTAP System Manager, sélectionnez *Events & jobs* puis *journal des audits*.
+. Sélectionnez *Paramètres* pour activer ou désactiver les opérations qui sont suivies.
+
+
+
+
+== Gérer les notifications
+
+Configurez les destinations de notification pour transférer automatiquement les événements AIDE et les journaux des audits.
+
+.Étapes
+. Dans ONTAP System Manager, sélectionnez *Cluster* et ensuite *Settings*.
+. Accédez à *Gestion des notifications* et sélectionnez image:icon_kabob.gif["trois points bleus verticaux"].
+. Sélectionnez l'action appropriée pour afficher ou configurer les destinations utilisées par AIDE :
++
+.. Destinations des événements : sélectionnez *View event destinations*
+.. Destinations du journal des audits : sélectionnez *Afficher les destinations du journal des audits*
+
+
+. Sélectionnez *Add* le cas échéant et indiquez les informations de destination.
+. Sélectionnez *Save*.
+
+
+.Informations connexes
+* https://docs.netapp.com/us-en/ontap/event-performance-monitoring/index.html["Surveillance des événements, des performances et de l'état de santé ONTAP"^]
+

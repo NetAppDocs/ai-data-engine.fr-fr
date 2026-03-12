@@ -1,0 +1,27 @@
+---
+settings:
+  name: AI Data Engine
+  rss_page: "/whats-new.html"
+  internal:
+    pdf_enabled: true
+  prod:
+    pdf_enabled: true
+    harmony_enabled: false
+  langs: fr-fr,us-en,de-de,es-es,it-it,pt-br,ja-jp,ko-kr,zh-cn,zh-tw
+sidebar:
+  entries:
+  - title: Documentation AIDE
+    url: "/index.html"
+  - section: release-notes
+  - section: get-started
+  - section: workspaces
+  - section: administer
+  - section: vectorization
+  - section: guardrails
+  - title: FAQ
+    url: "/faq-aide.html"
+  - title: Mentions légales
+    url: "/legal-notices.html"
+product-family:
+  name: ONTAP
+  repo: ontap-family

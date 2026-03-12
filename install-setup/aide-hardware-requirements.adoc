@@ -1,0 +1,56 @@
+---
+sidebar: sidebar 
+permalink: install-setup/aide-hardware-requirements.html 
+keywords: ai data engine, aide, hardware, requirements, afx, dcn, data compute node 
+summary: 'Consultez les exigences pour l"installation de AI Data Engine, y compris le système de stockage AFX et les Data Compute Node.' 
+---
+= Exigences pour l'installation de AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Veuillez consulter la configuration requise pour l'installation du AI Data Engine. AIDE nécessite un système de stockage AFX, un minimum de trois Data Compute Node, des commutateurs réseau et des câbles.
+
+
+
+== Exigences matérielles
+
+Le AI Data Engine nécessite un système de stockage AFX et au minimum trois Data Compute Node. Le système AFX fournit l'infrastructure de stockage, tandis que les Data Compute Node hébergent les composants logiciels AIDE qui permettent la gestion des données, la curation et les capacités d'IA.
+
+* *Système de stockage AFX* : comprend un contrôleur AFX, un tiroir disque et un commutateur réseau. Le système de stockage AFX est requis pour le déploiement d’AIDE.
+* *Nœuds de calcul de données* : Un minimum de trois nœuds de calcul de données est requis. Les nœuds de calcul de données sont des nœuds matériels fournis par NetApp qui hébergent le logiciel AIDE, y compris le Metadata Engine, Data Sync, Data Curator et Data Guardrails.
++
+** Chaque Data Compute Node dispose des emplacements d'E/S 4 et 5 disponibles pour la connectivité. L'emplacement 3 est réservé au GPU. Les emplacements 1 et 2 ne sont ni utilisés ni accessibles.
+** Les ports e4a et e5a sont utilisés pour les connexions au cluster.
+** Les ports e4b et e5b sont utilisés pour les connexions réseau hôte.
+
+
+
+
+
+
+== Exigences relatives aux commutateurs réseau
+
+AI Data Engine nécessite des commutateurs réseau pour permettre la connectivité réseau de l'hôte et la communication inter-nœuds pour les Data Compute Node.
+
+* Commutateurs clients pour la connectivité réseau hôte (Cisco Nexus 9332D-GX2B ou Cisco Nexus 9364D-GX2A)
+* Commutateurs de cluster pour la communication inter-nœuds (Cisco Nexus 9332D-GX2B ou Cisco Nexus 9364D-GX2A)
+* Commutateurs de gestion optionnels pour la gestion du réseau
+
+
+
+
+== Exigences de câblage
+
+Les câbles suivants sont nécessaires pour connecter les Data Compute Node aux commutateurs réseau et au réseau de gestion.
+
+* Câbles de dérivation 400-GbE-to-100-GbE (4x100GbE) pour connecter les nœuds aux commutateurs clients et de cluster
+
+
+
+
+== Prise en charge multi-cluster
+
+Une fois AIDE déployé avec AFX, il peut se connecter et gérer les données d'autres clusters ONTAP 9.18.1 et versions ultérieures en utilisant SnapMirror et le peering de clusters.

@@ -1,0 +1,6 @@
+---
+section: guardrails
+title: Mettre en place des garde-fous
+entries:
+- title: Définissez vos politiques de garde-fous dans AIDE
+  url: "/guardrails/define-data-policies.html"

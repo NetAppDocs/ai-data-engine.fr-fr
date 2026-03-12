@@ -1,0 +1,106 @@
+---
+sidebar: sidebar 
+permalink: get-started/aide-components.html 
+keywords: aide, architecture, ontap, logical components, networking, security 
+summary: 'Chaque composant d"AIDE joue un rôle spécifique dans la découverte, la conservation, la gouvernance et l"intégration des données avec les applications, les interactions variant selon le rôle de l"utilisateur.' 
+---
+= Composants de l'AI Data Engine et interactions basées sur les rôles
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+AI Data Engine (AIDE) se compose de nombreux composants principaux qui travaillent ensemble pour fournir une plateforme complète de gestion et de traitement des données pour les charges de travail d'IA. Ces composants incluent des espaces de travail, des collectes de données, des bases de données vectorielles, des garde-fous, des catalogues de métadonnées, des points de terminaison de récupération et des classificateurs. Chaque composant joue un rôle spécifique pour permettre une découverte, une curation, une gouvernance et une intégration efficaces des données avec les applications d'IA/ML.
+
+Chaque utilisateur d'AIDE interagit avec les composants d'AIDE différemment selon son rôle.
+
+
+
+== Rôles des utilisateurs axés sur le stockage et les données
+
+AIDE introduit de nouveaux rôles d'utilisateur tout en prenant toujours en charge les rôles d'administration système ONTAP traditionnels :
+
+
+
+=== Utilisateurs de stockage
+
+* *Administrateur de stockage* : Gère la configuration du cluster AFX et AIDE, le réseau, l’approvisionnement en stockage et l’accès des utilisateurs.
+
+
+
+
+=== Utilisateurs de données
+
+* *Ingénieur de données* : Conçoit et optimise les pipelines d’AI/ML, gère les collectes de données et intègre les modèles d’AI.
+* *Scientifique des données* : Découvre, organise et analyse des ensembles de données, crée des collections de données et exploite les points de terminaison de récupération pour les applications GenAI.
+
+
+[cols="2h,3"]
+|===
+| Rôle (nom RBAC) | Description 
+
+
+| Administrateur de stockage (`admin`) | Gère la configuration des clusters AFX et AIDE, le réseau, le provisionnement du stockage et l'accès utilisateur. Attribue des rôles RBAC aux utilisateurs qui déterminent le niveau de contrôle d'accès aux interfaces et fonctionnalités d'AIDE. Ce rôle d'administrateur dispose d'un accès complet à la gestion via ONTAP System Manager et AI Data Engine Console. 
+
+
+| Ingénieur de données (`data-engineer`) | Conçoit et optimise des pipelines d'IA/ML, gère la collecte de données et intègre des modèles d'IA. Ce rôle a accès à la AI Data Engine Console pour les workflows d'ingénierie des données. 
+
+
+| scientifique des données (`data-scientist`) | Découvre, organise et analyse des ensembles de données, crée des collections de données et exploite les points de récupération pour les applications GenAI. Ce rôle a accès à l'AI Data Engine Console pour les workflows de science des données. 
+|===
+
+
+== Composants du système AIDE
+
+Chaque utilisateur d'AIDE (administrateurs de stockage, ingénieurs de données et scientifiques des données) interagit avec les composants d'AIDE en fonction de son rôle.
+
+
+
+=== Espaces de travail
+
+Un espace de travail est un segment logique de données au sein du cluster, regroupant les volumes pour un projet, une équipe ou un flux de travail spécifique. Les espaces de travail définissent la portée de la visibilité, de l'accès et de la gouvernance des données dans AIDE.
+
+
+
+=== Catalogue de métadonnées
+
+Une base de données centralisée et évolutive stockant les enregistrements de métadonnées pour tous les fichiers et objets du cluster local, y compris les données synchronisées depuis des clusters ONTAP distants à l'aide d'ONTAP SnapMirror ou de l'appairage de clusters. Elle permet une recherche et un filtrage riches et interactifs.
+
+
+
+=== Classificateurs
+
+Les classificateurs sont des outils (intégrés ou personnalisés) qui analysent et étiquettent les fichiers pour des types spécifiques de données sensibles (par exemple, PII, financières, domaine de la santé) ou catégorisent les documents par type (par exemple, juridiques, RH, ventes).
+
+
+
+=== Collecte de données
+
+Une collecte de données est un groupe organisé de fichiers ou d'objets liés provenant d'un espace de travail, défini par une requête spécifiée par l'utilisateur pour une utilisation dans les workflows GenAI. Le contenu des fichiers dans la collecte de données, après publication, est disponible pour la recherche sémantique par les API des applications GenAI.
+
+
+
+=== base de données vectorielle
+
+La base de données vectorielle stocke les embeddings générés à partir de collections de données, permettant une recherche et une récupération sémantiques hautes performances pour les applications d'IA et de GenAI.
+
+
+
+=== Garde-fous
+
+Les garde-fous sont des mécanismes fondés sur des politiques qui appliquent la gouvernance des données, la classification et la protection (telles que la rédaction ou les restrictions de contrôle d'accès) tout au long du cycle de vie des données.
+
+
+
+=== Point de terminaison de récupération (RAG endpoint)
+
+Un point de terminaison de récupération (parfois appelé point de terminaison de génération augmentée par récupération ou « RAG ») est une API sécurisée qui permet aux applications d'IA et de GenAI d'accéder aux données, au contexte ou aux embeddings pertinents à partir de collections organisées et de la base de données vectorielle.
+
+Les points d'accès RAG sont conçus pour prendre en charge les flux de travail d'IA avancés, tels que la recherche sémantique et les réponses contextuelles dans les modèles d'IA génératifs. En connectant vos applications d'IA à un point d'accès de récupération, vous pouvez améliorer la précision et la pertinence des modèles en fournissant un accès en temps réel à des ensembles de données organisés et prêts pour l'IA, gérés par AIDE.
+
+.Informations connexes
+* link:aide-components-storage-admin.html["Comment les administrateurs de stockage AIDE travaillent avec les composants AIDE"]
+* link:aide-components-data-users.html["Comment les ingénieurs de données AIDE travaillent avec les composants AIDE"]
+* link:aide-components-data-users.html["Comment les data scientists d'AIDE travaillent avec les composants d'AIDE"]
+

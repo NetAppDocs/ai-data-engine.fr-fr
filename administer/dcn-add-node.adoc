@@ -1,0 +1,118 @@
+---
+sidebar: sidebar 
+permalink: administer/dcn-add-node.html 
+keywords: aide, ai data engine, data compute node, dcn, add dcn, expand dcn cluster 
+summary:  
+---
+= Ajoutez des nœuds de calcul de données à votre cluster AIDE
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez ajouter des nœuds de calcul de données (DCN) lors de la création d'un nouveau cluster AI Data Engine (AIDE) ou de l'extension d'un cluster existant. Le processus consiste à découvrir et à configurer les nœuds à l'aide de ONTAP System Manager.
+
+
+
+== Préparez-vous à ajouter des nœuds
+
+Plusieurs éléments sont à prendre en compte lors de l'ajout de nœuds DCN.
+
+.Lors de la création d'un nouveau AIDE cluster
+Il faut exactement trois nœuds DCN pour un nouveau cluster AIDE.
+
+.Installation et adressabilité du matériel
+Assurez-vous que les conditions préalables suivantes sont remplies :
+
+* Le nouveau matériel DCN est installé en rack, mis sous tension et câblé aux commutateurs du cluster.
+* Vous disposez d'une plage d'adresses IP disponible pour le sous-réseau backend du DCN vers ONTAP.
+* Le ONTAP cluster a été initialisé et est accessible depuis l'interface logique de gestion du cluster (LIF).
+
+
+.Identifiants System Manager
+Vous devez disposer des privilèges d'administrateur de stockage pour effectuer des tâches de création ou d'extension de cluster AIDE.
+
+.Compatibilité logicielle
+Consultez la documentation suivante pour confirmer que vos versions matérielles et logicielles DCN sont compatibles avec votre cluster ONTAP :
+
+* link:../administer/upgrades-aide-summary.html["Le logiciel DCN est compatible avec la version ONTAP"].
+
+
+Lors de l'ajout de nœuds, System Manager vérifiera que les nouveaux nœuds exécutent une version logicielle compatible avec :
+
+* La version effective du cluster ONTAP (ECV) si c'est la première jonction DCN.
+* La version du cluster DCN existant si des DCN sont déjà présents.
+
+
+Si un nœud est incompatible :
+
+* Une erreur s'affiche à côté du DCN concerné dans la boîte de dialogue *Ajouter*.
+* Vous devez d'abord mettre à jour le logiciel DCN (ou ONTAP, selon le cas) vers une version compatible.
+
+
+
+
+== Ajouter les nœuds de calcul de données
+
+Vous ajoutez des nœuds DCN lors de la création d'un nouveau cluster AIDE ou de l'extension d'un cluster existant.
+
+.Étapes
+. Dans System Manager, sélectionnez *Dashboard* dans le volet de navigation, puis la carte *Health*.
+. Vérifiez qu'il y a des nœuds à ajouter et sélectionnez *Afficher les détails* pour afficher la liste.
++
+La liste contient les nœuds découverts qui ne font pas encore partie du cluster AIDE
+
+. Vous pouvez également sélectionner *Cluster* et *Overview* et l'onglet *Data compute* pour afficher la liste.
+. Au bas de la page de calcul des données, sélectionnez *Ajouter* au-dessus de la liste des nœuds.
+. Dans la boîte de dialogue *Ajouter des nœuds de calcul de données*, sélectionnez les nœuds DCN que vous souhaitez ajouter.
++
+Vous pouvez éventuellement renommer chaque nœud avant de les ajouter.
+
+. Si vous ajoutez des nœuds pour la première fois et qu'aucun sous-réseau backend n'existe, sélectionnez *Add subnet* et indiquez :
++
+** Nom du sous-réseau (à usage interne)
+** Adresse et masque du sous-réseau
+** Plage d'adresses IP pour les nœuds DCN et ONTAP sur ce réseau dorsal
++
+System Manager valide que la plage comprend suffisamment d'adresses IP libres pour tous les DCN ajoutés, tous les nœuds ONTAP du cluster, ainsi que les adresses IP flottantes supplémentaires au niveau du cluster utilisées pour la communication entre DCN et ONTAP.
+
+
+
+. Que vous ayez ajouté le sous-réseau backend ou qu'il existe déjà :
++
+.. Examinez les adresses IP disponibles.
+.. Si nécessaire, sélectionnez *Modifier le sous-réseau* et étendez la plage IP.
++
+*** Vous pouvez uniquement étendre la plage. La réduction ou la modification du sous-réseau n'est pas prise en charge.
+*** Modifier le sous-réseau ou la plage d'adresses IP peut nécessiter la recréation du cluster Kubernetes sous-jacent sur les DCN et peut prendre plusieurs minutes.
+
+
+
+
+. Vous pouvez éventuellement configurer l'interface du service Data Engine en fournissant :
++
+** Adresse IP du service
+** Masque de réseau
+** Passerelle (si nécessaire pour votre environnement)
++
+L'adresse IP unique sera répartie entre les DCN et utilisée comme adresse frontale pour l'AI Data Engine Console et les API associées.
+
+
+
+. Vérifiez les nœuds sélectionnés, le sous-réseau dorsal et les paramètres de l'interface du service Data Engine.
+. Sélectionnez *Ajouter* et attendez la fin de l'opération. System Manager effectuera les actions suivantes :
++
+** Ajouter les nœuds sélectionnés au cluster DCN
+** Provisionnez le réseau dorsal et joignez les nœuds au cluster DCN basé sur Kubernetes
+** Mise à jour des métadonnées internes pour la découverte DCN
+
+
+. Une fois terminé, sélectionnez *Cluster* et *Overview* et confirmez :
++
+.. Sous *Data compute*, les nouveaux DCN apparaissent comme faisant partie du cluster
+.. Tous les nœuds sont *Healthy*
+.. Vérifiez que la carte *Santé* du tableau de bord affiche le nombre de nœuds mis à jour
+
+
+

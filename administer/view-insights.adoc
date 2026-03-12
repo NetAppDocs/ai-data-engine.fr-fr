@@ -1,0 +1,25 @@
+---
+sidebar: sidebar 
+permalink: administer/view-insights.html 
+keywords: aide, aide system, insights, view insights 
+summary: 'La fonctionnalité Insights d"ONTAP System Manager permet d"afficher des suggestions de mise à jour de configuration conformes aux NetApp best practices. Ces modifications peuvent optimiser la sécurité et les performances ainsi que d"autres aspects de votre AIDE cluster.' 
+---
+= Consultez les informations pour optimiser votre système AIDE
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+En tant qu'administrateur de stockage, vous pouvez utiliser la fonctionnalité _Insights_ d'ONTAP System Manager pour afficher des suggestions de mise à jour de configuration conformes aux NetApp best practices. Ces modifications permettent d'optimiser la sécurité et les performances de votre AIDE cluster.
+
+.À propos de cette tâche
+Chaque information est présentée sous forme de vignette ou de fiche distincte sur la page que vous pouvez choisir d’appliquer ou d’ignorer. Vous pouvez également sélectionner le lien de documentation associé pour en savoir plus sur une technologie spécifique.
+
+.Étapes
+. Dans le Gestionnaire système, sélectionnez *Analyse* puis *Insights*.
+. Examinez les recommandations disponibles.
+
+
+.Et ensuite
+Effectuez l'une des actions recommandées pour mettre en œuvre les meilleures pratiques de configuration.
