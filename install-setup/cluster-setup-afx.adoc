@@ -70,7 +70,7 @@ Vous pouvez configurer les protocoles réseau de la machine virtuelle de stockag
 
 . Sélectionnez *Update data compute software*.
 +
-Si une image logicielle de Data Compute Node est disponible pour une mise à jour, cette option sera activée. Sélectionnez-la pour lancer la page de mise à jour du logiciel de Data Compute Node. Voir aussi link:../administer/update-aide-firmware-software.html["Mettre à jour AI Data Engine software"].
+Si une image logicielle de Data Compute Node est disponible pour une mise à jour, cette option sera activée. Sélectionnez-la pour lancer la page de mise à jour du logiciel de Data Compute Node. Pour plus d'informations, consultez link:../administer/update-aide-firmware-software.html["Mettre à jour AI Data Engine software"].
 
 . Sélectionnez *Configurer la mise en réseau de l'AI Data Engine*.
 +

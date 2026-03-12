@@ -84,3 +84,7 @@ ONTAP attribuera une adresse IP au nouveau nœud. Si la version logicielle du n�
 `dcn cluster node show -instance`
 
 
+
+.Informations connexes
+* link:../administer/dcn-add-node.html["Développez votre cluster de calcul"]
+

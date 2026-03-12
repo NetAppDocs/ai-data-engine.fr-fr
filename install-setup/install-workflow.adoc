@@ -15,7 +15,7 @@ Pour installer et configurer vos nœuds de calcul de données (DCN), vous examin
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Un"]link:install-setup-requirements.html["Examinez les exigences d'installation du matériel"]
 [role="quick-margin-para"]
-Assurez-vous de disposer d'un système de stockage AFX 1K installé, puis consultez la configuration matérielle requise pour l'installation des nœuds de calcul de données pour AIDE. Pour plus d'informations sur l'installation du système de stockage AFX 1K, reportez-vous à la link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html["Installez votre système de stockage AFX 1K"^].
+Assurez-vous de disposer d'un système de stockage AFX 1K installé, puis consultez la configuration matérielle requise pour l'installation des nœuds de calcul de données pour AIDE. Pour plus d'informations sur l'installation du système de stockage AFX 1K, consultez link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html["Documentation d'installation du système de stockage AFX 1K"^].
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Deux"]link:prepare-hardware.html["Préparez-vous à installer vos nœuds de calcul de données"]
 [role="quick-margin-para"]

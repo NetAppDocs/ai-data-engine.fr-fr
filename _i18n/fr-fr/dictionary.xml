@@ -765,11 +765,8 @@
   <block id="e5e09031843479ef9ef8cbbd4c2f404c" category="inline-link-macro">NetApp Hardware Universe</block>
   <block id="a28718801e1a1879bc4c740387a935cd" category="paragraph">Ces procédures présentent des configurations courantes. Le câblage spécifique dépend des composants commandés pour votre système de stockage. Pour des détails complets sur la configuration et les priorités des emplacements, consultez <block ref="43b42c26c42f7c6fe4ef77f9f2ed17ff" category="inline-link-macro-rx"></block>.</block>
   <block id="b8813a31dec0580ca60c9211b8c31504" category="admonition">Il n'est pas nécessaire de mettre hors tension le système de stockage AFX 1K lors du câblage des Data Compute Node. Vous pouvez ajouter les Data Compute Node à un système de stockage AFX 1K existant qui est déjà sous tension et configuré.</block>
-  <block id="8820ea58f8a7b9ba1f899988cc0bcc7e" category="inline-link-macro">installez votre système de stockage AFX 1K</block>
-  <block id="e8286441186e192dd0417e0b90342681" category="list-text">Vous disposez déjà d'un système de stockage AFX 1K installé. Pour plus d'informations sur l'installation du système de stockage AFX 1K, consultez <block ref="6c057105940736b02f364af6d84ea81d" category="inline-link-macro-rx"></block>.</block>
   <block id="794101c4551a5d464aba13561dbdfcb7" category="list-text">Vous avez installé et configuré les commutateurs réseau requis. Contactez votre administrateur réseau pour obtenir des informations sur la connexion du système à vos commutateurs réseau.</block>
   <block id="5438ae8fe0bf5d2f78280efdc18e8280" category="inline-link-macro">exigences de câblage pour les Data Compute Node</block>
-  <block id="bc6b8966de646d62999299467e207730" category="list-text">Vous avez examiné le <block ref="df9ffd635bc8be93ab4198a9764d5fe7" category="inline-link-macro-rx"></block>.</block>
   <block id="3e600c5ae163106b94f797b8d37531bb" category="section-title">Étape 1 : Connectez les Data Compute Node au réseau hôte</block>
   <block id="ba9743fa4e674359437383966cb93d3a" category="paragraph">Vous pouvez connecter les ports du Data Compute Node à votre réseau hôte.</block>
   <block id="118345fbcadb00655f06e4cd198e4f44" category="list-text">Connectez le port e4b des Data Compute Node suivants au commutateur de réseau de données Ethernet A :</block>
@@ -790,7 +787,6 @@
   <block id="4c3c38604eae6a6237406e7c21b17ea6" category="list-text">Data Compute Node 1, port e5a</block>
   <block id="75b404150b8831865d53a73c8d5e49df" category="list-text">Data Compute Node 2, port e5a</block>
   <block id="d8bdb0239e31e7049e331ec53560d174" category="inline-link-macro">Mettez sous tension vos Data Compute Node</block>
-  <block id="b659b3546fb581caaec13f6634743878" category="paragraph">Une fois le matériel câblé, vous <block ref="4a47b4628664a0cf522188fbb092ba40" category="inline-link-macro-rx"></block>.</block>
   <block id="1bea7bb4c3b67fb7e56873373a173ad4" category="summary">Découvrez la configuration de câblage pour les Data Compute Node, y compris l'utilisation des emplacements d'E/S, les types de câbles et les exigences de connexion pour les réseaux hôtes et de cluster.</block>
   <block id="32045bb6e9ec0592350b601a788ccdce" category="doc">Exigences relatives au câblage des nœuds de calcul de données pour AI Data Engine</block>
   <block id="b0b66b711f4a262ccff9a731cc05cce3" category="paragraph">Les nœuds de calcul de données s'intègrent à votre système de stockage AFX 1K via les connexions réseau hôte et réseau du cluster. Vérifiez la configuration des emplacements d'E/S, les types de câbles et les exigences de connexion pour votre déploiement.</block>
@@ -856,7 +852,6 @@
   <block id="1cd087a975856327df11de8c24727816" category="section-title">Configurez AIDE avec un cluster AFX existant</block>
   <block id="79e5e9e993a32c1d24149a1ab99a00f6" category="paragraph">Si vous ajoutez un cluster de Data Compute Node à un système de stockage AFX existant, vous devez configurer les DCN et terminer la configuration de votre cluster AIDE.</block>
   <block id="65f46507bff9980b186da251beea243f" category="section-title">Ajoutez les Data Compute Node au cluster</block>
-  <block id="f9f4e6dfa867d6fadbee2179021982ce" category="paragraph">ONTAP détecte dynamiquement les nouveaux Data Compute Node connectés à votre réseau de cluster et les affiche dans System Manager. Vous pouvez <block ref="f31476c597e559edff10c8396ad56efe" category="inline-link-macro-rx"></block>. Notez également ce qui suit :</block>
   <block id="f2de9ca173c14a6166010437ea58db0b" category="list-text">Les Data Compute Node doivent être physiquement connectés aux commutateurs du cluster. Exactement trois DCN sont requis lors de la création d'un cluster AIDE.</block>
   <block id="e578c3ea135e2df360bd2b3c7d452efc" category="list-text">Vous devez disposer d'un nombre suffisant d'adresses IP pour le réseau DCN et d'autres informations de configuration réseau requises.</block>
   <block id="74d96a5c17230f851c945568863caad2" category="section-title">Terminez la configuration de votre AIDE cluster</block>
@@ -871,7 +866,6 @@
   <block id="0d1736e8e31a21d25526ed60ca4ed657" category="list-text">Sélectionnez *Configurer les protocoles réseau*.</block>
   <block id="a6112a3104820ecf5363ca17a438fa2a" category="paragraph">Vous pouvez configurer les protocoles réseau de la machine virtuelle de stockage (SVM).</block>
   <block id="468cfff85725ad5f71c038767aa7d0e5" category="list-text">Sélectionnez *Update data compute software*.</block>
-  <block id="3a40cab041f6585c05ceabf8e362f05b" category="paragraph">Si une image logicielle de Data Compute Node est disponible pour une mise à jour, cette option sera activée. Sélectionnez-la pour lancer la page de mise à jour du logiciel de Data Compute Node. Voir aussi <block ref="e966f8a237d0e9b99b99d834f5fe2ecd" category="inline-link-macro-rx"></block>.</block>
   <block id="a79f870ef92f37fc8b1c25bcf9b1ffa1" category="list-text">Sélectionnez *Configurer la mise en réseau de l'AI Data Engine*.</block>
   <block id="67f2739e9e2d8cc78123cf3eeba619c7" category="paragraph">Cette option affiche la page permettant de configurer l'adresse réseau du data engine.</block>
   <block id="0f18306a1d3f702e7592699af4f850f9" category="list-text">Sélectionnez *Créer des interfaces réseau intercluster*</block>
@@ -963,7 +957,6 @@
   <block id="a6d899f314cdd20df8f4d59aca478ae8" category="list-text">Fixez le nœud de calcul de données à l'armoire à l'aide des vis de montage fournies.</block>
   <block id="353ccbfd0ab9b9e503d824a6bc057226" category="list-text">Fixez le panneau à l'avant du nœud de calcul de données.</block>
   <block id="e30a01f520c71c74d7ceed0e849ca30b" category="inline-link-macro">câbler les nœuds de calcul de données pour AIDE</block>
-  <block id="548ea28a443d143489f072c073df763d" category="paragraph">Après avoir installé les nœuds de calcul de données, vous <block ref="3980b3517830ec2d777c7d0167886e44" category="inline-link-macro-rx"></block>.</block>
   <block id="082b4c909289f25bf292fbd1efc1725f" category="summary">Vous devrez installer une licence NetApp pour accéder à toutes les fonctionnalités de l'AI Data Engine (AIDE). En tant qu'administrateur du cluster ONTAP, vous pouvez effectuer la gestion des licences à l'aide d'ONTAP System Manager.</block>
   <block id="eda5245c7aa76877b2f41c80a9fe821c" category="doc">Installez une licence AIDE dans votre système AFX</block>
   <block id="bf59b5fa52e090d739b08baa38ea1640" category="section-title">Préparez-vous à acquérir une licence pour AI Data Engine</block>
@@ -998,8 +991,6 @@
   <block id="ee68e5b99222bbc29a480fcb0d1d6ee2" category="section-title">Prérequis</block>
   <block id="366c56f2f6e54f4e282605b02803862d" category="paragraph">Avant d'installer les nœuds de calcul de données pour AIDE, assurez-vous de disposer des éléments suivants :</block>
   <block id="f23b06a746ce876e177c6a6196286145" category="list-text">Un système de stockage AFX 1K.</block>
-  <block id="f15992b3ead5729a349b745d488997b1" category="inline-link-macro">Installez votre système de stockage AFX 1K</block>
-  <block id="ea0432abd4c39d4963886d922f4a17e8" category="admonition">Pour plus d'informations sur l'installation du système de stockage AFX 1K, reportez-vous au <block ref="78aacef5a151b9b9cf2f4610d698d814" category="inline-link-macro-rx"></block>.</block>
   <block id="38342a608d29c610e381db6c1bfd532c" category="section-title">Matériel nécessaire à l'installation</block>
   <block id="932c06f46d2aa01c36a955878a7a1d9e" category="paragraph">Pour installer les nœuds de calcul de données pour AIDE, vous avez besoin des équipements et outils suivants.</block>
   <block id="bb9d246c8ef7a2dd035f69ed095493f0" category="list-text">Accès à un navigateur web pour configurer vos nœuds de calcul de données</block>
@@ -1011,18 +1002,15 @@
   <block id="e58106606682bb10c46356b63c87aaf1" category="paragraph">Les nœuds de calcul de données sont lourds. Faites preuve de prudence lors du levage et du déplacement de ces éléments.</block>
   <block id="6c11ed3a4af8dc2f7b618d16248e7e04" category="section-title">Poids des nœuds de calcul de données</block>
   <block id="b5e179420712f0dce203796a6bae84ee" category="paragraph">Prenez les précautions nécessaires lors du déplacement ou du levage de votre nœud de calcul de données.</block>
-  <block id="903b6fc3c7c5a407b4c2c17bae1563d1" category="paragraph">Un nœud de calcul de données peut peser jusqu'à 46,3 lbs (21 kg). Pour soulever le nœud de calcul de données, utilisez deux personnes ou un élévateur hydraulique.</block>
   <block id="db874eaa8bd23db025bd708dfdf02fbe" category="image-alt">Poids de levage du nœud de calcul de données</block>
   <block id="35c124f455f44a154eb3b514029ee58a" category="inline-link">Informations de sécurité et avis réglementaires</block>
   <block id="fa81f583d8b6c7dcaf8e26a5fcf5de52" category="list-text"><block ref="fa81f583d8b6c7dcaf8e26a5fcf5de52" category="inline-link-rx"></block></block>
   <block id="d4719451e76be2b63cbc4379574f8af8" category="inline-link-macro">Préparez-vous à installer vos nœuds de calcul de données</block>
-  <block id="143d168057f2028bf6d721060afdf078" category="paragraph">Après avoir examiné les exigences matérielles, vous <block ref="36962d0c8289a56184a6c55f834a067a" category="inline-link-macro-rx"></block>.</block>
   <block id="c5c899a1a675cf6171f1b0bd26cf38ad" category="summary">Commencez par l'installation et la configuration de vos nœuds de calcul de données et déployez-les dans votre environnement ONTAP.</block>
   <block id="b44e203a59265141b15d79992f218135" category="doc">Flux de travail d'installation et de configuration des nœuds de calcul de données pour AI Data Engine</block>
   <block id="a3a99d6030b7bfab3e66259156e15dbd" category="paragraph">Pour installer et configurer vos nœuds de calcul de données (DCN), vous examinez les exigences matérielles, préparez votre site, installez et câblez les composants matériels, mettez le système sous tension et configurez votre cluster ONTAP.</block>
   <block id="7ccd978bf0dbca0a0746f98d09b99f7f" category="inline-link-macro">Examinez les exigences d'installation du matériel</block>
   <block id="6889512d643df7fa8ccfb7e52dd1181c" category="paragraph-title"><block ref="58f667aaf05f87159670e12bd9bc076b" category="inline-image-macro-rx" type="image"></block><block ref="90572de4b12061d10d3adbe91dd02ace" category="inline-link-macro-rx"></block></block>
-  <block id="0d42e01cf22c0d48df016d6dd401d5fb" category="paragraph">Assurez-vous de disposer d'un système de stockage AFX 1K installé, puis consultez la configuration matérielle requise pour l'installation des nœuds de calcul de données pour AIDE. Pour plus d'informations sur l'installation du système de stockage AFX 1K, reportez-vous à la <block ref="78aacef5a151b9b9cf2f4610d698d814" category="inline-link-macro-rx"></block>.</block>
   <block id="2ef02acbcac74a2bf527975726a47ddc" category="inline-link-macro">Préparez-vous à installer vos nœuds de calcul de données</block>
   <block id="65b761c9b7abbbeca0b5bf69bc82d7a8" category="paragraph-title"><block ref="54f425ce8d89f4ed6b8a546561af5d60" category="inline-image-macro-rx" type="image"></block><block ref="57d90d9a41d093761f4dd9f6db8351e9" category="inline-link-macro-rx"></block></block>
   <block id="293f8966fffd4aff38846275cf9996a2" category="paragraph">Avant d'installer vos nœuds de calcul de données, vous devez préparer le site, vérifier les exigences environnementales et électriques, et vous assurer qu'il y a suffisamment d'espace dans les armoires. Ensuite, déballez le matériel, comparez son contenu au bon de livraison et enregistrez le matériel pour accéder aux avantages du support.</block>
@@ -1038,8 +1026,6 @@
   <block id="ed7af015953fb0bba840b619136b01eb" category="paragraph">Après avoir installé le matériel du rack et câblé vos nœuds de calcul de données, vous devez mettre sous tension vos DCN et vos nœuds de contrôle pour le système de stockage AFX si ceux-ci ne sont pas déjà sous tension.</block>
   <block id="337e9239544f1891a09a6b9c13192533" category="summary">Mettez chaque étagère sous tension pour lui attribuer un identifiant unique, mettez sous tension les nœuds du contrôleur AFX et fixez les câbles d'alimentation.</block>
   <block id="8496df6ee8387022613ddc89ce82f9e4" category="doc">Mettez sous tension vos nœuds de calcul de données pour AI Data Engine</block>
-  <block id="1057231c34be7c7dcf91de71d37a517f" category="inline-link-macro">Attribuer des identifiants d'étagère uniques</block>
-  <block id="011c6c560c3e271e6d524a1540ce1096" category="list-text">Assurez-vous que vos étagères sont alimentées et que chacune possède un identifiant unique. Pour plus d'informations sur l'attribution des identifiants d'étagère pour le système de stockage AFX, consultez la <block ref="85c8f165944a927c5df36b5b24e42dc9" category="inline-link-macro-rx"></block>.</block>
   <block id="7be065122c5fefd188dd2adaea8fe718" category="paragraph">Après avoir allumé vos étagères de stockage et attribué les identifiants uniques, mettez sous tension vos DCN et mettez sous tension les nœuds de contrôleur de stockage s'ils ne sont pas déjà allumés.</block>
   <block id="33c36f62f977a295a9a93ec48a27223b" category="list-text">Connectez votre ordinateur portable au port console série. Cela vous permet de surveiller la séquence de démarrage lorsque les contrôleurs sont mis sous tension.</block>
   <block id="943e3a7c8a0476b63130b5a3dfab2ef1" category="list-text">Configurez le port de console série de l'ordinateur portable à 115 200 bauds avec N-8-1.</block>
@@ -1058,7 +1044,6 @@
   <block id="5555f21dba0c7288c23300a7fe87cd81" category="list-text">Mettez sous tension les nœuds de calcul de données.</block>
   <block id="be2a65d4275d3397392df6ca10446941" category="paragraph">Il vous faudra peut-être retirer le panneau pour accéder à l'interrupteur d'alimentation ; si c'est le cas, n'oubliez pas de le remettre en place ensuite.</block>
   <block id="33ce156e9858d918c1b56d969811ebbc" category="inline-link-macro">configurer un cluster ONTAP AIDE</block>
-  <block id="a8d567dd1cd4e4238f332d8762966093" category="paragraph">Une fois vos nœuds de calcul de données activés, vous <block ref="c209b4c41b8b8a46751e6876a5bec129" category="inline-link-macro-rx"></block>.</block>
   <block id="27c51e0dda139dd95822cad0516f7b35" category="summary">Préparez-vous à installer les nœuds de calcul de données pour AI Data Engine dans votre environnement ONTAP et à enregistrer le matériel pour accéder aux avantages du support.</block>
   <block id="8d89efe9b46db5b5f9ec296c31e95ee1" category="doc">Préparez-vous à installer vos nœuds de calcul de données pour AI Data Engine</block>
   <block id="091ec47f94f2994330da94cd9f2af30c" category="paragraph">Préparez-vous à installer vos nœuds de calcul de données pour AI Data Engine en préparant le site, en déballant les boîtes et en comparant le contenu des boîtes au bon de livraison, puis en enregistrant le système pour accéder aux avantages du support.</block>
@@ -1105,7 +1090,6 @@
   <block id="89cc8de091278e0fb0686833ac6a7982" category="list-text">Sélectionnez *Systems* &gt; *Register Systems*.</block>
   <block id="616ce92e68107b272305803b0da3016e" category="list-text">Saisissez le numéro de série du système de stockage et les détails demandés.</block>
   <block id="2fbc2bdcd9b44345629827ee822cf2cf" category="paragraph">Une fois NetApp a approuvé votre inscription, vous pouvez télécharger le logiciel requis. L'approbation peut prendre jusqu'à 24 heures.</block>
-  <block id="3c0af5d496c5c0d39fa007c51ceb1a85" category="paragraph">Une fois que vous avez préparé l'installation de vos nœuds de calcul de données, vous <block ref="8d80699d6ea91999991c5841195fdaf6" category="inline-link-macro-rx"></block>.</block>
   <block id="30d965eef5ba25c6b9998ae38270b43e" category="doc">Mentions légales</block>
   <block id="e9c44bbfd795a5d63d74c6a77afee70d" category="paragraph">Les mentions légales donnent accès aux déclarations de droits d'auteur, aux marques de commerce, aux brevets et plus encore.</block>
   <block id="6016a2b341113bf496b719905398ecd2" category="section-title">Copyright</block>
@@ -1515,4 +1499,22 @@
   <block id="7ca842c6b654b62693e52f6658a337fa" category="sidebar">Créer des collections de données</block>
   <block id="e9a2a57c6909b784778f0034615bafa3" category="sidebar">Configurer des espaces de travail</block>
   <block id="e80a572e7316601bd6ae8dcc978dc856" category="sidebar">Attribuer des utilisateurs à un workspace</block>
+  <block id="7e785fd044c0f1b18cf25b7e49747bad" category="inline-link-macro">Développez votre cluster de calcul</block>
+  <block id="5f4a186931a63bd4a5b14c29fd3dcac6" category="list-text"><block ref="5f4a186931a63bd4a5b14c29fd3dcac6" category="inline-link-macro-rx"></block></block>
+  <block id="4273a5563c77b16dd7aceb65bc5f6f2f" category="inline-link-macro">Documentation d'installation du système de stockage AFX 1K</block>
+  <block id="4ceb33132ef84a10d64402a2b335ead9" category="list-text">Vous disposez déjà d'un système de stockage AFX 1K installé. Pour plus d'informations sur l'installation du système de stockage AFX 1K, consultez <block ref="91d16f8c743942a64a4fe44197be45ff" category="inline-link-macro-rx"></block>.</block>
+  <block id="43f6c91d4f0fece739597247d400b63d" category="list-text">Vous avez examiné le <block ref="877083cb49d1afa632b7262f7cb5fd0f" category="inline-link-macro-rx"></block>.</block>
+  <block id="9aa72e2af70f149b5322b3f74fef31d3" category="paragraph">Une fois le matériel câblé, <block ref="4a47b4628664a0cf522188fbb092ba40" category="inline-link-macro-rx"></block>.</block>
+  <block id="29fc22820f59383beae9b78e0f00c89d" category="inline-link-macro">Ajoutez des nœuds de calcul de données à votre cluster AIDE</block>
+  <block id="6680ddbdb7b3311772658d225390c9f5" category="paragraph">ONTAP détecte dynamiquement les nouveaux Data Compute Node connectés à votre réseau de cluster et les affiche dans System Manager. Vous pouvez <block ref="92fd190eb6b33aabd845185d06fdf268" category="inline-link-macro-rx"></block>. Notez également ce qui suit :</block>
+  <block id="5a3b3f244ac6d468c9f9e9f1e563d414" category="paragraph">Si une image logicielle de Data Compute Node est disponible pour une mise à jour, cette option sera activée. Sélectionnez-la pour lancer la page de mise à jour du logiciel de Data Compute Node. Pour plus d'informations, consultez <block ref="e966f8a237d0e9b99b99d834f5fe2ecd" category="inline-link-macro-rx"></block>.</block>
+  <block id="1e52a91c8fc5152ade09d7e1b035671b" category="paragraph">Après avoir installé les nœuds de calcul de données, <block ref="3980b3517830ec2d777c7d0167886e44" category="inline-link-macro-rx"></block>.</block>
+  <block id="5d0e4d9b7c9c24fb2e2354166df7e64f" category="admonition">Pour plus d'informations sur l'installation du système de stockage AFX 1K, consultez <block ref="91d16f8c743942a64a4fe44197be45ff" category="inline-link-macro-rx"></block>.</block>
+  <block id="51196acef57fa4702b2c79616a51c70f" category="paragraph">Un nœud de calcul de données peut peser jusqu'à 46,3 lbs (21 kg). Pour soulever le nœud de calcul de données, utilisez deux personnes ou un élévateur hydraulique.</block>
+  <block id="fe49f456e4fe036b30f08f1261e31c76" category="paragraph">Après avoir examiné les exigences matérielles, <block ref="36962d0c8289a56184a6c55f834a067a" category="inline-link-macro-rx"></block>.</block>
+  <block id="ce0bc35e55364b06a87ee46623492fd8" category="paragraph">Assurez-vous de disposer d'un système de stockage AFX 1K installé, puis consultez la configuration matérielle requise pour l'installation des nœuds de calcul de données pour AIDE. Pour plus d'informations sur l'installation du système de stockage AFX 1K, consultez <block ref="91d16f8c743942a64a4fe44197be45ff" category="inline-link-macro-rx"></block>.</block>
+  <block id="d1c8ae967ce186598cd98f11b54cf4ea" category="inline-link-macro">documentation relative à l'attribution d'identifiants uniques pour les étagères</block>
+  <block id="1d845d7fec926dc97ef9c9d1ae75fb4d" category="list-text">Assurez-vous que vos étagères sont alimentées et que chacune possède un identifiant unique. Pour plus d'informations sur l'attribution des identifiants d'étagère pour le système de stockage AFX, consultez la <block ref="2cb3ccd2ea21233c926cc907e5546ee0" category="inline-link-macro-rx"></block>.</block>
+  <block id="72b11f47a4c462a17235bf830cef5f4d" category="paragraph">Après avoir activé vos nœuds de calcul de données, <block ref="c209b4c41b8b8a46751e6876a5bec129" category="inline-link-macro-rx"></block>.</block>
+  <block id="69333c3b16c70d734803d338560b5f4b" category="paragraph">Après avoir préparé l'installation de vos nœuds de calcul de données, <block ref="8d80699d6ea91999991c5841195fdaf6" category="inline-link-macro-rx"></block>.</block>
 </blocks>

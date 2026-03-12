@@ -20,9 +20,9 @@ Ces procédures présentent des configurations courantes. Le câblage spécifiqu
 NOTE: Il n'est pas nécessaire de mettre hors tension le système de stockage AFX 1K lors du câblage des Data Compute Node. Vous pouvez ajouter les Data Compute Node à un système de stockage AFX 1K existant qui est déjà sous tension et configuré.
 
 .Avant de commencer
-* Vous disposez déjà d'un système de stockage AFX 1K installé. Pour plus d'informations sur l'installation du système de stockage AFX 1K, consultez link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html["installez votre système de stockage AFX 1K"^].
+* Vous disposez déjà d'un système de stockage AFX 1K installé. Pour plus d'informations sur l'installation du système de stockage AFX 1K, consultez link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html["Documentation d'installation du système de stockage AFX 1K"^].
 * Vous avez installé et configuré les commutateurs réseau requis. Contactez votre administrateur réseau pour obtenir des informations sur la connexion du système à vos commutateurs réseau.
-* Vous avez examiné le link:../install-setup/cable-overview.html["exigences de câblage pour les Data Compute Node"^].
+* Vous avez examiné le link:../install-setup/cable-overview.html["exigences de câblage pour les Data Compute Node"].
 
 
 
@@ -104,4 +104,4 @@ image::../media/drw_aide_switched_cluster_cabling_b_ieops-2650.svg[Câble vers r
 
 
 .Et ensuite ?
-Une fois le matériel câblé, vous link:power-on-hardware.html["Mettez sous tension vos Data Compute Node"].
+Une fois le matériel câblé, link:power-on-hardware.html["Mettez sous tension vos Data Compute Node"].

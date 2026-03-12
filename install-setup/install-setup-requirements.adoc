@@ -22,7 +22,7 @@ Avant d'installer les nœuds de calcul de données pour AIDE, assurez-vous de di
 * Un système de stockage AFX 1K.
 +
 
-NOTE: Pour plus d'informations sur l'installation du système de stockage AFX 1K, reportez-vous au link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html["Installez votre système de stockage AFX 1K"^].
+NOTE: Pour plus d'informations sur l'installation du système de stockage AFX 1K, consultez link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html["Documentation d'installation du système de stockage AFX 1K"^].
 
 
 
@@ -60,4 +60,4 @@ image::../media/drw_compute_node_lifting_weight_ieops-2743.svg[Poids de levage d
 
 
 .Et ensuite ?
-Après avoir examiné les exigences matérielles, vous link:prepare-hardware.html["Préparez-vous à installer vos nœuds de calcul de données"].
+Après avoir examiné les exigences matérielles, link:prepare-hardware.html["Préparez-vous à installer vos nœuds de calcul de données"].

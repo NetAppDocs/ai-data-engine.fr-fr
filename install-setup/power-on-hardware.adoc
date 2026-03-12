@@ -14,7 +14,7 @@ summary: 'Mettez chaque étagère sous tension pour lui attribuer un identifiant
 Après avoir installé le matériel du rack et câblé vos nœuds de calcul de données, vous devez mettre sous tension vos DCN et vos nœuds de contrôle pour le système de stockage AFX si ceux-ci ne sont pas déjà sous tension.
 
 .Avant de commencer
-* Assurez-vous que vos étagères sont alimentées et que chacune possède un identifiant unique. Pour plus d'informations sur l'attribution des identifiants d'étagère pour le système de stockage AFX, consultez la link:https://docs.netapp.com/us-en/ontap-afx/install-setup/power-on-hardware.html#step-1-power-on-the-shelf-and-assign-shelf-id["Attribuer des identifiants d'étagère uniques"^].
+* Assurez-vous que vos étagères sont alimentées et que chacune possède un identifiant unique. Pour plus d'informations sur l'attribution des identifiants d'étagère pour le système de stockage AFX, consultez la link:https://docs.netapp.com/us-en/ontap-afx/install-setup/power-on-hardware.html#step-1-power-on-the-shelf-and-assign-shelf-id["documentation relative à l'attribution d'identifiants uniques pour les étagères"^].
 
 
 .Étapes
@@ -57,4 +57,4 @@ Il vous faudra peut-être retirer le panneau pour accéder à l'interrupteur d'a
 
 
 .Et ensuite ?
-Une fois vos nœuds de calcul de données activés, vous link:../install-setup/cluster-setup-afx.html["configurer un cluster ONTAP AIDE"].
+Après avoir activé vos nœuds de calcul de données, link:../install-setup/cluster-setup-afx.html["configurer un cluster ONTAP AIDE"].

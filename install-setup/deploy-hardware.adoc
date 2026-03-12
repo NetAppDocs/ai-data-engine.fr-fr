@@ -34,4 +34,4 @@ NOTE: En général, les commutateurs doivent être installés au centre de l'arm
 
 
 .Et ensuite ?
-Après avoir installé les nœuds de calcul de données, vous link:cable-hardware.html["câbler les nœuds de calcul de données pour AIDE"].
+Après avoir installé les nœuds de calcul de données, link:cable-hardware.html["câbler les nœuds de calcul de données pour AIDE"].

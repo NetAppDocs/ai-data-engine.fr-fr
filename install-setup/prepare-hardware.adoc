@@ -119,4 +119,4 @@ Une fois NetApp a approuvé votre inscription, vous pouvez télécharger le logi
 
 
 .Et ensuite ?
-Une fois que vous avez préparé l'installation de vos nœuds de calcul de données, vous link:deploy-hardware.html["installer les Data Compute Node"].
+Après avoir préparé l'installation de vos nœuds de calcul de données, link:deploy-hardware.html["installer les Data Compute Node"].
