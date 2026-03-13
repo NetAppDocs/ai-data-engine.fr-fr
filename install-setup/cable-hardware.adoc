@@ -26,6 +26,9 @@ NOTE: Il n'est pas nécessaire de mettre hors tension le système de stockage AF
 
 
 
+NOTE: Un minimum de trois nœuds de calcul de données est requis pour déployer l’AI Data Engine.
+
+
 
 == Étape 1 : Connectez les Data Compute Node au réseau hôte
 
@@ -68,7 +71,7 @@ image::../media/drw_aide_network_cabling_b_ieops-2648.svg[Câble vers réseau Et
 
 == Étape 2 : Câbler les connexions du cluster de Data Compute Node
 
-Pour les Data Compute Node, les ports e4a/e5a sont utilisés pour les connexions au cluster.
+Pour les nœuds de calcul de données, utilisez des câbles de dérivation 4x100GbE pour connecter les ports e4a/e5a pour les connexions du cluster.
 
 .Étapes
 . Connectez le port e4a des Data Compute Node suivants à un port non-ISL sur le commutateur réseau du cluster A :
@@ -76,7 +79,7 @@ Pour les Data Compute Node, les ports e4a/e5a sont utilisés pour les connexions
 ** Data Compute Node 1, port e4a
 ** Data Compute Node 2, port e4a
 +
-*Câbles 100GbE*
+*Câbles de dérivation 4x100GbE*
 
 +
 image::../media/oie_cable100_gbe_qsfp28.png[Câble Ethernet 100 Gb]
@@ -91,7 +94,7 @@ image::../media/drw_aide_switched_cluster_cabling_a_ieops-2649.svg[Câble vers r
 ** Data Compute Node 1, port e5a
 ** Data Compute Node 2, port e5a
 +
-*Câbles 100GbE*
+*Câbles de dérivation 4x100GbE*
 
 +
 image::../media/oie_cable100_gbe_qsfp28.png[Câble Ethernet 100 Gb]
