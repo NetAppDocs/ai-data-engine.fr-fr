@@ -2,7 +2,7 @@
 section: workspaces
 title: Configurer des espaces de travail
 entries:
-- title: Préparez les données pour AI Data Engine
+- title: Préparez les données pour AIDE
   url: "/workspaces/prepare-data-for-aide.html"
 - title: Créer un espace de travail
   url: "/workspaces/create-workspace.html"

@@ -4,14 +4,14 @@ permalink: administer/view-dashboard.html
 keywords: aide, aide system, dashboard, view dashboard, cluster status 
 summary: 'Accédez à ONTAP System Manager comme première étape avant de commencer vos tâches d"administration AIDE.' 
 ---
-= Afficher l'état du système AIDE et l'état du cluster
+= Afficher l’état du système et du cluster AI Data Engine
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-En tant qu'administrateur de stockage, vous pouvez utiliser ONTAP System Manager pour accéder au tableau de bord et afficher l'état du cluster. Il s'agit d'une bonne première étape avant de commencer vos tâches d'administration AIDE ou si vous suspectez un problème opérationnel.
+En tant qu'administrateur de stockage, vous pouvez utiliser ONTAP System Manager pour accéder au tableau de bord et afficher l'état du cluster. Il s'agit d'une bonne première étape avant de commencer vos tâches d'administration AI Data Engine (AIDE) ou si vous suspectez un problème opérationnel.
 
 .Avant de commencer
 * Vous devez disposer des privilèges d'administrateur de stockage pour effectuer des tâches administratives liées à AIDE ONTAP.
@@ -114,7 +114,7 @@ Cet onglet affiche tous les nœuds DCN du cluster avec :
 *** Leur état, leur taille et leur dernière date de mise à jour
 
 
-** Dans l'onglet *Utilisateurs*, vérifiez quels utilisateurs AI Data Engine Console ont accès.
+** Dans l'onglet *Utilisateurs*, vérifiez quels utilisateurs de la AIDE Console ont accès.
 
 
 

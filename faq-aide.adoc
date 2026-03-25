@@ -17,7 +17,7 @@ Cette FAQ couvre les questions courantes concernant NetApp AI Data Engine (AIDE)
 
 == Principes de base d'AIDE
 
-.Qu'est-ce que NetApp AI Data Engine (AIDE) ?
+.Qu'est-ce que NetApp AI Data Engine ?
 NetApp AI Data Engine (AIDE) est un service de données d’IA intégré au stockage qui couvre l’intégralité du cycle de vie de l’IA, de la découverte et la préparation des données brutes à la fourniture de points d’accès pour alimenter l’IA générative (GenAI), la génération augmentée par la recherche (RAG), l’IA agentique et les fabriques d’IA. AIDE automatise la synchronisation et la détection des modifications, offrant une vue unifiée et actualisée des données sélectionnées pour la découverte et la curation des données.
 
 .Comment fonctionne AIDE ?
@@ -27,7 +27,7 @@ AIDE s'intègre directement aux systèmes de stockage NetApp ONTAP pour créer u
 
 == Utilisateurs et rôles
 
-.Qui utilise l'AI Data Engine ?
+.Qui utilise AI Data Engine ?
 Les principaux utilisateurs d'AIDE incluent :
 
 . *ONTAP storage administrators* : Gèrent l’infrastructure, les besoins de stockage spécifiques à l’IA, la sécurité et la conformité.
@@ -45,7 +45,7 @@ AIDE nécessite des systèmes AFX pour le déploiement (y compris un contrôleur
 AIDE s'exécute sur un nœud de calcul de données NetApp (DCN). Trois DCN sont nécessaires. Le DCN héberge le logiciel AIDE, qui comprend le Metadata Engine, Data Sync, Data Curator et Data Guardrails.
 
 .Puis-je utiliser mon propre DCN ?
-Non. Le DCN est un nœud matériel de calcul de données fourni par NetApp et constitue le seul mécanisme de déploiement pour le AI Data Engine.
+Non. Le DCN est un nœud matériel de calcul de données fourni par NetApp et constitue le seul mécanisme de déploiement pour AIDE.
 
 .Quel est le nombre minimum de DCN requis ?
 Exactement trois DCN sont requis.
@@ -60,8 +60,8 @@ Non. AIDE nécessite AFX pour le déploiement. AIDE utilise Trident pour consomm
 
 == Gestion et interfaces
 
-.La console AIDE fait-elle partie de la console NetApp ou s'agit-il d'une interface séparée ?
-La AIDE Console est une interface de gestion distincte qui s'exécute sur les DCN. Vous utilisez la AIDE Console pour gérer les services AIDE, tels que Data Guardrails et Data Curator. Vous pouvez également utiliser ONTAP System Manager pour surveiller le cluster AIDE.
+.La console AIDE fait-elle partie de NetApp Console ou constitue-t-elle une interface distincte ?
+AIDE Console est une interface de gestion distincte qui s'exécute sur les DCN. Vous utilisez AIDE Console pour gérer les services AIDE, tels que Data Guardrails et Data Curator. Vous pouvez également utiliser ONTAP System Manager pour surveiller le cluster AIDE.
 
 
 
@@ -85,7 +85,7 @@ Il existe quatre fonctionnalités principales d'AIDE :
 
 
 .Data Guardrails
-* Identifie et protège automatiquement les données sensibles tout au long du cycle de vie de l'IA. Il est accessible via AI Data Engine Console.
+* Identifie et protège automatiquement les données sensibles tout au long du cycle de vie de l'IA. Elle est accessible via la AIDE Console.
 * Analyse, classe et catégorise les données en continu.
 * Identifie les données sensibles (telles que les PII) et les risques.
 * Facilite la création de politiques pour le traitement automatique des données sensibles, conformément aux normes de l'entreprise et aux réglementations.
@@ -110,8 +110,8 @@ AIDE peut se connecter à plusieurs clusters ONTAP en utilisant SnapMirror et le
 .Où sont stockées les métadonnées ?
 AIDE stocke les métadonnées sur le cluster AFX connecté à l'aide d'un volume persistant fourni par AFX. Les DCNs utilisent un stockage local pour les opérations internes.
 
-.Le AIDE Metadata Engine classe-t-il les données ?
-Non. Le Metadata Engine catalogue les métadonnées du système de fichiers et fournit des API pour interroger ces métadonnées cataloguées.
+.AIDE Metadata Engine classe-t-il les données ?
+Non. AIDE Metadata Engine catalogue les métadonnées du système de fichiers et fournit des API pour interroger ces métadonnées cataloguées.
 
 .Quelles sources de données sont prises en charge ?
 AIDE prend en charge les volumes ONTAP (locaux ou distants) comme sources de données. Les clusters ONTAP distants doivent exécuter ONTAP 9 et être connectés via l'appairage de cluster et SnapMirror.

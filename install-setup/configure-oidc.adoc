@@ -14,7 +14,7 @@ summary: 'En tant qu"administrateur du cluster ONTAP, vous pouvez utiliser ONTAP
 En tant qu'administrateur du cluster ONTAP, vous pouvez utiliser ONTAP System Manager pour configurer l'authentification OpenID Connect (OIDC) pour un cluster AI Data Engine (AIDE). Cela permet une connexion sécurisée et centralisée via un fournisseur d'identité externe (IdP).
 
 
-CAUTION: Vous devez configurer OIDC pour accéder à la AI Data Engine Console. Une fois configuré, toute l'authentification transite par OIDC. Si OIDC n'est pas configuré, la console sera inaccessible aux administrateurs ainsi qu'aux ingénieurs de données et aux data scientists. Dans ce cas, la connexion à System Manager revient à l'authentification locale.
+CAUTION: Vous devez configurer OIDC pour accéder à la AIDE Console. Une fois configuré, toute l'authentification transite par OIDC. Si OIDC n'est pas configuré, la console sera indisponible pour les administrateurs ainsi que pour les data engineers et data scientists. Dans ce cas, la connexion à System Manager revient à l'authentification locale.
 
 Notez également les points suivants concernant la configuration OIDC pour l'accès AIDE :
 
@@ -28,7 +28,7 @@ Notez également les points suivants concernant la configuration OIDC pour l'acc
 
 OpenID Connect (OIDC) est un protocole d'authentification construit sur le framework OAuth 2.0. Il étend OAuth 2.0, qui est utilisé principalement pour l'autorisation, en ajoutant une couche d'identité. OIDC introduit le concept de jeton d'identité, qui est un JSON Web Token (JWT) contenant des revendications sur l'événement d'authentification et l'identité de l'utilisateur.
 
-Vous devez sélectionner et configurer un fournisseur d'identité externe (IdP) pris en charge par AFX avec AIDE. L'IdP authentifie les utilisateurs et émet des jetons qu'AFX, via System Manager, peut utiliser pour autoriser l'accès à la AI Data Engine Console.
+Vous devez sélectionner et configurer un fournisseur d'identité externe (IdP) compatible avec AFX et AIDE. L'IdP authentifie les utilisateurs et émet des jetons qu'AFX, via System Manager, peut utiliser pour autoriser l'accès à AIDE Console.
 
 
 
@@ -67,7 +67,7 @@ Voir  https://learn.microsoft.com/en-us/azure/active-directory-b2c/identity-prov
 
 == Configurer OIDC dans System Manager
 
-Après avoir configuré votre IdP, vous pouvez configurer l'authentification OIDC dans System Manager pour permettre un accès sécurisé à l'AI Data Engine Console.
+Après avoir configuré votre fournisseur d'identité (IdP), vous pouvez configurer l'authentification OIDC dans System Manager pour activer l'accès sécurisé à AI Data Engine Console.
 
 .Avant de commencer
 * Vous devez disposer d'un accès administrateur à System Manager.

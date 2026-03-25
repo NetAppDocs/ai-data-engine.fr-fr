@@ -11,7 +11,7 @@ summary: 'Découvrez comment les administrateurs de stockage interagissent avec 
 
 
 [role="lead"]
-En tant qu'administrateur de stockage, vous gérez l'infrastructure AIDE via ONTAP et la AI Data Engine Console, en provisionnant des espaces de travail, en appliquant des politiques de garde-fou et en surveillant l'état du système. Votre rôle consiste à garantir un stockage des données fiable, sécurisé et conforme pour les charges de travail d'IA.
+En tant qu'administrateur de stockage, vous gérez l'infrastructure AIDE via ONTAP et AI Data Engine Console, en provisionnant des workspaces, en attachant des politiques Data Guardrails et en surveillant la santé du système. Votre rôle consiste à garantir un stockage des données fiable, sécurisé et conforme pour les charges de travail d'IA.
 
 
 
@@ -25,7 +25,7 @@ En tant qu'administrateur de stockage, vous gérez l'infrastructure AIDE via ONT
 | ONTAP System Manager | Gérer (créer, modifier, supprimer) | Vous utilisez ONTAP System Manager comme interface principale pour l'administration du cluster, le provisionnement de l'espace de travail, la gestion des politiques de garde-fou et la surveillance de l'état du système. 
 
 
-| AI Data Engine Console | Gérer (créer, modifier, supprimer) | Vous utilisez l'AI Data Engine Console pour surveiller les espaces de travail, consulter l'état des collections et superviser l'activité du système dans l'environnement AIDE. 
+| AIDE Console | Gérer (créer, modifier, supprimer) | Vous utilisez AIDE Console pour surveiller les espaces de travail, consulter l'état des collections et superviser l'activité du système dans l'environnement AIDE. 
 
 
 | API REST ONTAP | Gérer (créer, modifier, supprimer) | Vous utilisez l'API REST pour automatiser les tâches d'infrastructure, gérer les espaces de travail et les politiques de protection par programmation, et intégrer l'administration d'AIDE avec des outils et des flux de travail externes. 

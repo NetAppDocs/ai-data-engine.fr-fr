@@ -11,15 +11,15 @@ summary: 'Utilisez les outils AI Data Engine pour visualiser les collections de 
 
 
 [role="lead"]
-Après que les ingénieurs de données ou les data scientists créent et publient des collectes de données à partir des espaces de travail, vous avez besoin de visibilité sur leur statut, leur taille et leur impact sur le cluster AI Data Engine.
+Après que les ingénieurs des données ou les data scientists créent et publient des collections de données à partir des espaces de travail, vous avez besoin de visibilité sur leur état, leur taille et leur impact sur le cluster AI Data Engine (AIDE).
 
 Si vous êtes administrateur de stockage, ingénieur de données ou data scientist, vous pouvez consulter les data collections via ONTAP System Manager et AIDE Console.
 
 .Avant de commencer
-* Vous devez disposer des privilèges d'administrateur de stockage dans ONTAP System Manager ou des privilèges d'ingénieur de données ou de scientifique des données dans AI Data Engine Console (`\https://<cluster_management_ip>/console` pour visualiser les collectes de données.
+* Vous devez disposer des privilèges d'administrateur de stockage dans ONTAP System Manager ou des privilèges d'ingénieur de données ou de scientifique des données dans AIDE Console (`\https://<cluster_management_ip>/console` pour visualiser les collections de données.
 * Au moins un espace de travail existe avec des métadonnées extraites avec succès.
-* Les ingénieurs ou scientifiques des données ont créé et publié au moins une collecte de données à partir de AI Data Engine Console.
-* La licence AI Data Engine software est installée et les fonctionnalités d'inférence sont activées, de sorte que les points de terminaison de vectorisation et de récupération sont actifs.
+* Les ingénieurs ou scientifiques des données ont créé et publié au moins une collecte de données depuis AIDE Console.
+* La licence du logiciel AIDE est installée et les fonctionnalités d'inférence sont activées, de sorte que les points de terminaison de vectorisation et de récupération sont actifs.
 
 
 

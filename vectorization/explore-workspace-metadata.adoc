@@ -14,7 +14,7 @@ summary: 'En tant qu"ingénieur des données ou data scientist, utilisez AI Data
 En tant qu'ingénieur de données ou data scientist, votre première tâche dans AI Data Engine (AIDE) est de comprendre quelles données sont disponibles dans vos espaces de travail. Vous utilisez AI Data Engine Console pour interroger le catalogue de métadonnées, rechercher les fichiers pertinents et identifier les sous-ensembles de données à transformer en collecte de données.
 
 .Avant de commencer
-* Vous devez disposer des privilèges de _data engineer_ ou de _data scientist_ dans AI Data Engine Console et d'un accès à au moins un workspace.
+* Vous devez disposer des privilèges de _data engineer_ ou de _data scientist_ dans AI Data Engine Console et avoir accès à au moins un workspace.
 * Un administrateur de stockage a :
 +
 ** Créé un ou plusieurs espaces de travail dans ONTAP System Manager.

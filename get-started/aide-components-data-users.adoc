@@ -11,7 +11,7 @@ summary: 'Découvrez comment les ingénieurs et les scientifiques des données i
 
 
 [role="lead"]
-En tant qu'ingénieur des données ou data scientist, vous utilisez la AI Data Engine Console pour explorer les espaces de travail auxquels vous avez obtenu l'accès, créer et gérer des data collections, effectuer des recherches sémantiques et intégrer des retrieval endpoints dans les workflows d'AI/ML.
+En tant qu'ingénieur ou scientifique des données, vous utilisez AI Data Engine Console pour explorer les espaces de travail auxquels vous avez accès, créer et gérer des collections de données, effectuer des recherches sémantiques et intégrer des points de terminaison de récupération dans les flux de travail d'IA/ML.
 
 Les ingénieurs de données transforment les données brutes en jeux de données prêts pour l'IA en créant des collections, en configurant des pipelines d'intégration et en contrôlant quels utilisateurs peuvent accéder aux collections publiées. Les data scientists se concentrent sur l'exploitation de jeux de données organisés pour l'analyse, l'entraînement de modèles et les applications GenAI, sans gérer le contrôle d'accès ni l'infrastructure.
 
@@ -24,7 +24,7 @@ Les ingénieurs de données transforment les données brutes en jeux de données
 | Composant | Niveau d'accès | Flux de travail de l'ingénieur de données | Flux de travail du data scientist 
 
 
-| AI Data Engine Console | Gérer (créer, modifier, supprimer) | La AI Data Engine Console est votre interface principale pour les tâches quotidiennes, notamment la découverte des données, la gestion de la collecte, la configuration des pipelines et la publication des points de terminaison RAG ou de récupération, pour les espaces de travail auxquels vous êtes autorisé à accéder. | La AI Data Engine Console est votre interface principale pour l'exploration des données, l'affinage et le versionnage des collections dans les espaces de travail auxquels vous avez accès, ainsi que pour la connexion des ensembles de données organisés et des points de terminaison de récupération aux flux de travail d'analyse, de modélisation et de GenAI. 
+| AIDE Console | Gérer (créer, modifier, supprimer) | AIDE Console est votre interface principale pour les tâches quotidiennes, notamment la découverte de données, la gestion des collections, la configuration des pipelines et la publication de points de terminaison RAG ou de récupération, pour les espaces de travail auxquels vous êtes autorisé à accéder. | AIDE Console est votre interface principale pour l'exploration des données, l'affinage et le versionnage des collections au sein des espaces de travail auxquels vous avez accès, ainsi que pour la connexion des ensembles de données organisés et des points de terminaison de récupération aux flux de travail d'analyse, de modélisation et de GenAI. 
 
 
 | API REST ONTAP | Gérer (créer, modifier, supprimer) | Vous utilisez l'API REST pour automatiser les opérations du cycle de vie des collections, déclencher et surveiller les pipelines d'intégration d'embedding, et intégrer par programmation les flux de données avec des outils externes. | Vous utilisez l'API REST pour accéder par programmation aux collections de données, exécuter des requêtes de recherche vectorielle et intégrer des points de terminaison de récupération dans des applications AI/ML et des frameworks agentiques. 

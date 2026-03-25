@@ -11,7 +11,7 @@ summary: 'Gérez le cycle de vie des espaces de travail AI Data Engine, notammen
 
 
 [role="lead"]
-Un espace de travail est un ensemble de sources de données (volumes) que l'AI Data Engine (AIDE) utilise pour créer et actualiser un catalogue de métadonnées pour un projet ou un cas d'utilisation particulier. En tant qu'administrateur de stockage, vous pouvez utiliser ONTAP System Manager pour surveiller l'état de l'espace de travail, ajuster la configuration, contrôler les sources de données, gérer les utilisateurs et supprimer les espaces de travail lorsqu'ils ne sont plus nécessaires.
+Un espace de travail est un ensemble de sources de données (volumes) que AI Data Engine (AIDE) utilise pour créer et actualiser un catalogue de métadonnées pour un projet ou un cas d'utilisation particulier. En tant qu'administrateur de stockage, vous pouvez utiliser ONTAP System Manager pour surveiller la santé des espaces de travail, ajuster la configuration, contrôler les sources de données, gérer les utilisateurs et supprimer les espaces de travail lorsqu'ils ne sont plus nécessaires.
 
 .Avant de commencer
 * Vous devez disposer des privilèges d'administrateur de stockage pour gérer les espaces de travail.
@@ -44,7 +44,7 @@ NOTE: Si un espace de travail ou une collecte de données affiche un état d'err
 ** État (tel que `Published` ou `Error`), taille et date de dernière mise à jour.
 +
 
-NOTE: Le System Manager est en lecture seule pour les collections de données. Les ingénieurs de données peuvent créer et gérer des collections de données dans l'AI Data Engine Console.
+NOTE: System Manager est en lecture seule pour les collections de données. Les ingénieurs de données peuvent créer et gérer des collections de données dans AIDE Console.
 
 
 
@@ -125,7 +125,7 @@ IMPORTANT: Ne supprimez pas un volume source d'ONTAP qui a été ajouté à un e
 
 
 
-NOTE: La suppression d'un container de données d'un espace de travail ne supprime pas le volume ONTAP sous-jacent ni sa relation SnapMirror. Elle affecte uniquement l'utilisation des métadonnées au sein de l'AI Data Engine.
+NOTE: La suppression d'un container de données d'un espace de travail ne supprime pas le volume ONTAP sous-jacent ni sa relation SnapMirror. Elle affecte uniquement l'utilisation des métadonnées dans AIDE.
 
 
 

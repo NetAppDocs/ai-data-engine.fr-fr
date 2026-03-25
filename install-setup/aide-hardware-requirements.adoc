@@ -11,13 +11,13 @@ summary: 'Consultez les exigences pour l"installation de AI Data Engine, y compr
 
 
 [role="lead"]
-Veuillez consulter la configuration requise pour l'installation du AI Data Engine. AIDE nécessite un système de stockage AFX, un minimum de trois Data Compute Node, des commutateurs réseau et des câbles.
+Examinez les exigences pour l'installation de AI Data Engine (AIDE). AIDE nécessite un système de stockage AFX, un minimum de trois nœuds de calcul de données, des commutateurs réseau et des câbles.
 
 
 
 == Exigences matérielles
 
-Le AI Data Engine nécessite un système de stockage AFX et au minimum trois Data Compute Node. Le système AFX fournit l'infrastructure de stockage, tandis que les Data Compute Node hébergent les composants logiciels AIDE qui permettent la gestion des données, la curation et les capacités d'IA.
+AIDE requiert un système de stockage AFX et un minimum de trois nœuds de calcul de données. Le système AFX fournit l'infrastructure de stockage, tandis que les nœuds de calcul de données hébergent les composants logiciels AIDE qui permettent la gestion des données, la curation et les fonctionnalités d'IA.
 
 * *Système de stockage AFX* : comprend un contrôleur AFX, un tiroir disque et un commutateur réseau. Le système de stockage AFX est requis pour le déploiement d’AIDE.
 * *Nœuds de calcul de données* : Un minimum de trois nœuds de calcul de données est requis. Les nœuds de calcul de données sont des nœuds matériels fournis par NetApp qui hébergent le logiciel AIDE, y compris le Metadata Engine, Data Sync, Data Curator et Data Guardrails.
@@ -33,7 +33,7 @@ Le AI Data Engine nécessite un système de stockage AFX et au minimum trois Dat
 
 == Exigences relatives aux commutateurs réseau
 
-AI Data Engine nécessite des commutateurs réseau pour permettre la connectivité réseau de l'hôte et la communication inter-nœuds pour les Data Compute Node.
+AIDE nécessite des commutateurs réseau pour permettre la connectivité réseau de l’hôte et la communication inter-nœuds pour les nœuds de calcul de données.
 
 * Commutateurs clients pour la connectivité réseau hôte (Cisco Nexus 9332D-GX2B ou Cisco Nexus 9364D-GX2A)
 * Commutateurs de cluster pour la communication inter-nœuds (Cisco Nexus 9332D-GX2B ou Cisco Nexus 9364D-GX2A)

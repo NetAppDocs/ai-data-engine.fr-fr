@@ -11,7 +11,7 @@ summary: 'Examinez l"équipement nécessaire et les précautions de levage pour 
 
 
 [role="lead"]
-Examinez l'équipement nécessaire et les précautions de levage pour vos nœuds de calcul de données pour AI Data Engine.
+Examinez l’équipement nécessaire et les précautions de levage pour vos nœuds de calcul de données pour AI Data Engine (AIDE).
 
 
 

@@ -26,7 +26,7 @@ NOTE: Il n'est pas nécessaire de mettre hors tension le système de stockage AF
 
 
 
-NOTE: Un minimum de trois nœuds de calcul de données est requis pour déployer l’AI Data Engine.
+NOTE: Un minimum de trois nœuds de calcul de données est requis pour déployer AI Data Engine.
 
 
 

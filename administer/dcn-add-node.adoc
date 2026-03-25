@@ -4,7 +4,7 @@ permalink: administer/dcn-add-node.html
 keywords: aide, ai data engine, data compute node, dcn, add dcn, expand dcn cluster 
 summary:  
 ---
-= Ajoutez des nœuds de calcul de données à votre cluster AIDE
+= Ajoutez des nœuds de calcul de données à votre cluster AI Data Engine
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -96,7 +96,7 @@ System Manager valide que la plage comprend suffisamment d'adresses IP libres po
 ** Masque de réseau
 ** Passerelle (si nécessaire pour votre environnement)
 +
-L'adresse IP unique sera répartie entre les DCN et utilisée comme adresse frontale pour l'AI Data Engine Console et les API associées.
+L'adresse IP unique sera répartie entre les DCN et utilisée comme adresse frontale pour AIDE Console et les API associées.
 
 
 

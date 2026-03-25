@@ -11,7 +11,7 @@ summary: Préparez-vous à installer les nœuds de calcul de données pour AI Da
 
 
 [role="lead"]
-Préparez-vous à installer vos nœuds de calcul de données pour AI Data Engine en préparant le site, en déballant les boîtes et en comparant le contenu des boîtes au bon de livraison, puis en enregistrant le système pour accéder aux avantages du support.
+Préparez-vous à installer vos nœuds de calcul de données pour AI Data Engine (AIDE) en préparant le site, en déballant les boîtes et en comparant le contenu des boîtes au bordereau d'expédition, et en enregistrant le système pour accéder aux avantages du support.
 
 
 

@@ -4,14 +4,14 @@ permalink: administer/view-events-log.html
 keywords: aide, aide system, events, audit log, jobs, activity 
 summary: 'Vous pouvez consulter les événements, les tâches et les messages du journal des audits générés par AIDE afin de suivre le traitement interne et de diagnostiquer les problèmes potentiels. Le système AIDE peut être configuré pour transmettre ces informations, ainsi que d"autres données connexes, pour un traitement et un archivage ultérieurs.' 
 ---
-= Afficher les événements système AIDE, les tâches et le journal des audits
+= Afficher les événements système, les tâches et le journal des audits d'AI Data Engine
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-En tant qu'administrateur de stockage, vous pouvez consulter les événements, les tâches et les messages du journal des audits générés par AIDE afin de suivre le traitement interne et de diagnostiquer les problèmes potentiels. Le système AIDE peut être configuré pour transmettre ces informations, ainsi que d'autres données connexes, pour un traitement et un archivage ultérieurs.
+En tant qu'administrateur de stockage, vous pouvez consulter les événements, les tâches et les messages du journal des audits générés par AI Data Engine (AIDE) afin de suivre le traitement interne et de diagnostiquer les problèmes potentiels. Le système AIDE peut être configuré pour transmettre ces informations, ainsi que d'autres données connexes, pour un traitement et un archivage supplémentaires.
 
 .Avant de commencer
 * Vous devez disposer des privilèges d'administrateur de stockage pour effectuer des tâches administratives liées à AIDE ONTAP.

@@ -2,7 +2,7 @@
 permalink: install-setup/install-license-task.html 
 sidebar: sidebar 
 keywords: ai data engine, install license, add license, software entitlement, keys, nlf, nlf file 
-summary: 'Vous devrez installer une licence NetApp pour accéder à toutes les fonctionnalités de l"AI Data Engine (AIDE). En tant qu"administrateur du cluster ONTAP, vous pouvez effectuer la gestion des licences à l"aide d"ONTAP System Manager.' 
+summary: 'Vous devrez installer une licence NetApp pour accéder à toutes les fonctionnalités de AI Data Engine (AIDE). En tant qu"administrateur du cluster ONTAP, vous pouvez effectuer la gestion des licences à l"aide de ONTAP System Manager.' 
 ---
 = Installez une licence AIDE dans votre système AFX
 :allow-uri-read: 
@@ -11,11 +11,11 @@ summary: 'Vous devrez installer une licence NetApp pour accéder à toutes les f
 
 
 [role="lead"]
-Vous devrez installer une licence NetApp pour accéder à toutes les fonctionnalités de l'AI Data Engine (AIDE). En tant qu'administrateur du cluster ONTAP, vous pouvez effectuer la gestion des licences à l'aide d'ONTAP System Manager.
+Vous devrez installer une licence NetApp pour accéder à toutes les fonctionnalités de AI Data Engine (AIDE). En tant qu'administrateur du cluster ONTAP, vous pouvez effectuer la gestion des licences à l'aide de ONTAP System Manager.
 
 
 
-== Préparez-vous à acquérir une licence pour AI Data Engine
+== Préparez-vous à licencier AI Data Engine
 
 Une licence est un enregistrement d'un ou plusieurs droits d'utilisation de logiciels. Toutes les licences AFX sont livrées sous forme de fichier de licence NetApp (NLF), qui est un fichier unique permettant d'activer plusieurs fonctionnalités. Il y a plusieurs éléments à prendre en compte avant d'installer une licence sur votre système de stockage AFX pour la prise en charge d'AIDE.
 
@@ -29,7 +29,7 @@ Il existe deux principaux types de licences nécessaires pour commencer à utili
 La licence Metadata Engine Basic est généralement installée en usine dans le cadre de la licence ONTAP One. Elle permet d’accéder à la fonctionnalité Metadata Engine qui constitue la base essentielle pour les opérations AIDE. Toutes les capacités principales nécessaires à l’administration de votre système ONTAP sont également incluses.
 
 .AI Data Engine
-Vous devez acheter et installer la licence AI Data Engine pour accéder aux services premium nécessaires à l’activation de toutes les capacités d’AIDE. La licence débloque vos nœuds de calcul de données, activant des fonctionnalités d’IA telles que la vectorisation, les garde-fous de gouvernance, l’inférence et une expérience UI intégrée. La licence inclut un nombre de GPU ainsi qu’une date d’expiration.
+Vous devez acheter et installer la licence AIDE pour accéder aux services premium nécessaires à l’activation de toutes les fonctionnalités d’AIDE. La licence débloque vos nœuds de calcul de données, permettant des fonctionnalités d’IA telles que la vectorisation, les Data Guardrails, l’inférence et une expérience UI intégrée. La licence inclut un nombre de GPU ainsi qu’une date d’expiration.
 
 
 

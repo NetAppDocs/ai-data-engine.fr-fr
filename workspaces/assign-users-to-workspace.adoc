@@ -11,9 +11,9 @@ summary: 'Après avoir créé un espace de travail, vous pouvez y affecter des u
 
 
 [role="lead"]
-En tant qu'administrateur de stockage, vous affectez les utilisateurs à un espace de travail en fonction de leur rôle : data engineers, data scientists ou autres rôles selon la structure et les besoins de votre organisation. Les utilisateurs se connectent à la AI Data Engine Console à l'aide de leurs identifiants et accèdent aux ressources du data container au sein de l'espace de travail qui leur est attribué.
+En tant qu'administrateur de stockage, vous affectez les utilisateurs à un espace de travail en fonction de leur rôle : ingénieurs de données, data scientists ou autres rôles selon la structure et les besoins de votre organisation. Les utilisateurs se connectent à AI Data Engine (AIDE) Console à l'aide de leurs identifiants et accèdent aux ressources du container de données au sein de l'espace de travail qui leur est attribué.
 
-ONTAP System Manager vous permet de gérer quels utilisateurs ont accès aux espaces de travail AI Data Engine. Vous pouvez ajouter ou supprimer des utilisateurs pour contrôler qui peut consulter, modifier et interagir avec les données et les activités des espaces de travail.
+ONTAP System Manager vous permet de gérer quels utilisateurs ont accès aux espaces de travail AIDE. Vous pouvez ajouter ou supprimer des utilisateurs pour contrôler qui peut consulter, modifier et interagir avec les données et les activités des espaces de travail.
 
 .Avant de commencer
 * Vous devez disposer des privilèges de _storage administrator_ pour gérer l'accès des utilisateurs aux espaces de travail.

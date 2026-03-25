@@ -11,7 +11,7 @@ summary: AIDE repose sur une architecture évolutive et tolérante aux pannes qu
 
 
 [role="lead"]
-AIDE repose sur une architecture évolutive et tolérante aux pannes qui sépare le stockage et le calcul, permettant des performances et une flexibilité élevées pour les charges de travail AI.
+AI Data Engine (AIDE) est construit sur une architecture évolutive et tolérante aux pannes qui sépare le stockage et le calcul, permettant des performances et une flexibilité élevées pour les charges de travail d'IA.
 
 
 
@@ -59,7 +59,7 @@ La mise en réseau entre les DCN et les nœuds ONTAP est isolée à l'aide de VL
 
 == Fonctionnalités principales de l'AI Data Engine
 
-Les principales fonctionnalités de l'AI Data Engine (AIDE) fonctionnent ensemble pour automatiser, sécuriser et accélérer le cycle de vie des données d'IA. Chaque fonctionnalité est implémentée sous forme d'un ensemble de microservices s'exécutant sur des DCN, intégrés au stockage ONTAP et exposés via des API REST et des interfaces de gestion.
+Les principales fonctionnalités d'AI Data Engine (AIDE) fonctionnent de concert pour automatiser, sécuriser et accélérer le cycle de vie des données d'IA. Chaque fonctionnalité est implémentée sous forme d'un ensemble de microservices exécutés sur des DCN, intégrés au stockage ONTAP et exposés via des API REST et des interfaces de gestion.
 
 
 
@@ -107,7 +107,7 @@ Le service Data Guardrails assure une gouvernance et une protection continues et
 .Licence et accès
 La fonctionnalité Data Guardrails n'est pas incluse avec la licence de base ONTAP One et nécessite une licence AIDE distincte.
 
-Vous pouvez accéder à la fonctionnalité Data Guardrails via l'AI Data Engine Console.
+Vous pouvez accéder à la fonctionnalité Data Guardrails via la AIDE Console.
 
 .Capacités
 * Analyse, classe et catégorise les données en continu.
@@ -127,7 +127,7 @@ Le service Data Curator permet une découverte, une recherche, une vectorisation
 .Licence et accès
 La fonctionnalité Data Curator n'est pas incluse avec la licence de base ONTAP One et nécessite une licence AIDE distincte.
 
-Vous pouvez accéder à Data Curator via la AI Data Engine Console.
+Vous pouvez accéder à Data Curator via AIDE Console.
 
 .Capacités
 * Recherche les données pertinentes dans le stockage à l'aide du catalogue de métadonnées centralisé.

@@ -16,7 +16,7 @@ Passez d’un système AI Data Engine (AIDE) nouvellement déployé à un point 
 
 .Avant de commencer
 * Vous avez installé et ajouté des nœuds de calcul de données (DCN) au cluster ONTAP.
-* Vous avez installé et licencié AI Data Engine software pour la vectorisation et les garde-fous.
+* Vous avez installé et licencié le logiciel AIDE pour la vectorisation et les Data Guardrails.
 * Vous avez configuré link:../install-setup/configure-oidc.html["OpenID Connect (OIDC)"] et attribué des rôles aux fonctions d'administrateur, d'ingénieur de données et de scientifique des données.
 
 
@@ -48,7 +48,7 @@ En tant qu'ingénieur des données ou data scientist, vous souhaitez transformer
 
 
 .Et ensuite ?
-* link:../guardrails/define-data-policies.html["Définissez votre patrimoine de données et vos politiques de garde-fous dans AI Data Engine"]
-* link:explore-workspace-metadata.html["Explorez les métadonnées de l'espace de travail dans AI Data Engine Console"]
-* link:create-data-collections.html["Créez des collectes de données dans AI Data Engine Console"]
+* link:../guardrails/define-data-policies.html["Définissez votre patrimoine de données et vos politiques de Data Guardrails dans AIDE"]
+* link:explore-workspace-metadata.html["Explorez les métadonnées de l'espace de travail dans AIDE Console"]
+* link:create-data-collections.html["Créer des collections de données dans AIDE Console"]
 

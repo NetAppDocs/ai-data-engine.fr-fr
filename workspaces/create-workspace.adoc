@@ -24,7 +24,7 @@ Suivez l'état de la création des espaces de travail depuis la page d'inventair
 
 .Avant de commencer
 * Vous devez disposer des privilèges d'administrateur de stockage pour créer des espaces de travail et associer des collectes de données.
-* Vous avez déterminé les sources de données distantes (pairées) et locales que vous avez l'intention d'utiliser avec l'espace de travail et avec AI Data Engine.
+* Vous avez déterminé les sources de données distantes (pairées) et locales que vous avez l'intention d'utiliser avec l'espace de travail et avec AIDE.
 * Vous avez link:prepare-data-for-aide.html["créé au moins un container de données"] que l'espace de travail peut utiliser, tel qu'un volume local ou un volume provenant d'un cluster apparié.
 +
 
@@ -39,7 +39,7 @@ IMPORTANT: Ajoutez un volume à un espace de travail que vous ne supprimerez pas
 
 == Créer un espace de travail
 
-Créez un espace de travail et associez des container de données contenant les données que vous souhaitez utiliser avec AI Data Engine.
+Créez un espace de travail et associez des containers de données contenant les données que vous souhaitez utiliser avec AIDE.
 
 .Étapes
 . Dans ONTAP System Manager, accédez à *AI Data Engine > Workspaces*.
@@ -60,7 +60,7 @@ TIP: Choisissez un intervalle qui assure un bon équilibre entre la fraîcheur d
 .Résultat
 Le processus de création de l'espace de travail prend de plusieurs minutes à plusieurs heures, selon l'ensemble de données associé, le nombre de fichiers, la taille des fichiers et d'autres facteurs.
 
-Le système extrait automatiquement les métadonnées de toutes les sources de données et les stocke dans un catalogue de métadonnées que les utilisateurs peuvent utiliser pour localiser les fichiers dont ils ont besoin pour leurs projets. Après avoir affecté les utilisateurs à l'espace de travail, les ingénieurs de données peuvent configurer et interagir avec les composants affiliés à l'espace de travail depuis AI Data Engine Console.
+Le système extrait automatiquement les métadonnées de toutes les sources de données et les stocke dans un catalogue de métadonnées que les utilisateurs peuvent utiliser pour localiser les fichiers dont ils ont besoin pour leurs projets. Après avoir affecté les utilisateurs à l'espace de travail, les ingénieurs de données peuvent configurer et interagir avec les composants affiliés à l'espace de travail depuis AIDE Console.
 
 Le nouvel espace de travail apparaît sur la page Espaces de travail dans l'état  `Creating` jusqu'à ce que le processus soit terminé et que l'état passe à  `ready`.
 

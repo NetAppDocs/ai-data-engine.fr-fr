@@ -15,7 +15,7 @@ AI Data Engine (AIDE) 9.18.1 est la version initiale de la plateforme de gestion
 
 
 
-== Nouveautés de la version initiale de AIDE 9.18.1
+== Nouveautés de la version initiale d'AIDE 9.18.1
 
 AIDE 9.18.1 introduit les fonctionnalités fondamentales suivantes :
 
@@ -66,23 +66,23 @@ La version initiale comprend les workflows suivants :
 
 
 .link:../vectorization/zero-to-rag.html["Capacités avancées de curation et de gouvernance des données"]
-Les fonctionnalités suivantes sont disponibles pour les clients disposant des licences AI Data Engine appropriées :
+Les fonctionnalités suivantes sont disponibles pour les clients disposant des licences AIDE appropriées :
 
-* *Vectorisation et RAG* : Création de collectes de données, d’embeddings et de points de terminaison de récupération dans la AI Data Engine Console, à l’aide des métadonnées des espaces de travail AIDE.
-* *Gouvernance basée sur des garde-fous* : Définition des politiques de garde-fous dans l'AI Data Engine Console et association de ces politiques avec les espaces de travail dans ONTAP System Manager.
+* *Vectorisation et RAG* : Création de collections de données, d’embeddings et de points de terminaison de récupération dans AI Data Engine Console, à l’aide des métadonnées des espaces de travail AIDE.
+* *Gouvernance basée sur des Data Guardrails* : Définition des politiques de Data Guardrails dans AI Data Engine Console et association de ces politiques avec les workspaces dans ONTAP System Manager.
 
 
 
 
 === Matériel et plateformes pris en charge
 
-AI Data Engine 9.18.1 s'exécute sur des clusters de la plateforme de données ONTAP AI qui combinent :
+AIDE 9.18.1 s'exécute sur des clusters de la plateforme de données ONTAP AI qui combinent :
 
 * Nœuds de stockage AFX 1K
 * Nœuds de calcul de données NetApp
 
 
 .Informations connexes
-* link:known-limitations.html["Limitations connues de AI Data Engine"]
-* link:../get-started/learn-about.html["Découvrez l'architecture et les composants d'AI Data Engine"]
+* link:known-limitations.html["Limites connues d'AIDE"]
+* link:../get-started/learn-about.html["Découvrez l'architecture et les composants d'AIDE"]
 

@@ -41,13 +41,13 @@ AIDE introduit de nouveaux rôles d'utilisateur tout en prenant toujours en char
 | Rôle (nom RBAC) | Description 
 
 
-| Administrateur de stockage (`admin`) | Gère la configuration des clusters AFX et AIDE, le réseau, le provisionnement du stockage et l'accès utilisateur. Attribue des rôles RBAC aux utilisateurs qui déterminent le niveau de contrôle d'accès aux interfaces et fonctionnalités d'AIDE. Ce rôle d'administrateur dispose d'un accès complet à la gestion via ONTAP System Manager et AI Data Engine Console. 
+| Administrateur de stockage (`admin`) | Gère la configuration des clusters AFX et AIDE, le réseau, le provisionnement du stockage et l'accès des utilisateurs. Attribue des rôles RBAC aux utilisateurs qui déterminent le niveau d'accès aux interfaces et fonctionnalités d'AIDE. Ce rôle d'administrateur dispose d'un accès complet à la gestion via ONTAP System Manager et AIDE Console. 
 
 
-| Ingénieur de données (`data-engineer`) | Conçoit et optimise des pipelines d'IA/ML, gère la collecte de données et intègre des modèles d'IA. Ce rôle a accès à la AI Data Engine Console pour les workflows d'ingénierie des données. 
+| Ingénieur de données (`data-engineer`) | Crée et optimise des pipelines d’IA/ML, gère les collectes de données et intègre des modèles d’IA. Ce rôle a accès à AIDE Console pour les workflows d’ingénierie des données. 
 
 
-| scientifique des données (`data-scientist`) | Découvre, organise et analyse des ensembles de données, crée des collections de données et exploite les points de récupération pour les applications GenAI. Ce rôle a accès à l'AI Data Engine Console pour les workflows de science des données. 
+| scientifique des données (`data-scientist`) | Découvre, organise et analyse des ensembles de données, crée des collections de données et exploite les points de terminaison de récupération pour les applications GenAI. Ce rôle a accès à AIDE Console pour les workflows de science des données. 
 |===
 
 
