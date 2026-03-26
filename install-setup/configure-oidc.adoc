@@ -18,6 +18,7 @@ CAUTION: Vous devez configurer OIDC pour accéder à la AIDE Console. Une fois c
 
 Notez également les points suivants concernant la configuration OIDC pour l'accès AIDE :
 
+* De manière générale, la configuration OIDC se compose de deux étapes principales. Il faut d'abord effectuer la configuration OIDC de base à l'aide de System Manager. Vous pouvez ensuite finaliser la configuration en paramétrant le mappage des rôles externes à l'aide de l'ONTAP CLI.
 * Vous ne pouvez pas modifier une configuration OIDC existante. Si vous devez apporter une modification, supprimez d'abord la configuration et créez-en une nouvelle avec les paramètres souhaités.
 * Si vous désactivez ou supprimez OIDC, System Manager reviendra à l'authentification utilisateur ONTAP locale.
 
@@ -69,6 +70,9 @@ Voir  https://learn.microsoft.com/en-us/azure/active-directory-b2c/identity-prov
 
 Après avoir configuré votre fournisseur d'identité (IdP), vous pouvez configurer l'authentification OIDC dans System Manager pour activer l'accès sécurisé à AI Data Engine Console.
 
+
+TIP: Vous pouvez fournir l'URI des métadonnées pour renseigner automatiquement les champs de configuration OIDC dans System Manager. Consultez la documentation de votre IdP pour obtenir le format exact de l'URI.
+
 .Avant de commencer
 * Vous devez disposer d'un accès administrateur à System Manager.
 * Votre fournisseur d'identité OIDC doit être configuré et accessible.
@@ -106,10 +110,38 @@ Après avoir configuré votre fournisseur d'identité (IdP), vous pouvez configu
 . Connectez-vous avec vos identifiants IdP ; après une authentification réussie, vous serez redirigé vers System Manager.
 
 
+.Après avoir terminé
+Terminez la configuration OIDC en configurant le mappage des rôles externes.
+
+
+
+== Configurez le mappage des rôles externes à l'aide de la CLI
+
+Le mappage des rôles externes est une fonctionnalité ONTAP qui vous permet d’associer les rôles de l’IdP externe aux rôles ONTAP correspondants. Vous devez configurer ce mappage pour garantir que les utilisateurs s’authentifiant via OIDC reçoivent les autorisations RBAC appropriées dans ONTAP.
+
+.À propos de cette tâche
+Cette tâche associe l'ingénieur de données et le data scientist aux rôles ONTAP correspondants. Vous devez mettre à jour les exemples de commandes avec les noms de rôles appropriés selon votre environnement. Notez que vous devez déjà avoir associé le rôle d'administrateur de stockage au rôle ONTAP `admin` lors de la configuration OIDC de base dans System Manager.
+
+.Étapes
+. À l'aide de SSH, connectez-vous à l'interface de ligne de commande ONTAP en utilisant un compte disposant de privilèges d'administrateur.
+. Configurez le mappage de rôle pour le rôle de data engineer ; par exemple :
++
+[source, bash]
+----
+security login external-role-mapping create -external-role dataEngineer -provider entra -ontap-role data-engineer
+----
+. Configurez le mappage de rôle pour le rôle de data scientist ; par exemple :
++
+[source, bash]
+----
+security login external-role-mapping create -external-role dataScientist -provider entra -ontap-role data-scientist
+----
+
+
 
 
 == Informations connexes
 
+* https://docs.netapp.com/us-en/ontap/authentication/oauth2-external-roles.html["Mappage des rôles externes OAuth 2.0 dans ONTAP"^]
 * https://openid.net/["OpenID Foundation"^]
-* https://docs.netapp.com/us-en/ontap/authentication/overview-oauth2.html["Implémentation ONTAP OAuth 2.0"^]
 

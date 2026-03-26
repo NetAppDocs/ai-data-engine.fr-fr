@@ -5,7 +5,6 @@
   <block id="0f6902c11864c7f6ea3e7e97543390ff" category="section-title">Préparez à remplacer un nœud</block>
   <block id="192d4730c4474133e43ad79a17bc2b0a" category="paragraph">Plusieurs éléments sont à prendre en compte avant de remplacer un nœud dans votre AIDE cluster.</block>
   <block id="3d0290aecf6f3d97cfe6bc8642514dfb" category="paragraph-title">Identifiants System Manager</block>
-  <block id="214815a740557c20d025260617d488f6" category="paragraph">Vous devez disposer des privilèges d'administrateur de stockage pour effectuer les tâches de remplacement de nœud de cluster AIDE.</block>
   <block id="e3e16bb73c0250a6a229fb457b4f957e" category="section-title">Restrictions</block>
   <block id="c236764b0a821599642d7a5689c7dec8" category="paragraph">Vous devez être conscient des restrictions suivantes lors du remplacement d'un nœud dans votre AIDE cluster :</block>
   <block id="3bc43fb96432ecb013dfd886119f4664" category="list-text">Le remplacement de nœud n'est pris en charge qu'à l'aide du CLI et, en option, de l'API REST.</block>
@@ -879,8 +878,6 @@
   <block id="b3eac18ae7c204c556f62dd66a01d35d" category="list-text">Connectez-vous avec vos identifiants IdP ; après une authentification réussie, vous serez redirigé vers System Manager.</block>
   <block id="83ae1104f2752dedd3f734e862e77079" category="inline-link">OpenID Foundation</block>
   <block id="d6dc3de1eee9ae466c18b32abc3802b3" category="list-text"><block ref="d6dc3de1eee9ae466c18b32abc3802b3" category="inline-link-rx"></block></block>
-  <block id="79ae1a530fac5c3d3243825c084b579d" category="inline-link">Implémentation ONTAP OAuth 2.0</block>
-  <block id="f3bab0602006a91da3ab07cad24e13f8" category="list-text"><block ref="f3bab0602006a91da3ab07cad24e13f8" category="inline-link-rx"></block></block>
   <block id="00f45165b3cfbcdf086cee49c25c82c9" category="summary">Apprenez comment installer les kits de rails et fixer les nœuds de calcul de données dans l'armoire.</block>
   <block id="d08f231bff757ee25df913223bf39e35" category="doc">Installez vos nœuds de calcul de données pour AI Data Engine</block>
   <block id="69e42da6d542e4665008dcc83755451b" category="paragraph">Installez et sécurisez vos nœuds de calcul de données dans l'armoire.</block>
@@ -1417,7 +1414,6 @@
   <block id="b001ec8ec4133b6f8e6b8db16e7850ff" category="paragraph">Pour les nœuds de calcul de données, utilisez des câbles de dérivation 4x100GbE pour connecter les ports e4a/e5a pour les connexions du cluster.</block>
   <block id="788899ea47f1311b79403513bff040e9" category="paragraph">*Câbles de dérivation 4x100GbE*</block>
   <block id="ba1f39989ab5fafce1803b42f3c54d45" category="paragraph">Pour câbler le matériel, connectez d'abord les nœuds de calcul de données à votre réseau de données, puis connectez les nœuds de calcul de données aux commutateurs du cluster.</block>
-  <block id="e6f8cfd22de27cfd8ccde79f61a46bd1" category="summary">Remplacez un nœud de calcul de données (DCN) dans votre cluster AI Data Engine (AIDE).</block>
   <block id="32f794268679c746fb213c9e0c2c7e31" category="doc">Remplacez un nœud dans votre cluster AI Data Engine</block>
   <block id="d1293847699b10ee9673528d7b2c04bd" category="doc">Ajoutez des nœuds de calcul de données à votre cluster AI Data Engine</block>
   <block id="e224a7cdea2fcc18f05199345c841386" category="paragraph">L'adresse IP unique sera répartie entre les DCN et utilisée comme adresse frontale pour AIDE Console et les API associées.</block>
@@ -1527,4 +1523,16 @@
   <block id="3f5ac75246d8594dc42a3814252da7ce" category="list-text"><block ref="8ceb652f32f46e0c9a1975fc579b542f" category="inline-link-rx"></block> qui contient des données que vous souhaitez utiliser avec AIDE.</block>
   <block id="119a03c8a8d1576eafb9b8f6ac04c12f" category="inline-link-macro">Sélectionnez les volumes que vous souhaitez utiliser avec AIDE</block>
   <block id="0d5f62005a0ac8e87f1aaffb995ce7de" category="list-text"><block ref="3ddf7be728c954623bdc7abbf7625bd2" category="inline-link-macro-rx"></block>.</block>
+  <block id="4664a9ced36cba14050a4fcbf1450a27" category="list-text">Identifiants utilisateur avec des privilèges d'_administrateur de stockage_</block>
+  <block id="eadf44f76dffdd84c31f1c9d356c0868" category="list-text">De manière générale, la configuration OIDC se compose de deux étapes principales. Il faut d'abord effectuer la configuration OIDC de base à l'aide de System Manager. Vous pouvez ensuite finaliser la configuration en paramétrant le mappage des rôles externes à l'aide de l'ONTAP CLI.</block>
+  <block id="5ac833147e752f92ac0c80b33430fb9f" category="admonition">Vous pouvez fournir l'URI des métadonnées pour renseigner automatiquement les champs de configuration OIDC dans System Manager. Consultez la documentation de votre IdP pour obtenir le format exact de l'URI.</block>
+  <block id="624871063b499c9a41dbf91f4f294d7c" category="paragraph">Terminez la configuration OIDC en configurant le mappage des rôles externes.</block>
+  <block id="3c0b11b1d3509faa0a7bbac825211a4a" category="section-title">Configurez le mappage des rôles externes à l'aide de la CLI</block>
+  <block id="4ae4bdbad8969579acc1dc1db436776d" category="paragraph">Le mappage des rôles externes est une fonctionnalité ONTAP qui vous permet d’associer les rôles de l’IdP externe aux rôles ONTAP correspondants. Vous devez configurer ce mappage pour garantir que les utilisateurs s’authentifiant via OIDC reçoivent les autorisations RBAC appropriées dans ONTAP.</block>
+  <block id="4cf903122d76266e6c91111b522b6d5f" category="paragraph">Cette tâche associe l'ingénieur de données et le data scientist aux rôles ONTAP correspondants. Vous devez mettre à jour les exemples de commandes avec les noms de rôles appropriés selon votre environnement. Notez que vous devez déjà avoir associé le rôle d'administrateur de stockage au rôle ONTAP<block ref="21232f297a57a5a743894a0e4a801fc3" prefix=" " category="inline-code"></block> lors de la configuration OIDC de base dans System Manager.</block>
+  <block id="7c05dc11a263c8c571a6a666a4c4d4b3" category="list-text">À l'aide de SSH, connectez-vous à l'interface de ligne de commande ONTAP en utilisant un compte disposant de privilèges d'administrateur.</block>
+  <block id="258b991bef7bf176457c18935f6166d8" category="list-text">Configurez le mappage de rôle pour le rôle de data engineer ; par exemple :</block>
+  <block id="cd5dcea2498cb30a3d7de0f356155044" category="list-text">Configurez le mappage de rôle pour le rôle de data scientist ; par exemple :</block>
+  <block id="4b527243ee5adebf301c5c9ab3aa1e5a" category="inline-link">Mappage des rôles externes OAuth 2.0 dans ONTAP</block>
+  <block id="7d8d22eff571b389da4ee3b87fac44f2" category="list-text"><block ref="7d8d22eff571b389da4ee3b87fac44f2" category="inline-link-rx"></block></block>
 </blocks>

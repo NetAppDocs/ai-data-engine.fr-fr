@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: administer/aide-node-replace.html 
-keywords: aide, node replacement, DCN, cluster 
-summary: 'Remplacez un nœud de calcul de données (DCN) dans votre cluster AI Data Engine (AIDE).' 
+keywords: ai data engine, aide, data compute node, dcn, replace node, node replacement, cluster maintenance 
+summary: 'Vous devez remplacer un nœud de calcul de données (DCN) dans votre AI Data Engine (AIDE) cluster s"il cesse de fonctionner ou s"il doit être remplacé en raison d"une défaillance matérielle, d"une mise à niveau ou d"une opération de maintenance. Cela garantit que le cluster AIDE reste sain et opérationnel. La procédure peut être effectuée sans perturber les services en cours.' 
 ---
 = Remplacez un nœud dans votre cluster AI Data Engine
 :allow-uri-read: 
@@ -19,8 +19,15 @@ Vous devez remplacer un nœud de calcul de données (DCN) dans votre AI Data Eng
 
 Plusieurs éléments sont à prendre en compte avant de remplacer un nœud dans votre AIDE cluster.
 
-.Identifiants System Manager
-Vous devez disposer des privilèges d'administrateur de stockage pour effectuer les tâches de remplacement de nœud de cluster AIDE.
+
+
+=== Exigences
+
+Vous aurez besoin des éléments suivants :
+
+* Identifiants utilisateur avec des privilèges d'_administrateur de stockage_
+* Numéro de série du nouveau nœud de remplacement
+
 
 
 
@@ -32,15 +39,6 @@ Vous devez être conscient des restrictions suivantes lors du remplacement d'un 
 * Vous ne pouvez pas effectuer de remplacement de nœud à l'aide de System Manager.
 * Le nouveau nœud doit correspondre à la version logicielle du cluster's ; ONTAP le mettra à jour si nécessaire.
 * Le nœud défaillant ne doit pas être mis sous tension lorsqu'il est connecté au réseau du cluster afin d'éviter les conflits d'adresses IP.
-
-
-
-
-=== Exigences
-
-Vous aurez besoin des éléments suivants :
-
-* Numéro de série du nouveau nœud de remplacement
 
 
 
