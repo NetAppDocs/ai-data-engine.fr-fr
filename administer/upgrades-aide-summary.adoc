@@ -41,8 +41,8 @@ AIDE ne prend pas en charge la fonctionnalité de mises à jour logicielles auto
 
 Types et étendue des versions :
 
-* Les versions majeures d'ONTAP (9.x.x) et d'AIDE (9.x.x U0) introduisent de nouvelles fonctionnalités, des API ou des modifications qui affectent l'intégration d'ONTAP.
-* Les versions correctives ONTAP (9.x.x Px) et les versions de mise à jour AIDE (9.x.x Ux) contiennent des correctifs et des mises à jour qui n'ont pas d'impact sur l'intégration ONTAP.
+* Les versions majeures d'ONTAP (9.x.x) et d'AIDE (9.x.xU0) introduisent de nouvelles fonctionnalités, des API ou des modifications qui affectent l'intégration ONTAP.
+* Les versions correctives ONTAP (9.x.x Px) et les versions de mise à jour AIDE (9.x.xUx) contiennent des correctifs et des mises à jour qui n'ont pas d'impact sur l'intégration ONTAP.
 
 
 
@@ -62,10 +62,10 @@ AIDE software est distribué sous forme de versions « U ». Une version majeu
 | Versions AIDE | Versions ONTAP prises en charge 
 
 
-| 9.18.1 U0 | 9.18.1 GA et tous les 9.18.1 Px 
+| 9.18.1U0 | 9.18.1 GA et tous les 9.18.1 Px 
 
 
-| 9.18.1 U1 et versions ultérieures | 9.18.1 GA et tous les 9.18.1 Px 
+| 9.18.1U1 et versions ultérieures | 9.18.1 GA et tous les 9.18.1 Px 
 |===
 [NOTE]
 ====
@@ -83,13 +83,13 @@ Les exemples suivants utilisent des versions futures hypothétiques pour montrer
 | Si votre version actuelle d'AIDE est… | Et votre version cible d'AIDE est… | Votre chemin de mise à niveau ou de mise à jour est… 
 
 
-| 9.18.1 U0 | 9.18.1 U1 | Direct 
+| 9.18.1U0 | 9.18.1U1 | Direct 
 
 
-| 9.18.1 U0 | 9.18.1 U3 | Direct (vous pouvez effectuer une mise à jour depuis n'importe quelle version Ux vers n'importe quelle version Ux ultérieure dans 9.18.1) 
+| 9.18.1U0 | 9.18.1U3 | Direct (vous pouvez effectuer une mise à jour depuis n'importe quelle version Ux vers n'importe quelle version Ux ultérieure dans 9.18.1) 
 
 
-| 9.18.1 U1 | 9.18.1 U3 | Direct (vous pouvez effectuer une mise à jour depuis n'importe quelle version Ux vers n'importe quelle version Ux ultérieure dans 9.18.1) 
+| 9.18.1U1 | 9.18.1U3 | Direct (vous pouvez effectuer une mise à jour depuis n'importe quelle version Ux vers n'importe quelle version Ux ultérieure dans 9.18.1) 
 |===
 
 
