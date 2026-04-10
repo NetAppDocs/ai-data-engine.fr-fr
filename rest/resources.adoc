@@ -1,0 +1,106 @@
+---
+sidebar: sidebar 
+permalink: rest/resources.html 
+keywords: aide, rest api, resources, dcn, data engine, governance, audit, policies, jobs 
+summary: 'L"API REST ONTAP inclut de nouveaux points de terminaison pour prendre en charge les fonctionnalités et les capacités de l"AI Data Engine (AIDE).' 
+---
+= Ressources de l'API REST AIDE
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'API REST ONTAP inclut de nouveaux points de terminaison pour prendre en charge les fonctionnalités et les capacités de l'AI Data Engine (AIDE).
+
+
+
+== Nouvelles catégories de ressources dans l'API REST ONTAP pour AFX
+
+Deux nouvelles catégories de ressources ont été ajoutées à l'API REST ONTAP pour prendre en charge la fonctionnalité et les fonctionnalités AIDE.
+
+
+
+=== DCN
+
+Les ressources DCN prennent principalement en charge l'infrastructure des nœuds de calcul de données et la gestion de leur cycle de vie. Ces points de terminaison servent à gérer et à observer le cluster DCN lui-même, notamment la gestion des nœuds et du cluster, la télémétrie et l'état de santé, ainsi que d'autres tâches similaires de la plateforme. ONTAP agit comme un client DCN, en construisant des requêtes REST vers les services exécutés sur les DCN, plutôt que de fonctionner comme un simple proxy de transit. Les fonctionnalités typiques incluent :
+
+* Cluster DCN ainsi qu'inventaire et état des nœuds.
+* Opérations de cycle de vie du cluster DCN, y compris la possibilité de créer, d'étendre, de remplacer et de supprimer des nœuds.
+* Télémétrie et contrôles opérationnels nécessaires à ONTAP pour se coordonner avec le cluster DCN.
+
+
+Toutes ces fonctionnalités sont généralement accessibles sous le sous-arbre de l'API REST ONTAP  `/api/dcn` et sont disponibles lorsque ONTAP est exécuté dans un environnement avec des DCN connectés et actifs.
+
+ONTAP expose également deux préfixes de chemin HTTP qui sont directement acheminés vers les DCN :
+
+* Proxy de console ou d’interface utilisateur sans authentification ONTAP : `/console/...`
+* Proxy DCN nécessitant une authentification ONTAP et utilisé pour la surveillance : `/dcn/...`
+
+
+
+
+=== Data Engine
+
+Les ressources du Data Engine prennent en charge le plan de données AIDE ainsi que la gouvernance et la gestion des métadonnées. Les points de terminaison permettent de gérer les objets sur lesquels AIDE opère. Les fonctionnalités peuvent être organisées en sous-catégories.
+
+
+
+==== Modèle objet de base et CRUD
+
+Plusieurs points d'accès permettent de se connecter aux objets principaux d'AIDE, notamment :
+
+* Espaces de travail et versions d'espaces de travail
+* Entités
+* Listes de contrôle d'accès (ACLs)
+* Requêtes
+* Sources de données
+* Collecte de données
+
+
+
+
+==== Gouvernance, audit et services de soutien
+
+Plusieurs points d'accès permettent de se connecter à la gouvernance et à divers services de support, notamment :
+
+* Politiques et gestion des politiques
+* Événements et journaux d'audit liés aux opérations AIDE
+* Configuration de l'assistance automatique
+* Bascules d'application et de fonctionnalités pour les capacités AIDE
+* Domaines de gouvernance généralement utilisés par les rôles
+
+
+Notez également ce qui suit :
+
+* De nombreuses opérations de longue durée (création, modification, suppression) s'exécutent de manière asynchrone et renvoient une référence de tâche que les clients peuvent interroger pour connaître son état.
+* Dans de nombreux cas, ONTAP ne fait pas office de proxy pour les requêtes, mais les reconstruit plutôt pour les points de terminaison du Data Engine et traduit les réponses dans le cadre de son comportement client DCN.
+
+
+
+
+== Mises à jour des ressources existantes de l'API REST ONTAP
+
+Outre les nouvelles catégories de ressources, des mises à jour ont été apportées aux ressources existantes de l'API REST ONTAP.
+
+
+
+=== Sécurité
+
+Plusieurs nouveaux points de terminaison et fonctionnalités ont été ajoutés à la section sécurité de l'API REST ONTAP pour prendre en charge AIDE, notamment :
+
+* Certificats et gestion des certificats
+* Configuration d'authentification OIDC
+* Identité de l'utilisateur, y compris son rôle et ses permissions
+
+
+
+
+== Informations connexes
+
+* link:../rest/learn-rest-api.html["Découvrez l'API REST AIDE"]
+* https://docs.netapp.com/us-en/ontap-automation/resources/overview_categories.html["Catégories de ressources dans l'API REST ONTAP"^]
+

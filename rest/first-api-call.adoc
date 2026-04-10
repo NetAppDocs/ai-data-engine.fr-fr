@@ -1,0 +1,65 @@
+---
+sidebar: sidebar 
+permalink: rest/first-api-call.html 
+keywords: afx rest api, aide rest api, first api call, curl command, access token, verify permissions 
+summary: 'Vous pouvez exécuter une simple commande curl pour commencer à utiliser les extensions AIDE de l"API REST ONTAP.' 
+---
+= Votre premier appel à l'API REST AIDE
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez exécuter une simple commande curl pour commencer à utiliser les extensions AIDE de l'API REST ONTAP.
+
+.À propos de cette tâche
+L'exemple d'appel à l'API REST renvoie le nom d'utilisateur, le rôle et les privilèges de l'utilisateur associé au jeton d'accès fourni avec l'appel. C'est une méthode simple pour vérifier votre jeton d'accès avec les autorisations nécessaires. Des variables de type Bash sont utilisées pour plus de simplicité.
+
+.Avant de commencer
+En plus de disposer de l'utilitaire curl sur votre poste de travail local, vous aurez besoin des éléments suivants :
+
+* Adresse IP ou FQDN de la LIF de gestion du cluster ONTAP
+* Un jeton d'accès émis par votre fournisseur d'identité pour le rôle d'administrateur de stockage
+
+
+.Étapes
+. Saisissez la commande suivante dans l'interface de ligne de commande de votre poste de travail local :
++
+[source, curl]
+----
+curl --request GET "https://$FQDN_IP/api/security/login/whoami" \
+--include --header "Accept: */*" \
+--header "Authorization: Bearer $TOKEN_ADMIN"
+----
+. Examinez la réponse, par exemple :
++
+[listing]
+----
+{
+  "username": "storageAdmin@examplecompany.onmicrosoft.com",
+  "role": [
+    "admin"
+  ],
+  "privileges": [
+    {
+      "path": "/api",
+      "access": "all"
+    }
+  ],
+  "_links": {
+    "self": {
+      "href": "/api/security/login/whoami"
+    }
+  }
+}
+----
+
+
+.Informations connexes
+* link:../rest/authentication-authorization.html["Authentification et autorisation pour l'AIDE REST API"]
+* https://docs.netapp.com/us-en/ontap-afx/rest/first-call.html["Votre premier appel à l'API REST du système de stockage AFX"^]
+
