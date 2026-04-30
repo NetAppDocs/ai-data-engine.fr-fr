@@ -33,7 +33,7 @@ En tant qu'administrateur de stockage, vous pouvez utiliser ONTAP System Manager
 ** Vérifiez le nombre et l'état des **Data compute nodes** et leur statut.
 ** Vérifiez les alertes :
 +
-*** Problèmes de nœud DCN ou problèmes de connectivité
+*** Problèmes liés aux nœuds de calcul de données ou problèmes de connectivité
 *** Espaces de travail ou collecte de données en erreur (par exemple, échecs de publication de collecte)
 
 
@@ -55,12 +55,12 @@ En tant qu'administrateur de stockage, vous pouvez utiliser ONTAP System Manager
 
 
 
-== Consulter les données DCN sur la santé et l'utilisation
+== Afficher les données relatives à l'état et à l'utilisation des nœuds de calcul
 
 . Dans le volet de navigation, sélectionnez *Cluster* et ensuite *Overview*.
 . Sélectionnez l’onglet *Data compute*.
 +
-Cet onglet affiche tous les nœuds DCN du cluster avec :
+Cet onglet affiche tous les nœuds de calcul de données du cluster avec :
 
 +
 ** Nom du nœud, modèle, numéro de série et version logicielle
@@ -70,14 +70,14 @@ Cet onglet affiche tous les nœuds DCN du cluster avec :
 ** Indicateurs d'erreur au niveau des nœuds
 
 
-. Développez un nœud DCN pour ouvrir la vue détaillée et vérifiez :
+. Développez un nœud de calcul de données pour ouvrir la vue détaillée et vérifiez :
 +
 ** Utilisation du processeur et de la mémoire du système
 ** Utilisation de la mémoire GPU
 ** Problèmes matériels ou de service signalés
 
 
-. Sélectionnez *Câblage* sur la page *Cluster > Vue d'ensemble* pour vérifier que les nœuds DCN sont correctement câblés aux commutateurs du cluster et pour identifier tout problème de port ou de liaison.
+. Sélectionnez *Câblage* sur la page *Cluster > Vue d'ensemble* pour vérifier que les nœuds de calcul de données sont correctement câblés aux commutateurs du cluster et pour identifier tout problème de port ou de liaison.
 
 
 
@@ -130,7 +130,7 @@ Cet onglet affiche tous les nœuds DCN du cluster avec :
 ** Vous pouvez également ouvrir ses détails pour voir les comptes pour :
 +
 *** Volumes
-*** LIFs avec type `Data compute network` (utilisées pour la communication DCN-ONTAP)
+*** LIFs de type  `Data compute network` (utilisées pour la communication entre les nœuds de calcul de données et ONTAP)
 
 
 
@@ -158,10 +158,10 @@ IMPORTANT: Ne modifiez pas la machine virtuelle de stockage des métadonnées, l
 . Dans le volet de navigation, sélectionnez *Events & Jobs* puis *System alerts*.
 . Passez en revue toutes les alertes actives liées à :
 +
-** État ou connectivité du nœud DCN
+** Santé ou connectivité du nœud de calcul de données
 ** Problèmes de réseau du data engine
 ** Erreurs d'espace de travail ou de collecte de données
-** Incompatibilités de versions logicielles entre ONTAP et le cluster DCN
+** Incompatibilités de versions logicielles entre ONTAP et le cluster de nœuds de calcul de données
 
 
 . Au besoin, configurez les destinations de notification (par exemple, e-mail, syslog) dans *Cluster > Settings > Notification management* pour vous assurer que les alertes liées à AIDE sont transmises à vos outils d'exploitation.

@@ -17,7 +17,7 @@ Maintenez les composants du système AI Data Engine (AIDE) à jour pour garantir
 
 == Composants du système AIDE
 
-Il y a deux composants principaux qui nécessitent des mises à jour dans un système AIDE : le logiciel ONTAP et le logiciel AIDE, qui inclut le firmware DCN.
+Deux composants principaux nécessitent des mises à jour dans un système AIDE : le logiciel ONTAP et le logiciel AIDE, qui inclut le firmware NetApp DCN.
 
 
 
@@ -29,7 +29,7 @@ ONTAP est le système d'exploitation qui fonctionne sur les systèmes de stockag
 
 === Mises à jour du logiciel AIDE
 
-Les mises à jour du logiciel AIDE Console et du firmware DCN sont distribuées ensemble sous forme d'un seul package (.tgz) et ne sont pas intégrées dans les images ONTAP. Les mises à jour garantissent le bon fonctionnement des composants matériels au sein du système AIDE et apportent de nouvelles fonctionnalités, des améliorations de performance et des corrections de bogues.
+Le logiciel AIDE Console et les mises à jour du firmware NetApp DCN sont distribués ensemble sous forme d’un seul package (.tgz) et ne sont pas intégrés dans les images ONTAP. Les mises à jour garantissent le bon fonctionnement des composants matériels au sein du système AIDE et apportent de nouvelles fonctionnalités, des améliorations de performance et des corrections de bogues.
 
 
 
@@ -51,7 +51,7 @@ Types et étendue des versions :
 
 Assurez la compatibilité entre ONTAP et AI Data Engine software lors de la planification des mises à jour.
 
-AIDE software est distribué sous forme de versions « U ». Une version majeure d'AIDE est une version « U0 » et les versions mineures suivantes seront « U1 » et ultérieures.
+Le logiciel AIDE est distribué sous forme de versions « U ». Une version majeure d'AIDE est « U0 », et les versions mineures suivantes sont « U1 » et ultérieures.
 
 
 
@@ -76,7 +76,7 @@ AIDE software est distribué sous forme de versions « U ». Une version majeu
 
 === Voies de mise à niveau AIDE
 
-Les exemples suivants utilisent des versions futures hypothétiques pour montrer les chemins de mise à niveau et de mise à jour autorisés à partir de AIDE 9.18.1 U0 et 9.18.1 U1.
+Les exemples suivants utilisent des versions futures hypothétiques pour montrer les chemins de mise à niveau et de mise à jour autorisés à partir d'AIDE 9.18.1 U0 et 9.18.1 U1.
 
 [cols="25,25,50"]
 |===
@@ -86,16 +86,16 @@ Les exemples suivants utilisent des versions futures hypothétiques pour montrer
 | 9.18.1U0 | 9.18.1U1 | Direct 
 
 
-| 9.18.1U0 | 9.18.1U3 | Direct (vous pouvez effectuer une mise à jour depuis n'importe quelle version Ux vers n'importe quelle version Ux ultérieure dans 9.18.1) 
+| 9.18.1U0 | 9.18.1U3 | Direct (vous pouvez mettre à jour de Ux vers une version ultérieure de Ux dans la version 9.18.1) 
 
 
-| 9.18.1U1 | 9.18.1U3 | Direct (vous pouvez effectuer une mise à jour depuis n'importe quelle version Ux vers n'importe quelle version Ux ultérieure dans 9.18.1) 
+| 9.18.1U1 | 9.18.1U3 | Direct (vous pouvez mettre à jour de Ux vers une version ultérieure de Ux dans la version 9.18.1) 
 |===
 
 
 == Rétablir les limitations
 
-Les systèmes AIDE ne prennent pas en charge les opérations de restauration pour le firmware DCN, les mises à jour logicielles AIDE ou ONTAP sur les systèmes de stockage AFX. Après avoir installé une mise à jour ou une mise à niveau, vous ne pouvez pas revenir à une version précédente. Examinez <<Matrice de compatibilité,exigences de compatibilité>> avant de procéder à la mise à jour ou à la mise à niveau.
+Les systèmes AIDE ne prennent pas en charge les opérations de restauration pour le firmware DCN de NetApp, les mises à jour logicielles AIDE ou ONTAP sur les systèmes de stockage AFX. Après avoir installé une mise à jour ou une mise à niveau, vous ne pouvez pas revenir à une version précédente. Examinez <<Matrice de compatibilité,exigences de compatibilité>> avant de procéder à la mise à jour ou à la mise à niveau.
 
 .Informations connexes
 * https://docs.netapp.com/us-en/ontap-afx/administer/upgrade-ontap.html["Mettre à niveau le logiciel ONTAP pour les systèmes AFX"^]

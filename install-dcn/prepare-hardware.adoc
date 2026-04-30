@@ -1,6 +1,6 @@
 ---
 sidebar: sidebar 
-permalink: install-setup/prepare-hardware.html 
+permalink: install-dcn/prepare-hardware.html 
 keywords: aide, ai, data engine, ai data engine, dcn, data compute node, prepare, hardware installation, afx, afx 1k, 
 summary: Préparez-vous à installer les nœuds de calcul de données pour AI Data Engine dans votre environnement ONTAP et à enregistrer le matériel pour accéder aux avantages du support. 
 ---
@@ -11,13 +11,13 @@ summary: Préparez-vous à installer les nœuds de calcul de données pour AI Da
 
 
 [role="lead"]
-Préparez-vous à installer vos nœuds de calcul de données pour AI Data Engine (AIDE) en préparant le site, en déballant les boîtes et en comparant le contenu des boîtes au bordereau d'expédition, et en enregistrant le système pour accéder aux avantages du support.
+Préparez-vous à installer vos nœuds de calcul de données fournis par NetApp pour AI Data Engine (AIDE) en préparant le site, en déballant les boîtes et en comparant le contenu des boîtes au bordereau d'expédition, et en enregistrant le système pour accéder aux avantages du support.
 
 
 
 == Étape 1: Préparer le site
 
-Pour installer vos nœuds de calcul de données, assurez-vous que le site et l'armoire ou le rack que vous prévoyez d'utiliser répondent aux spécifications de votre configuration.
+Pour installer vos nœuds de calcul de données fournis par NetApp, assurez-vous que le site et l'armoire ou le rack que vous prévoyez d'utiliser répondent aux spécifications de votre configuration.
 
 .Étapes
 . Utilisez  https://hwu.netapp.com["NetApp Hardware Universe"^] pour confirmer que votre site répond aux exigences environnementales et électriques de vos nœuds de calcul de données.

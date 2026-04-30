@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: administer/update-aide-firmware-software.html 
-keywords: update, firmware, system files, automatic updates, automated updates, aide, disable, 
-summary: 'Mettez à jour le firmware DCN et le logiciel AI Data Engine Console à l"aide de la fonctionnalité de mises à jour automatiques d"ONTAP System Manager ou effectuez les mises à jour manuellement.' 
+keywords: update, firmware, system files, automatic updates, automated updates, aide, disable 
+summary: Mettez à jour le firmware NetApp DCN et le logiciel AI Data Engine Console en utilisant la fonctionnalité de mises à jour automatiques d’ONTAP System Manager ou effectuez les mises à jour manuellement. 
 ---
 = Mettre à jour AI Data Engine software
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: 'Mettez à jour le firmware DCN et le logiciel AI Data Engine Console �
 
 
 [role="lead"]
-En tant qu'administrateur de stockage, vous pouvez mettre à jour le logiciel AI Data Engine (AIDE), le firmware du data compute node (DCN) et d'autres fichiers système sur votre système AIDE à l'aide de ONTAP System Manager.
+En tant qu'administrateur de stockage, vous pouvez mettre à jour le logiciel AI Data Engine (AIDE), le firmware NetApp DCN et d'autres fichiers système sur votre système AIDE à l'aide d'ONTAP System Manager.
 
 AIDE ne prend pas en charge la fonctionnalité de mises à jour logicielles automatiques ONTAP. Vous pouvez vous inscrire pour recevoir des notifications de link:https://mysupport.netapp.com/site/downloads["NetApp Support Site téléchargements"^], mais toutes les mises à jour du logiciel AIDE sont effectuées manuellement par l'administrateur.
 
@@ -19,28 +19,28 @@ AIDE ne prend pas en charge la fonctionnalité de mises à jour logicielles auto
 Le package logiciel AIDE combiné est nettement plus volumineux qu'un package de mise à jour ONTAP classique (le package AIDE fait environ 40 Go). Prévoyez des temps de chargement et d'installation plus longs lors de la mise à jour du logiciel AIDE.
 
 .Avant de commencer
-* Vous devez disposer des privilèges d'administrateur de stockage pour mettre à jour le firmware DCN et le logiciel AIDE.
+* Vous devez disposer des privilèges d'administrateur de stockage pour mettre à jour le firmware NetApp DCN et le logiciel AIDE.
 * Vous avez besoin de vos identifiants du site de support NetApp pour votre compte actif.
-* link:upgrades-aide-summary.html#compatibility-matrix["Assurez la compatibilité entre ONTAP, le firmware DCN et le logiciel AIDE lors de la planification des mises à jour"].
+* link:upgrades-aide-summary.html#compatibility-matrix["Assurez-vous de la compatibilité entre ONTAP, NetApp DCN firmware et le logiciel AIDE lors de la planification des mises à jour"].
 
 
 
-IMPORTANT: La fonctionnalité de réversion n'est pas prise en charge pour les mises à jour du micrologiciel DCN ou du logiciel AIDE. Après l'installation d'une mise à jour, vous ne pouvez pas revenir à une version précédente.
+IMPORTANT: La fonctionnalité de réversion n'est pas prise en charge pour les mises à jour du micrologiciel NetApp DCN ou du logiciel AIDE. Une fois une mise à jour installée, il est impossible de revenir à une version précédente.
 
 .Étapes
-. https://mysupport.netapp.com/site/products/all/details/aide/downloads-tab["Téléchargez le fichier de mise à jour combiné du firmware DCN et du logiciel AIDE sur un client local"^].
+. https://mysupport.netapp.com/site/products/all/details/aide/downloads-tab["Téléchargez le fichier de mise à jour combiné du firmware NetApp DCN et du logiciel AIDE sur un client local"^].
 . Dans System Manager, sélectionnez *Cluster > Paramètres > Mises à jour logicielles*.
 . À côté de *Mises à jour logicielles*, sélectionnez image:icon_arrow.gif["Flèche bleue pointant vers la droite"].
 . Sous AI Data Engine updates, sélectionnez *Add AI Data Engine software files* et sélectionnez le package de mise à jour.
-. Une fois le téléchargement du package terminé, sélectionnez *Mettre à jour* pour commencer l'installation des mises à jour sur les nœuds DCN.
+. Une fois le téléchargement du package terminé, sélectionnez *Mettre à jour* pour commencer l'installation des mises à jour sur les NetApp DCN.
 +
 
-NOTE: AIDE Console n'est pas disponible ou accessible pendant la mise à jour du nœud DCN.
+NOTE: La console AIDE n'est pas disponible ou accessible lorsque la mise à jour NetApp DCN est en cours.
 
 
 
 .Résultat
-Les DCN sont mis à jour avec le logiciel AIDE et la version mise à jour est affichée pour chaque nœud.
+NetApp DCN sont mis à jour avec le logiciel AIDE et la version mise à jour est affichée pour chaque nœud.
 
 .Informations connexes
 * https://docs.netapp.com/us-en/ontap-afx/administer/upgrade-ontap.html["Mettre à niveau le logiciel ONTAP pour les systèmes AFX"^]

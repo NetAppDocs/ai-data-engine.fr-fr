@@ -1,0 +1,124 @@
+---
+sidebar: sidebar 
+permalink: metadata-search/explore-metadata.html 
+keywords: aide, mde, data explorer, metadata engine, search, export, custom tags, download, csv, workspace, filter, file metadata 
+summary: 'En tant qu"utilisateur d"AIDE avec un déploiement logiciel uniquement d"AIDE, utilisez les options Metadata Engine dans AI Data Engine Console pour rechercher, filtrer et exporter les métadonnées de fichiers afin de trouver rapidement les fichiers dont vous avez besoin.' 
+---
+= Explorer et exporter les métadonnées des fichiers de l'espace de travail
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+En tant qu'utilisateur AIDE avec un déploiement logiciel uniquement AIDE, vous pouvez utiliser les options Metadata Engine dans AI Data Engine Console pour rechercher et filtrer les métadonnées de fichiers à l'aide de Metadata Engine. Vous pouvez appliquer des filtres standard, rechercher par balises personnalisées et exporter vos résultats au format CSV pour une analyse hors ligne ou une utilisation ultérieure.
+
+
+NOTE: Dans les déploiements AIDE utilisant uniquement le logiciel, sans licence AIDE complète, vous avez un accès complet à la fonctionnalité Metadata Engine mais vous ne pouvez pas créer ni gérer de collections de données ou de garde-fous. link:../faq-aide.html["Découvrez les options de déploiement et de licence"].
+
+.Avant de commencer
+* Vous devez disposer des privilèges d'administrateur de stockage, d'ingénieur de données ou de scientifique des données dans AI Data Engine Console et d'un accès à au moins un espace de travail.
+* Un administrateur de stockage a :
++
+** Créé un ou plusieurs espaces de travail dans ONTAP System Manager.
+** Attribuez à l'utilisateur ou au groupe l'accès aux espaces de travail concernés à l'aide de link:../install-setup/configure-oidc.html["OpenID Connect (OIDC)"].
+
+
+* L'extraction des métadonnées de l'espace de travail est terminée et l'espace de travail est dans l'état  `Ready`.
+
+
+
+
+== Sign in à AIDE Console
+
+.Étapes
+. Dans un navigateur, accédez à l’URL de la AI Data Engine Console :
++
+`\https://<cluster_management_ip>/console`
+
+. Authentifiez-vous via le fournisseur OIDC de votre organisation.
+. Vérifiez que *Explorateur de données* est disponible dans le panneau de navigation de gauche.
++
+
+NOTE: Dans les déploiements logiciels uniquement d'AIDE, sans licence AIDE complète, *Explorateur de données* est la page d'accueil par défaut.
+
+
+
+.Résultat
+Vous êtes connecté à AIDE Console et pouvez voir les espaces de travail auxquels vous avez accès.
+
+
+
+== Ouvrez un espace de travail dans l'Explorateur de données
+
+.Étapes
+. Dans le panneau de navigation de gauche, sélectionnez *Explorateur de données > Espaces de travail*.
+. Consultez la liste des espaces de travail à votre disposition.
+. Sélectionnez l'espace de travail que vous souhaitez explorer.
+. Sélectionnez *Explorer* pour ouvrir la page de recherche et de filtrage des métadonnées de fichiers de cet espace de travail.
+
+
+.Résultat
+La page de recherche de l'explorateur de données s'ouvre, limitée à l'espace de travail sélectionné.
+
+
+
+== Rechercher et filtrer les métadonnées des fichiers
+
+.Étapes
+. Sur la page de recherche de l'explorateur de données, utilisez n'importe quelle combinaison des filtres disponibles pour affiner vos résultats :
++
+** Saisissez une requête dans la barre de recherche pour faire correspondre les noms de fichiers ou les attributs de métadonnées.
++
+
+NOTE: Les requêtes de recherche sont sensibles à la casse.
+
+** Appliquer des filtres de métadonnées standard (par exemple, type de fichier, taille ou date).
++
+
+NOTE: Le filtre *Classification* n'est pas disponible dans Data Explorer.
+
+
+
+
+
+.Résultat
+Le tableau affiche tous les fichiers correspondant à votre requête de recherche ou aux filtres appliqués.
+
+
+
+== Créez et utilisez des balises personnalisées
+
+.Étapes
+. Pour créer des balises personnalisées, accédez à la page de recherche de l'explorateur de données et sélectionnez *Filtres avancés*.
+. Sélectionnez *Ajouter de nouvelles étiquettes*.
+. Ajoutez une ou plusieurs balises personnalisées pour filtrer vos résultats de recherche selon une combinaison d'attributs qui ne sont pas inclus dans les filtres standard.
+. Sélectionnez *Filtre* pour appliquer vos filtres de tags personnalisés aux résultats de recherche.
+. Examinez les résultats de la recherche affichés dans le tableau de la liste des fichiers.
+
+
+.Résultat
+Le tableau affiche tous les fichiers correspondant à vos entrées de balises personnalisées.
+
+
+
+== Télécharger les résultats de la recherche au format CSV
+
+.Étapes
+. Au-dessus du tableau des résultats de recherche, sélectionnez image:icon_download_file.png["Icône de téléchargement de fichier"].
++
+Un message d'information sur la progression du téléchargement s'affiche jusqu'à la fin du téléchargement.
+
+. Surveillez l'indicateur de progression du téléchargement situé au-dessus du tableau des résultats. Les téléchargements importants indiqueront la progression du téléchargement par lots ou le nombre de lignes d'un fichier CSV en cours de traitement.
+. Facultatif : Pour interrompre le téléchargement avant la fin, cliquez sur *Annuler le téléchargement*.
+
+
+.Résultat
+Un ou plusieurs fichiers CSV sont téléchargés sur votre ordinateur. Chaque fichier contient les noms de fichiers et les colonnes de métadonnées visibles dans le tableau des résultats de recherche au moment du téléchargement.
+
+
+
+== Et ensuite ?
+
+* link:../faq-aide.html["Découvrez le déploiement et la licence d'AIDE"]
+

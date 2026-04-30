@@ -17,26 +17,26 @@ indexpage:
     links:
     - title: Découvrez AI Data Engine
       url: "/get-started/learn-about.html"
-    - title: Architecture AIDE
-      url: "/get-started/aide-architecture.html"
     - title: Quoi de neuf
       url: "/release-notes/whats-new.html"
     - title: Limitations connues
       url: "/release-notes/known-limitations.html"
-    - title: Démarrage rapide AIDE
+    - title: Démarrage rapide du logiciel AIDE sur des serveurs tiers
+      url: "/get-started/quick-start-mde-only.html"
+    - title: Démarrage rapide pour le déploiement de NetApp DCN
       url: "/get-started/quick-start.html"
     - title: FAQ pour AIDE
       url: "/faq-aide.html"
-  - title: Installation et configuration
+  - title: Installer le matériel compatible AIDE
     links:
-    - title: Workflow d'installation des nœuds de calcul de données
-      url: "/install-setup/install-workflow.html"
-    - title: exigences d'installation
-      url: "/install-setup/install-setup-requirements.html"
-    - title: matériel de câblage
-      url: "/install-setup/cable-hardware.html"
-    - title: Mettez le système sous tension
-      url: "/install-setup/power-on-hardware.html"
+    - title: Installer le flux de travail du serveur tiers
+      url: "/install-aide-server/install-workflow.html"
+    - title: Installer le workflow du nœud de calcul de données fourni par NetApp
+      url: "/install-dcn/install-workflow.html"
+  - title: Installer et configurer le logiciel AIDE
+    links:
+    - title: Installer AIDE comme logiciel
+      url: "/install-setup/install-aide-as-software.html"
     - title: Configurer le cluster AIDE
       url: "/install-setup/cluster-setup-afx.html"
     - title: Configurer l'authentification OIDC
@@ -51,6 +51,8 @@ indexpage:
       url: "/workspaces/assign-users-to-workspace.html"
     - title: Gérer les espaces de travail
       url: "/administer/manage-workspace.html"
+    - title: Explorer et exporter les métadonnées des fichiers
+      url: "/metadata-search/explore-metadata.html"
   - title: Administrer et surveiller
     links:
     - title: Afficher le tableau de bord et l'état du cluster

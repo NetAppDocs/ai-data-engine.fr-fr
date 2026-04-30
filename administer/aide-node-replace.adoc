@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: administer/aide-node-replace.html 
 keywords: ai data engine, aide, data compute node, dcn, replace node, node replacement, cluster maintenance 
-summary: 'Vous devez remplacer un nœud de calcul de données (DCN) dans votre AI Data Engine (AIDE) cluster s"il cesse de fonctionner ou s"il doit être remplacé en raison d"une défaillance matérielle, d"une mise à niveau ou d"une opération de maintenance. Cela garantit que le cluster AIDE reste sain et opérationnel. La procédure peut être effectuée sans perturber les services en cours.' 
+summary: 'Vous devez remplacer un nœud de calcul de données dans votre AI Data Engine (AIDE) cluster s"il cesse de fonctionner ou s"il doit être remplacé en raison d"une défaillance matérielle, d"une mise à niveau ou d"une maintenance.' 
 ---
 = Remplacez un nœud dans votre cluster AI Data Engine
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: 'Vous devez remplacer un nœud de calcul de données (DCN) dans votre A
 
 
 [role="lead"]
-Vous devez remplacer un nœud de calcul de données (DCN) dans votre AI Data Engine (AIDE) cluster s'il cesse de fonctionner ou s'il doit être remplacé en raison d'une défaillance matérielle, d'une mise à niveau ou d'une opération de maintenance. Cela garantit que le cluster AIDE reste sain et opérationnel. La procédure peut être effectuée sans perturber les services en cours.
+Vous devez remplacer un nœud de calcul de données dans votre cluster AI Data Engine (AIDE) s'il cesse de fonctionner ou s'il doit être remplacé en raison d'une défaillance matérielle, d'une mise à niveau ou d'une opération de maintenance. Cela garantit que le cluster AIDE reste sain et opérationnel. La procédure peut être effectuée sans perturber les services en cours.
 
 
 
@@ -43,9 +43,9 @@ Vous devez être conscient des restrictions suivantes lors du remplacement d'un 
 
 
 
-== Remplacez un nœud DCN dans votre cluster AIDE
+== Remplacez un nœud de calcul de données dans votre cluster AIDE
 
-Vous pouvez remplacer un nœud DCN dans votre cluster AIDE en utilisant la procédure suivante.
+Vous pouvez remplacer un nœud de calcul de données dans votre cluster AIDE en utilisant la procédure suivante.
 
 .Étapes
 . Retirez physiquement le nœud défaillant

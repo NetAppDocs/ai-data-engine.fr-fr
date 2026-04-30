@@ -1,33 +1,40 @@
 ---
 sidebar: sidebar 
 permalink: get-started/quick-start.html 
-keywords: ai, data engine, get started, getting started, quick start, install, set up 
-summary: 'Pour commencer avec un AI Data Engine system, installez le matériel, configurez le cluster, configurez l"accès aux données et provisionnez le stockage pour les espaces de travail à utiliser avec les charges de travail d"IA.' 
+keywords: ai, data engine, get started, getting started, quick start, dcn, dx50, data compute nodes, install, set up 
+summary: 'Pour commencer avec un déploiement AI Data Engine NetApp DCN, installez votre matériel AFX et de calcul de données, configurez votre cluster et créez des espaces de travail pour les charges de travail d"IA.' 
 ---
-= Démarrage rapide pour AI Data Engine
+= Démarrage rapide du logiciel AIDE sur NetApp DCN
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-Pour mettre en service votre AI Data Engine (AIDE), vous devez installer vos composants matériels, configurer votre cluster, configurer l'accès aux données de vos hôtes vers le système de stockage et provisionner votre stockage.
+Pour commencer avec AI Data Engine (AIDE) dans un déploiement NetApp DCN, installez votre matériel AFX et NetApp DCN, configurez votre cluster et créez des espaces de travail.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Un"]AIDE sera-t-il installé avec un cluster AFX nouveau ou existant ?
 [role="quick-margin-para"]
 Vous devez décider si AIDE et AFX seront installés en même temps ou si AIDE sera intégré à un cluster AFX existant.
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Deux"] Installez et configurez votre matériel
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Deux"]Examinez les exigences pour le déploiement de NetApp DCN
 [role="quick-margin-para"]
-link:../install-setup/aide-hardware-requirements.html["Installer et configurer"] vos nœuds de calcul du cluster AIDE. Selon l'environnement d'installation, assurez-vous également de  https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html["installer"^] le matériel AFX.
+Veuillez consulter la configuration matérielle et logicielle requise avant de commencer. link:../install-dcn/aide-dcn-hardware-requirements.html["Renseignez-vous sur les exigences NetApp DCN"].
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Trois"] Configurez votre cluster
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Trois"]Installez et configurez votre matériel AFX et NetApp DCN
+[role="quick-margin-para"]
+Si vous n'avez pas encore installé votre système de stockage AFX, https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html["installer"^] le matériel AFX.
+
+[role="quick-margin-para"]
+Installez et configurez vos nœuds NetApp DCN. link:../install-dcn/install-workflow.html["Installez et configurez vos nœuds NetApp DCN"].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["Quatre"] Configurez votre cluster
 [role="quick-margin-para"]
 Utilisez ONTAP System Manager pour vous guider tout au long d’un processus rapide et facile pour link:../install-setup/cluster-setup-afx.html["Configurer AIDE avec un cluster AFX"].
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["Quatre"]Configurer les espaces de travail et l'accès aux données
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["Cinq"]Configurer les espaces de travail et l'accès aux données
 [role="quick-margin-para"]
 link:../workspaces/create-workspace.html["Configurez un espace de travail et des utilisateurs pour cet espace de travail qui peuvent accéder aux données AIDE"].
 
 .Et ensuite ?
-Vous pouvez désormais utiliser ONTAP System Manager pour gérer votre AIDE et permettre à vos data engineers et data scientists de démarrer avec leurs espaces de travail et leurs configurations.
+Vous pouvez désormais utiliser ONTAP System Manager pour gérer votre AIDE et permettre à vos data engineers et data scientists de démarrer avec leurs espaces de travail et leurs configurations. Les utilisateurs disposant des autorisations d'espace de travail peuvent effectuer link:../vectorization/zero-to-rag.html["Configurations AIDE avancées"] en fonction de la licence AIDE et des niveaux d'autorisation.

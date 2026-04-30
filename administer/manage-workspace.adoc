@@ -68,7 +68,7 @@ Vous pouvez modifier le nom, la description, l'intervalle d'actualisation d'un e
 +
 ** Mettez à jour *Name* et *Description* si nécessaire.
 ** Ajustez l’*intervalle d’actualisation* (fréquence de mise à jour des métadonnées) dans la plage autorisée (heures et jours).
-** Si une licence AIDE est installée, vous pouvez sélectionner *stratégie Guardrail*.
+** Si une licence de services premium AIDE est installée, vous pouvez sélectionner *stratégie Guardrail*.
 
 
 . Sélectionnez *Save*.

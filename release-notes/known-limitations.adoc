@@ -15,21 +15,109 @@ Les limitations connues indiquent les plateformes, les appareils ou les fonction
 
 
 
-== Limitations connues pour la version initiale d'AIDE 9.18.1
+== Limitations connues pour le logiciel AIDE sur les déploiements de serveurs tiers
 
-Ces limitations s'appliquent au Metadata Engine, aux nœuds de calcul de données et aux flux de travail de gestion dans AIDE 9.18.1.
+Ces limitations s'appliquent spécifiquement aux déploiements du logiciel AIDE sur des serveurs tiers utilisant du matériel géré par le client.
+
+
+
+=== Limitations du modèle de déploiement
+
+* **Cluster à trois nœuds uniquement**
++
+Le déploiement du logiciel AIDE sur des serveurs tiers requiert exactement trois nœuds. Vous ne pouvez pas déployer avec moins de nœuds ni étendre au-delà de trois nœuds.
+
+* **Matériel homogène requis**
++
+Tous les nœuds d'un cluster AIDE sur des serveurs tiers utilisant le logiciel AIDE doivent avoir des spécifications matériel identiques (même modèle de CPU, mémoire, configuration réseau et modèle de serveur). Les configurations matérielles mixtes ne sont pas prises en charge.
+
+* **RHEL 9.7 uniquement**
++
+Les déploiements du logiciel AIDE sur des serveurs tiers prennent en charge uniquement Red Hat Enterprise Linux (RHEL) 9.7 LTS. Les autres distributions Linux ne sont pas prises en charge.
+
+* **Déploiements sur un seul site uniquement**
++
+Le logiciel AIDE sur des serveurs tiers prend en charge uniquement les déploiements de cluster mono-site. Les topologies de cluster multi-sites, étendues et géographiquement distribuées ne sont pas prises en charge. Les trois nœuds d’un cluster AIDE sur des serveurs tiers doivent résider dans le même site physique avec des interconnexions à faible latence.
+
++
+
+NOTE: Pour cataloguer les métadonnées des données stockées sur des sites distants, utilisez le peering de clusters ONTAP pour connecter les clusters ONTAP distants à votre cluster AIDE.
+
+
+
+
+
+=== Limitations de la portée des fonctionnalités
+
+* **Aucun service dépendant du GPU**
++
+Cette version du logiciel AIDE sur des serveurs tiers ne prend pas en charge les services basés sur le GPU, notamment la vectorisation, la reconnaissance optique de caractères (OCR) et les capacités d'enrichissement.
+
+* **Aucune collecte de données**
++
+La création de collections de données nécessite un déploiement complet d'AIDE avec des ressources GPU. Le logiciel AIDE installé sur des serveurs tiers assure uniquement le catalogage des métadonnées.
+
+* **Aucun point de terminaison RAG**
++
+Les points d'accès RAG (Retrieval-Augmented Generation) pour la recherche sémantique nécessitent un déploiement complet d'AIDE. Le logiciel AIDE installé sur des serveurs tiers ne prend pas en charge les plongements vectoriels ni les fonctionnalités de recherche sémantique.
+
+* **Aucune application de la politique relative aux garde-corps n'est prévue lors de la récupération**
++
+Les politiques de garde-fous pour la rédaction au moment de la récupération et le contrôle d'accès nécessitent AIDE avec des capacités de vectorisation complètes.
+
+
+
+
+
+=== Voies de mise à niveau
+
+* **Le comportement de restauration est spécifique à chaque version.**
++
+Le retour à une version précédemment installée du progiciel AIDE est autorisé lorsqu'il est pris en charge par les recommandations de la version cible. Suivez la procédure de retour documentée pour votre version.
+
+
+
+
+
+=== Gestion des systèmes d'exploitation et des logiciels
+
+* **Logiciels supplémentaires non pris en charge**
++
+L'exécution d'applications ou de services autres que le logiciel AIDE sur des nœuds de serveur tiers n'est pas prise en charge.
+
+
+
+
+
+=== Exigences ONTAP et de stockage
+
+* **ONTAP 9.18.1 ou version ultérieure requise**
++
+Le logiciel AIDE installé sur des serveurs tiers requiert ONTAP 9.18.1 ou une version ultérieure. Les versions antérieures d'ONTAP ne sont pas prises en charge.
+
+* **Stockage AFX requis**
++
+Le logiciel AIDE sur des serveurs tiers doit se connecter aux systèmes de stockage AFX NetApp. La prise en charge d'autres plateformes ONTAP n'est pas disponible.
+
+
+
+
+
+== Limitations connues pour la version initiale d'AIDE 9.18.1U0/U1
+
+Ces limitations s'appliquent au Metadata Engine, aux nœuds de calcul de données et aux flux de travail de gestion dans AIDE 9.18.1U0/U1.
 
 
 
 === Exigences et gestion des nœuds de calcul
 
-* **Exigence minimale pour les nœuds de calcul de données**
+* **Exigence minimale en matière de NetApp DCN**
 +
-Les clusters AIDE nécessitent un minimum et un maximum de 3 nœuds de calcul de données (DCN) pour la fonctionnalité Metadata Engine. Les clusters comportant moins de 3 DCN ne peuvent pas activer les fonctionnalités Metadata Engine.
+Les clusters AIDE nécessitent exactement trois NetApp DCN nodes pour la fonctionnalité Metadata Engine. Les clusters comportant moins de trois NetApp DCN nodes ne peuvent pas activer les fonctionnalités Metadata Engine.
 
-* **Aucune prise en charge de l'ajout de nœuds DCN via la NetApp Console**
+* **Aucune prise en charge de l'ajout de nœuds NetApp DCN via la NetApp Console**
 +
-Les mises à niveau et les ajouts de nœuds DCN doivent être effectués à l'aide de ONTAP System Manager, pas via NetApp Console.
+NetApp DCN Les mises à niveau et les ajouts de nœuds doivent être effectués à l'aide de ONTAP System Manager, et non via NetApp Console.
 
 
 
@@ -51,13 +139,13 @@ FlexCache volumes ne peuvent pas être ajoutés en tant que sources de données 
 
 === Limitations de mise à jour et de restauration du logiciel
 
-* **Mises à jour logicielles manuelles pour les nœuds DCN uniquement**
+* **Mises à jour logicielles manuelles pour NetApp DCN nodes only**
 +
-Les mises à jour logicielles automatiques pour DCN clusters ne sont pas prises en charge dans AIDE 9.18.1. Le logiciel des nœuds DCN ne peut être mis à jour que par le chargement de l'image depuis un client local. Le téléchargement d'images depuis des serveurs externes (HTTP/FTP) n'est pas pris en charge.
+Les mises à jour logicielles automatiques pour NetApp DCN clusters ne sont pas prises en charge dans AIDE 9.18.1. NetApp DCN software ne peut être mis à jour que par le chargement de l'image depuis un client local. Le téléchargement d'images depuis des serveurs externes (HTTP/FTP) n'est pas pris en charge.
 
-* **Aucune restauration du logiciel du cluster DCN**
+* **Aucune restauration du logiciel du cluster NetApp DCN**
 +
-Le logiciel du cluster DCN ne peut pas être restauré à une version antérieure. Seules les mises à niveau vers des versions ultérieures sont autorisées.
+NetApp DCN cluster software ne peut pas être restauré à une version antérieure. Seules les mises à niveau vers des versions ultérieures sont autorisées.
 
 * **Aucune restauration ONTAP des clusters de stockage AFX**
 +

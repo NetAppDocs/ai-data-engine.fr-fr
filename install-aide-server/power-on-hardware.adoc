@@ -1,0 +1,19 @@
+---
+sidebar: sidebar 
+permalink: install-aide-server/power-on-hardware.html 
+keywords: aide, ai, data engine, ai data engine, third-party server, afx, afx 1k, power on, 
+summary: 'Mettez chaque étagère sous tension pour lui attribuer un identifiant unique, mettez sous tension les nœuds du contrôleur AFX et fixez les câbles d"alimentation.' 
+---
+= Mettez sous tension vos serveurs tiers pour AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Après avoir installé le rack et câblé votre matériel, vous devez mettre sous tension vos serveurs tiers et vos nœuds de contrôle pour le système de stockage AFX s'ils ne sont pas déjà allumés.
+
+Pour les serveurs tiers, reportez-vous à la documentation d'installation de votre modèle de serveur spécifique pour obtenir les instructions de mise sous tension.
+
+.Et ensuite ?
+Après avoir activé vos serveurs tiers, link:../install-setup/install-aide-as-software.html["installer le logiciel AIDE"].

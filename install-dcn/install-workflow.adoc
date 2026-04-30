@@ -1,0 +1,34 @@
+---
+sidebar: sidebar 
+permalink: install-dcn/install-workflow.html 
+keywords: aide, ai, data engine, ai data engine, dcn, data compute node, afx, afx 1k, install, setup, workflow, metadata engine, mde, third-party servers, netapp data compute nodes, hardware installation, cabling, power on, ontap cluster 
+summary: 'Commencez par l"installation et la configuration de vos nœuds de calcul de données et déployez-les dans votre environnement ONTAP.' 
+---
+= Flux de travail d'installation et de configuration pour les nœuds de calcul de données fournis par NetApp
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Pour installer et configurer vos nœuds de calcul de données fournis par NetApp, vous examinez les exigences matérielles, préparez votre site, installez et câblez les composants matériels, mettez le système sous tension et configurez votre cluster ONTAP.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Un"]link:install-setup-requirements.html["Vérifier les exigences d'installation du matériel"]
+[role="quick-margin-para"]
+Assurez-vous de disposer d'un système de stockage AFX 1K déjà installé, puis examinez les exigences matérielles pour l'installation de nœuds de calcul de données fournis par NetApp dans votre environnement. Pour obtenir des informations sur l'installation du système de stockage AFX 1K, reportez-vous à link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html["Documentation d'installation du système de stockage AFX 1K"^].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Deux"]link:prepare-hardware.html["Préparez-vous à installer vos nœuds de calcul de données"]
+[role="quick-margin-para"]
+Pour préparer l'installation de vos nœuds de calcul NetApp, vous devez préparer le site, vérifier les exigences environnementales et électriques, et vous assurer qu'il y a suffisamment d'espace dans l'armoire. Ensuite, déballez le matériel, comparez son contenu au bon de livraison et enregistrez le matériel pour accéder aux avantages du support.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Trois"]link:deploy-hardware.html["Installez le matériel de vos nœuds de calcul"]
+[role="quick-margin-para"]
+Installez les kits de rails pour vos nœuds de calcul de données. Fixez vos nœuds de calcul de données fournis par NetApp à l'intérieur de l'armoire. Enfin, installez les dispositifs de gestion des câbles à l'arrière du système pour un acheminement organisé des câbles.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["Quatre"]link:cable-hardware.html["Câblez vos nœuds de calcul"]
+[role="quick-margin-para"]
+Pour câbler le matériel, connectez d'abord les nœuds de calcul de données fournis par NetApp à votre réseau de données, puis connectez les nœuds de calcul de données NetApp aux commutateurs du cluster.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["Cinq"]link:power-on-hardware.html["Mettez sous tension vos nœuds de calcul"]
+[role="quick-margin-para"]
+Après avoir installé le rack et câblé votre matériel, vous devez mettre sous tension vos nœuds de calcul et vos nœuds de contrôle pour le système de stockage AFX s'ils ne sont pas déjà sous tension.

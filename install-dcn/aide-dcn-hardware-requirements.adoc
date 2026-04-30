@@ -1,23 +1,23 @@
 ---
 sidebar: sidebar 
-permalink: install-setup/aide-hardware-requirements.html 
+permalink: install-dcn/aide-dcn-hardware-requirements.html 
 keywords: ai data engine, aide, hardware, requirements, afx, dcn, data compute node 
 summary: 'Consultez les exigences pour l"installation de AI Data Engine, y compris le système de stockage AFX et les Data Compute Node.' 
 ---
-= Exigences pour l'installation de AI Data Engine
+= Configuration requise pour installer AI Data Engine sur les nœuds de calcul de données fournis par NetApp
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-Examinez les exigences pour l'installation de AI Data Engine (AIDE). AIDE nécessite un système de stockage AFX, un minimum de trois nœuds de calcul de données, des commutateurs réseau et des câbles.
+Examinez les exigences pour installer AI Data Engine (AIDE) sur les nœuds de calcul de données fournis par NetApp. AIDE nécessite un système de stockage AFX, trois nœuds de calcul de données fournis par NetApp, des commutateurs réseau et des câbles.
 
 
 
 == Exigences matérielles
 
-AIDE requiert un système de stockage AFX et un minimum de trois nœuds de calcul de données. Le système AFX fournit l'infrastructure de stockage, tandis que les nœuds de calcul de données hébergent les composants logiciels AIDE qui permettent la gestion des données, la curation et les fonctionnalités d'IA.
+Pour AIDE avec des nœuds de calcul de données fournis par NetApp, un système de stockage AFX et au moins trois nœuds de calcul sont nécessaires. Le système AFX fournit l'infrastructure de stockage, tandis que les nœuds de calcul de données hébergent les composants logiciels AIDE qui permettent la gestion des données, la curation et les capacités d'IA.
 
 * *Système de stockage AFX* : comprend un contrôleur AFX, un tiroir disque et un commutateur réseau. Le système de stockage AFX est requis pour le déploiement d’AIDE.
 * *Nœuds de calcul de données* : Un minimum de trois nœuds de calcul de données est requis. Les nœuds de calcul de données sont des nœuds matériels fournis par NetApp qui hébergent le logiciel AIDE, y compris le Metadata Engine, Data Sync, Data Curator et Data Guardrails.
@@ -25,6 +25,10 @@ AIDE requiert un système de stockage AFX et un minimum de trois nœuds de calcu
 ** Chaque Data Compute Node dispose des emplacements d'E/S 4 et 5 disponibles pour la connectivité. L'emplacement 3 est réservé au GPU. Les emplacements 1 et 2 ne sont ni utilisés ni accessibles.
 ** Les ports e4a et e5a sont utilisés pour les connexions au cluster.
 ** Les ports e4b et e5b sont utilisés pour les connexions réseau hôte.
++
+
+NOTE: Vous ne pouvez pas mélanger les nœuds de calcul de données fournis par NetApp avec des serveurs tiers dans le même cluster AIDE.
+
 
 
 
@@ -38,6 +42,10 @@ AIDE nécessite des commutateurs réseau pour permettre la connectivité réseau
 * Commutateurs clients pour la connectivité réseau hôte (Cisco Nexus 9332D-GX2B ou Cisco Nexus 9364D-GX2A)
 * Commutateurs de cluster pour la communication inter-nœuds (Cisco Nexus 9332D-GX2B ou Cisco Nexus 9364D-GX2A)
 * Commutateurs de gestion optionnels pour la gestion du réseau
++
+
+NOTE: Pour plus d'informations sur les commutateurs AFX, voir link:https://docs.netapp.com/us-en/ontap-systems-switches/afx/index.html["commutateurs du système AFX"^].
+
 
 
 
@@ -54,3 +62,6 @@ Les câbles suivants sont nécessaires pour connecter les Data Compute Node aux 
 == Prise en charge multi-cluster
 
 Une fois AIDE déployé avec AFX, il peut se connecter et gérer les données d'autres clusters ONTAP 9.18.1 et versions ultérieures en utilisant SnapMirror et le peering de clusters.
+
+.Et ensuite
+Après avoir examiné les exigences matérielles, link:aide-afx-install.html["installer le système de stockage AFX"].

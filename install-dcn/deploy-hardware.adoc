@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
-permalink: install-setup/deploy-hardware.html 
-keywords: aide, ai, data engine, ai data engine, dcn, data compute node, afx, afx 1k, install, setup, hardware, deploy, 
+permalink: install-dcn/deploy-hardware.html 
+keywords: aide, ai, data engine, ai data engine, dcn, data compute node, afx, afx 1k, install, setup, hardware, deploy, mde, third-party servers, netapp data compute nodes, cabinet, rail kit, bezel, cable management 
 summary: 'Apprenez comment installer les kits de rails et fixer les nœuds de calcul de données dans l"armoire.' 
 ---
 = Installez vos nœuds de calcul de données pour AI Data Engine
@@ -11,7 +11,9 @@ summary: 'Apprenez comment installer les kits de rails et fixer les nœuds de ca
 
 
 [role="lead"]
-Installez et sécurisez vos nœuds de calcul de données dans l'armoire.
+Installez et sécurisez vos serveurs tiers ou les nœuds de calcul de données fournis par NetApp dans l'armoire.
+
+Pour installer les nœuds de calcul de données fournis par NetApp, vous devez installer les kits de rails pour les nœuds de calcul de données, fixer les nœuds de calcul de données dans l'armoire et attacher des dispositifs de gestion des câbles à l'arrière du système pour un acheminement organisé des câbles.
 
 .Avant de commencer
 * Assurez-vous d'avoir les instructions emballées avec le kit de rails.
@@ -34,4 +36,4 @@ NOTE: En général, les commutateurs doivent être installés au centre de l'arm
 
 
 .Et ensuite ?
-Après avoir installé les nœuds de calcul de données, link:cable-hardware.html["câbler les nœuds de calcul de données pour AIDE"].
+Après avoir installé les nœuds de calcul de données, link:cable-overview.html["Examiner les exigences de câblage pour les nœuds de calcul de données pour AIDE"].

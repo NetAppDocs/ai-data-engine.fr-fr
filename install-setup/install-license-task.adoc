@@ -26,16 +26,19 @@ Une licence est un enregistrement d'un ou plusieurs droits d'utilisation de logi
 Il existe deux principaux types de licences nécessaires pour commencer à utiliser AIDE via votre système de stockage AFX.
 
 .Licence ONTAP One
-La licence Metadata Engine Basic est généralement installée en usine dans le cadre de la licence ONTAP One. Elle permet d’accéder à la fonctionnalité Metadata Engine qui constitue la base essentielle pour les opérations AIDE. Toutes les capacités principales nécessaires à l’administration de votre système ONTAP sont également incluses.
+La licence Metadata Engine Basic est activée si vous possédez une licence ONTAP One. Elle permet d'accéder à la fonctionnalité Metadata Engine qui constitue la base essentielle pour le fonctionnement d'AIDE.
 
-.AI Data Engine
-Vous devez acheter et installer la licence AIDE pour accéder aux services premium nécessaires à l’activation de toutes les fonctionnalités d’AIDE. La licence débloque vos nœuds de calcul de données, permettant des fonctionnalités d’IA telles que la vectorisation, les Data Guardrails, l’inférence et une expérience UI intégrée. La licence inclut un nombre de GPU ainsi qu’une date d’expiration.
+.Licence premium AI Data Engine
+Vous devez acquérir l'accès et installer la licence des services premium AIDE pour activer et permettre les fonctionnalités d'IA telles que la vectorisation, les garde-fous de gouvernance et l'inférence. La licence inclut un nombre de GPU ainsi qu'une date d'expiration.
+
+
+NOTE: Les fonctionnalités complètes d'AIDE ne sont disponibles qu'avec certains déploiements NetApp DCN. Le logiciel AIDE sur des serveurs tiers est limité aux fonctionnalités de métadonnées et ne nécessite pas de licence AIDE.
 
 
 
 === Exigences d'installation de la licence
 
-Vous devrez acheter la licence AIDE et télécharger le fichier NLF associé sur votre système local. Vous pourrez ensuite transférer le fichier vers votre système de stockage AFX via System Manager. Assurez-vous également de disposer des éléments suivants :
+Si votre déploiement utilise des fonctionnalités AIDE sous licence sur les DCN NetApp, vous devrez obtenir l'accès à la licence AIDE et télécharger le fichier NLF associé sur votre système local. Vous pourrez ensuite charger ce fichier sur votre système de stockage AFX via System Manager. Assurez-vous également de disposer des éléments suivants :
 
 * Identifiants d'administrateur pour se connecter à ONTAP System Manager
 * Un cluster AFX exécutant ONTAP 9.18.1 et versions ultérieures

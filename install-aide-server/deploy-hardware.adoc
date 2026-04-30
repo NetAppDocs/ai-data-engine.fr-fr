@@ -1,0 +1,19 @@
+---
+sidebar: sidebar 
+permalink: install-aide-server/deploy-hardware.html 
+keywords: aide, ai, data engine, ai data engine, dcn, data compute node, afx, afx 1k, install, setup, hardware, deploy, mde, third-party servers, cabinet, rail kit, bezel, cable management 
+summary: 'Apprenez comment installer les kits de rails et fixer les nœuds de calcul de données dans l"armoire.' 
+---
+= Installez vos serveurs tiers pour AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Installez et sécurisez vos serveurs tiers dans l'armoire.
+
+Pour les serveurs tiers, reportez-vous à la documentation d'installation de votre modèle de serveur spécifique pour les instructions d'installation.
+
+.Et ensuite ?
+Après avoir installé les serveurs tiers, link:cable-hardware.html["câbler les nœuds de calcul de données pour AIDE"].

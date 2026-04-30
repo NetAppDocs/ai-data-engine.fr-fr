@@ -1,6 +1,6 @@
 ---
 sidebar: sidebar 
-permalink: install-setup/cable-hardware.html 
+permalink: install-dcn/cable-hardware.html 
 keywords: aide, ai, data engine, ai data engine dcn, data compute node, afx, afx 1k, cable controllers, Cisco Nexus 9332D-GX2B, Cisco Nexus 9364D-GX2A, switches, switch, cable hardware, cable storage shelves, cable data compute nodes, cable network, cable cluster, cable host network 
 summary: Apprenez comment connecter les câbles AIDE à votre réseau et câbler les Data Compute Node. 
 ---
@@ -11,28 +11,28 @@ summary: Apprenez comment connecter les câbles AIDE à votre réseau et câbler
 
 
 [role="lead"]
-Connectez vos nœuds de calcul aux commutateurs du réseau hôte et du réseau de cluster pour activer le traitement des charges de travail d’IA et l’intégration avec votre système de stockage AFX 1K. Cette procédure utilise des connexions 100GbE pour l’accès au réseau hôte et la communication au sein du cluster, permettant aux nœuds de tirer parti de l’infrastructure de cluster existante sans éteindre le système AFX.
+Connectez vos nœuds de calcul de données aux commutateurs du réseau hôte et du réseau de cluster pour activer le traitement des charges de travail d’IA et l’intégration avec votre système de stockage AFX 1K. Cette procédure utilise des connexions pour l’accès au réseau hôte et la communication au sein du cluster, permettant aux nœuds de tirer parti de l’infrastructure de cluster existante sans mettre hors tension le système AFX.
 
 .À propos de cette tâche
-Ces procédures présentent des configurations courantes. Le câblage spécifique dépend des composants commandés pour votre système de stockage. Pour des détails complets sur la configuration et les priorités des emplacements, consultez link:https://hwu.netapp.com["NetApp Hardware Universe"^].
+Ces procédures présentent des configurations courantes. Le câblage spécifique dépend des composants commandés pour votre système de stockage.
 
 
-NOTE: Il n'est pas nécessaire de mettre hors tension le système de stockage AFX 1K lors du câblage des Data Compute Node. Vous pouvez ajouter les Data Compute Node à un système de stockage AFX 1K existant qui est déjà sous tension et configuré.
+NOTE: Il n'est pas nécessaire de mettre hors tension le système de stockage AFX 1K lors du câblage des nœuds de calcul NetApp. Vous pouvez ajouter les nœuds de calcul à un système de stockage AFX 1K existant, déjà sous tension et configuré. Pour les serveurs tiers, consultez la documentation d'installation de votre modèle de serveur pour des instructions de câblage spécifiques.
 
 .Avant de commencer
 * Vous disposez déjà d'un système de stockage AFX 1K installé. Pour plus d'informations sur l'installation du système de stockage AFX 1K, consultez link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html["Documentation d'installation du système de stockage AFX 1K"^].
 * Vous avez installé et configuré les commutateurs réseau requis. Contactez votre administrateur réseau pour obtenir des informations sur la connexion du système à vos commutateurs réseau.
-* Vous avez examiné le link:../install-setup/cable-overview.html["exigences de câblage pour les Data Compute Node"].
+* Vous avez examiné les exigences de câblage pour vos serveurs tiers ou les nœuds de calcul de données fournis par NetApp. Pour des informations sur la configuration du câblage, consultez link:cable-overview.html["exigences de câblage pour les Data Compute Node"].
 
 
 
-NOTE: Un minimum de trois nœuds de calcul de données est requis pour déployer AI Data Engine.
+NOTE: Trois nœuds de calcul de données fournis par NetApp sont nécessaires pour déployer AI Data Engine.
 
 
 
 == Étape 1 : Connectez les Data Compute Node au réseau hôte
 
-Vous pouvez connecter les ports du Data Compute Node à votre réseau hôte.
+Pour les nœuds de calcul de données fournis par NetApp, vous pouvez connecter les ports du nœud de calcul de données à votre réseau hôte.
 
 .Étapes
 . Connectez le port e4b des Data Compute Node suivants au commutateur de réseau de données Ethernet A :
@@ -69,9 +69,9 @@ image::../media/drw_aide_network_cabling_b_ieops-2648.svg[Câble vers réseau Et
 
 
 
-== Étape 2 : Câbler les connexions du cluster de Data Compute Node
+== Étape 2 : Câbler les connexions du cluster
 
-Pour les nœuds de calcul de données, utilisez des câbles de dérivation 4x100GbE pour connecter les ports e4a/e5a pour les connexions du cluster.
+Pour les nœuds de calcul de données fournis par NetApp, utilisez des câbles de dérivation 4x100GbE pour connecter les ports e4a/e5a pour les connexions du cluster.
 
 .Étapes
 . Connectez le port e4a des Data Compute Node suivants à un port non-ISL sur le commutateur réseau du cluster A :

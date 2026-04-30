@@ -14,11 +14,11 @@ summary: 'En tant qu"administrateur du cluster ONTAP, vous pouvez utiliser ONTAP
 En tant qu'administrateur du cluster ONTAP, vous pouvez utiliser ONTAP System Manager pour configurer l'authentification OpenID Connect (OIDC) pour un cluster AI Data Engine (AIDE). Cela permet une connexion sécurisée et centralisée via un fournisseur d'identité externe (IdP).
 
 
-CAUTION: Vous devez configurer OIDC pour accéder à la AIDE Console. Une fois configuré, toute l'authentification transite par OIDC. Si OIDC n'est pas configuré, la console sera indisponible pour les administrateurs ainsi que pour les data engineers et data scientists. Dans ce cas, la connexion à System Manager revient à l'authentification locale.
+CAUTION: Vous devez configurer OIDC pour accéder à la console AIDE. Une fois configuré, toute l'authentification transite par OIDC. Si OIDC n'est pas configuré, la console sera inaccessible à tous les utilisateurs (administrateurs, ingénieurs de données et data scientists). System Manager utilisera l'authentification ONTAP locale lorsque OIDC n'est pas configuré.
 
 Notez également les points suivants concernant la configuration OIDC pour l'accès AIDE :
 
-* De manière générale, la configuration OIDC se compose de deux étapes principales. Il faut d'abord effectuer la configuration OIDC de base à l'aide de System Manager. Vous pouvez ensuite finaliser la configuration en paramétrant le mappage des rôles externes à l'aide de l'ONTAP CLI.
+* De manière générale, la configuration d'OIDC se compose de deux étapes principales. Il faut d'abord effectuer la configuration de base à l'aide de System Manager. Vous pouvez ensuite finaliser la configuration en configurant le mappage des rôles externes à l'aide de l'interface de ligne de commande ONTAP.
 * Vous ne pouvez pas modifier une configuration OIDC existante. Si vous devez apporter une modification, supprimez d'abord la configuration et créez-en une nouvelle avec les paramètres souhaités.
 * Si vous désactivez ou supprimez OIDC, System Manager reviendra à l'authentification utilisateur ONTAP locale.
 
@@ -35,7 +35,7 @@ Vous devez sélectionner et configurer un fournisseur d'identité externe (IdP) 
 
 == Configurer les fournisseurs d'identité tiers
 
-Pour vous authentifier à l'aide d'OIDC, vous devez d'abord configurer un fournisseur d'identité externe. L'implémentation OIDC d'ONTAP utilise les revendications de rôle dans les jetons pour appliquer le RBAC. Lors de la configuration d'un fournisseur d'identité, assurez-vous qu'il est configuré pour renvoyer les revendications de rôle dans le jeton d'identité et le jeton d'accès. ONTAP prend en charge deux IdPs pour l'authentification OIDC : Entra ID et Active Directory Federation Services (AD FS).
+Pour s'authentifier via OIDC, vous devez d'abord configurer un fournisseur d'identité externe. L'implémentation OIDC d'ONTAP utilise les revendications de rôle dans les jetons pour appliquer le RBAC. Lors de la configuration d'un IdP, assurez-vous qu'il est configuré pour renvoyer les revendications de rôle dans le jeton d'identité et le jeton d'accès. ONTAP prend en charge deux IdPs pour l'authentification OIDC : Entra ID et Active Directory Federation Services (ADFS).
 
 
 
@@ -46,7 +46,7 @@ Vous pouvez configurer Entra ID en utilisant les étapes générales suivantes 
 . Créez un nouvel enregistrement d'application sur la page de configuration Entra ID.
 . Définissez la valeur URI de redirection (Web) sur  `\https://$CLUSTER_MGMT_IP/oidc/callback`, en remplaçant l'adresse IP de gestion du cluster ou le FQDN approprié.
 . Créez les rôles requis sous App Roles et attribuez-les à vos utilisateurs.
-. Mettez à jour les revendications du jeton sous Configuration du jeton pour renvoyer les rôles dans id-token et access-token.
+. Mettez à jour les revendications du jeton dans la configuration du jeton pour renvoyer les rôles dans id-token et access-token.
 
 
 Voir  https://learn.microsoft.com/en-us/power-pages/security/authentication/openid-settings["Configurez un fournisseur OpenID Connect avec Entra ID"^] pour plus d'informations.

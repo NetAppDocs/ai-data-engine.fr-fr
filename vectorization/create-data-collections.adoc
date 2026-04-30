@@ -13,13 +13,16 @@ summary: 'Créez et publiez des collections de données à partir des métadonn�
 [role="lead"]
 Les collections de données constituent les éléments de base RAG dans AI Data Engine (AIDE). En tant qu’ingénieur ou scientifique des données, vous définissez les fichiers qui doivent figurer dans une collection, configurez les options d’intégration et d’indexation, et publiez la collection afin que les applications puissent l’interroger via un point de terminaison de récupération.
 
+
+NOTE: Les instructions suivantes supposent un déploiement AIDE basé sur NetApp DCN.
+
 Vous effectuerez toutes les tâches de collecte de données dans AIDE Console.
 
 .Avant de commencer
 * Vous devez disposer des privilèges de _data engineer_ ou de _data scientist_ dans AIDE Console (`\https://<cluster_management_ip>/console`).
 * Vous avez accès à au moins un espace de travail avec des métadonnées extraites et à l’état  `Ready`.
 * Vous avez exploré les métadonnées de l'espace de travail et identifié des requêtes ou des filtres qui définissent des sous-ensembles de données significatifs.
-* La licence du logiciel AIDE est installée et les fonctionnalités d'inférence sont activées.
+* La licence des services premium AIDE est installée et les fonctionnalités d'inférence sont activées pour la fonctionnalité Data Curator.
 
 
 

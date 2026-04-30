@@ -31,15 +31,15 @@ Au moins quatre nœuds de contrôleur AFX sont nécessaires pour les déploiemen
 
 === Nœuds de calcul de données
 
-Les nœuds de calcul de données (DCN) sont des serveurs Linux dotés de ressources CPU, RAM et GPU élevées, dédiés aux tâches de traitement des données d'IA. Ils hébergent des services spécifiques à l'IA tels que le catalogage des métadonnées, la recherche vectorielle et les pipelines d'embedding.
+Les nœuds de calcul de données sont des serveurs Linux dotés de ressources CPU, RAM et GPU élevées, dédiés aux tâches de traitement des données d'IA. Ils hébergent des services spécifiques à l'IA tels que le catalogage des métadonnées, la recherche vectorielle et les pipelines d'intégration.
 
-Exactement _trois_ DCN sont nécessaires pour les déploiements AIDE.
+Exactement _trois_ nœuds de calcul de données sont nécessaires pour les déploiements AIDE.
 
 
 
 === Commutateurs de cluster/stockage
 
-Des commutateurs redondants à haut débit (100GbE ou plus) connectent ONTAP et les DCN pour un transfert de données à faible latence et une haute disponibilité.
+Des commutateurs redondants à haut débit (100GbE ou plus) connectent ONTAP et les nœuds de calcul de données pour un transfert de données à faible latence et une haute disponibilité.
 
 
 
@@ -51,15 +51,15 @@ Les baies NVMe-oF avec des SSD haute densité offrent une latence ultra-faible e
 
 == Réseautique
 
-Tous les nœuds DCN et les nœuds de stockage ONTAP sont connectés par des commutateurs de cluster redondants à haut débit (minimum 100GbE). Cette architecture sépare les ressources de calcul et de stockage, permettant à chacune d'évoluer indépendamment et en optimisant à la fois les performances et l'utilisation des ressources.
+Tous les nœuds de calcul de données et les nœuds de stockage ONTAP sont connectés par des commutateurs de cluster redondants à haut débit (minimum 100GbE). Cette architecture sépare les ressources de calcul et de stockage, permettant à chacune d’évoluer indépendamment et optimisant à la fois les performances et l’utilisation des ressources.
 
-La mise en réseau entre les DCN et les nœuds ONTAP est isolée à l'aide de VLAN dédiés et d'IPspaces sur les commutateurs du cluster. Cela garantit que toutes les communications, telles que l'accès aux données, les API de gestion et le trafic des services internes, restent sécurisées, efficaces et n'interfèrent pas avec les autres opérations réseau.
+L’interconnexion entre les nœuds de calcul de données et les nœuds ONTAP est isolée à l’aide de VLAN dédiés et d’IPspaces sur les commutateurs du cluster. Cela garantit que toutes les communications, telles que l’accès aux données, les API de gestion et le trafic des services internes, restent sécurisées, efficaces et n’interfèrent pas avec les autres opérations réseau.
 
 
 
 == Fonctionnalités principales de l'AI Data Engine
 
-Les principales fonctionnalités d'AI Data Engine (AIDE) fonctionnent de concert pour automatiser, sécuriser et accélérer le cycle de vie des données d'IA. Chaque fonctionnalité est implémentée sous forme d'un ensemble de microservices exécutés sur des DCN, intégrés au stockage ONTAP et exposés via des API REST et des interfaces de gestion.
+Les principales fonctionnalités d'AI Data Engine (AIDE) fonctionnent de concert pour automatiser, sécuriser et accélérer le cycle de vie des données. Chaque fonctionnalité est implémentée sous forme d'un ensemble de microservices exécutés sur des nœuds de calcul de données, intégrés au stockage ONTAP, et exposés via des API REST et des interfaces de gestion.
 
 
 
@@ -105,7 +105,7 @@ La fonctionnalité Data Sync est incluse avec la licence de base ONTAP One et es
 Le service Data Guardrails assure une gouvernance et une protection continues et automatisées des données sensibles tout au long du cycle de vie de l'IA.
 
 .Licence et accès
-La fonctionnalité Data Guardrails n'est pas incluse avec la licence de base ONTAP One et nécessite une licence AIDE distincte.
+La fonctionnalité Data Guardrails n'est pas incluse avec la licence de base ONTAP One et nécessite une licence de services premium AIDE distincte.
 
 Vous pouvez accéder à la fonctionnalité Data Guardrails via la AIDE Console.
 
@@ -125,7 +125,7 @@ Vous pouvez accéder à la fonctionnalité Data Guardrails via la AIDE Console.
 Le service Data Curator permet une découverte, une recherche, une vectorisation et une récupération rapides des données pour les applications d'IA et de GenAI.
 
 .Licence et accès
-La fonctionnalité Data Curator n'est pas incluse avec la licence de base ONTAP One et nécessite une licence AIDE distincte.
+La fonctionnalité Data Curator n'est pas incluse avec la licence de base ONTAP One et nécessite une licence de services premium AIDE distincte.
 
 Vous pouvez accéder à Data Curator via AIDE Console.
 

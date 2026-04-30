@@ -1,6 +1,6 @@
 ---
 sidebar: sidebar 
-permalink: install-setup/power-on-hardware.html 
+permalink: install-dcn/power-on-hardware.html 
 keywords: aide, ai, data engine, ai data engine dcn, data compute node, afx, afx 1k, power on, 
 summary: 'Mettez chaque étagère sous tension pour lui attribuer un identifiant unique, mettez sous tension les nœuds du contrôleur AFX et fixez les câbles d"alimentation.' 
 ---
@@ -11,14 +11,16 @@ summary: 'Mettez chaque étagère sous tension pour lui attribuer un identifiant
 
 
 [role="lead"]
-Après avoir installé le matériel du rack et câblé vos nœuds de calcul de données, vous devez mettre sous tension vos DCN et vos nœuds de contrôle pour le système de stockage AFX si ceux-ci ne sont pas déjà sous tension.
+Après avoir installé le rack et câblé votre matériel, vous devez mettre sous tension vos nœuds de calcul de données et vos nœuds de contrôle pour le système de stockage AFX s'ils ne sont pas déjà sous tension.
+
+Pour mettre sous tension vos nœuds de calcul de données fournis par NetApp, vous devez mettre sous tension chaque étagère pour lui attribuer un ID d'étagère unique, mettre sous tension les nœuds de contrôleur AFX et fixer les câbles d'alimentation des nœuds de calcul de données.
 
 .Avant de commencer
 * Assurez-vous que vos étagères sont alimentées et que chacune possède un identifiant unique. Pour plus d'informations sur l'attribution des identifiants d'étagère pour le système de stockage AFX, consultez la link:https://docs.netapp.com/us-en/ontap-afx/install-setup/power-on-hardware.html#step-1-power-on-the-shelf-and-assign-shelf-id["documentation relative à l'attribution d'identifiants uniques pour les étagères"^].
 
 
 .Étapes
-Après avoir allumé vos étagères de stockage et attribué les identifiants uniques, mettez sous tension vos DCN et mettez sous tension les nœuds de contrôleur de stockage s'ils ne sont pas déjà allumés.
+Une fois vos baies de stockage allumées et leurs identifiants uniques attribués, mettez sous tension vos nœuds de calcul de données, puis mettez sous tension les nœuds de contrôleur de stockage s'ils ne le sont pas déjà.
 
 . Connectez votre ordinateur portable au port console série. Cela vous permet de surveiller la séquence de démarrage lorsque les contrôleurs sont mis sous tension.
 +

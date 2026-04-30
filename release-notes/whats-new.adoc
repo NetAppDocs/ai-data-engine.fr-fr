@@ -11,13 +11,49 @@ summary: 'Découvrez les nouvelles fonctionnalités disponibles dans AI Data Eng
 
 
 [role="lead"]
-AI Data Engine (AIDE) 9.18.1 est la version initiale de la plateforme de gestion des données AI de NetApp. Cette version introduit un moteur de métadonnées et des flux de travail de gestion permettant aux organisations de cataloguer et d'organiser les données non structurées pour les charges de travail d'IA, fournissant la base pour des capacités avancées de gouvernance et de vectorisation. La gouvernance avancée (garde-fous) et la vectorisation sont disponibles pour les clients disposant des licences AI Data Engine appropriées.
+Découvrez les dernières fonctionnalités disponibles dans AI Data Engine (AIDE) pour la gestion des données d'IA, notamment le catalogage des métadonnées, la gestion de l'espace de travail et des options de déploiement flexibles.
 
 
 
-== Nouveautés de la version initiale d'AIDE 9.18.1
+== Nouveautés dans AIDE 1.0.0
 
-AIDE 9.18.1 introduit les fonctionnalités fondamentales suivantes :
+AIDE 1.0.0 (publié le 30 avril 2026) introduit AIDE en tant que déploiement logiciel uniquement sur des serveurs tiers. Cette option de déploiement vous permet d'exécuter le logiciel AIDE sur vos propres serveurs RHEL 9.7 sans nécessiter de NetApp Data Compute Nodes (DCNs). Pour cette version, le logiciel AIDE sur des serveurs tiers prend en charge des capacités axées sur les métadonnées.
+
+.link:../install-aide-server/aide-mde-server-hardware-requirements.html["option de déploiement matériel gérée par le client"]
+L'option de déploiement du logiciel AIDE sur des serveurs tiers vous offre la flexibilité d'utiliser votre propre matériel avec les capacités de gestion des métadonnées d'AIDE, tout en gérant vous-même le matériel et le système d'exploitation sous-jacents. Les principales caractéristiques de ce modèle de déploiement sont les suivantes :
+
+* Des clusters homogènes à trois nœuds sont nécessaires.
+* Vous installez le système d'exploitation et gérez les correctifs de sécurité du système d'exploitation
+* NetApp fournit la pile logicielle AIDE et le support
+* Nécessite ONTAP 9.18.1 ou version ultérieure
+* Nécessite un système de stockage ONTAP AFX
+
+
+.link:../get-started/learn-about.html#deployment-options["Prise en charge de base de AIDE Metadata Engine"]
+Le logiciel AIDE sur des serveurs tiers prend en charge les fonctionnalités principales de Metadata Engine d'AIDE, vous permettant de cataloguer et d'organiser vos métadonnées pour les charges de travail d'IA.
+
+Pour cette version, le logiciel AIDE installé sur des serveurs tiers ne prend pas en charge les services dépendants du GPU tels que la vectorisation, l’OCR et l’enrichissement, et il ne prend pas en charge les collections de données, les embeddings vectoriels ou les endpoints RAG pour la recherche sémantique. Un chemin de mise à niveau vers les capacités complètes d’AIDE est pris en charge lorsque ces capacités deviennent disponibles.
+
+.link:../get-started/aide-architecture.html#metadata-engine["Fonctionnalités prises en charge de Metadata Engine"]
+Le logiciel AIDE installé sur des serveurs tiers offre les fonctionnalités de métadonnées suivantes :
+
+* Création et gestion d'espaces de travail
+* Extraction et catalogage automatisés des métadonnées
+* Recherche et filtrage des métadonnées à l'aide des API REST
+* Synchronisation des données pour une actualisation automatisée des données
+* fonctionnalité d’exportation des métadonnées
+
+
+.link:../metadata-search/explore-metadata.html["Recherche et navigation dans Metadata Engine"]
+Dans AIDE 1.0.0, la fonctionnalité Metadata Engine est disponible dans AI Data Engine Console. Vous pouvez rechercher, parcourir, filtrer et exporter les métadonnées depuis une vue centralisée couvrant tous les espaces de travail. Vous pouvez explorer les métadonnées depuis une nouvelle page dans AIDE Console, incluse avec tous les logiciels AIDE sur les déploiements de serveurs tiers. Cette page peut être utilisée après la création de l’espace de travail et l’extraction des métadonnées.
+
+
+
+== Nouveautés de la version initiale d'AIDE 9.18.1U0/U1
+
+AI Data Engine (AIDE) 9.18.1 U0/U1 est la version initiale de la plateforme de gestion des données de NetApp pour l’IA. Cette version introduit un moteur de métadonnées et des flux de travail de gestion permettant aux organisations de cataloguer et d’organiser les données non structurées pour les charges de travail d’IA, fournissant la base pour des fonctionnalités avancées de gouvernance et de vectorisation. La gouvernance avancée (garde-fous) et la vectorisation sont disponibles pour les clients disposant des licences AI Data Engine appropriées.
+
+AIDE 9.18.1U0 introduit les fonctionnalités fondamentales suivantes :
 
 .link:../get-started/aide-architecture.html#metadata-engine["Metadata Engine pour le catalogage des données d'IA"]
 La version initiale comprend un Metadata Engine qui catalogue les fichiers et les objets sur les clusters ONTAP.
@@ -66,7 +102,7 @@ La version initiale comprend les workflows suivants :
 
 
 .link:../vectorization/zero-to-rag.html["Capacités avancées de curation et de gouvernance des données"]
-Les fonctionnalités suivantes sont disponibles pour les clients disposant des licences AIDE appropriées :
+Les fonctionnalités suivantes sont disponibles avec la mise à jour AIDE 9.18.1U1 pour les clients disposant des licences AIDE appropriées :
 
 * *Vectorisation et RAG* : Création de collections de données, d’embeddings et de points de terminaison de récupération dans AI Data Engine Console, à l’aide des métadonnées des espaces de travail AIDE.
 * *Gouvernance basée sur des Data Guardrails* : Définition des politiques de Data Guardrails dans AI Data Engine Console et association de ces politiques avec les workspaces dans ONTAP System Manager.
@@ -76,7 +112,7 @@ Les fonctionnalités suivantes sont disponibles pour les clients disposant des l
 
 === Matériel et plateformes pris en charge
 
-AIDE 9.18.1 s'exécute sur des clusters de la plateforme de données ONTAP AI qui combinent :
+AIDE 9.18.1 U0 et U1 s'exécutent sur des clusters de la plateforme de données ONTAP AI qui combinent :
 
 * Nœuds de stockage AFX 1K
 * Nœuds de calcul de données NetApp

@@ -11,9 +11,9 @@ summary: Après avoir créé un cluster, vous pouvez créer un container de donn
 
 
 [role="lead"]
-Après avoir créé un cluster, établissez un container de données contenant les données que vous prévoyez d'utiliser avec AI Data Engine (AIDE). Ce container de données doit être un volume ONTAP, soit un volume local, soit un volume provenant d'un cluster ONTAP apparié exécutant ONTAP 9.
+Après avoir créé un cluster, définissez un container de données contenant les données que vous prévoyez d'utiliser avec AI Data Engine (AIDE). Ce container de données doit être un volume ONTAP, qu'il s'agisse d'un volume local ou d'un volume provenant d'un cluster ONTAP apparié exécutant ONTAP 9.
 
-Au lieu de charger manuellement les données du cluster ONTAP dans AIDE, vous devrez appairer les clusters et SVM ciblés avec le cluster AIDE, puis décider quels volumes NFS vous souhaitez utiliser avec le catalogue de métadonnées AIDE. Après avoir créé le container de données, vous pouvez créer un espace de travail et associer le container de données à cet espace de travail. Les utilisateurs de cet espace de travail peuvent alors accéder et interagir avec les collections de données et les ressources affiliées à l’espace de travail pour leurs charges de travail d’IA.
+Au lieu de charger manuellement les données du cluster ONTAP dans AIDE, vous devrez appairer les clusters et SVM ciblés avec le cluster AIDE, puis décider quels volumes NFS vous souhaitez utiliser avec le catalogue de métadonnées AIDE. Après avoir créé le container de données, vous pouvez créer un espace de travail et associer le container de données à cet espace de travail. Les utilisateurs de cet espace de travail pourront alors accéder aux collections de données et aux ressources affiliées à l’espace de travail et interagir avec elles pour leurs charges de travail d’IA.
 
 .À propos de cette tâche
 Vous devez appairer chaque SVM contenant les données que vous souhaitez utiliser avec AIDE. L'appairage du cluster seul ne suffit pas. Cela garantit qu'AIDE puisse accéder à vos données, les intégrer et les indexer comme prévu.

@@ -1,6 +1,6 @@
 ---
 sidebar: sidebar 
-permalink: install-setup/install-setup-requirements.html 
+permalink: install-dcn/install-setup-requirements.html 
 keywords: aide, ai, data engine, ai data engine, dcn, data compute node, afx, afx 1k, install, setup, requirements, cautions, 
 summary: 'Examinez l"équipement nécessaire et les précautions de levage pour vos nœuds de calcul de données pour AI Data Engine.' 
 ---
@@ -11,13 +11,13 @@ summary: 'Examinez l"équipement nécessaire et les précautions de levage pour 
 
 
 [role="lead"]
-Examinez l’équipement nécessaire et les précautions de levage pour vos nœuds de calcul de données pour AI Data Engine (AIDE).
+Examinez l’équipement nécessaire et les précautions de levage pour vos serveurs tiers ou les nœuds de calcul de données fournis par NetApp pour AI Data Engine (AIDE).
 
 
 
 == Prérequis
 
-Avant d'installer les nœuds de calcul de données pour AIDE, assurez-vous de disposer des éléments suivants :
+Avant d'installer les nœuds de calcul de données, assurez-vous de disposer des éléments suivants :
 
 * Un système de stockage AFX 1K.
 +
@@ -47,7 +47,7 @@ Les nœuds de calcul de données sont lourds. Faites preuve de prudence lors du 
 
 
 
-=== Poids des nœuds de calcul de données
+== Poids des nœuds de calcul de données
 
 Prenez les précautions nécessaires lors du déplacement ou du levage de votre nœud de calcul de données.
 

@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
-permalink: install-setup/cable-overview.html 
-keywords: aide, ai data engine, cable, overview, cabling, hardware, switches, cluster network, host network, data compute nodes 
+permalink: install-dcn/cable-overview.html 
+keywords: aide, ai data engine, cable, overview, cabling, hardware, switches, cluster network, host network, data compute nodes, compute nodes 
 summary: 'Découvrez la configuration de câblage pour les Data Compute Node, y compris l"utilisation des emplacements d"E/S, les types de câbles et les exigences de connexion pour les réseaux hôtes et de cluster.' 
 ---
 = Exigences relatives au câblage des nœuds de calcul de données pour AI Data Engine
@@ -13,13 +13,9 @@ summary: 'Découvrez la configuration de câblage pour les Data Compute Node, y 
 [role="lead"]
 Les nœuds de calcul de données s'intègrent à votre système de stockage AFX 1K via les connexions réseau hôte et réseau du cluster. Vérifiez la configuration des emplacements d'E/S, les types de câbles et les exigences de connexion pour votre déploiement.
 
+NetApp-provided les nœuds de calcul de données se connectent aux mêmes commutateurs de cluster que les nœuds de contrôleur AFX 1K, étendant votre système de stockage avec des ressources de calcul optimisées pour les charges de travail d’IA et d’apprentissage automatique.
 
-
-== Configuration du câblage
-
-Les nœuds Data Compute Node se connectent aux mêmes commutateurs de cluster que les nœuds de contrôleur AFX 1K, étendant ainsi votre système de stockage avec des ressources de calcul optimisées pour les charges de travail d'AI et de machine learning.
-
-La configuration initiale de AI Data Engine (AIDE) prend en charge un minimum de trois Data Compute Node. Pour des détails complets sur la configuration et les priorités des emplacements, voir link:https://hwu.netapp.com["NetApp Hardware Universe"^].
+La configuration initiale de AI Data Engine (AIDE) prend en charge un minimum de trois Data Compute Node.
 
 image::../media/drw_aide-dcn_back_slots_labeled_ieops-2646.svg[Numérotation des emplacements sur un Data Compute Node]
 
@@ -63,7 +59,7 @@ Emplacement d'E/S sur le Data Compute Node.
 |===
 
 
-== Configuration des emplacements d'E/S
+== NetApp-configuration des emplacements d'E/S du nœud de calcul de données fourni
 
 Le Data Compute Node utilise un système de numérotation des emplacements spécifique, différent des configurations de serveurs standard. Comprendre la disposition des emplacements est essentiel pour un câblage correct.
 
@@ -79,7 +75,7 @@ Le Data Compute Node utilise un système de numérotation des emplacements spéc
 
 
 
-== Connexions réseau
+== NetApp-connexions réseau des nœuds de calcul de données fournies
 
 Les nœuds Data Compute Node nécessitent deux types de connexions réseau pour s'intégrer au système de stockage AFX 1K.
 
@@ -113,15 +109,15 @@ Affectations de ports :
 
 == Composants matériels pris en charge
 
-Les Data Compute Node nécessitent des câbles et des commutateurs spécifiques pour assurer une connectivité et des performances appropriées avec le système de stockage AFX 1K.
+NetApp-provided data compute nodes nécessitent des câbles et des commutateurs spécifiques pour assurer une connectivité et des performances appropriées avec le système de stockage AFX 1K.
 
 [cols="2,3,6"]
 |===
-| *Data Compute Node* | *Commutateurs compatibles* | *Câbles pris en charge* 
+| *Nœud de calcul* | *Commutateurs compatibles* | *Câbles pris en charge* 
 
 
  a| 
-Data compute nodes (minimum de trois requis)
+NetApp-provided nœuds de calcul de données (minimum de trois requis)
  a| 
 * Cisco Nexus 9332D-GX2B (400GbE)
 * Cisco Nexus 9364D-GX2A (400GbE)
@@ -136,15 +132,15 @@ Data compute nodes (minimum de trois requis)
 * Câbles RJ-45 pour les connexions de gestion
 
 
-|===
 
 NOTE: Les câbles de dérivation fournissent quatre connexions 100GbE à partir de chaque port de commutateur 400GbE. Connectez l'extrémité 400GbE aux commutateurs et l'extrémité 100GbE aux ports d'E/S du Data Compute Node.
 
+|===
 
 
 == Orientation du câble
 
-Lors du raccordement des câbles aux Data Compute Node, une orientation correcte des câbles garantit des connexions fiables.
+Lors du raccordement des câbles aux nœuds de calcul, une orientation correcte des câbles garantit des connexions fiables.
 
 Les schémas de câblage dans les procédures d'installation montrent des icônes de flèches indiquant la bonne orientation (haut ou bas) de la languette de traction du connecteur de câble lors de l'insertion d'un connecteur dans un port. Lorsque vous insérez le connecteur, vous devriez le sentir s'enclencher. Si vous ne le sentez pas s'enclencher, retirez-le, retournez-le et réessayez.
 
@@ -154,4 +150,4 @@ image:../media/drw_cable_pull_tab_direction_ieops-1699.svg["Direction de la lang
 CAUTION: Manipulez les composants délicats du connecteur avec précaution lors de leur mise en place.
 
 .Et ensuite ?
-Après avoir examiné la configuration du câblage, link:cable-hardware.html["câbler le matériel"] pour vos Data Compute Node.
+Après avoir examiné la configuration du câblage, link:cable-hardware.html["câblez le matériel de vos nœuds de calcul de données"].
