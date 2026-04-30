@@ -91,7 +91,8 @@ Pour chaque serveur tiers, six ports au total sont utilisés pour le logiciel AI
 | *Vitesse du réseau*  a| 
 Les vitesses réseau suivantes sont prises en charge pour l'exécution du logiciel AIDE sur des serveurs tiers :
 
-*** *Cluster et ports de données* - 100 GbE ou supérieur recommandé
+*** Ports de cluster - 100 GbE
+*** *Ports de données* - 100 GbE ou plus
 *** Port de gestion - 1 GbE ou supérieur
 
 
@@ -99,6 +100,9 @@ Les vitesses réseau suivantes sont prises en charge pour l'exécution du logici
 
 | *Espace disque*  a| 
 512 Go ou plus
+
+
+NOTE: 70 Go d'espace libre doivent être disponibles dans le  `/var` répertoire pour le partitionnement du sous-système sur disque.
 
 |===
 

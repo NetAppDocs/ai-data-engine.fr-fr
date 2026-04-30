@@ -1662,7 +1662,6 @@
   <block id="4fa750938e627d95c84431bc3528a153" category="list-text">1 pour le réseau de gestion si une haute disponibilité est nécessaire (optionnel)</block>
   <block id="084484f546dc7b7df1c1f8ed107cdc21" category="cell">*Vitesse du réseau*</block>
   <block id="dfa7b355bc6bab0a3ce139e0d7540eb0" category="paragraph">Les vitesses réseau suivantes sont prises en charge pour l'exécution du logiciel AIDE sur des serveurs tiers :</block>
-  <block id="5ede41017f539d42e682bbfb3faf6d04" category="list-text">*Cluster et ports de données* - 100 GbE ou supérieur recommandé</block>
   <block id="838012d228c3c3d617a61988a5fc930e" category="list-text">Port de gestion - 1 GbE ou supérieur</block>
   <block id="7c00f9894ca6b38a23fb9b69473ada72" category="cell">*Espace disque*</block>
   <block id="66df935ed66d4870af7a77f59631aae2" category="paragraph">512 Go ou plus</block>
@@ -2012,4 +2011,8 @@
   <block id="8f22fb35d5382da461659034aa6039bf" category="paragraph"><block ref="8f22fb35d5382da461659034aa6039bf" category="inline-link-rx"></block></block>
   <block id="8ab556ff062f8c224e9495f1da8b7b94" category="inline-link">Avis concernant AIDE 9.18.1U0/U1</block>
   <block id="14a3a534854cc17b1e553ccbcab67fc6" category="paragraph"><block ref="14a3a534854cc17b1e553ccbcab67fc6" category="inline-link-rx"></block></block>
+  <block id="b427264ac55612a09df441c083a5be58" category="list-text">Ports de cluster - 100 GbE</block>
+  <block id="4dc9c19a04d32de350820f8c791d4549" category="list-text">*Ports de données* - 100 GbE ou plus</block>
+  <block id="4f3eeca6d4d23f25126a03e95582b561" category="admonition">70 Go d'espace libre doivent être disponibles dans le <block ref="ca905eb4a00d34150573153a09e2e79b" prefix=" " category="inline-code"></block> répertoire pour le partitionnement du sous-système sur disque.</block>
+  <block id="d08d1c32d6d6d840c9c83428502147ad" category="list-text">Au moins 70 Go d'espace libre sont disponibles dans la <block ref="ca905eb4a00d34150573153a09e2e79b" prefix=" " category="inline-code"></block> partition pour le partitionnement du sous-système sur disque</block>
 </blocks>
