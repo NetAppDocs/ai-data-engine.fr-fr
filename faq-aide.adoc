@@ -60,7 +60,7 @@ Le déploiement du logiciel AIDE avec la fonctionnalité de base de Metadata Eng
 link:./install-aide-server/aide-mde-server-hardware-requirements.html["Pour plus de détails, découvrez les exigences matérielles des serveurs tiers"].
 
 .Puis-je utiliser mes propres serveurs pour AIDE avec les fonctionnalités GPU ?
-La version 1.0.0 d'AIDE prend en charge la fonctionnalité de base de Metadata Engine sur des serveurs tiers utilisant du matériel fourni par le client. Les fonctionnalités complètes d'AIDE avec les fonctionnalités GPU nécessitent du matériel NetApp DCN.
+AIDE 1.0.0 prend en charge Metadata Engine de base sur des serveurs tiers utilisant du matériel fourni par le client. Les fonctionnalités complètes d'AIDE avec les fonctions GPU nécessitent du matériel NetApp DCN.
 
 .Quel est le nombre minimum de NetApp DCN requis ?
 Exactement trois NetApp DCN sont requis.
