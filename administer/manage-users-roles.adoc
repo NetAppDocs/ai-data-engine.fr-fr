@@ -1,0 +1,108 @@
+---
+sidebar: sidebar 
+permalink: administer/manage-users-roles.html 
+keywords: roles, users, permissions, AI data engine administrator, AI data engine viewer 
+summary: 'Contrôlez l"accès en attribuant à chaque utilisateur un rôle d"administrateur ou de lecteur. Découvrez les deux rôles et leurs autorisations.' 
+---
+= Gérer les utilisateurs et les rôles dans AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Contrôlez ce que chaque utilisateur peut voir et faire dans AI Data Engine en lui attribuant un rôle d’administrateur ou de lecteur. Avant que votre équipe ne commence à utiliser AI Data Engine, attribuez à chaque utilisateur le rôle correspondant au niveau d’accès requis.
+
+Vous attribuez des rôles via les paramètres d'organisation de NetApp Console. AI Data Engine prend en charge deux rôles.
+
+
+
+[[available-roles]]
+== Rôles disponibles
+
+
+
+[[ai-data-engine-administrator]]
+=== Administrateur AI Data Engine
+
+Le rôle d’administrateur AI Data Engine offre un accès complet à toutes les fonctionnalités de AI Data Engine. NetApp recommande d’attribuer ce rôle à deux ou trois utilisateurs maximum par déploiement.
+
+
+
+[[ai-data-engine-viewer]]
+=== Visionneuse AI Data Engine
+
+Le rôle de lecteur AI Data Engine offre un accès limité à AI Data Engine. Les lecteurs peuvent consulter des informations, exporter des rapports, étiqueter des fichiers et créer des stratégies de surveillance uniquement, mais ne peuvent pas modifier les paramètres ni effectuer d’actions sur les fichiers telles que l’archivage, la copie ou la suppression.
+
+
+
+[[permissions-by-role]]
+== Autorisations par rôle
+
+[cols="3,1,1"]
+|===
+| Capacité | Administrateur AI Data Engine | Visionneuse AI Data Engine 
+
+
+| Gérer les utilisateurs et les rôles | Oui | - 
+
+
+| Gérer les ressources de données | Oui | - 
+
+
+| Configuration du système | Oui | - 
+
+
+| Afficher les tableaux de bord | Oui | Oui 
+
+
+| Rechercher des métadonnées (Investigation) | Oui | Oui 
+
+
+| Exporter des rapports | Oui | Oui 
+
+
+| Créer des politiques de surveillance uniquement | Oui | Oui 
+
+
+| Créer des stratégies avec des actions | Oui | - 
+
+
+| Actions : balise | Oui | Oui 
+
+
+| Actions : Archiver, Copier, Supprimer | Oui | - 
+
+
+| Gérer les balises métier | Oui | Oui 
+|===
+
+
+[[assign-a-role-to-a-user]]
+== Attribuer un rôle à un utilisateur
+
+Vous attribuez des rôles dans NetApp Console, et non dans AI Data Engine lui-même.
+
+.Étapes
+. Depuis NetApp Console, accédez à *Members*.
+. Effectuez l'une des opérations suivantes :
++
+** Pour ajouter un nouvel utilisateur, sélectionnez *Add user* et saisissez l'adresse e-mail de l'utilisateur.
+** Pour mettre à jour un utilisateur existant, sélectionnez-le dans la liste.
+
+
+. Sélectionnez l'organisation, le dossier ou le projet, puis choisissez la catégorie *Data Service*.
+. Attribuez le rôle d’*administrateur de AI Data Engine* ou de *lecteur de AI Data Engine*.
+. Enregistrez vos modifications.
+
+
+L'utilisateur reçoit une invitation par e-mail et peut accéder à AI Data Engine après l'avoir acceptée.
+
+
+
+[[related-information]]
+== Informations connexes
+
+* link:../investigate/take-actions.html["Agissez sur vos données"]
+* link:../policies/create-policy.html["Créer une stratégie"]
+

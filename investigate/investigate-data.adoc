@@ -1,0 +1,50 @@
+---
+sidebar: sidebar 
+permalink: investigate/investigate-data.html 
+keywords: investigate, metadata, unstructured, structured, directories, cold data, stale data, permissions, reclaimable storage 
+summary: 'Utilisez la vue Investigation pour explorer le stockage basé sur des fichiers, les tables de base de données et les structures de répertoires sur vos systèmes connectés. Sélectionnez l"onglet correspondant à ce que vous recherchez.' 
+---
+= Analysez vos données dans AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Lorsque vous devez comprendre ce qui consomme de l'espace de stockage, identifier les tables de base de données qui croissent de manière incontrôlée ou trouver les répertoires dont l'accès est trop permissif, utilisez des filtres de métadonnées pour examiner vos données sur tous les systèmes connectés.
+
+
+
+[[choose-a-starting-point]]
+== Choisissez un point de départ
+
+Sélectionnez *Investigation* dans la navigation de gauche pour ouvrir la vue. Vous pouvez également ouvrir la vue Investigation à partir du tableau de bord en sélectionnant *Investigate* dans le tableau _Top data resources by reclaimable storage_, ce qui applique automatiquement un filtre à cette ressource.
+
+La section *Investigation* est organisée en trois onglets. Sélectionnez l'onglet correspondant au type de données que vous examinez.
+
+[cols="1,2,1"]
+|===
+| Onglet | À utiliser lorsque vous souhaitez | Plus d'informations 
+
+
+| *Non structuré* | Recherchez les données basées sur des fichiers froides, obsolètes ou dupliquées dans les volumes NFS et SMB/CIFS | link:investigate-unstructured.html["Analysez les données non structurées"] 
+
+
+| *Structuré* | Identifier les tables de base de données surdimensionnées ou inutilisées qui consomment de l'espace de stockage | link:investigate-structured.html["Analyser les données structurées"] 
+
+
+| *Répertoires* | Vérifier les autorisations au niveau des répertoires et identifier les chemins largement accessibles | link:investigate-directories.html["Examiner les répertoires"] 
+|===
+Le nombre total et la taille totale affichés en haut de la page sont mis à jour pour refléter l'onglet actif (par exemple, « Unstructured (400M) | 5.7 PiB »).
+
+
+
+[[related-information]]
+== Informations connexes
+
+* link:investigate-unstructured.html["Analysez les données non structurées"]
+* link:investigate-structured.html["Analyser les données structurées"]
+* link:investigate-directories.html["Examiner les répertoires"]
+* link:use-filters.html["Utiliser les filtres"]
+* link:take-actions.html["Agissez sur vos données"]
+

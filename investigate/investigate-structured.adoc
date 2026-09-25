@@ -1,0 +1,86 @@
+---
+sidebar: sidebar 
+permalink: investigate/investigate-structured.html 
+keywords: investigate, structured, database, tables, schema, oversized, unused, DB server, table size, discovered time 
+summary: Identifiez les tables de base de données surdimensionnées ou inutilisées sur vos serveurs de base de données connectés, puis enregistrez vos résultats sous forme de politique de gouvernance réutilisable. 
+---
+= Analyser les données structurées dans AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Lorsque le stockage de base de données augmente de manière inattendue, filtrez par métadonnées de table pour identifier les tables surdimensionnées ou celles qui n’ont montré aucune activité depuis leur découverte initiale. Par exemple, un administrateur du stockage peut repérer les tables volumineuses qui n'ont pas changé depuis une analyse initiale, puis se concerter avec le propriétaire de base de données afin de déterminer si elles sont toujours nécessaires.
+
+.Avant de commencer
+* Au moins une source de données de base de données doit être connectée et en cours d'analyse. Reportez-vous à link:../data-sources/connect-data-source.html["Connectez une source de données"].
+
+
+
+
+[[review-the-database-table-listing]]
+== Consultez la liste des tables de la base de données
+
+.Étapes
+. Dans l’interface utilisateur de AI Data Engine, sélectionnez *Investigation*.
+. Sélectionnez l'onglet *Structured*.
++
+Le tableau affiche le nom de la table de base de données, le schéma, le serveur de base de données, la date de découverte, les dimensions de la table (colonnes × lignes) et la taille de la table.
+
+
+
+
+
+[[identify-oversized-or-unused-tables]]
+== Identifier les tables surdimensionnées ou inutilisées
+
+Utilisez les filtres pour restreindre la liste aux tables les plus susceptibles d'offrir des possibilités de récupération.
+
+.Étapes
+. Sélectionnez *Ajouter un filtre*, puis sélectionnez *Heure de découverte*.
+. Définissez la plage pour faire apparaître les tables présentes sur plusieurs cycles d’analyse, par exemple les tables découvertes pour la première fois il y a plus d’un an.
+. Pour affiner davantage, sélectionnez à nouveau *Ajouter un filtre* et filtrez par serveur de base de données ou par schéma afin de vous concentrer sur un système spécifique.
++
+Les filtres appliqués apparaissent sous forme d'étiquettes sous la barre de filtres. Les résultats se mettent à jour à mesure que vous ajoutez chaque filtre.
+
+
+
+Pour obtenir la liste complète des filtres disponibles, reportez-vous à link:use-filters.html["Utiliser les filtres"].
+
+
+
+[[review-table-details]]
+== Examiner les détails du tableau
+
+Sélectionnez une ligne du tableau pour ouvrir le panneau de détails et déterminer si le tableau est candidat à la récupération.
+
+Le panneau de détails affiche le serveur de base de données, le schéma, les dimensions de la table, sa taille et la date de sa découverte. Ces informations permettent de déterminer si la table a évolué depuis sa découverte ou si elle est restée inchangée.
+
+
+NOTE: Avant toute intervention sur les tables de base de données, veuillez vous coordonner avec le propriétaire de base de données afin de confirmer que la table n'est plus nécessaire.
+
+
+
+[[save-findings-as-a-policy]]
+== Enregistrer les résultats en tant que stratégie
+
+Après avoir appliqué des filtres permettant d'identifier les tables d'intérêt, enregistrez les critères pour un suivi continu.
+
+.Étapes
+. Sélectionnez *Créer une politique* dans la barre d'outils de filtre.
+. Remplissez le formulaire de police d'assurance. Reportez-vous à link:../policies/create-policy.html["Créer une stratégie"].
+
+
+Pour télécharger les résultats filtrés depuis l’onglet Structured, sélectionnez image:icon_download_file.png["Télécharger"].
+
+
+
+[[related-information]]
+== Informations connexes
+
+* link:use-filters.html["Utiliser les filtres"]
+* link:../policies/create-policy.html["Créer une stratégie"]
+* link:../data-sources/connect-data-source.html["Connectez une source de données"]
+* link:understand-dashboard.html["Évaluer l'utilisation du stockage depuis le tableau de bord"]
+

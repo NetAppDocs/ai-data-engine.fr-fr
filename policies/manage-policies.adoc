@@ -1,0 +1,71 @@
+---
+sidebar: sidebar 
+permalink: policies/manage-policies.html 
+keywords: manage policies, edit policy, enable policy, disable policy, delete policy 
+summary: 'Examinez vos politiques enregistrées pour voir quels fichiers correspondent actuellement à chaque ensemble de critères et supprimez les politiques dont vous n"avez plus besoin.' 
+---
+= Gérer les stratégies dans AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Pour vérifier lesquelles de vos stratégies enregistrées correspondent à des données, comparer le nombre de fichiers concernés afin de prioriser les actions ou supprimer les stratégies dont vous n’avez plus besoin, utilisez la page Stratégies. Par exemple, un administrateur de stockage disposant de plusieurs stratégies de données froides peut comparer le nombre de fichiers concernés pour déterminer quels groupes de données nécessitent une attention prioritaire.
+
+Chaque liste de règles affiche le nombre de fichiers et d'objets correspondant actuellement à ses critères. Utilisez ce nombre pour identifier les règles qui capturent activement des données qui méritent d'être examinées.
+
+
+
+[[check-which-files-match-a-policy]]
+== Vérifiez quels fichiers correspondent à une politique
+
+Avant de modifier ou de supprimer une politique, vérifiez les fichiers auxquels elle correspond actuellement afin de confirmer que les critères permettent toujours de capturer les bonnes données.
+
+.Étapes
+. Dans l’interface utilisateur de AI Data Engine, sélectionnez *Policies*.
+. Ouvrez le menu d’actions situé à côté de la stratégie et sélectionnez *Investigate results*.
+
+
+
+
+[[edit-a-policy]]
+== Modifier une stratégie
+
+.Avant de commencer
+* Vous devez posséder le rôle d’administrateur d’AI Data Engine.
+
+
+.Étapes
+. Dans l’interface utilisateur de AI Data Engine, sélectionnez *Policies*.
+. Ouvrez le menu d'actions de la stratégie que vous souhaitez modifier et sélectionnez *Modifier la stratégie*.
+. Mettez à jour le nom, la description ou l'action de la stratégie selon les besoins.
+. Sélectionnez *Enregistrer*.
+
+
+
+
+[[delete-a-policy]]
+== Supprimer une stratégie
+
+.Avant de commencer
+* Vous devez posséder le rôle d’administrateur d’AI Data Engine.
+
+
+
+CAUTION: La suppression est définitive et ne peut pas être annulée.
+
+.Étapes
+. Dans l’interface utilisateur de AI Data Engine, sélectionnez *Policies*.
+. Ouvrez le menu d'actions de la politique que vous souhaitez supprimer et sélectionnez *Supprimer la politique*.
+. Confirmez la suppression dans la boîte de dialogue d'aperçu.
+
+
+
+
+[[related-information]]
+== Informations connexes
+
+* link:create-policy.html["Créer une stratégie"]
+* link:../investigate/take-actions.html["Agissez sur vos données"]
+

@@ -1,0 +1,48 @@
+---
+sidebar: sidebar 
+permalink: release-notes/known-limitations.html 
+keywords: known limitations, limitations, restrictions, AI Data Engine 
+summary: 'Les limitations connues identifient les fonctionnalités qui ne sont pas prises en charge dans cette version d"AI Data Engine.' 
+---
+= Limitations connues d’AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les limitations connues identifient les fonctionnalités qui ne sont pas prises en charge dans cette version de AI Data Engine, ou les fonctionnalités qui ne s'interopèrent pas correctement. Veuillez consulter ces limitations avant de déployer ou d'utiliser le produit.
+
+
+
+[[deployment]]
+== Déploiement
+
+Les déploiements Lite et Enterprise sont indépendants:: AIDE Lite et AIDE Enterprise sont des modes de déploiement distincts. Il n'existe aucune procédure de migration prise en charge pour déplacer un déploiement existant d'un mode à l'autre.
+
+
+
+
+[[policies-and-actions]]
+== Politiques et actions
+
+Les actions déclenchées par les politiques sont limitées:: Lors de la création d'une stratégie, les actions automatisées disponibles se limitent à la suppression définitive et à la notification par e-mail. Les actions automatisées d'archivage et d'étiquetage provenant des stratégies ne sont pas disponibles dans cette version. Vous pouvez créer une stratégie sans action pour surveiller l'état des données au fil du temps.
+
+
+
+
+[[tags]]
+== Étiquettes
+
+Les étiquettes ne peuvent pas être supprimées ni renommées:: La gestion des étiquettes n'est pas disponible dans cette version. Après avoir créé une étiquette, elle reste disponible dans le système. Vous pouvez appliquer une étiquette à des éléments et la supprimer de ces éléments, mais vous ne pouvez pas supprimer la définition de l'étiquette elle-même ni corriger un nom d'étiquette contenant une faute de frappe.
+
+
+
+
+[[related-information]]
+== Informations connexes
+
+* link:whats-new.html["Quoi de neuf"]
+* link:../deploy/deployment-overview.html["Aperçu du déploiement"]
+* link:../investigate/take-actions.html["Agissez sur vos données"]
+

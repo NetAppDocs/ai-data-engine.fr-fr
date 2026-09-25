@@ -1,0 +1,8 @@
+---
+section: administer
+title: Administrer
+entries:
+- title: Gérer les utilisateurs et les rôles
+  url: "/administer/manage-users-roles.html"
+- title: Configurer les seuils de données
+  url: "/administer/configure-settings.html"

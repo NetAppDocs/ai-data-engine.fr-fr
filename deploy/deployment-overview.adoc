@@ -1,0 +1,69 @@
+---
+sidebar: sidebar 
+permalink: deploy/deployment-overview.html 
+keywords: deployment, aide lite, aide enterprise, kubernetes, vm, deployment modes, sizing 
+summary: Déployez AI Data Engine en tant qu’AIDE Lite, ou en tant qu’AIDE Enterprise si votre environnement nécessite une haute disponibilité basée sur Kubernetes. 
+---
+= Découvrez le déploiement de AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Déployez AI Data Engine en tant qu’AIDE Lite, une installation sur une seule machine virtuelle. Si votre environnement nécessite une haute disponibilité à grande échelle basée sur Kubernetes, vous pouvez déployer AIDE Enterprise à la place.
+
+
+
+[[aide-lite]]
+== AIDE Lite
+
+AIDE Lite s'installe sur une seule machine virtuelle Linux. Vous n'avez pas besoin d'une expertise Kubernetes, car le programme d'installation provisionne automatiquement k3s.
+
+AIDE Lite est disponible en trois tailles — Small, Medium et Large — pour des environnements allant jusqu'à environ 200 millions, 1 milliard et 3 milliards de fichiers, respectivement. Pour connaître la configuration complète requise pour les VM et le système d'exploitation, reportez-vous à link:aide-requirements.html["exigences AIDE"]. Ces tailles sont des bases de référence recommandées, et non des limites strictes ; consultez link:aide-requirements.html#flexible-sizing-lite["directives de dimensionnement flexibles"] pour savoir ce qui détermine le dimensionnement et comment aller plus loin dans la mise à l'échelle.
+
+
+
+[[aide-enterprise]]
+== AIDE Enterprise
+
+Déployez AIDE Enterprise si votre environnement exige une haute disponibilité, une tolérance aux pannes, des mises à niveau progressives ou une mise à l'échelle horizontale au-delà de la plus grande taille d'AIDE Lite. AIDE Enterprise se déploie sous la forme d'un cluster Kubernetes multi-nœuds sur un cluster RKE2 provisionné et géré par le client.
+
+AIDE Enterprise est disponible en trois tailles — Small, Medium et Large — pour des environnements allant jusqu'à environ 1 milliard, 3 milliards et 6 milliards de fichiers respectivement. Pour connaître le dimensionnement complet des nœuds et les exigences du cluster, reportez-vous à link:aide-requirements.html["exigences AIDE"]. Ces tailles constituent des références recommandées, et non des limites strictes : les environnements dépassant 6 milliards de fichiers sont pris en charge grâce à une mise à l'échelle horizontale. Consultez link:aide-requirements.html#flexible-sizing-enterprise["directives de dimensionnement flexibles"] pour plus de détails.
+
+
+
+[[deployment-process]]
+== Processus de déploiement
+
+NetApp Console ne provisionne pas l'infrastructure pour AI Data Engine. Vous préparez une machine ou un cluster Linux répondant aux exigences, puis copiez la commande d'installation prégénérée depuis NetApp Console et l'exécutez sur l'hôte cible. La commande initialise l'environnement d'exécution et déploie automatiquement la pile AI Data Engine. Lors de l'installation, le programme d'installation vous invite à confirmer l'adresse IP de l'hôte cible et l'identifiant utilisateur avant que l'installation ne se poursuive.
+
+L’installation d’AIDE Lite prend généralement 45 minutes. L’installation d’AIDE Enterprise prend généralement 30 minutes. Le programme d’installation intègre des délais d’attente et des tentatives de nouvelle tentative pour gérer les problèmes temporaires lors du démarrage des composants.
+
+
+
+[[deployment-mode-reference]]
+== Référence du mode de déploiement
+
+[cols="1h,2,2"]
+|===
+|  | AIDE Lite | AIDE Enterprise 
+
+
+| Modèle de déploiement | Machine virtuelle Linux unique | Cluster Kubernetes à plusieurs nœuds (RKE2 fourni par le client) 
+
+
+| Taux d’analyse | 50 millions à 1 milliard de fichiers/jour, selon leur taille | De 250 millions à 2 milliards de fichiers/jour, varie selon la taille 
+
+
+| Nombre maximal de fichiers (grande taille) | Environ 3 milliards | Environ 6 milliards 
+|===
+
+
+[[related-information]]
+== Informations connexes
+
+* link:aide-requirements.html["exigences AIDE"]
+* link:deploy-aide-lite.html["Déployer AI Data Engine — Lite"]
+* link:deploy-enterprise.html["Déployer AI Data Engine — Enterprise"]
+

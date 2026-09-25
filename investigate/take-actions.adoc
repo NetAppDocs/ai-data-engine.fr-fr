@@ -1,0 +1,162 @@
+---
+sidebar: sidebar 
+permalink: investigate/take-actions.html 
+keywords: actions, tag, archive, delete, data lifecycle, storage optimization, breadcrumb 
+summary: 'Agissez sur les fichiers que vous avez identifiés comme froids, anciens ou obsolètes en les archivant, en les étiquetant pour le suivi ou en supprimant définitivement ceux dont vous n"avez plus besoin.' 
+---
+= Exploitez vos données dans AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Après avoir identifié les fichiers à l'aide des filtres que vous avez définis, vous pouvez prendre des mesures directes pour appliquer les politiques de cycle de vie des données de votre organisation. Par exemple, un administrateur de stockage qui filtre pour trouver des téraoctets de snapshots de machines virtuelles auxquels aucun accès n'a eu lieu depuis plus d'un an peut les archiver en masse sur un partage de stockage à froid ou les supprimer, selon les exigences de conservation et les politiques de l'entreprise.
+
+.À propos de cette tâche
+Pour agir, sélectionnez un ou plusieurs éléments dans le tableau des résultats de l’enquête à l’aide des cases à cocher. La barre d’outils d’actions s’active alors avec quatre options : *Supprimer*, *Archiver*, *Copier* et *Étiqueter*.
+
+Les actions dont vous disposez dépendent du rôle qui vous est attribué :
+
+[cols="2,1,1"]
+|===
+| Action | Administrateur AI Data Engine | Visionneuse AI Data Engine 
+
+
+| Balise | Oui | Oui 
+
+
+| Archive | Oui | - 
+
+
+| Copier | Oui | - 
+
+
+| Supprimer | Oui | - 
+|===
+Pour une description complète des rôles, reportez-vous à link:../administer/manage-users-roles.html["Gérer les utilisateurs et les rôles"].
+
+
+
+[[decide-what-to-do]]
+== Décidez quoi faire
+
+Choisissez une action en fonction de votre degré de certitude concernant les données :
+
+[cols="1,2"]
+|===
+| Action | Quand l’utiliser 
+
+
+| Balise | Vous avez besoin de plus de temps, ou de vous coordonner avec une autre équipe, avant de procéder à l'archivage ou à la suppression. Le système d'étiquetage permet de suivre les fichiers sans en modifier l'emplacement. 
+
+
+| Archive | Ces données peuvent encore avoir de la valeur, mais elles n'ont pas leur place dans le stockage principal. L'archivage les déplace vers une destination moins coûteuse tout en les gardant récupérables. 
+
+
+| Copier | Les données doivent exister dans un second emplacement, par exemple à des fins de sauvegarde ou de migration. La copie préserve l’original sur place. 
+
+
+| Supprimer | Ces données ne sont plus nécessaires et ne sont soumises à aucune obligation de conservation. La suppression est définitive, utilisez donc cette option uniquement si vous en êtes sûr. 
+|===
+Lorsque des données peuvent encore avoir de la valeur ou nécessiter un examen plus approfondi, privilégiez l'étiquetage, l'archivage ou la copie plutôt que la suppression. Ne supprimez les données que lorsque vous êtes absolument certain qu'elles peuvent être effacées définitivement sans risque.
+
+
+
+[[archive-files]]
+== Fichiers d'archive
+
+L'archivage déplace les fichiers vers une destination de stockage à froid via NFS ou SMB/CIFS. Vous pouvez, si vous le souhaitez, laisser un fichier de suivi à l'emplacement d'origine.
+
+.Avant de commencer
+* Vous devez posséder le rôle d’administrateur d’AI Data Engine.
+
+
+.Étapes
+. Dans la vue Investigation, sélectionnez les fichiers que vous souhaitez archiver.
+. Sélectionnez *Archive*.
+. Dans la boîte de dialogue Archiver, sélectionnez le protocole du volume de destination :
++
+** *NFS* : saisissez le chemin du dossier de destination NFS.
+** *CIFS* : saisissez le chemin du dossier de destination CIFS au format  `\\Hostname\share_name`. Fournissez les informations d’identification Active Directory : saisissez le nom d’utilisateur au format  `domain\user` ou  `user@domain`, puis saisissez le mot de passe.
+
+
+. Pour créer un fichier de fil d'Ariane à l'emplacement d'origine, activez *Leave breadcrumb*.
++
+Un fichier de fil d'Ariane aide les utilisateurs à comprendre pourquoi un fichier a été déplacé.
+
+. Sélectionnez *Archive*.
+
+
+
+
+[[copy-files]]
+== Copier les fichiers
+
+Copie des fichiers en double vers un volume de destination sans les supprimer de leur emplacement d'origine.
+
+.Avant de commencer
+* Vous devez posséder le rôle d’administrateur d’AI Data Engine.
+
+
+.Étapes
+. Dans la vue Investigation, sélectionnez les fichiers que vous souhaitez copier.
+. Sélectionnez *Copier*.
+. Dans la boîte de dialogue Copier, sélectionnez le protocole du volume de destination :
++
+** *NFS* : saisissez le chemin du dossier de destination NFS.
+** *CIFS* : saisissez le chemin du dossier de destination CIFS au format  `\\Hostname\share_name`. Fournissez les informations d’identification Active Directory : saisissez le nom d’utilisateur au format  `domain\user` ou  `user@domain`, puis saisissez le mot de passe.
+
+
+. Sélectionnez *Copier*.
+
+
+
+
+[[delete-files]]
+== Supprimer les fichiers
+
+La suppression supprime définitivement les fichiers du stockage et ne peut pas être annulée.
+
+
+CAUTION: La suppression est définitive et ne peut pas être annulée. Cette action supprime les fichiers sources même s'ils contiennent des données actives.
+
+.Avant de commencer
+* Vous devez posséder le rôle d’administrateur d’AI Data Engine.
+
+
+.Étapes
+. Dans la vue Investigation, sélectionnez les fichiers que vous souhaitez supprimer.
+. Sélectionnez *Delete*.
+. Dans la boîte de dialogue Supprimer, tapez *permanently delete* dans le champ de confirmation.
+. Sélectionnez *Delete*.
+
+
+.Résultat
+Les fichiers sélectionnés sont définitivement supprimés du stockage.
+
+
+
+[[tag-files]]
+== Fichiers de balises
+
+Le balisage consiste à attribuer une étiquette métier aux fichiers à des fins de classification et de suivi.
+
+.Étapes
+. Dans la vue Investigation, sélectionnez les fichiers que vous souhaitez marquer.
+. Sélectionnez *Tag*.
+. Saisissez ou sélectionnez les étiquettes à appliquer (par exemple, « Candidat à l'archivage »).
+. Confirmez pour appliquer les balises.
+
+
+
+
+[[related-information]]
+== Informations connexes
+
+* link:investigate-data.html["Analysez vos données"]
+* link:investigate-unstructured.html["Analysez les données non structurées"]
+* link:use-filters.html["Utiliser les filtres"]
+* link:../policies/create-policy.html["Créer une stratégie"]
+* link:../administer/manage-users-roles.html["Gérer les utilisateurs et les rôles"]
+

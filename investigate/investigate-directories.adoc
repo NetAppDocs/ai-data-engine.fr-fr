@@ -1,0 +1,76 @@
+---
+sidebar: sidebar 
+permalink: investigate/investigate-directories.html 
+keywords: investigate, directories, permissions, org-wide access, open access, directory owner, overly permissive, exposed directories 
+summary: Auditez les autorisations au niveau des répertoires sur l’ensemble de vos systèmes de stockage afin de trouver les chemins largement accessibles, de vérifier qui y a accès et d’enregistrer les résultats sous forme de politique réutilisable. 
+---
+= Examiner les répertoires dans AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Lorsque vous devez identifier les répertoires exposés à un plus grand nombre d’utilisateurs que prévu, filtrez par autorisations afin de trouver les dossiers ouverts à l’ensemble de l’organisation. Par exemple, un administrateur de sécurité qui voit des répertoires exposés signalés sur le tableau de bord peut trouver tous les répertoires avec un accès à l’échelle de l’organisation, vérifier qui détient les autorisations de lecture et d’écriture, et créer une politique pour surveiller les nouvelles expositions après chaque analyse.
+
+.Avant de commencer
+* Au moins une source de données doit être connectée et en cours d'analyse. Reportez-vous à link:../data-sources/connect-data-source.html["Connectez une source de données"].
+
+
+
+
+[[find-broadly-accessible-directories]]
+== Trouver des répertoires largement accessibles
+
+Utilisez des filtres d’autorisation pour identifier les répertoires ouverts au-delà du public visé.
+
+.Étapes
+. Dans l’interface utilisateur de AI Data Engine, sélectionnez *Investigation*.
+. Sélectionnez l'onglet *Répertoires*.
++
+Le tableau affiche le nom du répertoire (chemin complet), le container de données, le propriétaire du répertoire, le type de répertoire et le système.
+
+. Sélectionnez *Ajouter un filtre*, puis sélectionnez *Ouvrir les autorisations*.
+. Définissez le filtre sur *Open to organization* pour afficher les répertoires accessibles à l’échelle de l’organisation.
++
+Le tableau des résultats se met à jour pour afficher les répertoires correspondant aux critères d'autorisation, y compris la date du dernier accès et le statut des autorisations.
+
+
+
+Pour obtenir la liste complète des filtres disponibles, reportez-vous à link:use-filters.html["Utiliser les filtres"].
+
+
+
+[[review-directory-permissions]]
+== Vérifier les autorisations du répertoire
+
+Sélectionnez une ligne de répertoire pour ouvrir le panneau de détails et consulter qui y a accès.
+
+Le panneau de détails affiche le type de répertoire, le système, le propriétaire du répertoire et un résumé des autorisations (par exemple, « Ouvert à l'organisation »). Sélectionnez *Afficher les autorisations* pour consulter le détail des droits de lecture et d'écriture de chaque utilisateur ou groupe ayant accès au répertoire.
+
+Utilisez ces informations pour confirmer si le niveau d'accès est intentionnel avant de créer une politique ou de signaler le problème au propriétaire du répertoire.
+
+
+
+[[save-findings-as-a-policy]]
+== Enregistrer les résultats en tant que stratégie
+
+Après avoir filtré pour identifier les répertoires largement accessibles, enregistrez les critères en tant que politique afin de surveiller les nouvelles expositions après chaque cycle d'analyse.
+
+.Étapes
+. Une fois vos filtres d'autorisation appliqués, sélectionnez *Créer une stratégie* dans la barre d'outils des filtres.
+. Remplissez le formulaire de police d'assurance. Reportez-vous à link:../policies/create-policy.html["Créer une stratégie"].
+
+
+Pour télécharger les résultats filtrés depuis l’onglet Répertoires, sélectionnez image:icon_download_file.png["Télécharger"].
+
+
+
+[[related-information]]
+== Informations connexes
+
+* link:use-filters.html["Utiliser les filtres"]
+* link:../policies/create-policy.html["Créer une stratégie"]
+* link:../administer/manage-users-roles.html["Gérer les utilisateurs et les rôles"]
+* link:understand-dashboard.html["Évaluer l'utilisation du stockage depuis le tableau de bord"]
+

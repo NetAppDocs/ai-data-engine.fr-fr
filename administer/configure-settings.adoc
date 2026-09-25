@@ -1,0 +1,74 @@
+---
+sidebar: sidebar 
+permalink: administer/configure-settings.html 
+keywords: cold threshold, stale threshold, configuration, settings, data classification, cold data, stale data 
+summary: Configurez les seuils temporels qu’AI Data Engine utilise pour classer les données comme froides ou obsolètes dans votre environnement. 
+---
+= Configurez les seuils de données froides et obsolètes dans AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+AI Data Engine classe les fichiers comme « froids » ou « obsolètes » selon les seuils temporels que vous définissez. Ces seuils déterminent quelles données apparaissent dans les résumés du tableau de bord, quels fichiers apparaissent lorsque vous appliquez des filtres « froids » ou « obsolètes » dans Investigation, et quels fichiers les stratégies ciblent. Définissez des seuils qui correspondent aux pratiques de classification et de conservation des données de votre organisation et qui vous aident à identifier les données que vous jugez importantes à surveiller.
+
+
+
+[[what-is-cold-and-stale-data]]
+== Que sont les données froides et obsolètes?
+
+Données froides:: Fichiers auxquels aucun accès n'a eu lieu dans le délai défini par le seuil de données froides configuré. Les données froides constituent un indicateur clé que votre organisation peut utiliser pour identifier les espaces de stockage qui pourraient être optimisés conformément à vos politiques de conservation et à vos procédures métier.
+Données obsolètes:: Les fichiers qui n'ont pas été consultés ni modifiés dans le délai de péremption des données configuré. Les données obsolètes comprennent les fichiers consultés occasionnellement mais non modifiés récemment, que votre organisation peut surveiller ou gérer conformément à ses politiques.
+
+
+
+NOTE: Les valeurs seuils par défaut sont des valeurs par défaut du produit fournies comme point de départ. Elles ne représentent pas des périodes de conservation légales, de conformité ou conformes aux normes du secteur. Définissez des seuils qui reflètent les politiques et exigences spécifiques de votre organisation.
+
+Les modifications apportées à l'un ou l'autre seuil prennent effet après la fin du prochain cycle d'analyse.
+
+
+
+[[configure-the-cold-data-threshold]]
+== Configurer le seuil des données inactives
+
+.Avant de commencer
+* Vous devez posséder le rôle d’administrateur d’AI Data Engine.
+
+
+.Étapes
+. Dans l’interface utilisateur de AI Data Engine, sélectionnez *Configuration*.
+. Sélectionnez *Paramètres*.
+. Sélectionnez *Modifier* pour *Définition des données froides*.
+. Définissez la propriété du fichier sur *Dernier accès* ou *Dernière modification*.
+. Définissez le seuil temporel. La valeur par défaut est d'un an.
+. Sélectionnez *Enregistrer*.
+
+
+
+
+[[configure-the-stale-data-threshold]]
+== Configurer le seuil des données obsolètes
+
+.Avant de commencer
+* Vous devez posséder le rôle d’administrateur d’AI Data Engine.
+
+
+.Étapes
+. Dans l’interface utilisateur de AI Data Engine, sélectionnez *Configuration*.
+. Sélectionnez *Paramètres*.
+. Sélectionnez *Modifier* pour *Stale data definition*.
+. Définissez la propriété du fichier sur *Dernier accès* ou *Dernière modification*.
+. Définissez le seuil temporel. La valeur par défaut est de trois ans.
+. Sélectionnez *Enregistrer*.
+
+
+
+
+[[related-information]]
+== Informations connexes
+
+* link:../investigate/understand-dashboard.html["Découvrez le tableau de bord AI Data Engine"]
+* link:../get-started/storage-optimization-workflows.html["Explorez les flux de travail d’optimisation du stockage"]
+* link:manage-users-roles.html["Gérer les utilisateurs et les rôles"]
+

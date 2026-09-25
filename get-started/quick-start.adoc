@@ -1,0 +1,34 @@
+---
+sidebar: sidebar 
+permalink: get-started/quick-start.html 
+keywords: quick start, deploy, connect, investigate, policies 
+summary: Mettez AI Data Engine en service en déployant le service, en connectant vos systèmes de stockage et en lançant votre première investigation. 
+---
+= Démarrage rapide pour AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Mettez AI Data Engine en service en déployant le service, en connectant vos systèmes de stockage et en lançant votre première investigation.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Un"] Exigences de révision
+[role="quick-margin-para"]
+Examinez les link:../deploy/aide-requirements.html["exigences AIDE"] et link:../deploy/deployment-overview.html["Découvrez les modes de déploiement"] pour déterminer s'il convient d'installer AIDE Lite ou AIDE Enterprise.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Deux"] Déployer AI Data Engine
+[role="quick-margin-para"]
+Déployez link:../deploy/deploy-aide-lite.html["AIDE Lite"] ou link:../deploy/deploy-enterprise.html["AIDE Enterprise"] depuis NetApp Console. La page de configuration vous guide dans le choix de l'emplacement d'installation et de la taille de configuration, puis dans l'exécution de la commande d'installation.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Trois"] Connectez une source de données
+[role="quick-margin-para"]
+link:../data-sources/connect-data-source.html["Connectez une source de données"] pour commencer l’analyse. AI Data Engine catalogue les métadonnées du système de fichiers des systèmes de stockage que vous spécifiez.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["Quatre"] Explorez vos données
+[role="quick-margin-para"]
+Ouvrez le link:../investigate/understand-dashboard.html["tableau de bord"] pour consulter des informations sur l'optimisation du stockage, ou accédez à link:../investigate/investigate-data.html["Enquête"] pour rechercher et filtrer directement vos métadonnées.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["Cinq"] Créer une stratégie
+[role="quick-margin-para"]
+link:../policies/create-policy.html["Enregistrez vos filtres d'enquête en tant que stratégie"] pour surveiller les fichiers correspondant aux mêmes critères au fil du temps. Vous pouvez configurer une stratégie permettant d'envoyer une notification, de supprimer définitivement les fichiers correspondants ou de suivre les résultats.

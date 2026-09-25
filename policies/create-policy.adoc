@@ -1,0 +1,100 @@
+---
+sidebar: sidebar 
+permalink: policies/create-policy.html 
+keywords: create policy, save query, policy, filters, actions, automation 
+summary: Enregistrez les critères de filtre de l’investigation en tant que politique nommée afin de pouvoir suivre le même regroupement de données au fil du temps et être averti lorsque les conditions changent. 
+---
+= Créer une stratégie dans AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Créez une stratégie lorsque vous souhaitez surveiller une condition récurrente des données sans répéter manuellement la même investigation. Par exemple, un responsable de la gouvernance des données peut enregistrer une stratégie « fichiers obsolètes volumineux » pour suivre ce regroupement au fil des cycles d’analyse et recevoir une mise à jour par e-mail lorsque le nombre de fichiers affectés change.
+
+
+
+[[about-policies]]
+== À propos des stratégies
+
+Les politiques enregistrent les critères de filtrage que vous définissez dans Investigation sous forme de règle réutilisable. AI Data Engine évalue chaque politique par rapport au catalogue de métadonnées après chaque cycle d'analyse. Vous pouvez ouvrir une politique à tout moment pour consulter l'ensemble actuel des résultats correspondants. Si vous associez une action Delete, AI Data Engine supprime les fichiers correspondants après chaque cycle d'analyse. Si vous associez une notification par e-mail, AI Data Engine envoie une mise à jour lorsque le nombre de fichiers concernés change.
+
+
+
+[[choose-a-policy-action]]
+== Choisissez une action de stratégie
+
+Une politique est un ensemble de filtres enregistrés avec une action facultative associée :
+
+* *Surveillance uniquement (aucune action)* : Suivez l’évolution du regroupement correspondant dans le temps sans intervenir. Utilisez cette option lorsque vous souhaitez une visibilité sans vous engager dans une réponse automatisée.
+* *Envoyer une notification par e-mail* : avertissez un utilisateur par e-mail lorsque le nombre de fichiers correspondants change.
+* *Suppression définitive* : supprime définitivement et automatiquement tous les fichiers correspondants après chaque cycle d’analyse, sans confirmation supplémentaire. Cette action est irréversible. Assurez-vous que vos critères de filtrage sont précis et que vous êtes autorisé à supprimer les fichiers identifiés avant d’associer cette action.
+
+
+
+
+[[create-a-policy-from-investigation]]
+== Créer une politique à partir d’une enquête
+
+.Avant de commencer
+* Pour associer une action de suppression ou de notification par e-mail, vous devez disposer du rôle d’administrateur d’AI Data Engine. Le rôle de lecteur d’AI Data Engine permet de créer uniquement des stratégies de surveillance.
+
+
+.Étapes
+. Dans NetApp Console, accédez à *gouvernance des données* > *AI Data Engine* > *Investigation*.
+. Appliquez un ou plusieurs filtres permettant d'identifier les fichiers que vous souhaitez cibler avec cette stratégie.
++
+Par exemple : *Type de fichier* = .vmdk ET *Dernière date d’accès* > 365 jours.
+
++
+Examinez le tableau des résultats pour confirmer que l’ensemble de filtres capture bien le regroupement de données souhaité.
+
+. Dans la barre d'actions du filtre, sélectionnez *Créer une stratégie*.
+. Saisissez un *nom de politique*.
+. Vous pouvez également saisir une *Description* (jusqu'à 500 caractères).
+. Vérifiez l'expression des critères de filtre (par exemple, `last_access_time <= 3 Years AND file_size >= 5GiB`) pour confirmer qu'elle reflète vos sélections.
+. Pour associer une action, sélectionnez l'une des options suivantes sous *Action* :
++
+** *Surveillance uniquement (aucune action)* (par défaut) : La stratégie est enregistrée comme une condition de surveillance uniquement.
+** *Envoyer une notification par courriel* : envoie une notification par courriel au destinataire que vous spécifiez.
+** *Supprimer définitivement* : aucune saisie supplémentaire n’est requise.
++
+
+CAUTION: L'action « Supprimer définitivement » supprime automatiquement et irréversiblement tous les fichiers correspondant à cette politique après chaque cycle d'analyse. Vérifiez vos critères de filtrage et assurez-vous d'être autorisé à supprimer ces fichiers avant d'enregistrer.
+
+
+
+. Sélectionnez *Créer*.
+
+
+.Résultat
+La politique est enregistrée et s'affiche sur la page link:manage-policies.html["Politiques"]. Si vous avez associé une action, AI Data Engine l'applique aux fichiers correspondant aux critères de la politique.
+
+
+
+[[example-identify-cold-archive-files]]
+== Exemple : identifier les fichiers d’archive à froid
+
+L'exemple suivant crée une stratégie pour envoyer une notification par e-mail lorsque des fichiers auxquels aucun accès n'a été effectué depuis plus d'un an sont détectés.
+
+. Dans Investigation, appliquez ces filtres :
++
+** *Heure du dernier accès* > 365 jours
+
+
+. Sélectionnez *Créer une politique*.
+. Saisissez le nom de la stratégie : *Cold Files — Unaccessed 1 Year*.
+. Sélectionnez l'action *Envoyer une notification par e-mail* et saisissez l'adresse e-mail du destinataire.
+. Sélectionnez *Créer*.
+
+
+
+
+[[related-information]]
+== Informations connexes
+
+* link:manage-policies.html["Gérer les stratégies"]
+* link:../investigate/take-actions.html["Agissez sur vos données"]
+* link:../investigate/investigate-data.html["Analysez vos données"]
+

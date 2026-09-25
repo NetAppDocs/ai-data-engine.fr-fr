@@ -1,0 +1,62 @@
+---
+indexpage:
+  title: Documentation AI Data Engine
+  summary: La documentation d'AI Data Engine explique comment déployer, connecter
+    des sources de données et utiliser AI Data Engine pour l'optimisation du stockage,
+    l'analyse des métadonnées et la gouvernance des données.
+  keywords: ai data engine, aide, storage optimization, investigation, policies, data
+    governance, NetApp Console
+  lead: AI Data Engine vous offre une visibilité sur les données non structurées stockées
+    sur vos systèmes NetApp. Utilisez-le pour identifier les opportunités d'optimisation
+    du stockage, analyser vos données et appliquer des politiques de cycle de vie.
+  tiles:
+  - title: Commencer
+    links:
+    - title: Découvrez AI Data Engine
+      url: "/get-started/learn-about.html"
+    - title: Architecture de l'AI Data Engine
+      url: "/get-started/architecture.html"
+    - title: Démarrage rapide
+      url: "/get-started/quick-start.html"
+    - title: Explorez les flux de travail d’optimisation du stockage
+      url: "/get-started/storage-optimization-workflows.html"
+  - title: Déployer
+    links:
+    - title: Aperçu du déploiement
+      url: "/deploy/deployment-overview.html"
+    - title: exigences AIDE
+      url: "/deploy/aide-requirements.html"
+    - title: Déployer AIDE Lite
+      url: "/deploy/deploy-aide-lite.html"
+    - title: Déployer AIDE Enterprise
+      url: "/deploy/deploy-enterprise.html"
+  - title: Explorez vos données
+    links:
+    - title: Connectez une source de données
+      url: "/data-sources/connect-data-source.html"
+    - title: Gérer les sources de données
+      url: "/data-sources/manage-data-sources.html"
+    - title: Évaluer l'utilisation du stockage depuis le tableau de bord
+      url: "/investigate/understand-dashboard.html"
+    - title: Analysez vos données
+      url: "/investigate/investigate-data.html"
+    - title: Utilisez les filtres
+      url: "/investigate/use-filters.html"
+    - title: Effectuer des actions sur les données
+      url: "/investigate/take-actions.html"
+  - title: Politiques et actions
+    links:
+    - title: Créer une stratégie
+      url: "/policies/create-policy.html"
+    - title: Gérer les stratégies
+      url: "/policies/manage-policies.html"
+  - title: Administrer
+    links:
+    - title: Gérer les utilisateurs et les rôles
+      url: "/administer/manage-users-roles.html"
+    - title: Configurer les seuils de données
+      url: "/administer/configure-settings.html"
+    - title: Quoi de neuf
+      url: "/release-notes/whats-new.html"
+    - title: Limitations connues
+      url: "/release-notes/known-limitations.html"

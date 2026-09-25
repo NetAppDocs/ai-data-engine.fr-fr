@@ -1,0 +1,12 @@
+---
+section: deploy
+title: Déployer
+entries:
+- title: Découvrez le déploiement d'AIDE
+  url: "/deploy/deployment-overview.html"
+- title: exigences AIDE
+  url: "/deploy/aide-requirements.html"
+- title: Déployer AIDE Lite
+  url: "/deploy/deploy-aide-lite.html"
+- title: Déployer AIDE Enterprise
+  url: "/deploy/deploy-enterprise.html"

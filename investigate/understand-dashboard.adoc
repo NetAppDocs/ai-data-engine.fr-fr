@@ -1,0 +1,69 @@
+---
+sidebar: sidebar 
+permalink: investigate/understand-dashboard.html 
+keywords: dashboard, overview, reclaimable storage, cold data, stale data, storage health, capacity risk, data owners, investigate 
+summary: 'Évaluez l"état du stockage dans votre environnement, identifiez où se concentre le stockage potentiellement récupérable et décidez quels systèmes ou propriétaires de données examiner en priorité.' 
+---
+= Évaluez l'état du stockage grâce au tableau de bord AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Avant de décider des éléments à examiner, il est essentiel de comprendre l'état de votre stockage. Quel volume de stockage atteint les seuils de classification « froid » et « obsolète » de votre organisation, et quels systèmes ou responsables détiennent le plus de données dans ces catégories ? Par exemple, un administrateur de stockage qui répond à une alerte de capacité peut constater qu'une grande partie du stockage analysé contient des données froides, puis examiner en détail le système ayant le plus d'impact afin de commencer immédiatement l'investigation.
+
+Dans NetApp Console, sélectionnez *Governance* > *AI Data Engine UI*. Le tableau de bord s'ouvre par défaut.
+
+
+
+[[understand-how-much-storage-is-affected]]
+== Comprendre dans quelle mesure le stockage est affecté
+
+Le panneau récapitulatif affiche l'ampleur du problème dans votre environnement analysé :
+
+* *Données froides* : stockage auquel vous n’avez pas accédé dans le délai défini pour les données froides (par défaut : un an). Votre organisation peut évaluer ces données conformément à ses politiques de conservation et de gouvernance.
+* *Données obsolètes* : stockage non consulté ni modifié dans le délai défini pour les données obsolètes (par défaut : trois ans). Les données obsolètes peuvent nécessiter un examen conformément aux politiques de cycle de vie des données de votre organisation avant de décider d’actions telles que l’archivage ou la suppression.
+* *Répertoires exposés* : Répertoires dont les paramètres d’accès sont trop permissifs. Ils représentent un risque de gouvernance indépendant de la consommation de stockage.
+* *Ressources de données* : nombre de volumes, de partages et de compartiments actuellement analysés.
+* *Nombre total de fichiers analysés* : Le nombre total de fichiers indexés dans toutes les ressources de données analysées.
+
+
+Les seuils froid et obsolète reflètent vos paramètres configurés et peuvent être modifiés dans *Configuration* > *Paramètres*. Les valeurs par défaut sont celles du produit et ne correspondent pas aux durées de conservation légales, de conformité ou aux normes du secteur. Reportez-vous à link:../administer/configure-settings.html["Configurer les seuils de données froides et obsolètes"].
+
+Le graphique « Stockage actif versus stockage récupérable » illustre la proportion de données actives par rapport aux données froides et obsolètes sur l’ensemble des ressources analysées. Une forte proportion de données froides, obsolètes ou dupliquées peut indiquer une importante opportunité d’optimisation du stockage.
+
+Les filtres *Système* et *Type de système* contrôlent la portée du tableau de bord. Si un système de stockage n'apparaît pas dans la liste des filtres, reportez-vous à link:../data-sources/connect-data-source.html["Connectez une source de données"].
+
+
+
+[[identify-storage-optimization-opportunities]]
+== Identifier les opportunités d'optimisation du stockage
+
+Utilisez le panneau de synthèse et le graphique pour identifier et hiérarchiser les opportunités d'optimisation du stockage :
+
+* Privilégiez les ressources présentant le plus grand potentiel de récupération plutôt que celles ayant la plus grande taille totale. Un petit système contenant principalement des données inactives ou obsolètes pourrait constituer une meilleure première ressource à évaluer qu'un grand système majoritairement actif.
+* Recherchez de grandes concentrations de données froides ou obsolètes plutôt que des fichiers isolés. Des dizaines de téraoctets de données atteignant votre seuil d'obsolescence sur une seule ressource justifient une évaluation ; les fichiers isolés ne nécessitent peut-être pas d'intervention.
+
+
+
+
+[[move-from-the-dashboard-to-investigation]]
+== Passer du tableau de bord à l'investigation
+
+Lorsque vous avez identifié une ressource ou un propriétaire qui mérite d'être examiné, utilisez les tableaux situés en bas du tableau de bord pour accéder directement aux détails.
+
+Le tableau « Top data resources by reclaimable storage » répertorie vos ressources de stockage analysées, classées selon la proportion de données dupliquées ou qui atteignent les seuils de données froides et obsolètes définis par votre organisation. Sélectionnez une ligne pour ouvrir la vue Investigation filtrée sur cette ressource. À partir de là, utilisez l’onglet link:investigate-unstructured.html["Non structuré"] pour identifier les fichiers froids ou obsolètes, ou l’onglet link:investigate-directories.html["Répertoires"] pour auditer l’exposition des autorisations.
+
+Le tableau « Principaux propriétaires de données par stockage récupérable » indique quels propriétaires de données possèdent des données potentiellement récupérables. Sélectionnez une ligne pour ouvrir la vue link:investigate-unstructured.html["Enquête"] filtrée sur les fichiers de ce propriétaire. À partir de là, vous pouvez consulter les résultats, agir en conséquence ou les enregistrer en tant que stratégie.
+
+
+
+[[related-information]]
+== Informations connexes
+
+* link:investigate-data.html["Analysez vos données"]
+* link:investigate-unstructured.html["Analysez les données non structurées"]
+* link:../data-sources/connect-data-source.html["Connectez une source de données"]
+* link:../administer/configure-settings.html["Configurer les seuils de données froides et obsolètes"]
+

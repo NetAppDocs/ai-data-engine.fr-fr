@@ -1,0 +1,49 @@
+---
+sidebar: sidebar 
+permalink: data-sources/monitor-scanning-health.html 
+keywords: scan health, scanning, health monitor, coverage, migration 
+summary: Vérifiez que l’analyse fonctionne et que les résultats de votre enquête reflètent les données actuelles. 
+---
+= Surveiller l'état de l'analyse dans AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Avant d'agir en fonction d'un tableau de bord ou du résultat d'une investigation, assurez-vous que les données sous-jacentes sont à jour. Vérifiez que l'analyse fonctionne et que vos conclusions reflètent des données à jour.
+
+
+
+[[verify-scan-status-and-coverage]]
+== Vérifiez l'état et la couverture de l'analyse
+
+Vérifiez que tous vos systèmes de stockage sont connectés et en cours d'analyse.
+
+.Étapes
+. Dans l’interface utilisateur de AI Data Engine, sélectionnez *Configuration*.
+. Dans l’onglet *Systèmes analysés*, vérifiez que tous les systèmes de stockage que vous vous attendez à voir sont répertoriés et activés pour l’analyse.
+. Sélectionnez *Afficher les détails* dans une ligne système pour consulter la progression de l'analyse et les éventuelles erreurs. Reportez-vous à link:../data-sources/manage-data-sources.html["Gérer les sources de données"] pour plus d'informations.
+
+
+
+
+[[validate-that-investigation-findings-reflect-current-data]]
+== Vérifiez que les résultats de l’enquête reflètent les données actuelles
+
+Si le tableau de bord affiche une grande quantité de données froides ou obsolètes, vérifiez que les chiffres sont à jour avant de prendre des décisions sur cette base.
+
+* Vérifiez la date de la dernière analyse de chaque système de stockage contribuant à la conclusion. Un système qui n'a pas été analysé récemment peut sous-estimer ou surestimer les données froides et obsolètes.
+* Vérifiez que la couverture d'analyse est complète pour ce système. Une analyse partielle (en pause, en cours ou comportant des erreurs) signifie que certaines données n'ont pas encore été évaluées.
+* Attendez le prochain cycle d'analyse ou résolvez l'erreur sous-jacente si la couverture semble incomplète.
+
+
+
+
+[[related-information]]
+== Informations connexes
+
+* link:../data-sources/connect-data-source.html["Connectez une source de données"]
+* link:../investigate/understand-dashboard.html["Évaluer l'utilisation du stockage depuis le tableau de bord"]
+* link:../investigate/investigate-data.html["Analysez vos données"]
+

@@ -1,0 +1,8 @@
+---
+section: policies
+title: Gérer les politiques et les actions
+entries:
+- title: Créer une stratégie
+  url: "/policies/create-policy.html"
+- title: Gérer les stratégies
+  url: "/policies/manage-policies.html"

@@ -1,0 +1,89 @@
+---
+sidebar: sidebar 
+permalink: investigate/investigate-unstructured.html 
+keywords: investigate, unstructured, cold data, stale data, last accessed, file size, file owner, reclaimable storage, NFS, SMB, CIFS 
+summary: 'Recherchez et classez les fichiers comme froids, obsolètes ou volumineux sur les volumes NFS et SMB/CIFS à l"aide de filtres de métadonnées, puis examinez les résultats, prenez les mesures appropriées ou enregistrez vos critères de filtrage en tant que politique réutilisable.' 
+---
+= Analyser les données non structurées dans AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Lorsque le stockage de fichiers connaît une croissance inattendue, filtrez par date de dernier accès, taille du fichier et propriétaire afin d'identifier les fichiers qui consomment de la capacité. Par exemple, un administrateur du stockage peut identifier des téraoctets de snapshots de VM auxquels aucun accès n'a eu lieu depuis plus d'un an et déterminer s'il convient de les archiver, de les supprimer ou de les conserver.
+
+.Avant de commencer
+* Au moins une source de données doit être connectée et en cours d'analyse. Reportez-vous à link:../data-sources/connect-data-source.html["Connectez une source de données"].
+
+
+
+
+[[find-cold-or-stale-files-by-last-access-time]]
+== Trouver les fichiers froids ou obsolètes en fonction de la date du dernier accès
+
+Utilisez des filtres basés sur la date pour identifier les fichiers qui n'ont pas été consultés dans les seuils de données froides ou obsolètes de votre organisation. Les seuils sont configurables dans *Configuration* > *Settings*. Reportez-vous à link:../administer/configure-settings.html["Configurer les seuils de données froides et obsolètes"].
+
+.Étapes
+. Dans l’interface utilisateur de AI Data Engine, sélectionnez *Investigation*.
++
+L'onglet « Non structuré » est sélectionné par défaut.
+
+. Sélectionnez *Ajouter un filtre*, puis sélectionnez *Dernier accès*.
+. Sélectionnez une plage de temps qui correspond à votre seuil de données froides, par exemple *1 an et plus*.
+. Pour vous concentrer sur les plus gros consommateurs, sélectionnez à nouveau *Ajouter un filtre*, puis sélectionnez *Taille du fichier* et définissez une valeur minimale, par exemple *>1 Gio*.
++
+Les filtres appliqués apparaissent sous forme d'étiquettes sous la barre de filtres. Le tableau des résultats et le nombre d'éléments se mettent à jour à mesure que vous ajoutez chaque filtre.
+
+
+
+Pour obtenir la liste complète des filtres disponibles, reportez-vous à link:use-filters.html["Utiliser les filtres"].
+
+
+
+[[group-results-by-owner]]
+== Regrouper les résultats par propriétaire
+
+Le regroupement par propriétaire vous aide à comprendre qui détient le plus de données potentiellement récupérables avant de décider où agir.
+
+.Étapes
+. Une fois les filtres appliqués, sélectionnez le menu déroulant *Afficher par*.
+. Sélectionnez *Propriétaire*.
++
+Les résultats se réorganisent pour afficher le nombre total de fichiers et la taille par propriétaire. Sélectionnez une ligne de propriétaire pour la développer et voir ses fichiers individuels.
+
+
+
+
+
+[[review-file-details]]
+== Consultez les détails du fichier
+
+Sélectionnez une ligne de fichier pour ouvrir le panneau de détails et vérifiez que le fichier correspond bien à la portée prévue avant d'agir.
+
+Le panneau de détails affiche le système du fichier, son référentiel de stockage, son propriétaire et les étiquettes ou politiques appliquées. Vérifiez le système et le propriétaire avant d'archiver ou de supprimer.
+
+
+
+[[act-on-results-or-save-as-a-policy]]
+== Agir en fonction des résultats ou enregistrer en tant que stratégie
+
+Après avoir identifié les fichiers que vous souhaitez traiter, sélectionnez un ou plusieurs éléments à l'aide des cases à cocher dans le tableau de résultats.
+
+* Pour prendre des mesures immédiates, reportez-vous à link:take-actions.html["Agissez sur vos données"].
+* Pour enregistrer les critères de filtrage en vue d'une surveillance continue, sélectionnez *Créer une stratégie* dans la barre d'outils de filtrage. Reportez-vous à link:../policies/create-policy.html["Créer une stratégie"].
+
+
+Pour télécharger les résultats filtrés depuis l’onglet Non structuré, sélectionnez image:icon_download_file.png["Télécharger"].
+
+
+
+[[related-information]]
+== Informations connexes
+
+* link:use-filters.html["Utiliser les filtres"]
+* link:take-actions.html["Agissez sur vos données"]
+* link:../policies/create-policy.html["Créer une stratégie"]
+* link:../get-started/storage-optimization-workflows.html["Explorez les flux de travail d’optimisation du stockage"]
+* link:understand-dashboard.html["Évaluer l'utilisation du stockage depuis le tableau de bord"]
+
