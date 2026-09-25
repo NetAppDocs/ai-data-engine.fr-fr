@@ -871,7 +871,6 @@
   <block id="7dbe065509bb17277c7b17f3766f97be" category="list-text">Identifiez les propriétaires de données qui détiennent les plus fortes concentrations de données froides, obsolètes ou dupliquées dans le tableau de bord, puis filtrez par propriétaire ou par groupe dans la vue d'investigation pour examiner et gérer les résultats conformément à vos politiques.</block>
   <block id="482723983a4f2af954e36ff41e567451" category="inline-link-macro">Limitations connues</block>
   <block id="34e34c0debc388181c3934f84b977ddd" category="list-text"><block ref="34e34c0debc388181c3934f84b977ddd" category="inline-link-macro-rx"></block></block>
-  <block id="e72c60c273700856ad0eeb853a353e52" category="sidebar">AI Data Engine vous offre une visibilité sur les données non structurées stockées sur vos systèmes NetApp. Utilisez-le pour identifier les opportunités d'optimisation du stockage, analyser vos données et appliquer des politiques de cycle de vie.</block>
   <block id="ed67b8aec97dcec019f1b2972d70f5af" category="sidebar">Documentation AI Data Engine</block>
   <block id="0416d02572f9d563fa4967178dc5c5fb" category="sidebar">La documentation d'AI Data Engine explique comment déployer, connecter des sources de données et utiliser AI Data Engine pour l'optimisation du stockage, l'analyse des métadonnées et la gouvernance des données.</block>
   <block id="be11c74c1dd7f307bb80183a90dc2067" category="sidebar">Commencer</block>
@@ -892,4 +891,5 @@
   <block id="6b2443d2529b7b19a67154f7a04c9877" category="sidebar">Évaluez l'état du stockage avec le tableau de bord AIDE</block>
   <block id="4bd61438e659088dded1d69964caccb1" category="sidebar">Gérer les politiques et les actions</block>
   <block id="7d0ee6fed10d3d4e5c9ee496729ab519" category="sidebar">Notes de version</block>
+  <block id="ac219e2fd9f167e916107df50eb88fad" category="sidebar">AI Data Engine est un service d'intelligence des métadonnées, géré via NetApp Console, qui analyse vos systèmes connectés, crée un catalogue de métadonnées et vous offre la visibilité et les outils nécessaires pour optimiser le stockage et gouverner les données à grande échelle.</block>
 </blocks>

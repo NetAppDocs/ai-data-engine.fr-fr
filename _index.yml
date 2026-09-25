@@ -6,9 +6,10 @@ indexpage:
     l'analyse des métadonnées et la gouvernance des données.
   keywords: ai data engine, aide, storage optimization, investigation, policies, data
     governance, NetApp Console
-  lead: AI Data Engine vous offre une visibilité sur les données non structurées stockées
-    sur vos systèmes NetApp. Utilisez-le pour identifier les opportunités d'optimisation
-    du stockage, analyser vos données et appliquer des politiques de cycle de vie.
+  lead: AI Data Engine est un service d'intelligence des métadonnées, géré via NetApp
+    Console, qui analyse vos systèmes connectés, crée un catalogue de métadonnées
+    et vous offre la visibilité et les outils nécessaires pour optimiser le stockage
+    et gouverner les données à grande échelle.
   tiles:
   - title: Commencer
     links:
