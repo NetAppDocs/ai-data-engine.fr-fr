@@ -14,6 +14,7 @@ summary: Déployez AIDE Enterprise depuis la NetApp Console à l’aide de l’a
 Déployez AIDE Enterprise depuis NetApp Console à l’aide de l’assistant de déploiement. L’assistant vous guide dans la sélection de l’emplacement d’installation, le choix d’une taille de configuration et l’exécution de la commande d’installation sur votre cluster RKE2.
 
 .Avant de commencer
+* Votre organisation a accès à l’aperçu privé d’AI Data Engine dans NetApp Console. Contactez votre représentant NetApp pour demander l’accès afin de pouvoir déployer AI Data Engine.
 * Vous disposez des autorisations d’_administrateur de l’organisation_ ou supérieures dans NetApp Console.
 * Votre cluster RKE2 répond aux prérequis du nœud Enterprise décrits dans link:aide-requirements.html["exigences AIDE"].
 * Les autorisations sudo (ou root) sont requises sur la machine à partir de laquelle vous exécutez la commande d'installation.
@@ -25,7 +26,7 @@ Déployez AIDE Enterprise depuis NetApp Console à l’aide de l’assistant de 
 
 
 .Étapes
-. Dans NetApp Console, accédez à *Gouvernance* > *AI Data Engine*.
+. Dans NetApp Console, accédez à *AI data hub* > *AI Data Engine*.
 +
 La page d'accueil de AI Data Engine s'affiche.
 

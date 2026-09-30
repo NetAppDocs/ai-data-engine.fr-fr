@@ -36,6 +36,9 @@ AIDE Enterprise est disponible en trois tailles — Small, Medium et Large — p
 [[deployment-process]]
 == Processus de déploiement
 
+
+NOTE: AI Data Engine est disponible en version préliminaire privée dans NetApp Console. Contactez votre représentant NetApp pour demander l'accès afin de pouvoir déployer AI Data Engine.
+
 NetApp Console ne provisionne pas l'infrastructure pour AI Data Engine. Vous préparez une machine ou un cluster Linux répondant aux exigences, puis copiez la commande d'installation prégénérée depuis NetApp Console et l'exécutez sur l'hôte cible. La commande initialise l'environnement d'exécution et déploie automatiquement la pile AI Data Engine. Lors de l'installation, le programme d'installation vous invite à confirmer l'adresse IP de l'hôte cible et l'identifiant utilisateur avant que l'installation ne se poursuive.
 
 L’installation d’AIDE Lite prend généralement 45 minutes. L’installation d’AIDE Enterprise prend généralement 30 minutes. Le programme d’installation intègre des délais d’attente et des tentatives de nouvelle tentative pour gérer les problèmes temporaires lors du démarrage des composants.

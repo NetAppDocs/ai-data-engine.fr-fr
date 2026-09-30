@@ -42,7 +42,7 @@ Une politique est un ensemble de filtres enregistrés avec une action facultativ
 
 
 .Étapes
-. Dans NetApp Console, accédez à *gouvernance des données* > *AI Data Engine* > *Investigation*.
+. Dans NetApp Console, accédez à *AI data hub* > *AI Data Engine* > *Investigation*.
 . Appliquez un ou plusieurs filtres permettant d'identifier les fichiers que vous souhaitez cibler avec cette stratégie.
 +
 Par exemple : *Type de fichier* = .vmdk ET *Dernière date d’accès* > 365 jours.

@@ -13,7 +13,7 @@ summary: 'Évaluez l"état du stockage dans votre environnement, identifiez où 
 [role="lead"]
 Avant de décider des éléments à examiner, il est essentiel de comprendre l'état de votre stockage. Quel volume de stockage atteint les seuils de classification « froid » et « obsolète » de votre organisation, et quels systèmes ou responsables détiennent le plus de données dans ces catégories ? Par exemple, un administrateur de stockage qui répond à une alerte de capacité peut constater qu'une grande partie du stockage analysé contient des données froides, puis examiner en détail le système ayant le plus d'impact afin de commencer immédiatement l'investigation.
 
-Dans NetApp Console, sélectionnez *Governance* > *AI Data Engine UI*. Le tableau de bord s'ouvre par défaut.
+Dans NetApp Console, sélectionnez *AI data hub* > *AI Data Engine UI*. Le tableau de bord s'ouvre par défaut.
 
 
 
