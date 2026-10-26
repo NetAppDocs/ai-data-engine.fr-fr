@@ -433,7 +433,6 @@
   <block id="c0227cef6f07a8cd2ac72f2945b031aa" category="section-title">Open source</block>
   <block id="9b73989307c1975dfa4d5e1581e4afe8" category="paragraph">Les fichiers de notification fournissent des informations sur les droits d'auteur et les licences de tiers utilisés dans les logiciels NetApp.</block>
   <block id="93d6496a69f6384320dab15ccadbc4e8" category="inline-link-macro">Avis concernant AI Data Engine</block>
-  <block id="7ab36480d3c1a530e02ac892b3191e4a" category="paragraph"><block ref="7ab36480d3c1a530e02ac892b3191e4a" category="inline-link-macro-rx"></block></block>
   <block id="e7dc26f23cfcebf955f51e9ec20046b1" category="summary">Enregistrez les critères de filtre de l’investigation en tant que politique nommée afin de pouvoir suivre le même regroupement de données au fil du temps et être averti lorsque les conditions changent.</block>
   <block id="0e276db5651852f12c3a3c7be8b2939e" category="doc">Créer une stratégie dans AI Data Engine</block>
   <block id="ede0a89e2e37ef9e8c3495af56db91eb" category="paragraph">Créez une stratégie lorsque vous souhaitez surveiller une condition récurrente des données sans répéter manuellement la même investigation. Par exemple, un responsable de la gouvernance des données peut enregistrer une stratégie « fichiers obsolètes volumineux » pour suivre ce regroupement au fil des cycles d’analyse et recevoir une mise à jour par e-mail lorsque le nombre de fichiers affectés change.</block>
@@ -2452,4 +2451,5 @@
   <block id="1f2989a2e9ce42f8b0db48acd9ed2e4e" category="sidebar">Déployez AIDE dans le cadre d’un déploiement multinœud avec un proxy</block>
   <block id="d76d64858ff00ec6f65866ed6c6641f4" category="sidebar">Connectez AIDE à Microsoft Entra ID</block>
   <block id="156586dd7dceda9f103091b3c0beb1e6" category="sidebar">Outils MCP AIDE</block>
+  <block id="7da93123cf77bf1f1d116b04b8d380c2" category="paragraph"><block ref="7da93123cf77bf1f1d116b04b8d380c2" category="inline-link-macro-rx"></block></block>
 </blocks>
