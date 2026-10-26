@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: get-started/quick-start.html 
-keywords: quick start, deploy, connect, investigate, policies 
-summary: Mettez AI Data Engine en service en déployant le service, en connectant vos systèmes de stockage et en lançant votre première investigation. 
+keywords: quick start, deploy, connect, investigate, policies, governed ai access, mcp 
+summary: Mettez AI Data Engine en service en déployant le service, en connectant vos sources de données et en lançant votre première analyse. Vous pouvez également configurer un accès à l’IA gouverné pour les clients IA. 
 ---
 = Démarrage rapide pour AI Data Engine
 :allow-uri-read: 
@@ -11,24 +11,28 @@ summary: Mettez AI Data Engine en service en déployant le service, en connectan
 
 
 [role="lead"]
-Mettez AI Data Engine en service en déployant le service, en connectant vos systèmes de stockage et en lançant votre première investigation.
+Mettez AI Data Engine (AIDE) en service en déployant le service, en connectant vos sources de données et en lançant votre première enquête. Vous pouvez également permettre aux clients IA de rechercher dans vos métadonnées via un accès IA gouverné.
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Un"] Exigences de révision
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Un"] link:../deploy/aide-requirements.html["Examiner les exigences et sélectionner un type de déploiement"]
 [role="quick-margin-para"]
-Consultez la link:../deploy/aide-requirements.html["exigences AIDE"]documentationlink:../deploy/deployment-overview.html["Découvrez les modes de déploiement"] pour déterminer si vous devez installer AIDE Lite ou AIDE Enterprise. AI Data Engine est disponible en avant-première privée dans NetApp Console. Contactez votre représentant NetApp pour demander l'accès afin de pouvoir déployer AI Data Engine.
+Examinez les exigences et link:../deploy/deployment-overview.html["Découvrez les types de déploiement"] décidez s'il convient d'installer un déploiement AIDE à nœud unique ou à plusieurs nœuds.
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Deux"] Déployer AI Data Engine
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Deux"] link:../deploy/deployment-overview.html["Déployer AI Data Engine"]
 [role="quick-margin-para"]
-Déployez link:../deploy/deploy-aide-lite.html["AIDE Lite"] ou link:../deploy/deploy-enterprise.html["AIDE Enterprise"] depuis NetApp Console. La page de configuration vous guide dans le choix de l'emplacement d'installation et de la taille de configuration, puis dans l'exécution de la commande d'installation.
+Déployez un link:../deploy/deploy-aide-single-node.html["Déploiement AIDE sur un seul nœud"] ou un link:../deploy/deploy-aide-multi-node.html["Déploiement multi-nœuds d'AIDE"] depuis NetApp Console. La page de configuration vous guide dans le choix de l’emplacement d’installation et de la taille de la configuration, puis dans l’exécution de la commande d’installation. Si votre hôte ou cluster accède à Internet uniquement via un proxy, link:../deploy/configure-proxy.html["déployer avec un proxy"] à la place.
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Trois"] Connectez une source de données
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Trois"] link:../data-sources/connect-data-source.html["Connectez une source de données"]
 [role="quick-margin-para"]
-link:../data-sources/connect-data-source.html["Connectez une source de données"] pour commencer l’analyse. AI Data Engine catalogue les métadonnées du système de fichiers des systèmes de stockage que vous spécifiez.
+Connectez une source de données pour lancer l'analyse. AI Data Engine catalogue les métadonnées des sources de données que vous connectez.
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["Quatre"] Explorez vos données
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["Quatre"] link:../investigate/understand-dashboard.html["Explorez vos données"]
 [role="quick-margin-para"]
-Ouvrez le link:../investigate/understand-dashboard.html["tableau de bord"] pour consulter des informations sur l'optimisation du stockage, ou accédez à link:../investigate/investigate-data.html["Enquête"] pour rechercher et filtrer directement vos métadonnées.
+Ouvrez le tableau de bord pour consulter les informations sur l'optimisation du stockage, ou accédez à link:../investigate/investigate-data.html["Enquête"] pour rechercher et filtrer directement vos métadonnées.
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["Cinq"] Créer une stratégie
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["Cinq"] link:../policies/create-policy.html["Créer une stratégie"]
 [role="quick-margin-para"]
-link:../policies/create-policy.html["Enregistrez vos filtres d'enquête en tant que stratégie"] pour surveiller les fichiers correspondant aux mêmes critères au fil du temps. Vous pouvez configurer une stratégie permettant d'envoyer une notification, de supprimer définitivement les fichiers correspondants ou de suivre les résultats.
+Enregistrez vos filtres d'analyse sous forme de stratégie pour surveiller les fichiers correspondant aux mêmes critères au fil du temps. Vous pouvez configurer une stratégie pour envoyer une notification, supprimer définitivement les fichiers correspondants ou suivre les résultats.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["Six"] link:../mcp/quick-start-mcp.html["Facultatif : Configurer l’accès gouverné à l’IA"]
+[role="quick-margin-para"]
+Autorisez les clients d'IA à rechercher dans les métadonnées des collections que vous sélectionnez. Les utilisateurs avancés peuvent rechercher dans les métadonnées et effectuer des actions sur les données.

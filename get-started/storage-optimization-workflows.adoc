@@ -11,7 +11,7 @@ summary: 'Utilisez des flux de bout en bout pour faire passer une découverte du
 
 
 [role="lead"]
-Ces flux de travail AI Data Engine vous accompagnent de l'identification d'un problème de stockage sur le tableau de bord, en passant par l'investigation et l'action, jusqu'à la mise en place d'une politique de surveillance continue. Chaque flux de travail suit le même chemin : tableau de bord, investigation, action et enregistrement en tant que politique.
+Ces flux de travail AI Data Engine (AIDE) vous accompagnent depuis l'identification d'un problème de stockage sur le tableau de bord, en passant par l'investigation et l'action, jusqu'à la mise en place d'une politique de surveillance continue. Chaque flux de travail suit le même processus : consulter le tableau de bord, investiguer, agir et enregistrer une politique.
 
 
 
@@ -19,13 +19,13 @@ Ces flux de travail AI Data Engine vous accompagnent de l'identification d'un pr
 == Identifier les données froides et agir en conséquence
 
 .Scénario
-Vous constatez sur le tableau de bord qu'une ressource de stockage contient une grande quantité de données marquées comme inactives. Les fichiers inactifs n'ont pas été consultés dans le délai configuré pour les données inactives, qui est d'un an par défaut et configurable dans *Configuration* > *Paramètres*.
+Vous constatez sur le tableau de bord qu'une ressource de stockage contient une grande quantité de données marquées comme inactives. Les fichiers inactifs n'ont pas été consultés pendant la période définie par le seuil de données inactives configuré, qui est d'un an par défaut. Vous pouvez modifier ce seuil dans les paramètreslink:../administer/configure-settings.html["paramètres de classification des données"].
 
 .Étapes
 . À partir de link:../investigate/understand-dashboard.html["le tableau de bord"], identifiez la ressource présentant la plus forte concentration de données froides et sélectionnez *Investigate*.
-. Dans link:../investigate/investigate-unstructured.html["Enquête"], confirmez les ressources à l’aide du filtre *Dernier accès* défini pour correspondre à votre seuil configuré de données froides (par défaut : *1 an et plus*).
+. Dans link:../investigate/investigate-unstructured.html["Enquête"], définissez le filtre *Dernier accès* de sorte qu'il corresponde à votre seuil configuré pour les données froides (par défaut : *1 an et plus*) et confirmez les ressources.
 . Examinez les résultats pour déterminer link:../investigate/take-actions.html["s'il faut étiqueter, archiver ou supprimer"] les fichiers correspondants.
-. Si ces ressources méritent d'être surveillées en permanence, link:../policies/create-policy.html["Enregistrez l’ensemble de filtres en tant que stratégie"]afin que vous soyez averti à mesure que de nouveaux fichiers deviennent inactifs.
+. Si ces ressources méritent d'être surveillées en permanence, link:../policies/create-policy.html["Enregistrez l’ensemble de filtres en tant que stratégie"] afin que vous receviez une notification lorsque de nouveaux fichiers deviennent froids.
 
 
 
@@ -34,10 +34,10 @@ Vous constatez sur le tableau de bord qu'une ressource de stockage contient une 
 == Identifier les données obsolètes et agir en conséquence
 
 .Scénario
-Les fichiers qui sont encore consultés occasionnellement mais qui n'ont pas été modifiés depuis des années sont classés comme obsolètes lorsqu'ils dépassent le seuil d'obsolescence de votre organisation (par défaut : trois ans depuis le dernier accès ou la dernière modification).
+AI Data Engine classe les fichiers comme obsolètes lorsqu'ils n'ont pas été modifiés pendant une durée supérieure au seuil d'obsolescence de votre organisation (par défaut : trois ans).
 
 
-NOTE: Ce seuil est configurable dans *Configuration* > *Paramètres*.
+NOTE: Vous pouvez modifier ce seuil dans link:../administer/configure-settings.html["paramètres de classification des données"].
 
 .Étapes
 . À partir de link:../investigate/understand-dashboard.html["le tableau de bord"], identifiez une ressource contenant un nombre important de données obsolètes.
@@ -55,12 +55,12 @@ NOTE: Ce seuil est configurable dans *Configuration* > *Paramètres*.
 Votre organisation exige que les fichiers datant de plus d’un certain âge fassent l’objet d’un examen en vue de leur conservation. Le seuil de conservation par défaut dans AI Data Engine est de sept ans ou plus à compter de la création du fichier. Vous pouvez ajuster ce seuil afin de respecter les politiques de conformité et de conservation de votre organisation.
 
 
-NOTE: Ce seuil est configurable dans *Configuration* > *Paramètres*.
+NOTE: Ce seuil est configurable dans *Configuration* > *Paramètres généraux*.
 
 .Étapes
 . Dans link:../investigate/investigate-unstructured.html["Enquête"], appliquez le filtre *Dernière création* défini sur votre seuil de rétention (par défaut *7+ ans*).
 . Examinez les résultats avec les parties prenantes concernées avant d'agir. Les fichiers signalés pour conservation font généralement l'objet d'un suivi plutôt que d'une suppression automatique.
-. link:../policies/create-policy.html["Créer une stratégie"]avec une action de surveillance uniquement ou de notification par e-mail afin que vous soyez alerté lorsque de nouveaux fichiers atteignent le seuil de conservation, plutôt que d'agir sur ces ressources une seule fois.
+. link:../policies/create-policy.html["Créer une stratégie"] avec une action de notification de surveillance uniquement ou par e-mail afin que vous receviez une alerte lorsque de nouveaux fichiers atteignent le seuil de conservation.
 
 
 
@@ -72,10 +72,12 @@ NOTE: Ce seuil est configurable dans *Configuration* > *Paramètres*.
 Il existe plusieurs copies identiques des mêmes fichiers sur différents volumes ou partages, un problème courant dans les environnements comportant des tâches de sauvegarde, des migrations de données ou des dossiers de projet partagés.
 
 .Étapes
-. Dans link:../investigate/investigate-unstructured.html["Enquête"], sélectionnez *Ajouter un filtre* puis *Doublons*.
-. Examinez les résultats. Les fichiers listés possèdent une ou plusieurs copies identiques ailleurs dans le catalogue.
-. Sélectionnez les fichiers sur lesquels vous souhaitez agir et choisissez link:../investigate/take-actions.html["une action"]. Archivez ou supprimez les doublons confirmés qui ont une copie originale ailleurs.
-. link:../policies/create-policy.html["Enregistrez le filtre en tant que stratégie"] pour suivre l'accumulation des doublons au fil du temps et recevoir des notifications lorsque leur nombre augmente.
+. Dans link:../investigate/investigate-unstructured.html["Enquête"], sélectionnez *Non structuré* et ouvrez les détails d'un fichier dont vous soupçonnez qu'il comporte des copies, comme un fichier provenant d'une migration des données.
+. À côté de *Doublons*, sélectionnez *Afficher les détails* pour afficher chaque copie du fichier et son emplacement.
+. Examinez les fichiers correspondants et leurs emplacements pour confirmer quelles copies sont redondantes.
+. Sélectionnez les fichiers redondants, puis sélectionnez *Nettoyer les doublons*.
+. Sous *Action*, sélectionnez *Supprimer*. Conservez la copie avec l'option *Dernière modification*, laissez un lien vers l'emplacement d'origine et sélectionnez *Soumettre*. Confirmez ensuite la suppression dans la boîte de dialogue. Pour plus de détails, consultez link:../investigate/take-actions.html["Examiner et nettoyer les fichiers en double"].
+. link:../policies/create-policy.html["Créer une stratégie"] pour suivre l'accumulation des doublons au fil du temps et recevoir des notifications lorsque leur nombre augmente.
 
 
 
@@ -87,7 +89,7 @@ Il existe plusieurs copies identiques des mêmes fichiers sur différents volume
 Les données répondant aux seuils de votre organisation en matière de données froides et obsolètes sont réparties entre de nombreux responsables. Identifier les responsables des données qui détiennent le plus de fichiers dans ces catégories peut vous aider à prioriser le nettoyage.
 
 .Étapes
-. À partir de link:../investigate/understand-dashboard.html["le tableau de bord"], localisez le tableau _Top data owners by reclaimable storage_.
+. À partir de link:../investigate/understand-dashboard.html["le tableau de bord"], localisez le tableau _Meilleurs consommateurs par stockage récupérable_.
 . Sélectionnez une ligne de propriétaire pour ouvrir link:../investigate/investigate-unstructured.html["Enquête"] filtré sur les fichiers de ce propriétaire.
 . Examinez les résultats et décidez link:../investigate/take-actions.html["s'il faut étiqueter, archiver ou supprimer"] fichiers.
 . link:../policies/create-policy.html["Enregistrez l’ensemble de filtres en tant que stratégie"] pour surveiller l'évolution au fil du temps des données potentiellement récupérables de ce propriétaire.

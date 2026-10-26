@@ -1,67 +1,98 @@
 ---
 sidebar: sidebar 
 permalink: administer/configure-settings.html 
-keywords: cold threshold, stale threshold, configuration, settings, data classification, cold data, stale data 
-summary: Configurez les seuils temporels qu’AI Data Engine utilise pour classer les données comme froides ou obsolètes dans votre environnement. 
+keywords: general settings, cold data, stale data, data classification, thresholds, permission scanning, Active Directory, LDAP, NFS identity mapping, access risk, configuration 
+summary: 'Définissez les fichiers que AI Data Engine classe comme données froides ou obsolètes, activez l"analyse des autorisations et connectez Active Directory pour identifier les opportunités d"optimisation du stockage et les risques d"accès.' 
 ---
-= Configurez les seuils de données froides et obsolètes dans AI Data Engine
+= Configurez les seuils de classification des données et l’analyse des accès dans AI Data Engine
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-AI Data Engine classe les fichiers comme « froids » ou « obsolètes » selon les seuils temporels que vous définissez. Ces seuils déterminent quelles données apparaissent dans les résumés du tableau de bord, quels fichiers apparaissent lorsque vous appliquez des filtres « froids » ou « obsolètes » dans Investigation, et quels fichiers les stratégies ciblent. Définissez des seuils qui correspondent aux pratiques de classification et de conservation des données de votre organisation et qui vous aident à identifier les données que vous jugez importantes à surveiller.
+Les seuils de données froides et obsolètes vous aident à trouver le stockage que vous pouvez optimiser à l’aide de AI Data Engine (AIDE). L’analyse des permissions et l’intégration Active Directory vous aident à détecter et à comprendre les risques d’accès. Définissez-les de manière à correspondre aux politiques de classification, de conservation et d’accès aux données de votre organisation.
+
+
+
+[[before-you-begin]]
+== Avant de commencer
+
+Vous devez posséder le rôle d’administrateur d’AI Data Engine.
 
 
 
 [[what-is-cold-and-stale-data]]
 == Que sont les données froides et obsolètes?
 
-Données froides:: Fichiers auxquels aucun accès n'a eu lieu dans le délai défini par le seuil de données froides configuré. Les données froides constituent un indicateur clé que votre organisation peut utiliser pour identifier les espaces de stockage qui pourraient être optimisés conformément à vos politiques de conservation et à vos procédures métier.
-Données obsolètes:: Les fichiers qui n'ont pas été consultés ni modifiés dans le délai de péremption des données configuré. Les données obsolètes comprennent les fichiers consultés occasionnellement mais non modifiés récemment, que votre organisation peut surveiller ou gérer conformément à ses politiques.
+Données froides:: Fichiers auxquels aucun accès n'a eu lieu dans le délai correspondant au seuil de données froides. Les données froides constituent un indicateur clé que votre organisation peut utiliser pour identifier les espaces de stockage pouvant être optimisés conformément à vos politiques de conservation et à vos politiques métier.
+Données obsolètes:: Les fichiers qui n'ont pas été modifiés au cours de la période définie par le seuil de données obsolètes. Les données obsolètes permettent à votre organisation d'identifier les fichiers qui n'ont pas été modifiés récemment, que vous pouvez surveiller ou gérer conformément à vos politiques.
 
+
+Ces seuils influent sur les résumés des tableaux de bord, les fichiers affichés lorsque vous appliquez des filtres « données inactives » ou « obsolètes » dans Investigation, ainsi que sur les fichiers ciblés par les stratégies. Choisissez des seuils qui reflètent la durée pendant laquelle les données peuvent rester inutilisées ou inchangées avant que votre organisation ne les évalue. Un seuil plus court classe davantage de données comme inactives ou obsolètes, tandis qu’un seuil plus long restreint les résultats aux données restées inactives le plus longtemps.
 
 
 NOTE: Les valeurs seuils par défaut sont des valeurs par défaut du produit fournies comme point de départ. Elles ne représentent pas des périodes de conservation légales, de conformité ou conformes aux normes du secteur. Définissez des seuils qui reflètent les politiques et exigences spécifiques de votre organisation.
 
-Les modifications apportées à l'un ou l'autre seuil prennent effet après la fin du prochain cycle d'analyse.
+Les modifications apportées aux seuils de données froides et obsolètes prennent effet après la fin du prochain cycle d'analyse.
 
 
 
-[[configure-the-cold-data-threshold]]
-== Configurer le seuil des données inactives
+[[set-the-cold-data-threshold]]
+== Définir le seuil de données froides
 
-.Avant de commencer
-* Vous devez posséder le rôle d’administrateur d’AI Data Engine.
-
+Déterminez combien de temps les fichiers peuvent rester sans être consultés avant que votre organisation n'évalue leur archivage, leur suppression ou leur surveillance. Vous pouvez également limiter la classification par taille de fichier et exclure certains types de fichiers ou chemins d'accès.
 
 .Étapes
-. Dans l’interface utilisateur de AI Data Engine, sélectionnez *Configuration*.
-. Sélectionnez *Paramètres*.
-. Sélectionnez *Modifier* pour *Définition des données froides*.
-. Définissez la propriété du fichier sur *Dernier accès* ou *Dernière modification*.
-. Définissez le seuil temporel. La valeur par défaut est d'un an.
+. Dans l'UI AI Data Engine, sélectionnez *Configuration* > *Paramètres généraux*.
+. Développez *Définition des données froides* et activez la classification des données froides si elle est désactivée.
+. Sous *Âge basé sur*, sélectionnez l'horodatage qui détermine l'âge : *Dernier accès* pour identifier les fichiers qui n'ont pas été utilisés récemment, ou *Dernière modification* pour identifier les fichiers qui n'ont pas été modifiés récemment.
+. Définissez le *seuil de vieillissement à froid*. La valeur par défaut est d'un an.
+. Définissez la *taille minimale des fichiers (Mio)* et la *limite maximale de taille des fichiers (Mio)* pour vous concentrer sur les fichiers qui comptent pour vous.
+. Facultatif : pour exclure certains fichiers de cette classification, indiquez *Types de fichiers à exclure* et *Chemins à exclure*. Saisissez les fichiers et les chemins d’accès complets, et séparez les entrées multiples par des virgules.
 . Sélectionnez *Enregistrer*.
 
 
 
 
-[[configure-the-stale-data-threshold]]
-== Configurer le seuil des données obsolètes
+[[set-the-stale-data-threshold]]
+== Définir le seuil des données obsolètes
 
-.Avant de commencer
-* Vous devez posséder le rôle d’administrateur d’AI Data Engine.
-
+Déterminez combien de temps les fichiers peuvent rester inchangés avant que votre organisation ne les examine dans le cadre de ses politiques de cycle de vie des données. Vous pouvez également limiter la classification par taille de fichier et exclure certains types de fichiers ou chemins d'accès.
 
 .Étapes
-. Dans l’interface utilisateur de AI Data Engine, sélectionnez *Configuration*.
-. Sélectionnez *Paramètres*.
-. Sélectionnez *Modifier* pour *Stale data definition*.
-. Définissez la propriété du fichier sur *Dernier accès* ou *Dernière modification*.
-. Définissez le seuil temporel. La valeur par défaut est de trois ans.
+. Dans l'UI AI Data Engine, sélectionnez *Configuration* > *Paramètres généraux*.
+. Développez *Définition des données obsolètes* et activez la classification des données obsolètes si elle est désactivée.
+. Sous *Âge basé sur*, sélectionnez l'horodatage qui détermine l'âge : *Dernière modification* ou *Dernier accès*.
+. Définissez le *seuil d'ancienneté*. La valeur par défaut est de trois ans.
+. Définissez la *taille minimale des fichiers (Mio)* et la *limite maximale de taille des fichiers (Mio)* pour vous concentrer sur les fichiers qui comptent pour vous.
+. Facultatif : pour exclure certains fichiers de cette classification, indiquez *Types de fichiers à exclure* et *Chemins à exclure*. Saisissez les fichiers et les chemins d’accès complets, et séparez les entrées multiples par des virgules.
 . Sélectionnez *Enregistrer*.
 
+
+
+
+[[find-access-risks-with-permission-scanning]]
+== Identifiez les risques d'accès grâce à l'analyse des autorisations
+
+Activez l'analyse des autorisations lorsque vous devez trouver les fichiers et dossiers accessibles à un plus grand nombre de personnes que ne le permettent vos règles. Pour consulter les résultats, reportez-vous à link:../investigate/investigate-directories.html["Examiner les répertoires"].
+
+.Étapes
+. Dans l'UI AI Data Engine, sélectionnez *Configuration* > *Paramètres généraux*.
+. Développez *Analyse des autorisations* et activez l'option.
++
+Pour désactiver l'analyse des autorisations, désactivez l'option.
+
+
+
+
+
+[[show-user-and-group-names-with-active-directory]]
+== Afficher les noms d'utilisateurs et de groupes avec Active Directory
+
+Connectez AI Data Engine à Active Directory lorsque vous devez consulter les noms d'utilisateur et les autorisations plutôt que les identifiants numériques lors de l'analyse de vos données. Si votre environnement utilise NFS, vous pouvez également associer les identifiants numériques d'utilisateur (UID) et de groupe (GID) aux utilisateurs et groupes de l'annuaire.
+
+Pour connaître les prérequis et les étapes, reportez-vous à link:configure-ad-nfs.html["Configurer le mappage d'identité Active Directory pour NFS"].
 
 
 
@@ -69,6 +100,10 @@ Les modifications apportées à l'un ou l'autre seuil prennent effet après la f
 == Informations connexes
 
 * link:../investigate/understand-dashboard.html["Découvrez le tableau de bord AI Data Engine"]
+* link:../investigate/investigate-directories.html["Examiner les répertoires"]
+* link:../investigate/investigate-unstructured.html["Analysez les données non structurées"]
 * link:../get-started/storage-optimization-workflows.html["Explorez les flux de travail d’optimisation du stockage"]
+* link:../deploy/aide-requirements.html["exigences AIDE"]
 * link:manage-users-roles.html["Gérer les utilisateurs et les rôles"]
+* link:configure-ad-nfs.html["Configurer le mappage d'identité Active Directory pour NFS"]
 

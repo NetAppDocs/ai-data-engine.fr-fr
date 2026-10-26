@@ -1,0 +1,83 @@
+---
+sidebar: sidebar 
+permalink: deploy/deploy-aide-multi-node.html 
+keywords: deploy, install, multi-node, multi node, wizard, NetApp Console, deployment wizard, kubernetes, RKE2, OpenShift, AKS 
+summary: 'Déployez AIDE en tant que déploiement multi-nœuds depuis NetApp Console à l"aide de l"assistant de déploiement.' 
+---
+= Déployer AI Data Engine en déploiement multinœud
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Déployez AI Data Engine (AIDE) en tant que déploiement multinœud depuis NetApp Console à l’aide de l’assistant de déploiement. L’assistant vous guide dans la sélection de l’emplacement d’installation, le choix de la taille de configuration et l’exécution de la commande d’installation sur votre cluster Kubernetes.
+
+
+IMPORTANT: Si les nœuds de votre cluster ou l'hôte d'installation n'accèdent à Internet que par le biais d'un proxy sortant, utilisez plutôt link:deploy-aide-multi-node-proxy.html["Déployez AI Data Engine en tant que déploiement multinœud avec un proxy"].
+
+.Avant de commencer
+*Autorisations et accès*
+
+* Vous disposez des autorisations d’_administrateur de l’organisation_ ou supérieures dans NetApp Console.
+* Vous disposez d'un fichier kubeconfig avec un accès administrateur au cluster cible. Si `kubectl` n'est pas sur votre `PATH`, le programme d'installation le télécharge dans le répertoire tools.
+
+
+*Cluster Kubernetes*
+
+* Votre cluster Kubernetes répond aux prérequis multi-nœuds décrits dans link:multi-node-prerequisites.html["Prérequis pour le déploiement multi-nœuds d'AIDE"] et link:aide-requirements.html["exigences AIDE"].
+* L `aide`espace de noms existe sur le cluster avant d'exécuter la commande d'installation.
+* Les nœuds qui planifient les charges de travail AI Data Engine portent les étiquettes de nœud décrites dans link:multi-node-prerequisites.html#node-labels["Étiquettes de nœud"].
+* Une StorageClass configurée (nom par défaut : `aide-sc`) est disponible sur le cluster et utilisée pour les services de support avec état d’AIDE.
+
+
+*Stockage et NetApp Console*
+
+* Un serveur NFS avec un chemin exporté est disponible et accessible depuis le cluster pour le volume de configuration AIDE.
+* Un NetApp Console agent https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy["est déployé"^] est requis et accessible depuis les nœuds du cluster. L'adresse IP de cet agent est nécessaire pour exécuter la commande d'installation.
+
+
+
+NOTE: Utilisez le programme d'installation uniquement pour la première installation d'AIDE. Ne l'utilisez pas pour mettre à niveau AIDE. Après l'installation, l'opérateur AIDE gère les mises à niveau. Pour plus d'informations sur les mises à niveau, contactez le NetApp Support.
+
+.Étapes
+. Dans NetApp Console, accédez à *AI data hub* > *AI Data Engine*.
++
+La page d'accueil de AI Data Engine s'affiche.
+
+. Sélectionnez *Deploy AI Data Engine*.
+. Sélectionnez l’option de déploiement *Multi-node* et sélectionnez *Next*.
+. Sélectionnez la taille de votre configuration :
++
+** *Petit* : recommandé pour les environnements contenant jusqu’à environ 1 milliard de fichiers.
+** *Moyen (Par défaut)* : recommandé pour les environnements contenant jusqu’à environ 3 milliards de fichiers.
+** *Grande* : recommandé pour les environnements contenant jusqu’à environ 6 milliards de fichiers.
++
+Ces tailles sont des valeurs de référence recommandées, et non des limites strictes. Un déploiement AIDE multinœud nécessite un dimensionnement personnalisé avec NetApp pour les environnements dépassant 6 milliards de fichiers ; consultez link:aide-requirements.html#flexible-sizing-multi-node["directives de dimensionnement flexibles"] pour plus de détails.
+
+
+
+. Copiez la commande d'installation affichée dans l'assistant dans un éditeur.
++
+L'assistant génère la commande d'installation avec la taille de configuration que vous avez sélectionnée.
+
+. Exécutez la commande d'installation depuis un hôte pouvant accéder à votre cluster Kubernetes.
++
+Si le programme d'installation vous demande si vous souhaitez configurer un proxy sortant, saisissez `n`.
+
++
+
+NOTE: L'installation prend environ 30 minutes. Des délais d'attente et des tentatives de reconnexion peuvent survenir, ce qui est normal.
+
+. Répondez aux invites de confirmation du programme d’installation pour poursuivre l’installation.
++
+** Le programme d'installation affiche le cluster Kubernetes sélectionné par votre fichier kubeconfig, y compris le contexte, le nom du cluster et le serveur d'API. Répondez « Oui » uniquement si c'est le cluster que vous souhaitez utiliser. Dans le cas contraire, arrêtez le programme d'installation, sélectionnez le contexte kubeconfig approprié, puis relancez-le.
+** Le programme d'installation vous demande de confirmer que les prérequis pour un déploiement multi-nœuds sont remplis. Répondez « oui » pour continuer.
+** Le programme d'installation détecte l'adresse IP du nœud qui exécute le AI Data Engine NGINX ingress et vous demande de la confirmer. Appuyez sur Entrée pour conserver l'adresse affichée, ou saisissez une autre adresse. Utilisez une adresse accessible depuis l'extérieur du cluster. Si l'adresse détectée est une adresse interne du cluster, saisissez plutôt l'adresse accessible. Ne saisissez pas l'adresse de l'agent Console.
+
+
+. Surveillez l'écran de progression jusqu'à ce que l'écran de réussite apparaisse et confirme que l'installation de AIDE est terminée.
+
+
+.Résultat
+Votre déploiement multinœud AI Data Engine est déployé et connecté à NetApp Console. Vous pouvez maintenant link:../data-sources/connect-data-source.html["connecter une source de données"] pour lancer l’analyse.

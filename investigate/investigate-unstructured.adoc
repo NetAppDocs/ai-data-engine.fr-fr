@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: investigate/investigate-unstructured.html 
-keywords: investigate, unstructured, cold data, stale data, last accessed, file size, file owner, reclaimable storage, NFS, SMB, CIFS 
-summary: 'Recherchez et classez les fichiers comme froids, obsolètes ou volumineux sur les volumes NFS et SMB/CIFS à l"aide de filtres de métadonnées, puis examinez les résultats, prenez les mesures appropriées ou enregistrez vos critères de filtrage en tant que politique réutilisable.' 
+keywords: investigate, unstructured, cold data, stale data, last accessed, file size, file owner, reclaimable storage, NFS, SMB, CIFS, duplicates, duplicate files, file hash 
+summary: Trouvez et classez les fichiers comme inactifs, obsolètes, volumineux ou dupliqués sur les volumes NFS et SMB à l’aide de filtres de métadonnées, puis examinez les résultats, prenez les mesures appropriées ou enregistrez vos critères de filtrage en tant que politique réutilisable. 
 ---
 = Analyser les données non structurées dans AI Data Engine
 :allow-uri-read: 
@@ -13,8 +13,12 @@ summary: 'Recherchez et classez les fichiers comme froids, obsolètes ou volumin
 [role="lead"]
 Lorsque le stockage de fichiers connaît une croissance inattendue, filtrez par date de dernier accès, taille du fichier et propriétaire afin d'identifier les fichiers qui consomment de la capacité. Par exemple, un administrateur du stockage peut identifier des téraoctets de snapshots de VM auxquels aucun accès n'a eu lieu depuis plus d'un an et déterminer s'il convient de les archiver, de les supprimer ou de les conserver.
 
-.Avant de commencer
-* Au moins une source de données doit être connectée et en cours d'analyse. Reportez-vous à link:../data-sources/connect-data-source.html["Connectez une source de données"].
+
+
+[[before-you-begin]]
+== Avant de commencer
+
+* Vous avez connecté au moins une source de données, et une analyse est en cours. Consultez link:../data-sources/connect-data-source.html["Connectez une source de données"].
 
 
 
@@ -22,7 +26,7 @@ Lorsque le stockage de fichiers connaît une croissance inattendue, filtrez par 
 [[find-cold-or-stale-files-by-last-access-time]]
 == Trouver les fichiers froids ou obsolètes en fonction de la date du dernier accès
 
-Utilisez des filtres basés sur la date pour identifier les fichiers qui n'ont pas été consultés dans les seuils de données froides ou obsolètes de votre organisation. Les seuils sont configurables dans *Configuration* > *Settings*. Reportez-vous à link:../administer/configure-settings.html["Configurer les seuils de données froides et obsolètes"].
+Trouvez les fichiers qui n'ont pas été consultés selon les seuils de données froides ou obsolètes de votre organisation à l'aide de filtres basés sur la date. Vous définissez ces seuils, y compris l'horodatage utilisé par chacun, dans les paramètres de classification des données. Reportez-vous à link:../administer/configure-settings.html["Configurer les seuils de classification des données et l’analyse des accès"].
 
 .Étapes
 . Dans l’interface utilisateur de AI Data Engine, sélectionnez *Investigation*.
@@ -36,8 +40,6 @@ L'onglet « Non structuré » est sélectionné par défaut.
 Les filtres appliqués apparaissent sous forme d'étiquettes sous la barre de filtres. Le tableau des résultats et le nombre d'éléments se mettent à jour à mesure que vous ajoutez chaque filtre.
 
 
-
-Pour obtenir la liste complète des filtres disponibles, reportez-vous à link:use-filters.html["Utiliser les filtres"].
 
 
 
@@ -59,9 +61,30 @@ Les résultats se réorganisent pour afficher le nombre total de fichiers et la 
 [[review-file-details]]
 == Consultez les détails du fichier
 
-Sélectionnez une ligne de fichier pour ouvrir le panneau de détails et vérifiez que le fichier correspond bien à la portée prévue avant d'agir.
+Avant d'agir, assurez-vous que le fichier correspond à votre périmètre prévu. Sélectionnez une ligne de fichier pour ouvrir le panneau de détails.
 
-Le panneau de détails affiche le système du fichier, son référentiel de stockage, son propriétaire et les étiquettes ou politiques appliquées. Vérifiez le système et le propriétaire avant d'archiver ou de supprimer.
+Le panneau de détails affiche le système du fichier, le référentiel de stockage, le chemin d'accès, la taille, les horodatages, l'accès, le propriétaire du fichier, ainsi que les balises ou les politiques appliquées. Le champ *Doublons* indique le nombre de copies en double du fichier. Vérifiez le système et le propriétaire avant d'archiver ou de supprimer le fichier.
+
+
+
+[[find-duplicate-files]]
+== Trouver les fichiers en double
+
+Avant de décider où effectuer le nettoyage, vérifiez l’étendue des fichiers en double. Le filtre *Doublons* répertorie tous les fichiers possédant une ou plusieurs copies identiques ailleurs dans le catalogue.
+
+.Étapes
+. Dans l’interface utilisateur de AI Data Engine, sélectionnez *Investigation*.
++
+L'onglet « Non structuré » est sélectionné par défaut.
+
+. Sélectionnez *Ajouter un filtre*, puis sélectionnez *Doublons*.
++
+Le tableau des résultats répertorie les fichiers qui possèdent des copies en double.
+
+. Pour afficher toutes les copies d'un fichier spécifique et leur emplacement, sélectionnez le nom du fichier, puis sélectionnez *Afficher les détails* à côté de *Doublons*.
+
+
+Pour examiner les copies et les nettoyer, reportez-vous à link:take-actions.html["Examiner et nettoyer les fichiers en double"].
 
 
 
@@ -81,9 +104,9 @@ Pour télécharger les résultats filtrés depuis l’onglet Non structuré, sé
 [[related-information]]
 == Informations connexes
 
-* link:use-filters.html["Utiliser les filtres"]
 * link:take-actions.html["Agissez sur vos données"]
 * link:../policies/create-policy.html["Créer une stratégie"]
+* link:../administer/configure-settings.html["Configurer les seuils de classification des données et l’analyse des accès"]
 * link:../get-started/storage-optimization-workflows.html["Explorez les flux de travail d’optimisation du stockage"]
 * link:understand-dashboard.html["Évaluer l'utilisation du stockage depuis le tableau de bord"]
 

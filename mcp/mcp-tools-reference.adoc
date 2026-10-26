@@ -1,0 +1,81 @@
+---
+sidebar: sidebar 
+permalink: mcp/mcp-tools-reference.html 
+keywords: mcp, governed ai access, tools, get_collection, search, list_tags, create_tag, tag_document, power users, tags 
+summary: Examinez les outils que les clients d’IA peuvent utiliser via le serveur MCP AI Data Engine, l’accès dont ils ont besoin et le fonctionnement de la recherche et du balisage. 
+---
+= Outils MCP pour l'accès à l'IA régi par AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Un client d'IA connecté peut utiliser un ensemble d'outils via le serveur MCP (Model Context Protocol) pour AI Data Engine (AIDE) afin de rechercher et d'étiqueter des fichiers dans une collection. Ces informations vous permettront de comprendre le rôle de chaque outil et les droits d'accès requis.
+
+
+
+[[access-requirements]]
+== Exigences d'accès
+
+Les clients IA utilisent les outils dans une session d'utilisateur avancé. Un utilisateur bénéficie d'une session d'utilisateur avancé uniquement lorsque les deux conditions suivantes sont réunies :
+
+* L'utilisateur détient le `AIDEPowerUsers` rôle d'application dans Microsoft Entra ID.
+* Le client IA demande le `power_users` périmètre.
+
+
+Voir link:configure-entra-id-mcp.html#create-and-assign-the-power-user-app-role["Créer et attribuer le rôle d’application Power User"].
+
+La connexion est limitée à la collection indiquée dans l'URL du serveur MCP. Pour utiliser une autre collection, veuillez utiliser les informations de connexion correspondantes.
+
+
+
+[[tools]]
+== Outils
+
+[cols="1,3"]
+|===
+| Outil | Description 
+
+
+| `get_collection` | Renvoie la collection à laquelle votre connexion est limitée. 
+
+
+| `search` | Recherche les métadonnées des fichiers d’une collection par préfixe de nom, type de fichier ou propriétaire, avec pagination. Dans une session power-user, la recherche n’est pas filtrée par les autorisations au niveau du fichier et renvoie chaque fichier correspondant de la collection. Les résultats incluent le nom, le chemin d’accès, le type, la taille, la date de dernière modification et le propriétaire de chaque fichier. 
+
+
+| `list_tags` | Répertorie les balises définies pour votre tenant, ainsi que le nombre de fichiers associés à chaque balise. 
+
+
+| `create_tag` | Crée un tag pour votre locataire et renvoie son ID et son nom. 
+
+
+| `tag_document` | Ajoute une étiquette à un fichier ou supprime une étiquette d'un fichier. Si l'étiquette n'existe pas, l'outil la crée d'abord. Un client d'IA traite un fichier à la fois. 
+|===
+
+
+[[how-tags-work]]
+== Comment fonctionnent les balises
+
+* Les balises s'appliquent à l'ensemble de AI Data Engine, et pas seulement à une collection. Les balises que vous créez ou appliquez via un client AI sont également disponibles dans la vue Investigation.
+* Une faute d’orthographe dans le nom d’une balise en crée une nouvelle. Les noms de balises sont sensibles à la casse, donc `Finance` et `finance` sont des balises différentes.
+* Vous ne pouvez ni supprimer ni renommer une étiquette après l'avoir créée. Pour connaître les limitations relatives aux noms d'étiquettes, consultez link:../release-notes/known-limitations.html["Limitations connues"].
+* Les clients AI ne peuvent pas répertorier les fichiers qui ont un tag.
+
+
+
+
+[[what-ai-clients-cant-do]]
+== Ce que les clients IA ne peuvent pas faire
+
+Un client IA ne peut pas récupérer le contenu des fichiers, ajouter des fichiers, supprimer des fichiers, modifier des fichiers, changer les sources de données ou créer des collections.
+
+
+
+[[related-information]]
+== Informations connexes
+
+* link:connect-ai-clients-mcp.html["Connectez les clients IA au serveur MCP AI Data Engine"]
+* link:learn-about-mcp.html["Découvrez l'accès gouverné à l'IA"]
+* link:../release-notes/known-limitations.html["Limitations connues"]
+

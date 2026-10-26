@@ -6,5 +6,3 @@ entries:
   url: "/data-sources/connect-data-source.html"
 - title: Gérer les sources de données
   url: "/data-sources/manage-data-sources.html"
-- title: Surveiller l'état de l'analyse
-  url: "/data-sources/monitor-scanning-health.html"

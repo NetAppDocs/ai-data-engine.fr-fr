@@ -1,15 +1,18 @@
 ---
 indexpage:
   title: Documentation AI Data Engine
-  summary: La documentation d'AI Data Engine explique comment déployer, connecter
-    des sources de données et utiliser AI Data Engine pour l'optimisation du stockage,
-    l'analyse des métadonnées et la gouvernance des données.
+  summary: La documentation AI Data Engine explique comment déployer, connecter des
+    sources de données et utiliser AI Data Engine pour l’optimisation du stockage,
+    l’analyse des métadonnées, la gouvernance des données et l’accès contrôlé à l’IA
+    via MCP.
   keywords: ai data engine, aide, storage optimization, investigation, policies, data
-    governance, NetApp Console
+    governance, NetApp Console, governed ai access, mcp, model context protocol
   lead: AI Data Engine est un service d'intelligence des métadonnées, géré via NetApp
     Console, qui analyse vos systèmes connectés, crée un catalogue de métadonnées
     et vous offre la visibilité et les outils nécessaires pour optimiser le stockage
-    et gouverner les données à grande échelle.
+    et assurer la gouvernance des données à grande échelle. Grâce à un accès contrôlé
+    à l'IA, les clients IA peuvent interroger ces métadonnées via le Model Context
+    Protocol (MCP).
   tiles:
   - title: Commencer
     links:
@@ -21,16 +24,22 @@ indexpage:
       url: "/get-started/quick-start.html"
     - title: Explorez les flux de travail d’optimisation du stockage
       url: "/get-started/storage-optimization-workflows.html"
+    - title: Quoi de neuf
+      url: "/release-notes/whats-new.html"
+    - title: Limitations connues
+      url: "/release-notes/known-limitations.html"
   - title: Déployer
     links:
     - title: Aperçu du déploiement
       url: "/deploy/deployment-overview.html"
     - title: exigences AIDE
       url: "/deploy/aide-requirements.html"
-    - title: Déployer AIDE Lite
-      url: "/deploy/deploy-aide-lite.html"
-    - title: Déployer AIDE Enterprise
-      url: "/deploy/deploy-enterprise.html"
+    - title: Déployez AIDE sur un seul nœud
+      url: "/deploy/deploy-aide-single-node.html"
+    - title: Déployer AIDE en tant que déploiement multinœud
+      url: "/deploy/deploy-aide-multi-node.html"
+    - title: Découvrez les proxys pour AIDE
+      url: "/deploy/configure-proxy.html"
   - title: Explorez vos données
     links:
     - title: Connectez une source de données
@@ -41,8 +50,6 @@ indexpage:
       url: "/investigate/understand-dashboard.html"
     - title: Analysez vos données
       url: "/investigate/investigate-data.html"
-    - title: Utilisez les filtres
-      url: "/investigate/use-filters.html"
     - title: Effectuer des actions sur les données
       url: "/investigate/take-actions.html"
   - title: Politiques et actions
@@ -51,13 +58,18 @@ indexpage:
       url: "/policies/create-policy.html"
     - title: Gérer les stratégies
       url: "/policies/manage-policies.html"
+  - title: Accès à l'IA gouverné (MCP)
+    links:
+    - title: Découvrez l'accès gouverné à l'IA
+      url: "/mcp/learn-about-mcp.html"
+    - title: Démarrage rapide pour l’accès gouverné à l’IA
+      url: "/mcp/quick-start-mcp.html"
+    - title: Maintenez votre configuration MCP
+      url: "/mcp/maintain-mcp-setup.html"
   - title: Administrer
     links:
     - title: Gérer les utilisateurs et les rôles
       url: "/administer/manage-users-roles.html"
-    - title: Configurer les seuils de données
+    - title: Configurer les seuils de classification des données et l’analyse des
+        accès
       url: "/administer/configure-settings.html"
-    - title: Quoi de neuf
-      url: "/release-notes/whats-new.html"
-    - title: Limitations connues
-      url: "/release-notes/known-limitations.html"

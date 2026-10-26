@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: release-notes/known-limitations.html 
 keywords: known limitations, limitations, restrictions, AI Data Engine 
-summary: 'Les limitations connues identifient les fonctionnalités qui ne sont pas prises en charge dans cette version d"AI Data Engine.' 
+summary: Les limitations connues identifient les fonctionnalités qui ne sont pas prises en charge dans AI Data Engine. 
 ---
 = Limitations connues d’AI Data Engine
 :allow-uri-read: 
@@ -11,14 +11,30 @@ summary: 'Les limitations connues identifient les fonctionnalités qui ne sont p
 
 
 [role="lead"]
-Les limitations connues identifient les fonctionnalités qui ne sont pas prises en charge dans cette version de AI Data Engine, ou les fonctionnalités qui ne s'interopèrent pas correctement. Veuillez consulter ces limitations avant de déployer ou d'utiliser le produit.
+Les limitations connues identifient les fonctionnalités qui ne sont pas prises en charge dans AI Data Engine (AIDE), ou les fonctionnalités qui n'interagissent pas correctement avec d'autres systèmes. Veuillez consulter ces limitations avant de déployer ou d'utiliser le produit.
 
 
 
 [[deployment]]
 == Déploiement
 
-Les déploiements Lite et Enterprise sont indépendants:: AIDE Lite et AIDE Enterprise sont des modes de déploiement distincts. Il n'existe aucune procédure de migration prise en charge pour déplacer un déploiement existant d'un mode à l'autre.
+Les déploiements à nœud unique et à nœuds multiples sont indépendants:: Un déploiement AIDE à nœud unique et un déploiement AIDE à nœuds multiples sont deux types de déploiement distincts. Il n'existe aucune procédure de migration prise en charge pour passer d'un type de déploiement à l'autre.
+La prise en charge des proxies est limitée:: Vous pouvez déployer AI Data Engine avec un proxy forward, mais les fonctionnalités de proxy suivantes ne sont pas prises en charge :
++
+--
+* Les proxys d’inspection TLS, qui déchiffrent et signent à nouveau le trafic HTTPS avec une autorité de certification personnalisée.
+* Authentification NTLM, Kerberos ou par certificat client auprès du proxy. N'utilisez aucune authentification ou l'authentification de base.
+* Proxys SOCKS.
+* Configuration automatique du proxy (fichier PAC ou WPAD). Indiquez directement à l'installateur l'hôte et le port du proxy.
+* Un proxy différent pour différentes destinations. Un seul proxy achemine tout le trafic Internet d’AI Data Engine.
+* Une adresse IPv6 comme adresse proxy. Utilisez plutôt un nom de l'hôte ; le nom de l'hôte peut être résolu en IPv6.
+* Un proxy avec une installation isolée du réseau. Le programme d'installation refuse les options de proxy sur une installation isolée du réseau.
++
+Pour connaître les configurations de proxy prises en charge, consultez link:../deploy/configure-proxy.html["Découvrez les proxies pour AI Data Engine"].
+
+
+
+--
 
 
 
@@ -26,7 +42,7 @@ Les déploiements Lite et Enterprise sont indépendants:: AIDE Lite et AIDE Ente
 [[policies-and-actions]]
 == Politiques et actions
 
-Les actions déclenchées par les politiques sont limitées:: Lors de la création d'une stratégie, les actions automatisées disponibles se limitent à la suppression définitive et à la notification par e-mail. Les actions automatisées d'archivage et d'étiquetage provenant des stratégies ne sont pas disponibles dans cette version. Vous pouvez créer une stratégie sans action pour surveiller l'état des données au fil du temps.
+Les actions déclenchées par les politiques sont limitées:: Lorsque vous créez une politique, les actions automatisées disponibles se limitent à la suppression définitive et à la notification par e-mail. Les actions d’archivage et de balisage automatisées à partir des politiques ne sont pas disponibles. Vous pouvez créer une politique sans action pour surveiller une condition de données au fil du temps.
 
 
 
@@ -34,7 +50,16 @@ Les actions déclenchées par les politiques sont limitées:: Lors de la créati
 [[tags]]
 == Étiquettes
 
-Les étiquettes ne peuvent pas être supprimées ni renommées:: La gestion des étiquettes n'est pas disponible dans cette version. Après avoir créé une étiquette, elle reste disponible dans le système. Vous pouvez appliquer une étiquette à des éléments et la supprimer de ces éléments, mais vous ne pouvez pas supprimer la définition de l'étiquette elle-même ni corriger un nom d'étiquette contenant une faute de frappe.
+Les étiquettes ne peuvent pas être supprimées ni renommées:: Une fois que vous créez une étiquette, elle reste disponible dans le système. Vous pouvez appliquer une étiquette à des éléments et la supprimer de ces éléments, mais vous ne pouvez pas supprimer la définition de l’étiquette elle-même, la renommer ni corriger un nom d’étiquette qui contient une faute de frappe. Les noms d’étiquettes sont sensibles à la casse, donc `Finance` et `finance` sont des étiquettes différentes.
+
+
+
+
+[[governed-ai-access-mcp]]
+== Accès à l'IA gouverné (MCP)
+
+Les filtres de recherche MCP sont limités:: Les clients d'IA peuvent uniquement rechercher des fichiers par préfixe de nom, type de fichier et propriétaire. Si vous demandez une recherche par taille, date ou dossier, le client d'IA devra parcourir les résultats, et la réponse risque d'être incomplète.
+Les opérations sur les étiquettes MCP sont limitées:: Les clients d'IA ne peuvent pas répertorier les fichiers qui possèdent une étiquette, et ils peuvent ajouter ou supprimer une étiquette sur un seul fichier à la fois.
 
 
 
@@ -45,4 +70,5 @@ Les étiquettes ne peuvent pas être supprimées ni renommées:: La gestion des 
 * link:whats-new.html["Quoi de neuf"]
 * link:../deploy/deployment-overview.html["Aperçu du déploiement"]
 * link:../investigate/take-actions.html["Agissez sur vos données"]
+* link:../mcp/learn-about-mcp.html["Découvrez l'accès gouverné à l'IA"]
 

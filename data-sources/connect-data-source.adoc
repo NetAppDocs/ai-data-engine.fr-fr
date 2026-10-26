@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: data-sources/connect-data-source.html 
-keywords: connect, data source, storage system, scanned systems, configuration, scan, NFS, CIFS, StorageGRID, database, file shares, console agent, scope, content intelligence, activate 
-summary: 'Connectez les systèmes de stockage à AI Data Engine en complétant l"assistant d"intégration de la source de données, puis activez l"analyse pour commencer la collecte des métadonnées.' 
+keywords: connect, data source, storage system, add system, scan, NFS, CIFS, SMB, StorageGRID, database, file shares, console agent, scope, activate, Kerberos 
+summary: Connectez les sources de données à AI Data Engine et configurez les ressources de données à analyser. 
 ---
 = Connectez une source de données à AI Data Engine
 :allow-uri-read: 
@@ -11,70 +11,137 @@ summary: 'Connectez les systèmes de stockage à AI Data Engine en complétant l
 
 
 [role="lead"]
-AI Data Engine analyse vos systèmes de stockage pour collecter et analyser les métadonnées. Pour ajouter une source de données, suivez les instructions de l'assistant d'intégration. Celui-ci recueille les informations de connexion, le périmètre d'analyse et les paramètres de votre type de source. Une fois le système ajouté, activez l'analyse pour lancer la collecte des métadonnées.
+Connectez les sources de données que vous souhaitez faire analyser par AI Data Engine (AIDE) et choisissez lesquelles de leurs ressources de données analyser. AI Data Engine analyse les sources de données connectées pour collecter les métadonnées ; la procédure de connexion dépend du type de source.
 
-.Avant de commencer
-* Vous devez disposer des privilèges d'administrateur _AI Data Engine_ pour vous connecter et configurer les sources de données dans AI Data Engine.
-* Découvrez les systèmes de stockage dans la NetApp Console à l’aide d’un Console Agent avant de les ajouter à AI Data Engine. Cela s’applique à tous les types de stockage pris en charge, y compris les clusters ONTAP sur site, Cloud Volumes ONTAP, Amazon FSx for NetApp ONTAP, Google Cloud NetApp Volumes et Azure NetApp Files. Pour les clusters ONTAP sur site, reportez-vous à link:https://docs.netapp.com/us-en/storage-management-ontap-onprem/task-discovering-ontap.html["Découvrez les clusters ONTAP sur site"] dans la documentation de la NetApp Console. La découverte directe n’active pas les services de données tels que AI Data Engine.
+
+
+[[before-you-begin]]
+== Avant de commencer
+
+* Vous devez disposer des privilèges d'_AI Data Engine administrator_ pour vous connecter et configurer les sources de données.
+* Pour les systèmes connectés via la découverte de NetApp Console, utilisez un agent Console pour détecter les systèmes de stockage dans NetApp Console avant de les ajouter à AI Data Engine. Cela s'applique à tous les types de stockage pris en charge, notamment les clusters ONTAP sur site, Cloud Volumes ONTAP, Amazon FSx for NetApp ONTAP, Google Cloud NetApp Volumes et Azure NetApp Files. Pour les clusters ONTAP sur site, reportez-vous à link:https://docs.netapp.com/us-en/storage-management-ontap-onprem/task-discovering-ontap.html["Découvrez les clusters ONTAP sur site"] dans la documentation de NetApp Console. La découverte directe n'active pas les services de données tels qu'AI Data Engine.
 * Vérifiez que les connexions réseau nécessaires à AI Data Engine pour accéder à vos sources de données sont ouvertes. Consultez link:../deploy/aide-requirements.html["Exigences relatives à AI Data Engine"].
+* Pour analyser les partages SMB/CIFS avec l'authentification Kerberos, veuillez d'abord suivre la procédure correspondant à votre type de déploiement dans link:../administer/configure-kerberos-smb.html["Authentification Kerberos pour les partages SMB/CIFS dans AI Data Engine"].
 
 
 
 
 [[add-a-data-source]]
+[[add-data-source]]
 == Ajouter une source de données
 
-.Étapes
-. Dans l’interface utilisateur de AI Data Engine, sélectionnez *Configuration*.
-. Dans l'onglet *Systèmes scannés*, sélectionnez *Ajouter un système*.
-. Sélectionnez un type de source :
-+
-[cols="1,2"]
-|===
-| Type de source | Description 
-
-
-| *Groupe de partages de fichiers* | Ajoutez des partages de fichiers NFS ou SMB/CIFS depuis le cloud ou sur site en tant que groupe nommé. 
-
-
-| *Base de données* | Ajouter un serveur de base de données pour analyser les schémas sélectionnés. 
-
-
-| *StorageGRID* | Analysez les données de NetApp StorageGRID à l’aide du protocole S3. 
-|===
-. Saisissez les détails de connexion pour votre type de source :
-+
-[cols="1,3"]
-|===
-| Type de source | Informations requises 
-
-
-| *Groupe de partages de fichiers* | Un nom pour le groupe de partage, puis les détails de l’hôte et du chemin du partage. 
-
-
-| *Base de données* | Type de base de données, hôte, port et paramètres d'authentification. 
-
-
-| *StorageGRID* | Nom du système, URL du terminal S3, clé d’accès S3 et clé secrète. 
-|===
-. Vérifiez vos sélections et sélectionnez *Confirmer* pour ajouter la source de données.
+Importez vos données dans AI Data Engine afin de pouvoir les analyser. Utilisez *Ajouter un système* sur la page *Sources de données* pour connecter un groupe de partages de fichiers, un serveur de base de données ou un système StorageGRID. Après avoir ajouté la source de données, configurez l'analyse pour préciser quelles ressources AI Data Engine doit analyser afin de collecter les métadonnées. Reportez-vous à <<configure-scanning>>.
 
 
 
+[[add-a-file-shares-group]]
+[[add-file-shares-group]]
+=== Ajouter un groupe de partage de fichiers
 
-[[activate-scanning]]
-== Activer l’analyse
+Intégrez les partages NFS ou SMB dans AI Data Engine en tant que système nommé afin de les gérer ensemble. Créez le groupe, ajoutez les partages, puis configurez les partages à analyser.
 
-Une fois la source de données configurée, l'analyse ne démarre pas automatiquement. Vous devez activer l'analyse pour chaque système.
+[[add-file-shares-group-prerequisites]]
+.Avant de commencer
+* Identifiez un nom pour le groupe ainsi que l'hôte et le chemin d'accès de chaque partage.
+* Vérifiez que le déploiement AI Data Engine peut atteindre les serveurs de partage.
+* Pour NFS, configurez l'accès à l'export dont AI Data Engine a besoin.
+* Pour SMB, préparez la méthode d'authentification et l'accès nécessaire pour lire les partages.
+
 
 .Étapes
-. Dans l’interface utilisateur de AI Data Engine, sélectionnez *Configuration*.
-. Dans l'onglet *Systèmes analysés*, repérez le système que vous souhaitez analyser.
-. Sélectionnez *Activer les analyses*.
+. Dans l'interface utilisateur de AI Data Engine, sélectionnez *Sources de données*.
+. Sélectionnez *Add system*, puis sélectionnez *Add File Shares Group*.
+. Saisissez un nom pour le groupe et poursuivez.
+. Sélectionnez le protocole des partages à ajouter.
+. Saisissez les partages à ajouter et soumettez-les.
++
 
+NOTE: Pour les partages SMB/CIFS qui utilisent l'authentification Kerberos, saisissez le chemin du partage sous la forme du nom de domaine complet (FQDN) suivi du nom du partage, par exemple `filer.corp.example.com/sharename`, et laissez les identifiants vides. Consultez link:../administer/configure-kerberos-smb.html["Authentification Kerberos pour les partages SMB/CIFS dans AI Data Engine"].
+
+. Vérifiez le résultat pour chaque partage. Résolvez les partages en échec, puis ajoutez-les à nouveau.
+. Configurez l'analyse pour le groupe. Consultez <<configure-scanning>>.
+
+
+
+
+[[add-a-database-server]]
+[[add-database]]
+=== Ajouter un serveur de base de données
+
+Importez les données d'un serveur de base de données dans AI Data Engine afin de pouvoir les analyser. Connectez le serveur de base de données, puis sélectionnez les schémas à analyser.
+
+.Avant de commencer
+* Connaissez le type de base de données, le nom d'hôte ou l'adresse IP du serveur, le port et les identifiants du compte d'analyse.
+* Vérifiez que le compte peut lire les schémas et les tables que vous souhaitez analyser.
+* Vérifiez que AI Data Engine peut accéder au serveur de base de données.
+
+
+.Étapes
+. Dans l'interface utilisateur de AI Data Engine, sélectionnez *Sources de données*.
+. Sélectionnez *Ajouter un système*, puis *Ajouter un serveur de base de données*.
+. Sélectionnez le type de base de données et saisissez les informations de connexion.
+. Soumettez les informations de connexion.
+. Configurez l'analyse pour le serveur de base de données. Reportez-vous à <<configure-scanning>>.
+
+
+
+
+[[add-storagegrid]]
+=== Ajouter StorageGRID
+
+Importez vos données d’objets StorageGRID dans AI Data Engine via son terminal S3 afin de pouvoir les analyser. Connectez StorageGRID, puis sélectionnez les compartiments à analyser.
+
+.Avant de commencer
+* Préparez un nom de système, l'URL du point de terminaison S3 de StorageGRID, ainsi qu'une clé d'accès S3 et une clé secrète S3.
+* Vérifiez que AI Data Engine peut atteindre le point de terminaison.
+
+
+.Étapes
+. Dans l'interface utilisateur de AI Data Engine, sélectionnez *Sources de données*.
+. Sélectionnez *Ajouter un système*, puis sélectionnez *Ajouter StorageGRID*.
+. Saisissez le nom du système, l'URL du point de terminaison S3, la clé d'accès et la clé secrète.
+. Soumettez les informations de connexion.
+. Configurez l'analyse pour le système StorageGRID. Reportez-vous à <<configure-scanning>>.
+
+
+
+
+[[configure-scanning]]
+== Configurer l'analyse
+
+Après avoir connecté un système, choisissez les ressources de données que AI Data Engine analysera afin que la collecte de métadonnées couvre les données que vous devez analyser. Choisissez l'une des approches suivantes :
+
+* Activez l'analyse automatique pour l'ensemble du système sur la page *Sources de données*. AI Data Engine analyse toutes les ressources existantes et futures du système.
+* Activez l'analyse pour des volumes, partages, compartiments ou schémas individuels sur la page *Afficher les détails* du système.
+
+
+.Étapes
+* Activer la numérisation automatique pour un système :
++
+.. Dans l'interface utilisateur de AI Data Engine, sélectionnez *Sources de données*.
+.. Repérez le système et basculez le commutateur d’analyse automatique pour activer l’analyse automatique.
++
+
+NOTE: Vous devez désactiver l'analyse automatique pour gérer l'analyse des ressources individuelles.
+
+
+
+* Activer l’analyse pour des ressources individuelles :
++
+.. Dans l'interface utilisateur de AI Data Engine, sélectionnez *Sources de données*.
+.. Localisez le système et sélectionnez *Afficher les détails*.
+.. Dans la liste des ressources de données, activez l'analyse pour les volumes, partages, buckets ou schémas que vous souhaitez inclure.
+.. Retournez à *Sources de données*, localisez le système et sélectionnez *Activer les analyses*.
+
+
+
+
+Pour plus de procédures au niveau des ressources, reportez-vous à link:manage-data-sources.html["Gérer les sources de données"].
 
 .Résultat
-L'état du système est mis à jour dans l'onglet « Systèmes analysés » pour indiquer que l'analyse est en cours. Pour suivre la progression de l'analyse et vérifier que AI Data Engine indexe les ressources de données, consultez link:manage-data-sources.html["Gérer les sources de données"] et link:monitor-scanning-health.html["Surveiller l'état de l'analyse"].
+L'état du système sur la page *Sources de données* se met à jour pour indiquer que l'analyse est en cours. La page affiche l'état d'analyse de chaque ressource.
+
+Si les analyses s'arrêtent ou se mettent en pause de manière inattendue, consultez link:../administer/monitor-deployment-health.html["Surveiller l'état du déploiement et examiner les problèmes"].
 
 
 
@@ -83,6 +150,7 @@ L'état du système est mis à jour dans l'onglet « Systèmes analysés » po
 
 * link:manage-data-sources.html["Gérer les sources de données"]
 * link:../deploy/aide-requirements.html["Exigences relatives à AI Data Engine"]
+* link:../administer/configure-kerberos-smb.html["Authentification Kerberos pour les partages SMB/CIFS dans AI Data Engine"]
 * link:../investigate/understand-dashboard.html["Évaluer l'utilisation du stockage depuis le tableau de bord"]
-* link:monitor-scanning-health.html["Surveiller l'état de l'analyse"]
+* link:../administer/monitor-deployment-health.html["Surveiller l'état du déploiement et examiner les problèmes"]
 

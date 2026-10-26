@@ -1,0 +1,66 @@
+---
+sidebar: sidebar 
+permalink: deploy/deploy-aide-single-node.html 
+keywords: deploy, install, single-node, single node, wizard, NetApp Console, deployment wizard, onboarding 
+summary: 'Déployez AIDE en tant que déploiement à nœud unique depuis NetApp Console à l"aide de l"assistant de déploiement.' 
+---
+= Déployer AI Data Engine en tant que déploiement mononœud
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Déployez AI Data Engine (AIDE) en mode mono-nœud depuis NetApp Console à l'aide de l'assistant de déploiement. L'assistant vous guide dans le choix de l'emplacement d'installation, de la taille de configuration et dans l'exécution de la commande d'installation sur votre hôte cible.
+
+
+IMPORTANT: Si l'hôte cible n'accède à Internet que par le biais d'un proxy sortant, utilisez plutôt link:deploy-aide-single-node-proxy.html["Déployez AI Data Engine sur un nœud unique avec un proxy"].
+
+.Avant de commencer
+* Vous disposez des autorisations d’_administrateur de l’organisation_ ou supérieures dans NetApp Console.
+* Vous disposez des autorisations sudo ou root sur l'hôte cible pour exécuter la commande d'installation.
+* Votre environnement remplit toutes les conditions préalables décrites dans link:single-node-prerequisites.html["Prérequis pour le déploiement d'un nœud unique AIDE"] et link:aide-requirements.html["exigences AIDE"].
+* Un agent NetApp Console https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy["est déployé"^] est requis et doit être accessible depuis l’hôte AI Data Engine. L’adresse IP de l’agent Console est nécessaire pour exécuter la commande d’installation.
+
+
+
+NOTE: Utilisez le programme d'installation uniquement pour la première installation d'AIDE. Ne l'utilisez pas pour mettre à niveau AIDE. Après l'installation, l'opérateur AIDE gère les mises à niveau. Pour plus d'informations sur les mises à niveau, contactez le NetApp Support.
+
+.Étapes
+. Dans NetApp Console, accédez à *AI data hub* > *AI Data Engine*.
++
+La page d'accueil de AI Data Engine s'affiche.
+
+. Sélectionnez *Deploy AI Data Engine*.
+. Sélectionnez l'option de déploiement *mono-nœud* et sélectionnez *Suivant*.
+. Sélectionnez la taille de votre configuration :
++
+** *Petit* : recommandé pour les environnements contenant jusqu’à environ 200 millions de fichiers.
+** *Moyen (par défaut)* : recommandé pour les environnements contenant jusqu’à environ 1 milliard de fichiers.
+** *Grand* : recommandé pour les environnements contenant jusqu’à environ 3 milliards de fichiers.
++
+Ces tailles sont des recommandations de base, et non des limites strictes. Consultez link:aide-requirements.html#flexible-sizing-single-node["directives de dimensionnement flexibles"] si votre environnement se situe en dehors de ces plages.
+
+
+
+. Copiez la commande d'installation affichée dans l'assistant dans un éditeur.
++
+L'assistant génère la commande d'installation avec la taille de configuration que vous avez sélectionnée.
+
+. Exécutez la commande d'installation sur votre hôte cible.
++
+Si le programme d'installation vous demande si vous souhaitez configurer un proxy sortant, saisissez `n`.
+
++
+
+NOTE: L'installation prend environ 45 minutes. Les délais d'attente et les nouvelles tentatives sont normaux.
+
+. Répondez à l'invite de confirmation de l'installateur pour poursuivre l'installation.
++
+Le programme d'installation détecte l'adresse IP du nœud qui exécute l'ingress NGINX de AI Data Engine et vous demande de la confirmer. Appuyez sur Entrée pour conserver l'adresse affichée ou saisissez-en une autre. Utilisez une adresse accessible depuis l'extérieur de la VM. Ne saisissez pas l'adresse de l'agent Console.
+
+. Surveillez l'écran de progression jusqu'à ce que l'écran de réussite apparaisse et confirme que l'installation de AIDE est terminée.
+
+
+.Résultat
+AI Data Engine est déployé et connecté à NetApp Console. Vous pouvez maintenant link:../data-sources/connect-data-source.html["connecter une source de données"] pour lancer l'analyse.

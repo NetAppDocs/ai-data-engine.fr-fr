@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: investigate/take-actions.html 
-keywords: actions, tag, archive, delete, data lifecycle, storage optimization, breadcrumb 
-summary: 'Agissez sur les fichiers que vous avez identifiés comme froids, anciens ou obsolètes en les archivant, en les étiquetant pour le suivi ou en supprimant définitivement ceux dont vous n"avez plus besoin.' 
+keywords: actions, tag, archive, delete, copy, data lifecycle, storage optimization, breadcrumb, duplicates, clean up duplicates 
+summary: 'Agissez sur les fichiers que vous avez identifiés comme inactifs, obsolètes, dupliqués ou périmés en les archivant, en les étiquetant pour le suivi ou en supprimant définitivement ceux dont vous n"avez plus besoin.' 
 ---
 = Exploitez vos données dans AI Data Engine
 :allow-uri-read: 
@@ -11,10 +11,10 @@ summary: 'Agissez sur les fichiers que vous avez identifiés comme froids, ancie
 
 
 [role="lead"]
-Après avoir identifié les fichiers à l'aide des filtres que vous avez définis, vous pouvez prendre des mesures directes pour appliquer les politiques de cycle de vie des données de votre organisation. Par exemple, un administrateur de stockage qui filtre pour trouver des téraoctets de snapshots de machines virtuelles auxquels aucun accès n'a eu lieu depuis plus d'un an peut les archiver en masse sur un partage de stockage à froid ou les supprimer, selon les exigences de conservation et les politiques de l'entreprise.
+Dans AI Data Engine (AIDE), vous pouvez appliquer les politiques de cycle de vie des données de votre organisation en archivant, copiant, étiquetant ou supprimant les fichiers que vous avez identifiés à l’aide de vos filtres. Par exemple, un administrateur du stockage qui filtre pour trouver des téraoctets de snapshots de VM auxquels personne n’a accédé depuis plus d’un an peut les archiver en masse sur un partage de stockage à froid ou les supprimer, selon les exigences de conservation et les politiques de l’entreprise.
 
 .À propos de cette tâche
-Pour agir, sélectionnez un ou plusieurs éléments dans le tableau des résultats de l’enquête à l’aide des cases à cocher. La barre d’outils d’actions s’active alors avec quatre options : *Supprimer*, *Archiver*, *Copier* et *Étiqueter*.
+Pour agir, sélectionnez un ou plusieurs éléments dans le tableau des résultats d’investigation à l’aide des cases à cocher. La barre d’outils d’action s’active avec quatre options : *Supprimer*, *Archiver*, *Copier* et *Étiqueter*. Pour supprimer les copies en double d’un fichier, utilisez *Nettoyer les doublons*. Reportez-vous à <<Examiner et nettoyer les fichiers en double>>.
 
 Les actions dont vous disposez dépendent du rôle qui vous est attribué :
 
@@ -33,6 +33,9 @@ Les actions dont vous disposez dépendent du rôle qui vous est attribué :
 
 
 | Supprimer | Oui | - 
+
+
+| Supprimer les doublons | Oui | - 
 |===
 Pour une description complète des rôles, reportez-vous à link:../administer/manage-users-roles.html["Gérer les utilisateurs et les rôles"].
 
@@ -54,10 +57,13 @@ Choisissez une action en fonction de votre degré de certitude concernant les do
 | Archive | Ces données peuvent encore avoir de la valeur, mais elles n'ont pas leur place dans le stockage principal. L'archivage les déplace vers une destination moins coûteuse tout en les gardant récupérables. 
 
 
-| Copier | Les données doivent exister dans un second emplacement, par exemple à des fins de sauvegarde ou de migration. La copie préserve l’original sur place. 
+| Copier | Les données doivent exister dans un second emplacement, par exemple à des fins de sauvegarde ou de migration des données. La copie conserve l'original en place. Vous pouvez copier vers un dossier NFS ou SMB, créer un volume FlexClone filtré, ou transférer des éléments avec NetApp Copy and Sync. 
 
 
 | Supprimer | Ces données ne sont plus nécessaires et ne sont soumises à aucune obligation de conservation. La suppression est définitive, utilisez donc cette option uniquement si vous en êtes sûr. 
+
+
+| Supprimer les doublons | Des copies identiques d'un fichier existent à plusieurs emplacements et vous souhaitez n'en conserver qu'une. Vous pouvez étiqueter, archiver ou supprimer les copies redondantes tout en conservant une copie. La suppression des doublons est définitive. Reportez-vous à <<Examiner et nettoyer les fichiers en double>>. 
 |===
 Lorsque des données peuvent encore avoir de la valeur ou nécessiter un examen plus approfondi, privilégiez l'étiquetage, l'archivage ou la copie plutôt que la suppression. Ne supprimez les données que lorsque vous êtes absolument certain qu'elles peuvent être effacées définitivement sans risque.
 
@@ -66,7 +72,13 @@ Lorsque des données peuvent encore avoir de la valeur ou nécessiter un examen 
 [[archive-files]]
 == Fichiers d'archive
 
-L'archivage déplace les fichiers vers une destination de stockage à froid via NFS ou SMB/CIFS. Vous pouvez, si vous le souhaitez, laisser un fichier de suivi à l'emplacement d'origine.
+Déplacez les fichiers qui n’ont pas leur place dans le stockage principal vers une destination de stockage à froid tout en les laissant récupérables. Vous pouvez, si vous le souhaitez, laisser un fichier de repère à l’emplacement d’origine afin que les utilisateurs puissent comprendre pourquoi un fichier a été déplacé.
+
+
+CAUTION: La copie ou l'archivage de fichiers peut modifier les autorisations, le propriétaire, les informations de groupe et l'horodatage de la destination. Les transferts interprotocoles peuvent considérablement étendre l'accès. Avant de transférer des données sensibles, vérifiez les paramètres de sécurité de la destination et contrôlez les autorisations par la suite.
+
+
+NOTE: Les informations d'identification que vous fournissez pour une destination SMB sont distinctes de l'intégration Active Directory. Pour afficher les noms d'utilisateur et les autorisations dans AI Data Engine, reportez-vous à link:../administer/configure-settings.html["Configurer les seuils de classification des données et l’analyse des accès"].
 
 .Avant de commencer
 * Vous devez posséder le rôle d’administrateur d’AI Data Engine.
@@ -77,38 +89,110 @@ L'archivage déplace les fichiers vers une destination de stockage à froid via 
 . Sélectionnez *Archive*.
 . Dans la boîte de dialogue Archiver, sélectionnez le protocole du volume de destination :
 +
-** *NFS* : saisissez le chemin du dossier de destination NFS.
-** *CIFS* : saisissez le chemin du dossier de destination CIFS au format  `\\Hostname\share_name`. Fournissez les informations d’identification Active Directory : saisissez le nom d’utilisateur au format  `domain\user` ou  `user@domain`, puis saisissez le mot de passe.
+** Pour *NFS*, saisissez le chemin du dossier de destination au format `hostname:/path/to/destination`.
+** Pour *SMB*, saisissez le chemin du dossier de destination SMB au format `\\Hostname\share_name`. Sélectionnez la méthode d'authentification. Pour Kerberos, utilisez le FQDN de l'hôte et laissez les informations d'identification vides. Reportez-vous à link:../administer/configure-kerberos-smb.html["Authentification Kerberos pour les partages SMB/CIFS dans AI Data Engine"]. Pour les autres méthodes, fournissez les informations d'identification Active Directory : saisissez le nom d'utilisateur au format `domain\user` ou `user@domain`, puis saisissez le mot de passe.
 
 
 . Pour créer un fichier de fil d'Ariane à l'emplacement d'origine, activez *Leave breadcrumb*.
 +
 Un fichier de fil d'Ariane aide les utilisateurs à comprendre pourquoi un fichier a été déplacé.
 
-. Sélectionnez *Archive*.
+. Sélectionnez *Fichier d'archive*.
 
 
 
 
-[[copy-files]]
-== Copier les fichiers
+[[copy-selected-items]]
+== Copier les éléments sélectionnés
 
-Copie des fichiers en double vers un volume de destination sans les supprimer de leur emplacement d'origine.
+Rendez les éléments sélectionnés disponibles dans un autre emplacement, par exemple pour la sauvegarde ou la migration. Vous pouvez copier des éléments vers un dossier NFS ou SMB, créer une copie filtrée d’un volume ONTAP ou transférer des éléments à l’aide de Copy and Sync.
+
+Choisissez la méthode qui correspond à votre objectif :
+
+* *Copie standard* : copie des éléments vers un dossier de destination NFS ou SMB sans modifier les fichiers d’origine.
+* *FlexClone*: Créez une copie à un instant donné d'un volume ONTAP et supprimez du volume cloné les éléments qui n'étaient pas inclus dans votre requête. Le volume d'origine n'est pas affecté.
+* *Synchronisation* : transférez des éléments entre un stockage de fichiers ou d’objets, sur site ou dans le cloud, à l’aide de Copy and Sync.
+
 
 .Avant de commencer
 * Vous devez posséder le rôle d’administrateur d’AI Data Engine.
 
 
 .Étapes
-. Dans la vue Investigation, sélectionnez les fichiers que vous souhaitez copier.
+. Dans AI Data Engine, sélectionnez *Investigation* dans le menu de navigation de gauche.
+. Utilisez les filtres pour trouver les éléments que vous souhaitez copier, puis sélectionnez-les dans le tableau des résultats.
 . Sélectionnez *Copier*.
-. Dans la boîte de dialogue Copier, sélectionnez le protocole du volume de destination :
+. Suivez la procédure correspondant à la méthode de copie que vous avez choisie.
+
+
+
+
+[[copy-items-to-an-nfs-or-smb-folder]]
+=== Copiez les éléments dans un dossier NFS ou SMB
+
+Utilisez la fonction de copie standard pour placer des copies des éléments sélectionnés dans un dossier de destination tout en laissant les fichiers d'origine inchangés.
+
+
+CAUTION: La copie ou l'archivage de fichiers peut modifier les autorisations, le propriétaire, les informations de groupe et l'horodatage de la destination. Les transferts interprotocoles peuvent considérablement étendre l'accès. Avant de transférer des données sensibles, vérifiez les paramètres de sécurité de la destination et contrôlez les autorisations par la suite.
+
+.Avant de commencer
+* Vérifiez que le partage de destination est accessible depuis AI Data Engine. Les partages NFS et SMB sont pris en charge, quel que soit leur emplacement d'hébergement.
+* Pour une destination SMB, assurez-vous de disposer d'identifiants Kerberos ou NTLM.
+
+
+.Étapes
+. Dans la boîte de dialogue *Copier les éléments sélectionnés*, sélectionnez *Copie normale*.
+. Choisissez le protocole de destination et indiquez les détails de la destination:
 +
-** *NFS* : saisissez le chemin du dossier de destination NFS.
-** *CIFS* : saisissez le chemin du dossier de destination CIFS au format  `\\Hostname\share_name`. Fournissez les informations d’identification Active Directory : saisissez le nom d’utilisateur au format  `domain\user` ou  `user@domain`, puis saisissez le mot de passe.
+** Pour *NFS*, saisissez le chemin du dossier de destination au format `hostname:/path/to/destination`.
+** Pour *SMB*, saisissez le chemin du dossier de destination au format `\\hostname\share_name`. Sélectionnez Kerberos ou NTLM comme type d'authentification SMB. Pour Kerberos, utilisez le FQDN de l'hôte et laissez les informations d'identification vides. Reportez-vous à link:../administer/configure-kerberos-smb.html["Authentification Kerberos pour les partages SMB/CIFS dans AI Data Engine"]. Pour les autres méthodes, fournissez des informations d'identification Active Directory : saisissez le nom d'utilisateur au format `domain\user` ou `user@domain`, puis saisissez le mot de passe.
 
 
-. Sélectionnez *Copier*.
+. Examinez comment la copie peut affecter les métadonnées des fichiers :
++
+** Les informations relatives aux permissions, à la propriété et aux groupes seront conservées dans la mesure du possible. Si les identités sources ne peuvent pas être mappées, les valeurs par défaut de la destination peuvent s’appliquer.
+** Les horodatages sources, y compris l'heure de création, peuvent ne pas être conservés et peuvent refléter l'opération de copie ou le comportement de la destination.
+** Les nouveaux répertoires utilisent les autorisations par défaut de la destination.
+** Les transferts interprotocoles peuvent étendre l'accès. Consultez les paramètres de sécurité de la destination avant de copier et vérifiez les autorisations par la suite.
+
+
+. Sélectionnez *Soumettre*.
+
+
+
+
+[[create-a-filtered-copy-of-an-ontap-volume]]
+=== Créer une copie filtrée d’un volume ONTAP
+
+Créez une copie nettoyée d'un volume ONTAP qui contient uniquement les éléments de votre requête, prête pour la migration. FlexClone® crée une copie instantanée du volume et supprime les éléments hors de votre requête du clone uniquement.
+
+.Avant de commencer
+Vérifiez que tous les éléments sélectionnés appartiennent au même volume ONTAP. Le volume FlexClone est créé dans le même agrégat que son volume parent.
+
+.Étapes
+. Dans la boîte de dialogue *Copier les éléments sélectionnés*, sélectionnez *FlexClone®*.
+. Saisissez un *Name* pour le volume cloné.
+. Vérifiez que votre requête inclut bien tous les éléments que vous souhaitez conserver dans le volume cloné.
++
+Les éléments non inclus dans la requête sont supprimés du clone. Le volume original reste inchangé.
+
+. Sélectionnez *Soumettre*.
+
+
+
+
+[[transfer-items-using-copy-and-sync]]
+=== Transférez des éléments à l’aide de Copy and Sync
+
+Transférez les éléments sélectionnés entre des emplacements de stockage de fichiers ou d'objets, sur site ou dans le cloud.
+
+.Avant de commencer
+Vérifiez que tous les éléments sélectionnés appartiennent au même référentiel de stockage. Si votre sélection s'étend sur plusieurs référentiels, annulez l'opération et sélectionnez les éléments d'un seul référentiel.
+
+.Étapes
+. Dans la boîte de dialogue *Copier les éléments sélectionnés*, sélectionnez *Synchroniser*.
+. Vérifiez le nombre d'éléments à synchroniser et assurez-vous qu'il correspond bien aux éléments que vous souhaitez transférer.
+. Sélectionnez *Sync* pour continuer avec Copy and Sync.
 
 
 
@@ -116,7 +200,7 @@ Copie des fichiers en double vers un volume de destination sans les supprimer de
 [[delete-files]]
 == Supprimer les fichiers
 
-La suppression supprime définitivement les fichiers du stockage et ne peut pas être annulée.
+Supprimez définitivement les fichiers dont vous n'avez plus besoin et qui ne sont soumis à aucune obligation de conservation.
 
 
 CAUTION: La suppression est définitive et ne peut pas être annulée. Cette action supprime les fichiers sources même s'ils contiennent des données actives.
@@ -137,10 +221,84 @@ Les fichiers sélectionnés sont définitivement supprimés du stockage.
 
 
 
+[[investigate-and-clean-up-duplicate-files]]
+== Examiner et nettoyer les fichiers en double
+
+Recherchez les copies en double d'un fichier et supprimez celles qui sont redondantes. Examinez les métadonnées et l'emplacement des copies, puis marquez les doublons pour vérification, archivage ou suppression définitive, tout en conservant une copie.
+
+.Avant de commencer
+* Vous devez posséder le rôle d’administrateur d’AI Data Engine.
+
+
+.Étapes
+. Dans NetApp Console, accédez à *AI data hub* > *AI Data Engine*.
+. Sélectionnez *Investigation* > *Unstructured*.
++
+Le tableau affiche les noms de fichiers, leurs tailles, leurs propriétaires, les systèmes auxquels ils appartiennent et leurs étiquettes.
+
+. Facultatif : sélectionnez *Ajouter un filtre* pour affiner la liste des fichiers.
+. Sélectionnez un nom de fichier pour ouvrir ses détails.
++
+Vérifiez le système, le référentiel de stockage, le chemin d'accès, la taille, les horodatages, les accès et le propriétaire du fichier. Le champ *Doublons* affiche le nombre de copies identiques.
+
+. À côté de *Doublons*, sélectionnez *Afficher les détails*.
++
+La vue Investigation applique un filtre *Doublons* qui inclut les fichiers en double et un filtre *Hachage de fichier* qui correspond au fichier sélectionné.
+
+. Examinez les fichiers correspondants et leur emplacement.
+. Sélectionnez les fichiers que vous souhaitez nettoyer.
++
+Vérifiez le nombre d'*éléments sélectionnés*.
+
+. Sélectionnez *Nettoyer les doublons*.
+. Examinez le nombre estimé de fichiers correspondant aux filtres actuels et présentant des copies en double.
++
+
+NOTE: Ce nombre est une estimation. Les doublons exacts sont recalculés lors de l'exécution de l'action, et seuls les fichiers confirmés comme identiques sont concernés.
+
+. Décidez comment gérer les doublons :
++
+** Identifiez les doublons pour vérification :
++
+... Sous *Action*, sélectionnez *Tag*.
+... Sélectionnez *Ajouter*, puis choisissez l'étiquette à appliquer. Répétez l'opération pour ajouter d'autres étiquettes.
+... Sélectionnez *Soumettre*.
+
+
+** Archivez les doublons sur un volume de destination :
++
+... Sous *Action*, sélectionnez *Archiver*.
+... Dans *À l'emplacement d'origine*, sélectionnez *Retirer proprement* ou *Laisser un fil d'Ariane*.
+... Sélectionnez le protocole du volume de destination. Pour *NFS*, saisissez le chemin du dossier de destination au format `Hostname:/SHAREPATH`. Pour *SMB*, saisissez le chemin du dossier de destination, puis sélectionnez l’authentification *Kerberos* ou *NTLM*. Pour *NTLM*, saisissez votre nom d’utilisateur Active Directory et votre mot de passe.
+... Sélectionnez *Soumettre*.
+
+
+** Supprimez les doublons et conservez-en une seule copie :
++
+
+CAUTION: La suppression est définitive et ne peut pas être annulée.
+
++
+... Sous *Action*, sélectionnez *Supprimer*.
+... Sous *Conserver une copie avec*, sélectionnez *Dernier accès*, *Dernière modification* ou *Créé*.
+... Dans *À l'emplacement d'origine*, sélectionnez *Retirer proprement* ou *Laisser un fil d'Ariane*.
+... Sélectionnez *Soumettre*.
+... Dans la boîte de dialogue *Supprimer les copies en double*, vérifiez le nombre de fichiers à supprimer et les informations concernant la conservation d'une copie.
+... Saisissez `permanently delete`, puis sélectionnez *Supprimer*.
+
+
+
+
+
+
+Pour quitter sans soumettre une action, sélectionnez *Annuler*.
+
+
+
 [[tag-files]]
 == Fichiers de balises
 
-Le balisage consiste à attribuer une étiquette métier aux fichiers à des fins de classification et de suivi.
+Suivez les fichiers que vous souhaitez consulter à nouveau ou sur lesquels vous souhaitez vous coordonner avec une autre équipe, sans en modifier l'emplacement. Par exemple, appliquez une étiquette « À archiver » pour identifier les fichiers qui nécessitent une vérification avant de les archiver ou de les supprimer.
 
 .Étapes
 . Dans la vue Investigation, sélectionnez les fichiers que vous souhaitez marquer.
@@ -156,7 +314,6 @@ Le balisage consiste à attribuer une étiquette métier aux fichiers à des fin
 
 * link:investigate-data.html["Analysez vos données"]
 * link:investigate-unstructured.html["Analysez les données non structurées"]
-* link:use-filters.html["Utiliser les filtres"]
 * link:../policies/create-policy.html["Créer une stratégie"]
 * link:../administer/manage-users-roles.html["Gérer les utilisateurs et les rôles"]
 

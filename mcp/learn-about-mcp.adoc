@@ -1,0 +1,136 @@
+---
+sidebar: sidebar 
+permalink: mcp/learn-about-mcp.html 
+keywords: governed ai access, mcp, model context protocol, ai clients, collections, entra id, claude code, claude desktop, cursor, opencode 
+summary: 'L"accès gouverné à l"IA permet aux clients d"IA de rechercher les métadonnées dans les collections AI Data Engine sélectionnées via le Model Context Protocol (MCP), en utilisant un accès que vous contrôlez dans NetApp Console.' 
+---
+= Découvrez l’accès gouverné à l’IA avec AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'accès contrôlé à l'IA permet aux clients d'IA d'utiliser le Model Context Protocol (MCP) pour interroger les métadonnées des collections AI Data Engine (AIDE) que vous sélectionnez. Vous décidez quelles link:manage-data-collections.html#about-data-collections["collectes"] un client d'IA peut interroger et qui peut les utiliser. Les assistants d'IA exploitent vos métadonnées cataloguées dans les limites que vous définissez.
+
+
+
+[[what-governed-ai-access-does]]
+== Ce que fait l’accès gouverné à l’IA
+
+Le protocole Model Context Protocol (MCP) est une norme ouverte qui permet aux clients d’IA de se connecter à des sources de données et à des outils externes. AI Data Engine fournit un serveur MCP, appelé Governed Access Gateway, afin que les clients d’IA puissent interroger le catalogue de métadonnées d’AI Data Engine au lieu d’accéder directement à vos systèmes de stockage.
+
+Grâce à MCP, un client IA connecté peut :
+
+* Recherchez les métadonnées des fichiers dans les collections pour lesquelles vous avez activé l'accès à l'IA.
+* Lister les balises, créer des balises et ajouter ou supprimer des balises dans ces fichiers. Si une balise n'existe pas, ajoutez-la à un fichier pour la créer. Les opérations sur les balises sont disponibles dans une session d'utilisateur avancé, qui nécessite le rôle d'application et la portée Microsoft Entra ID. Reportez-vous à link:configure-entra-id-mcp.html#create-and-assign-the-power-user-app-role["Créer et attribuer le rôle d’application Power User"]. Pour les outils que les clients AI peuvent utiliser, reportez-vous à link:mcp-tools-reference.html["Outils MCP pour l'accès à l'IA régi par AI Data Engine"].
+
+
+
+
+[[governed-ai-access-and-the-investigation-view]]
+== Accès contrôlé à l'IA et vue d'enquête
+
+L'accès gouverné à l'IA vous offre une alternative basée sur l'IA au travail d'investigation que vous effectuez dans AI Data Engine. Au lieu de créer des filtres dans le link:../investigate/investigate-data.html["Vue d’investigation"] de l'interface utilisateur et de sélectionner des fichiers à étiqueter, vous posez une question ou donnez une instruction dans un client IA, tel que Claude Desktop.
+
+[cols="1,2,2"]
+|===
+| Tâche | Dans AI Data Engine | Par l'intermédiaire d'un client IA 
+
+
+| Trouver des fichiers par leurs métadonnées | Appliquez des filtres de métadonnées dans le link:../investigate/investigate-unstructured.html["Vue d’investigation"]. | Demandez au client IA de rechercher dans une collection par préfixe de nom de fichier, type de fichier ou propriétaire. 
+
+
+| Consultez les détails du fichier | Ouvrez le panneau de détails d'un fichier pour voir son système, son référentiel de stockage, son propriétaire et les balises appliquées. | Demandez au client AI le chemin d'accès, le type, la taille, l'heure de la dernière modification et le propriétaire des fichiers figurant dans les résultats. 
+
+
+| Fichiers de balises | Sélectionnez les fichiers dans les résultats de l’enquête et utilisez le link:../investigate/take-actions.html#tag-files["Action d’étiquetage"]. | Demandez au client IA de créer une balise, de l’ajouter à un fichier ou de supprimer une balise d’un fichier. 
+|===
+Les mêmes métadonnées et étiquettes de catalogue sont disponibles aux deux endroits. Vous pouvez créer, ajouter ou supprimer des étiquettes dans la vue Investigation ou via un client AI. Chaque interface reflète les modifications que vous apportez dans l'autre, de sorte que les recherches basées sur des étiquettes sont cohérentes.
+
+Le client IA fonctionne uniquement au sein des collections pour lesquelles l'accès IA est activé. Pour les options de recherche et les exemples, veuillez consulter link:connect-ai-clients-mcp.html#search-metadata["Métadonnées de recherche"].
+
+Pour des exemples de messages d'invite, reportez-vous à link:connect-ai-clients-mcp.html#sample-prompts["Connectez les clients AI"].
+
+
+
+[[how-governed-ai-access-works]]
+== Comment fonctionne l'accès gouverné à l'IA
+
+Vous configurez l'accès contrôlé à l'IA dans Microsoft Entra ID et NetApp Console. Les tâches sont réparties entre un administrateur AI Data Engine et un administrateur Microsoft Entra ID, qui peuvent être la même personne :
+
+. Administrateur AI Data Engine : link:prepare-mcp-host.html["Préparer l'hôte MCP"] en exécutant le script d’entrée. Utilisez un nom de l'hôte de cluster AIDE sur un domaine vérifié dans Microsoft Entra ID.
+. Administrateur Entra ID : link:configure-entra-id-mcp.html["Configurer Microsoft Entra ID"]en enregistrant une application dédiée pour chaque instance AI Data Engine, en définissant l’URI d’ID d’application et la `power_users` portée, en créant et en attribuant le rôle d’application power-user, et en ajoutant des URI de redirection pour vos clients AI.
+. Administrateur AI Data Engine : link:connect-entra-id-aide-mcp.html["Configurer Microsoft Entra ID comme fournisseur d'identité"] dans AI Data Engine.
+. Facultatif : créez des collections de données à partir des volumes sélectionnés. La collection *Tous les fichiers* existe par défaut et inclut tous les fichiers analysés.
+. Activez la connexion à MCP dans les *paramètres MCP*, et vérifiez que le serveur MCP est en cours d'exécution. La connexion est désactivée par défaut.
+. Configurez chaque collection pour MCP en sélectionnant les fournisseurs d'identité et les portées utilisateur. Les portées que vous incluez définissent ce qu'un client d'IA peut rechercher.
+. Connectez les clients d'IA à l'aide de l'URL du serveur MCP ou de l'extrait de code spécifique au client que vous générez dans NetApp Console.
+
+
+Une fois la configuration terminée, les utilisateurs se connectent à un client AI avec leur identité Entra ID. Le client peut alors effectuer des recherches uniquement dans les collections auxquelles les scopes Entra ID de l'utilisateur sont autorisés à accéder.
+
+L'accès est accordé uniquement au niveau de la collection. Il est impossible d'accorder l'accès à des fichiers ou répertoires individuels.
+
+
+
+[[how-ai-clients-sign-in]]
+== Comment les clients AI se connectent
+
+Microsoft Entra ID authentifie les utilisateurs. Le serveur MCP AI Data Engine n'émet jamais de jetons et ne conserve aucun secret. Il valide uniquement les jetons émis par votre locataire Entra ID.
+
+Lorsqu'un utilisateur connecte un client d'IA, voici ce qui se produit :
+
+. Le client IA envoie sa première requête au serveur MCP sur `/mcp/tools` sans jeton. Le serveur répond avec `401 Unauthorized` et indique ses métadonnées OAuth.
+. Le client IA lit les métadonnées pour connaître l’émetteur Entra ID et la portée prise en charge.
+. Le navigateur ouvre la page de connexion Entra ID. Une fois l'utilisateur connecté et son consentement donné, Entra ID le redirige vers l'URI de rappel que vous avez enregistrée.
+. Entra ID émet un jeton v2.0 pour votre application. L'audience du jeton est l'ID de l'application (client), la `scp` revendication est `power_users`, et la `roles` revendication contient `AIDEPowerUsers`.
+. Le serveur MCP valide la signature du jeton, l’émetteur, l’audience et la date d’expiration auprès de votre locataire Entra ID à chaque requête.
+
+
+Pour connaître les exigences relatives aux jetons, veuillez vous référer à link:configure-entra-id-mcp.html#token-expectations["Exigences relatives aux jetons"].
+
+
+
+[[validated-ai-clients]]
+== Clients IA validés
+
+NetApp a testé et validé la configuration d'accès à l'IA gouvernée avec les clients d'IA suivants :
+
+* Claude Code
+* Claude Desktop
+* Curseur
+* OpenCode
+
+
+NetApp n'a pas testé d'autres clients MCP. Ils pourraient fonctionner si vous parvenez à les configurer pour se connecter, mais ils n'ont pas été validés.
+
+
+
+[[what-isnt-available-through-mcp]]
+== Ce qui n'est pas disponible via MCP
+
+L'accès à l'IA gouvernée est limité à la recherche de métadonnées et aux opérations d'étiquetage au sein des collections. Via MCP, un client IA ne peut pas :
+
+* Récupérer le contenu des fichiers.
+* Ajouter, supprimer ou modifier des fichiers.
+* Modifier la configuration de la source de données.
+
+
+Pour la liste complète des restrictions, reportez-vous à link:../release-notes/known-limitations.html["Limitations connues"].
+
+
+
+[[related-information]]
+== Informations connexes
+
+* link:manage-data-collections.html["Gérer les collectes de données"]
+* link:maintain-mcp-setup.html["Maintenez votre configuration MCP"]
+* link:quick-start-mcp.html["Démarrage rapide pour un accès contrôlé à l'IA avec AI Data Engine"]
+* link:prepare-mcp-host.html["Préparer l'hôte MCP"]
+* link:configure-entra-id-mcp.html["Configurer Microsoft Entra ID pour l’accès gouverné à l’IA"]
+* link:connect-entra-id-aide-mcp.html["Connectez AI Data Engine à Microsoft Entra ID"]
+* link:connect-ai-clients-mcp.html["Connectez les clients IA au serveur MCP AI Data Engine"]
+* link:mcp-tools-reference.html["Outils MCP pour l'accès à l'IA régi par AI Data Engine"]
+* link:../release-notes/known-limitations.html["Limitations connues"]
+

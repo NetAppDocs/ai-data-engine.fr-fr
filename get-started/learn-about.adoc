@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: get-started/learn-about.html 
-keywords: ai data engine, aide, overview, use cases, storage optimization, data governance 
-summary: Découvrez AI Data Engine, qui offre une visibilité sur les données structurées et non structurées stockées sur vos systèmes de stockage. 
+keywords: ai data engine, aide, overview, metadata, use cases, storage optimization, data lifecycle, access risk, governed ai access, mcp 
+summary: 'Découvrez comment AI Data Engine utilise les métadonnées pour vous aider à récupérer de l"espace de stockage, à identifier les risques d"accès et à organiser vos données pour une utilisation avec des clients d"IA.' 
 ---
 = Découvrez AI Data Engine
 :allow-uri-read: 
@@ -11,49 +11,66 @@ summary: Découvrez AI Data Engine, qui offre une visibilité sur les données s
 
 
 [role="lead"]
-AI Data Engine est un service d’intelligence des métadonnées qui vous offre une visibilité sur les données structurées et non structurées stockées sur vos systèmes de stockage. En analysant vos systèmes de stockage et en cataloguant les métadonnées du système de fichiers, AI Data Engine vous aide à identifier les opportunités d’optimisation du stockage, à explorer vos données et à appliquer des politiques de gouvernance en analysant les métadonnées sur place, sans déplacer ni copier les données.
+AI Data Engine (AIDE) est un service d’intelligence des métadonnées qui vous offre une visibilité sur les données structurées et non structurées stockées sur vos systèmes de stockage. AI Data Engine analyse vos systèmes de stockage et catalogue les métadonnées du système de fichiers afin que vous puissiez identifier les opportunités d’optimisation du stockage, explorer vos données et appliquer des politiques de gouvernance.
 
 
 
 [[what-ai-data-engine-does]]
 == Ce que fait AI Data Engine
 
-AI Data Engine analyse les systèmes de stockage connectés pour extraire les métadonnées du système de fichiers et crée un catalogue mis à jour après chaque cycle d'analyse. À partir de ce catalogue, vous pouvez :
+AI Data Engine analyse les sources de données que vous connectez et crée un catalogue de métadonnées consultable, mis à jour à chaque cycle d'analyse. À partir de ce catalogue, vous pouvez :
 
-* Consultez des informations sur l'optimisation du stockage sur un tableau de bord, notamment les propriétaires de données qui détiennent un espace de stockage potentiellement récupérable, comme les fichiers qui atteignent les seuils de données froides et obsolètes de votre organisation, ainsi que les fichiers dupliqués
-* Explorez vos données à l'aide de filtres de métadonnées flexibles pour créer des regroupements de données ciblés
-* Créez des politiques qui enregistrent les critères d'enquête sous forme de règles réutilisables
-* Effectuez des actions sur les données : étiqueter, archiver, copier ou supprimer les fichiers qui correspondent aux critères de la stratégie
+* *Comprenez votre espace de stockage.* Découvrez la quantité de données que vous possédez, qui en est le propriétaire et où elles se trouvent.
+* *Récupérez de la capacité.* Identifiez les données inactives, obsolètes et dupliquées, et voyez quels propriétaires de données en détiennent le plus, afin de savoir qui contacter pour le nettoyage.
+* *Identifier les risques d'accès.* Repérer les répertoires disposant d'autorisations ouvertes afin de pouvoir les prioriser pour examen.
+* *Analysez et organisez.* Utilisez des filtres de métadonnées pour trouver les données qui vous intéressent, étiquetez-les et enregistrez vos critères sous forme de politique que vous pourrez suivre au fil du temps.
+* *Agissez sur les données.* Étiquetez, archivez, copiez ou supprimez les fichiers que vous avez consultés.
+* *Préparez les données pour l'IA.* Permettez aux clients d'IA que vous avez autorisés de rechercher dans vos métadonnées et d'agir sur les données.
 
 
 
 
-[[storage-optimization-and-data-governance]]
-== Optimisation du stockage et gouvernance des données
+[[storage-optimization-and-data-lifecycle-management]]
+== Optimisation du stockage et gestion du cycle de vie des données
 
-AI Data Engine se concentre sur l’optimisation du stockage et la gestion du cycle de vie des données structurées et non structurées stockées sur vos systèmes de stockage.
+Utilisez les métadonnées pour identifier les données qui justifient un examen, comme les fichiers qui atteignent les seuils de données froides et obsolètes de votre organisation et les fichiers dupliqués. Analysez les résultats avant de décider de conserver, d'étiqueter, d'archiver, de copier ou de supprimer les données.
+
+Les analyses d’optimisation du stockage mettent en évidence des opportunités. La capacité que vous pourriez récupérer dépend des actions que vous choisissez d’entreprendre.
+
+
+
+[[governed-ai-access]]
+== Accès gouverné à l'IA
+
+L'accès contrôlé à l'IA permet aux clients d'IA de rechercher vos métadonnées via le protocole Model Context Protocol (MCP), dans les limites que vous définissez. Vous choisissez les données à rendre disponibles en créant des collections. Une collection est un ensemble de données analysées que vous mettez à la disposition des clients d'IA. Vous contrôlez les collections qu'un utilisateur peut rechercher en définissant les scopes Microsoft Entra ID.
+
+Les clients d'IA fonctionnent uniquement avec les métadonnées. Ils ne peuvent pas récupérer le contenu des fichiers.
+
+link:../mcp/learn-about-mcp.html["Apprenez-en davantage sur l'accès gouverné à l'IA"].
 
 
 
 [[who-uses-ai-data-engine]]
 == Qui utilise AI Data Engine
 
-AI Data Engine est conçu pour les utilisateurs suivants :
+Les exemples suivants montrent comment différentes personnes pourraient utiliser AI Data Engine :
 
-* *Administrateurs du stockage* qui doivent identifier et surveiller les propriétaires de données qui détiennent des fichiers répondant aux seuils de données froides et obsolètes de leur organisation, identifier les fichiers en double et évaluer les possibilités d'optimisation du stockage.
+* *Administrateurs de stockage* qui doivent examiner les fichiers répondant aux seuils de données froides et obsolètes de leur organisation, identifier les fichiers en double et évaluer les possibilités d'optimisation du stockage.
 * *Les équipes d'exploitation informatique* qui ont besoin d'une vue centralisée des données structurées et non structurées présentes dans leur environnement de stockage.
+* *Membres de l’équipe Données ou IA* qui utilisent un client IA pour rechercher les métadonnées dans une collection autorisée et pour étiqueter les données avec lesquelles ils souhaitent travailler.
+* *Responsables informatiques* qui déploient des outils d'IA et doivent choisir les collections que les clients IA peuvent interroger ainsi que les personnes autorisées à les utiliser.
 
 
 
 
-[[where-ai-data-engine-lives]]
-== Là où AI Data Engine réside
+[[where-ai-data-engine-runs]]
+== Là où AI Data Engine s'exécute
 
-Vous accédez à AI Data Engine via NetApp Console, sous *AI data hub > AI Data Engine*. AI Data Engine est disponible en avant-première privée. Contactez votre représentant NetApp pour demander l'accès. Vous déployez AI Data Engine sous forme de AIDE Lite, une installation sur une seule VM, sur une infrastructure Linux que vous gérez, soit en tant que machine virtuelle dans votre compte cloud, soit en tant que machine dans votre environnement sur site. Si votre environnement nécessite une haute disponibilité à grande échelle basée sur Kubernetes, vous pouvez déployer AIDE Enterprise à la place.
-
-AI Data Engine analyse les données sur les systèmes NetApp ONTAP et StorageGRID, ainsi que sur des systèmes non-NetApp qui prennent en charge les protocoles NFS, SMB/CIFS ou S3.
+Vous accédez à AI Data Engine via NetApp Console, sous *AI data hub > AI Data Engine*. Les services d’analyse et de catalogage s’exécutent sur l’infrastructure que vous fournissez, soit dans votre compte cloud, soit dans votre environnement sur site. Choisissez un déploiement AIDE à nœud unique sur une VM Linux, ou un déploiement AIDE multinœud sur un cluster Kubernetes si votre environnement exige une haute disponibilité à grande échelle.
 
 link:../deploy/deployment-overview.html["En savoir plus sur les options de déploiement"].
+
+AI Data Engine analyse les sources de données prises en charge que vous connectez. Pour plus d'informations, consultez link:../data-sources/connect-data-source.html["Connectez une source de données"].
 
 
 
@@ -62,5 +79,6 @@ link:../deploy/deployment-overview.html["En savoir plus sur les options de dépl
 
 * link:architecture.html["Architecture de l'AI Data Engine"]
 * link:quick-start.html["Démarrage rapide"]
+* link:../mcp/learn-about-mcp.html["Découvrez l'accès gouverné à l'IA"]
 * link:storage-optimization-workflows.html["Explorez les flux de travail d’optimisation du stockage"]
 

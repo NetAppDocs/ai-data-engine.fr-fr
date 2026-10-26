@@ -56,9 +56,9 @@ Examinez le tableau des résultats pour confirmer que l’ensemble de filtres ca
 . Vérifiez l'expression des critères de filtre (par exemple, `last_access_time <= 3 Years AND file_size >= 5GiB`) pour confirmer qu'elle reflète vos sélections.
 . Pour associer une action, sélectionnez l'une des options suivantes sous *Action* :
 +
-** *Surveillance uniquement (aucune action)* (par défaut) : La stratégie est enregistrée comme une condition de surveillance uniquement.
+** *Surveillance uniquement (aucune action)* (par défaut) : Enregistre la stratégie comme condition de surveillance uniquement.
 ** *Envoyer une notification par courriel* : envoie une notification par courriel au destinataire que vous spécifiez.
-** *Supprimer définitivement* : aucune saisie supplémentaire n’est requise.
+** *Supprimer définitivement*: Ne nécessite aucune saisie supplémentaire.
 +
 
 CAUTION: L'action « Supprimer définitivement » supprime automatiquement et irréversiblement tous les fichiers correspondant à cette politique après chaque cycle d'analyse. Vérifiez vos critères de filtrage et assurez-vous d'être autorisé à supprimer ces fichiers avant d'enregistrer.
@@ -69,14 +69,14 @@ CAUTION: L'action « Supprimer définitivement » supprime automatiquement et 
 
 
 .Résultat
-La politique est enregistrée et s'affiche sur la page link:manage-policies.html["Politiques"]. Si vous avez associé une action, AI Data Engine l'applique aux fichiers correspondant aux critères de la politique.
+AI Data Engine enregistre la politique, qui s'affiche ensuite sur la link:manage-policies.html["Politiques"] page. Si vous avez associé une action, AI Data Engine l'applique aux fichiers correspondant aux critères de la politique.
 
 
 
 [[example-identify-cold-archive-files]]
 == Exemple : identifier les fichiers d’archive à froid
 
-L'exemple suivant crée une stratégie pour envoyer une notification par e-mail lorsque des fichiers auxquels aucun accès n'a été effectué depuis plus d'un an sont détectés.
+L'exemple suivant crée une stratégie qui envoie une notification par e-mail lorsque AI Data Engine détecte des fichiers qui n'ont pas été consultés depuis plus d'un an.
 
 . Dans Investigation, appliquez ces filtres :
 +

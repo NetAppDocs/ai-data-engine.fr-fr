@@ -27,7 +27,7 @@ La section *Investigation* est organisée en trois onglets. Sélectionnez l'ongl
 | Onglet | À utiliser lorsque vous souhaitez | Plus d'informations 
 
 
-| *Non structuré* | Recherchez les données basées sur des fichiers froides, obsolètes ou dupliquées dans les volumes NFS et SMB/CIFS | link:investigate-unstructured.html["Analysez les données non structurées"] 
+| *Non structuré* | Recherchez les données basées sur des fichiers froides, obsolètes ou dupliquées sur les volumes NFS et SMB | link:investigate-unstructured.html["Analysez les données non structurées"] 
 
 
 | *Structuré* | Identifier les tables de base de données surdimensionnées ou inutilisées qui consomment de l'espace de stockage | link:investigate-structured.html["Analyser les données structurées"] 
@@ -45,6 +45,5 @@ Le nombre total et la taille totale affichés en haut de la page sont mis à jou
 * link:investigate-unstructured.html["Analysez les données non structurées"]
 * link:investigate-structured.html["Analyser les données structurées"]
 * link:investigate-directories.html["Examiner les répertoires"]
-* link:use-filters.html["Utiliser les filtres"]
 * link:take-actions.html["Agissez sur vos données"]
 

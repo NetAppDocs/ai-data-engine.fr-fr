@@ -1,0 +1,149 @@
+---
+sidebar: sidebar 
+permalink: administer/configure-ad-nfs.html 
+keywords: active directory, nfs, uidNumber, gidNumber, global catalog, identity mapping, file owner, ldap, general settings 
+summary: Configurez le mappage Active Directory pour les ID utilisateur et les ID de groupe NFS. AI Data Engine utilise les identités utilisateur résolues pour afficher les noms des propriétaires de fichiers pour les données NFS. 
+---
+= Configurer le mappage d'identité Active Directory pour NFS dans AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Identifiez les propriétaires de vos fichiers NFS par leur nom plutôt que par leur identifiant numérique. AI Data Engine (AIDE) peut faire correspondre les identifiants numériques d’utilisateur (UID) et de groupe (GID) des fichiers NFS aux identités Active Directory, et utilise les identités d’utilisateur résolues pour afficher les noms des propriétaires de fichiers.
+
+Ce mappage n'authentifie pas AI Data Engine auprès du stockage NFS. Il convertit les identifiants qu'AI Data Engine trouve lors de l'analyse en noms Active Directory.
+
+
+
+[[before-you-begin]]
+== Avant de commencer
+
+.Autorisations et accès
+* Vous disposez des privilèges d'administrateur de _AI Data Engine_.
+
+
+.Configuration de AI Data Engine
+* Vous disposez de link:../deploy/aide-requirements.html#networking-requirements["ouvert les ports requis"] AI Data Engine vers vos contrôleurs de domaine Active Directory.
+* Vous avez link:configure-settings.html#find-access-risks-with-permission-scanning["Analyse des autorisations activée"].
+
+
+.Active Directory
+* Vous disposez d'un compte Active Directory qu'AI Data Engine peut utiliser pour interroger les attributs des utilisateurs et des groupes. Vous saisissez son nom d'utilisateur et son mot de passe dans AI Data Engine.
+* Vous disposez de votre nom de domaine Active Directory ainsi que soit de l'adresse IP de votre serveur DNS, soit de l'adresse IP et du port de votre serveur LDAP.
+* Vous savez si votre annuaire nécessite une connexion LDAP sécurisée.
+* Si AI Data Engine interroge le catalogue global et que les attributs n'y sont pas encore répliqués, vous ou votre administrateur Active Directory devez disposer du rôle _Schema Admins_ pour effectuer la modification du schéma.
+
+
+
+
+[[prepare-active-directory]]
+== Préparer Active Directory
+
+Faites correspondre les attributs UID et GID dans Active Directory aux identifiants numériques utilisés sur votre stockage NFS afin que AI Data Engine puisse identifier les propriétaires des fichiers.
+
+AI Data Engine lit les attributs Active Directory suivants :
+
+[cols="1,2,1"]
+|===
+| Attribut | But | Obligatoire 
+
+
+| `uidNumber` | L'identifiant unique numérique (UID) d'un utilisateur. Il doit correspondre à l'UID de l'utilisateur sur votre stockage NFS. | Oui 
+
+
+| `gidNumber` | L'identifiant numérique du groupe (GID). Il doit correspondre au GID du groupe sur votre stockage NFS. | Oui 
+
+
+| `mail` | Adresse électronique du propriétaire du fichier. Si cet attribut n'est pas renseigné, l'adresse électronique du propriétaire apparaît comme *Non disponible*. | Non 
+|===
+Renseignez `uidNumber` pour les utilisateurs et `gidNumber` pour les groupes que vous souhaitez qu’AI Data Engine résolve.
+
+
+NOTE: Défini `gidNumber` sur l'objet de groupe. L' `gidNumber` sur un objet utilisateur identifie le groupe principal de cet utilisateur. Ce n'est pas l'attribut de groupe qu'AI Data Engine utilise pour cette recherche.
+
+.Étapes
+. Vérifiez que chaque utilisateur que vous souhaitez résoudre possède une valeur `uidNumber` et que chaque groupe possède une valeur `gidNumber`. Chaque UID doit être unique parmi les utilisateurs, et chaque GID doit être unique parmi les groupes. Un utilisateur et un groupe peuvent avoir la même valeur numérique.
+. Si AI Data Engine interroge le catalogue global et que les attributs n'y sont pas déjà répliqués, répliquez les attributs `uidNumber` et `gidNumber` vers celui-ci. Cette réplication est une modification ponctuelle pour l'ensemble de la forêt. Vous devez être membre du groupe _Schema Admins_.
++
+.. Sur un contrôleur de domaine, ouvrez le composant logiciel enfichable Schéma Active Directory.
+.. Ouvrez les propriétés de l' `uidNumber`attribut.
+.. Sélectionnez *Répliquer cet attribut dans le catalogue global*.
+.. Répétez l’opération pour l’ `gidNumber`attribut.
+
+
+
+
+
+CAUTION: Si AI Data Engine interroge le catalogue global, les attributs qui n'y sont pas répliqués ne sont pas renvoyés par les recherches d'identité. Les identifiants correspondants restent non résolus.
+
+
+
+[[enable-active-directory-for-nfs]]
+== Activer Active Directory pour NFS
+
+Connectez AI Data Engine au domaine Active Directory contenant les attributs UID et GID correspondants, puis activez le mappage d'identité afin que les fichiers NFS analysés puissent afficher les noms de propriétaires résolus.
+
+.Étapes
+. Dans l’interface utilisateur de AI Data Engine, sélectionnez *Configuration*.
+. Sélectionnez *Paramètres généraux*.
+. Sur la page, recherchez *Active Directory* et sélectionnez *Activé*.
+. Saisissez les informations de connexion pour votre domaine Active Directory. Sélectionnez l'option *Adresse IP du serveur DNS* ou l'option *Adresse IP du serveur LDAP*.
++
+
+NOTE: Les informations d'identification que vous saisissez ici servent à l'intégration de l'annuaire. Elles sont distinctes de celles que vous fournissez pour une destination d'archivage SMB. Voir link:../investigate/take-actions.html["Agissez sur vos données"].
+
++
+[cols="1,3"]
+|===
+| Champ | Description 
+
+
+| *Nom d'utilisateur* | Le compte Active Directory qu’AI Data Engine utilise pour interroger les attributs des utilisateurs et des groupes. Saisissez le nom au format `domain\user` ou `user@domain`. 
+
+
+| *Mot de passe* | Le mot de passe du compte. 
+
+
+| *Adresse IP du serveur DNS* | L'adresse IP du serveur DNS qui résout votre domaine Active Directory. Par exemple, `10.0.1.50`. Sélectionnez cette option à la place de *Adresse IP du serveur LDAP*. 
+
+
+| *Nom de domaine* | Le nom de domaine complet de votre domaine Active Directory. Par exemple, `corp.example.com`. Ce champ est obligatoire pour les options DNS et LDAP. 
+
+
+| *Adresse IP du serveur LDAP* | L'adresse IP du serveur LDAP, qui est un contrôleur de domaine. Par exemple `10.0.1.50`. Sélectionnez cette option au lieu de *Adresse IP du serveur DNS*. 
+
+
+| *Port du serveur LDAP* | Le port du serveur LDAP. La valeur par défaut est `389`. 
+
+
+| *Connexion sécurisée LDAP* | Sélectionnez cette option pour vous connecter au serveur LDAP via une connexion sécurisée. Elle est disponible avec les options DNS et LDAP. 
+|===
+. Vous pouvez, si vous le souhaitez, activer l'option *Activer le mappage d'identité NFS*.
++
+L'activation du mappage d'identité NFS permet à AIDE de résoudre les identifiants numériques des propriétaires de fichiers NFS en noms de propriétaires Active Directory. N'activez cette option que si Active Directory contient les attributs UID/GID Unix utilisés par votre environnement NFS.
+
++
+.. Saisissez l'attribut *numéro UID* et l'attribut *numéro GID*, par exemple `uidNumber` et `gidNumber`. Ces deux champs sont obligatoires lorsque le mappage d'identité NFS est activé. Les informations du propriétaire sont résolues en arrière-plan.
+
+
+. Enregistrez vos modifications.
+
+
+.Résultat
+AI Data Engine utilise Active Directory pour identifier les propriétaires des fichiers NFS qu'il analyse.
+
+AI Data Engine résout les identités de manière asynchrone. Les noms des propriétaires peuvent ne pas apparaître immédiatement après l'activation du mappage ou la mise à jour des attributs dans Active Directory.
+
+Pour vérifier le résultat, ouvrez les détails du fichier dans la link:../investigate/investigate-unstructured.html["Enquête"] vue et vérifiez que le propriétaire du fichier affiche un nom d'utilisateur Active Directory.
+
+
+
+[[related-information]]
+== Informations connexes
+
+* link:../deploy/aide-requirements.html["Exigences relatives à AI Data Engine"]
+* link:configure-kerberos-smb.html["Authentification Kerberos pour les partages SMB/CIFS dans AI Data Engine"]
+* link:configure-settings.html["Configurer les seuils de classification des données"]
+

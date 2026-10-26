@@ -1,0 +1,306 @@
+---
+sidebar: sidebar 
+permalink: deploy/deploy-aide-single-node-proxy.html 
+keywords: deploy, install, single-node, single node, proxy, outbound proxy, forward proxy, wizard, NetApp Console, installer download, proxy password file, proxy CA certificate 
+summary: 'Déployez AIDE en mode nœud unique depuis NetApp Console lorsque l"hôte cible accède à Internet uniquement par l"intermédiaire d"un proxy sortant.' 
+---
+= Déployez AI Data Engine sur un nœud unique avec un proxy
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Déployez AI Data Engine (AIDE) en tant que déploiement à nœud unique à partir de NetApp Console lorsque l'hôte cible accède à Internet uniquement via un proxy sortant. Cette procédure comprend chaque étape du déploiement à nœud unique, ainsi que les étapes liées au proxy. Si l'hôte cible dispose d'un accès Internet direct, utilisez link:deploy-aide-single-node.html["Déployer AI Data Engine en tant que déploiement mononœud"] à la place.
+
+Pour connaître les types de proxy pris en charge et la référence complète des paramètres, consultez link:configure-proxy.html["Découvrez les proxies pour AI Data Engine"]. Pour connaître les points de terminaison à autoriser sur votre proxy, consultez link:aide-requirements.html#outbound-internet-access["Accès Internet sortant"].
+
+
+
+[[before-you-begin]]
+== Avant de commencer
+
+.Autorisations et accès
+* Vous disposez des autorisations d’_administrateur de l’organisation_ ou supérieures dans NetApp Console.
+* Vous disposez des autorisations sudo ou root sur l'hôte cible pour exécuter la commande d'installation.
+
+
+.Environnement
+* Votre environnement remplit toutes les conditions préalables décrites dans link:single-node-prerequisites.html["Prérequis pour le déploiement d'un nœud unique AIDE"] et link:aide-requirements.html["exigences AIDE"].
+* Les dépôts du système d'exploitation sur l'hôte cible fournissent les paquets répertoriés dans link:single-node-prerequisites.html#operating-system-packages["Packages du système d'exploitation"]. Vérifiez que vos gestionnaires de paquets disposent de la configuration de proxy appropriée si nécessaire dans votre environnement.
+
+
+.NetApp Console
+* Un agent NetApp Console https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy["est déployé"^] est requis et doit être accessible depuis l’hôte AI Data Engine. L’adresse IP de l’agent Console est nécessaire pour exécuter la commande d’installation.
+
+
+.Proxy
+* Vous avez configuré votre proxy pour autoriser les points de terminaison dans link:aide-requirements.html#outbound-internet-access["Accès Internet sortant"].
+* Vous connaissez l'hôte, le port et le schéma du proxy (`http` ou `https`). Si le proxy requiert une authentification, vous connaissez également le nom d'utilisateur et le mot de passe.
+* Si vous utilisez un proxy HTTPS avec un certificat signé de manière privée, vous disposez du certificat d’autorité de certification sous forme de fichier PEM, ou d’un répertoire plat de `.crt` et `.pem` fichiers sur l’hôte cible.
+
+
+
+NOTE: Utilisez le programme d'installation uniquement pour la première installation d'AIDE. Ne l'utilisez pas pour mettre à niveau AIDE. Après l'installation, l'opérateur AIDE gère les mises à niveau. Pour plus d'informations sur les mises à niveau, contactez le NetApp Support.
+
+
+
+[[what-the-installer-configures]]
+== Ce que configure le programme d'installation
+
+Dans un déploiement à nœud unique, AI Data Engine est propriétaire de la machine virtuelle sur laquelle il est installé. Le programme d'installation configure l'environnement d'exécution k3s et AI Data Engine pour le proxy. Il ne modifie pas la configuration du proxy de l'hôte, notamment les gestionnaires de paquets du système d'exploitation. Le programme d'installation effectue les opérations suivantes :
+
+* Téléchargez le script d'installation et le binaire de k3s via le proxy. Ne configure pas de proxy à l'échelle du système pour k3s ou kubelet.
+* Configure l'environnement d'exécution de conteneurs k3s pour récupérer les images via le proxy.
+* Ajoute le certificat d’autorité de certification que vous fournissez avec `--proxy-ca-cert` au magasin de confiance de AI Data Engine.
+
+
+Vous ne configurez ni l'environnement d'exécution du conteneur k3s ni le magasin de certificats de confiance.
+
+
+
+[[copy-the-install-command]]
+== Copiez la commande d'installation
+
+. Dans NetApp Console, accédez à *AI data hub* > *AI Data Engine*.
++
+La page d'accueil de AI Data Engine s'affiche.
+
+. Sélectionnez *Deploy AI Data Engine*.
+. Sélectionnez l'option de déploiement *mono-nœud* et sélectionnez *Suivant*.
+. Sélectionnez la taille de votre configuration :
++
+** *Petit* : recommandé pour les environnements contenant jusqu’à environ 200 millions de fichiers.
+** *Moyen (par défaut)* : recommandé pour les environnements contenant jusqu’à environ 1 milliard de fichiers.
+** *Grand* : recommandé pour les environnements contenant jusqu’à environ 3 milliards de fichiers.
++
+Ces tailles sont des recommandations de base, et non des limites strictes. Consultez link:aide-requirements.html#flexible-sizing-single-node["directives de dimensionnement flexibles"] si votre environnement se situe en dehors de ces plages.
+
++
+L'assistant génère la commande d'installation en fonction de la taille de configuration que vous avez sélectionnée. Il n'est pas nécessaire de modifier la commande pour définir la taille.
+
+
+
+. Copiez la commande d'installation affichée dans l'assistant dans un éditeur.
++
+La commande d'installation télécharge le programme d'installation depuis `d13jb5dapseb36.cloudfront.net` et le lance en une seule étape. Ce téléchargement ne passe pas par le proxy.
+
++
+** Si l'hôte cible peut atteindre  `d13jb5dapseb36.cloudfront.net` directement, ignorez la section suivante et poursuivez avec <<create-password-file-single-node,Créer un fichier de mot de passe proxy>>. Exécutez la commande d'installation telle que copiée. Le programme d'installation vous demande les paramètres du proxy. Pour les fournir sur la ligne de commandes à la place, consultez <<command-line-flags-single-node,Installation non interactive avec options de ligne de commandes>>.
+** Si l'hôte cible accède à Internet uniquement via un proxy, la commande s'arrête au téléchargement. Veuillez d'abord compléter la section suivante.
+
+
+
+
+
+
+[[download-the-installer-through-the-proxy]]
+[[download-installer-single-node]]
+== Téléchargez le programme d'installation via le proxy
+
+Téléchargez vous-même le programme d'installation, puis exécutez la commande d'installation à partir de `sudo ./install-lite.sh`.
+
+. Transférez le programme d'installation sur l'hôte cible. Utilisez la méthode la plus adaptée à votre environnement, puis placez le fichier sur l'hôte cible.
++
+Pour télécharger le programme d'installation depuis l'hôte cible via votre proxy :
+
++
+[source, bash]
+----
+mkdir -p ~/aide && cd ~/aide
+curl -fsSL -x http://PROXY_HOST:PROXY_PORT \
+  https://d13jb5dapseb36.cloudfront.net/aide/latest/aide-installer.tar.gz -o aide-installer.tar.gz
+----
++
+Si le proxy requiert un nom d'utilisateur, ajoutez `--proxy-user USER` à la `curl` commande. Si vous omettez le mot de passe, `curl` vous l'invite à le saisir, afin qu'il ne soit pas enregistré dans l'historique de votre shell.
+
++
+** Utilisez `https://` dans l’ `-x`adresse si votre proxy écoute sur HTTPS.
+** Si votre proxy utilise un certificat signé de manière privée, ajoutez `--proxy-cacert CA_FILE`, ou ajoutez d'abord le certificat de l'autorité de certification au magasin de certificats de confiance de l'hôte cible.
+** Si vous utilisez un proxy HTTPS et une  `curl`version antérieure à la 8.3, le téléchargement peut s'interrompre pendant environ une minute. Ubuntu 22.04 inclut une telle version. Attendez la fin du téléchargement.
++
+Vous pouvez également télécharger `\https://d13jb5dapseb36.cloudfront.net/aide/latest/aide-installer.tar.gz` depuis un autre appareil, puis le copier sur l’hôte cible à l’aide de `scp` ou de votre méthode habituelle de transfert de fichiers.
+
+
+
+. Extrayez le programme d'installation et accédez au dossier du programme d'installation:
++
+[source, bash]
+----
+tar -xzf aide-installer.tar.gz
+cd installer
+----
++
+Exécutez chaque commande suivante depuis ce dossier d’installation. Le fichier  `version.txt`dans le dossier indique la version de build de l’installateur.
+
+. Préparez la commande d'installation que vous avez copiée depuis NetApp Console. Elle commence par `sudo bash -c '`, télécharge le programme d'installation, puis exécute `./install-lite.sh` avec vos paramètres. Comme vous avez déjà téléchargé le programme d'installation :
++
+** Supprimez tout ce qui précède `./install-lite.sh`, afin que la commande commence par `./install-lite.sh`.
+** Supprimez l’apostrophe (`'`) tout à la fin.
+** Ajoutez  `sudo``--root` au début, afin que la commande commence par  `sudo ./install-lite.sh``--root`. Le programme d'installation doit être exécuté en tant que root, et la suppression du wrapper  `bash -c`supprime le  `sudo``--root` qui le fournissait.
+** Si la commande contient  `--no-proxy`, supprimez-la.
++
+La commande restante ressemble à ceci :
+
++
+[source, bash]
+----
+sudo ./install-lite.sh --account-id <account-id> --organization-id <organization-id> --agent-id <agent-id> --env <environment> --user-token <user-token> --cm-host <console-agent-ip> --catalog-endpoint <catalog-endpoint> --flavor <small|medium|large>
+----
++
+Conservez chaque paramètre qui suit `./install-lite.sh` exactement comme il apparaît dans la commande que vous avez copiée. Le programme d'installation vous demande les paramètres du proxy. Voir <<interactive-setup-single-node,Configuration guidée interactive>>.
+
+
+
+
+
+
+
+[[create-a-proxy-password-file]]
+[[create-password-file-single-node]]
+== Créer un fichier de mot de passe proxy
+
+Si votre proxy requiert une authentification et que vous souhaitez fournir le mot de passe sans qu'il vous soit demandé, par exemple lors d'un déploiement automatisé, créez un fichier de mot de passe avant d'exécuter le programme d'installation. Sinon, ignorez cette section. Le programme d'installation vous demandera le mot de passe via une saisie masquée.
+
+Le fichier ne contient que le mot de passe. Saisissez le mot de passe exactement tel quel, sans encoder en pourcentage les caractères spéciaux.
+
+Exécutez les commandes suivantes en tant que root. La commande d'installation sur un seul nœud s'exécute avec `sudo`, elle peut donc lire un fichier sous `/root`.
+
+[source, bash]
+----
+umask 077
+read -rs -p 'Proxy password: ' P && printf '%s' "$P" > /root/.aide-proxy-password; unset P; echo
+chmod 600 /root/.aide-proxy-password
+----
+Supprimez le fichier une fois l'installation terminée.
+
+
+
+[[supply-the-proxy-settings]]
+== Fournissez les paramètres du proxy
+
+Le programme d'installation vous invite à saisir les paramètres du proxy. Exécutez la commande d'installation telle qu'elle a été copiée depuis NetApp Console, puis répondez aux invites. Pour les déploiements automatisés qui doivent s'exécuter sans invite, consultez <<command-line-flags-single-node,Installation non interactive avec options de ligne de commandes>>.
+
+
+
+[[use-the-interactive-guided-setup]]
+[[interactive-setup-single-node]]
+=== Utilisez la configuration guidée interactive
+
+Lorsque vous exécutez la commande d’installation dans un terminal sans `--proxy-host` ou `--no-proxy`, le programme d’installation pose les questions suivantes. Si vous fournissez une valeur en paramètre, le programme d’installation ne vous la redemandera pas.
+
+[cols="2,3"]
+|===
+| Invite | Que saisir 
+
+
+| `Configure outbound proxy? (y/N)` | Saisissez `y`. 
+
+
+| Hôte proxy ou adresse IP | Saisissez le nom de l'hôte proxy ou l'adresse IPv4, éventuellement avec un port (`host:port`). 
+
+
+| Schéma de proxy (`https` ou `http`) | Saisissez le protocole sur lequel votre proxy écoute. La valeur par défaut est `https`. 
+
+
+| Port du proxy | Saisissez le port du proxy. La valeur par défaut est `443` pour HTTPS et `80` pour HTTP. 
+
+
+| Type de proxy | Appuyez sur Entrée pour accepter la valeur par défaut. 
+
+
+| Certificat d’autorité de certification pour le certificat propre du proxy (HTTPS uniquement, facultatif) | Saisissez le chemin d'accès vers le fichier CA ou le répertoire. Appuyez sur Entrée si le certificat proxy a été signé par une autorité de certification publique. 
+
+
+| Le proxy requiert-il un nom d'utilisateur et un mot de passe ? (o/N) | Si oui, saisissez le nom d'utilisateur, puis saisissez le mot de passe à deux reprises. Le programme d'installation n'affiche pas le mot de passe. 
+|===
+Sans terminal, le programme d'installation ne demande aucune information. Indiquez `--proxy-host` pour utiliser un proxy, et `--proxy-password-file` si le proxy nécessite un mot de passe.
+
+
+
+[[use-command-line-flags-for-setup]]
+[[command-line-flags-single-node]]
+=== Utilisez les options de ligne de commande pour la configuration
+
+Utilisez les options de ligne de commandes pour les déploiements automatisés ou autres déploiements non interactifs qui doivent s'exécuter sans invite. Ces options sont facultatives. Le programme d'installation vous demande toute information de proxy que vous ne fournissez pas.
+
+Ajoutez les paramètres du proxy à la fin de la commande d'installation, après le dernier paramètre existant.
+
+* Si vous exécutez la commande d’installation telle que copiée depuis NetApp Console, ajoutez les paramètres entre guillemets, avant le guillemet fermant.
+* Si vous avez téléchargé le programme d'installation et abrégé la commande, ajoutez les paramètres à la fin de la commande abrégée.
+
+
+Si la commande contient `--no-proxy`, supprimez-la. Conservez tous les autres paramètres de la commande d'installation. Pour la description et la valeur par défaut de chaque paramètre, consultez link:configure-proxy.html#proxy-parameters["Paramètres de configuration du proxy"]. Les exemples suivants ne présentent que les paramètres du proxy.
+
+.Proxy HTTP avec nom d'utilisateur et mot de passe
+[source, bash]
+----
+--proxy-host proxy.example.com \
+--proxy-port 3128 \
+--proxy-scheme http \
+--proxy-user svc-aide \
+--proxy-password-file /root/.aide-proxy-password
+----
+.Proxy HTTPS avec un certificat signé par une autorité privée et sans authentification
+[source, bash]
+----
+--proxy-host proxy.example.com \
+--proxy-port 8443 \
+--proxy-scheme https \
+--proxy-ca-cert /root/proxy-ca.pem
+----
+* Si votre proxy ne nécessite pas d'authentification, omettez  `--proxy-user` et  `--proxy-password-file`.
+* Si vous spécifiez `--proxy-user` without `--proxy-password-file`, le programme d'installation vous demande le mot de passe lorsque vous l'exécutez depuis un terminal.
+
+
+
+CAUTION: Avec un proxy HTTP, le nom d'utilisateur et le mot de passe du proxy sont envoyés en effacer le texte. Utilisez un proxy HTTPS lorsque le proxy nécessite une authentification.
+
+
+
+[[run-the-installation]]
+== Exécutez l'installation
+
+. Exécutez la commande d'installation sur votre hôte cible. Si vous avez téléchargé le programme d'installation, exécutez la commande depuis le dossier du programme d'installation.
++
+Avant tout téléchargement, le programme d'installation vérifie auprès de l'hôte cible que le proxy répond, qu'il accepte vos identifiants et que le certificat du proxy est valide pour le protocole que vous avez choisi. En cas d'échec de la vérification, le programme d'installation s'arrête et en indique la cause.
+
++
+
+NOTE: L'installation prend environ 45 minutes. Des délais d'attente et des tentatives de nouvelle tentative peuvent survenir, ce qui est normal.
+
+. Si vous n'avez pas fourni tous les paramètres du proxy, répondez aux invites du proxy. Voir <<interactive-setup-single-node,Configuration guidée interactive>>.
+. Répondez à l'invite de confirmation de l'installateur pour poursuivre l'installation.
++
+Le programme d'installation détecte l'adresse IP du nœud qui exécute l'ingress NGINX de AI Data Engine et vous demande de la confirmer. Appuyez sur Entrée pour conserver l'adresse affichée ou saisissez-en une autre. Utilisez une adresse accessible depuis l'extérieur de la VM. Ne saisissez pas l'adresse de l'agent Console.
+
+. Surveillez l'écran de progression jusqu'à ce que l'écran de réussite apparaisse et confirme que l'installation de AIDE est terminée.
+
+
+.Résultat
+AI Data Engine est déployé et connecté à NetApp Console. Vous pouvez maintenant link:../data-sources/connect-data-source.html["connecter une source de données"] pour lancer l'analyse.
+
+
+
+[[check-the-proxy-after-installation]]
+[[check-proxy-single-node]]
+== Vérifiez le proxy après l'installation
+
+L’opérateur AI Data Engine enregistre le proxy qu’il utilise. Le journal n’inclut jamais le mot de passe. Le programme d’installation télécharge sa propre copie de  `kubectl`kubeconfig `/opt/netapp/aide/.aide-installer-tools` et ne l’ajoute pas à votre  `PATH`. Le kubeconfig k3s est lisible uniquement par root. Pour vérifier le proxy, exécutez la commande suivante sur l’hôte cible :
+
+[source, bash]
+----
+sudo /opt/netapp/aide/.aide-installer-tools/kubectl --kubeconfig /etc/rancher/k3s/k3s.yaml -n aide logs deploy/aide-operator -c chart-fetcher | grep -m1 'proxy enabled'
+----
+Cette ligne indique le point de terminaison du proxy, si l’authentification est activée et si un certificat d’autorité de certification est monté.
+
+
+
+[[related-information]]
+== Informations connexes
+
+* link:configure-proxy.html["Découvrez les proxies pour AI Data Engine"]
+* link:single-node-prerequisites.html["Prérequis pour le déploiement d'un nœud unique AIDE"]
+* link:aide-requirements.html["exigences AIDE"]
+* link:deploy-aide-single-node.html["Déployer AI Data Engine en tant que déploiement mononœud"]
+

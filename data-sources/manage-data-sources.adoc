@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: data-sources/manage-data-sources.html 
-keywords: manage, data source, storage system, scanned systems, pause scanning, resume scanning, scan all, retry scans, CIFS credentials, DP volumes, deactivate, scan status, scan errors, scanning toggle 
+keywords: manage, data source, storage system, data sources page, pause scanning, resume scanning, scan all, retry scans, CIFS credentials, DP volumes, deactivate, scan status, scan errors, scanning toggle 
 summary: 'Surveillez l"état des analyses et gérez vos sources de données connectées, notamment la mise en pause des analyses, la modification des paramètres d"authentification, l"activation de l"accès au volume DP et la désactivation des systèmes.' 
 ---
 = Gérer les sources de données dans AI Data Engine
@@ -11,17 +11,21 @@ summary: 'Surveillez l"état des analyses et gérez vos sources de données conn
 
 
 [role="lead"]
-Une fois les sources de données connectées, vous pouvez suivre l'état de leur analyse et les gérer depuis l'onglet *Systèmes analysés*. Utilisez ces procédures pour suspendre ou reprendre l'analyse, mettre à jour les paramètres d'authentification, ajuster les paramètres d'accès aux données et désactiver les systèmes que vous n'avez plus besoin d'analyser.
+Maintenez la couverture d’analyse alignée sur les données que vous devez analyser. Utilisez la page *Data sources* pour vérifier la progression de l’analyse, examiner les lacunes de couverture et gérer les systèmes et les ressources de données que AI Data Engine (AIDE) analyse.
 
 
 
 [[view-scan-status-and-details]]
 == Afficher l'état et les détails de l'analyse
 
+Vérifiez l'état de l'analyse pour suivre sa progression et identifier les ressources nécessitant une intervention. Consultez la progression au niveau du système et les détails au niveau des ressources pour distinguer les analyses en cours de celles qui sont suspendues ou qui présentent des erreurs.
+
+Si les analyses s'arrêtent ou se mettent en pause de manière inattendue, vérifiez l'état du déploiement. Reportez-vous à link:../administer/monitor-deployment-health.html["Surveiller l'état du déploiement et examiner les problèmes"].
+
 .Étapes
-. Dans l’interface utilisateur de AI Data Engine, sélectionnez *Configuration*.
-. Dans l'onglet *Systèmes analysés*, repérez le système que vous souhaitez examiner.
-. Sélectionnez la ligne du système pour ouvrir la vue détaillée.
+. Dans l'interface utilisateur de AI Data Engine, sélectionnez *Sources de données*.
+. Repérez le système que vous souhaitez examiner.
+. Sélectionnez la ligne système et ouvrez la vue détaillée.
 +
 La vue détaillée affiche :
 
@@ -30,7 +34,7 @@ La vue détaillée affiche :
 ** Répartition des états d’analyse des ressources de données : en cours, terminée, en pause et erreurs
 ** Mode d'autorisation d'analyse (par exemple, « Analyse sans autorisations d'écriture »)
 +
-Si des erreurs d'analyse apparaissent, développez les détails de l'erreur pour voir quels volumes ou partages sont affectés et la raison de l'échec.
+Si des erreurs d'analyse apparaissent, développez les détails de l'erreur pour voir quelles ressources de données (volumes, partages, compartiments ou schémas) sont affectées et la raison de l'échec.
 
 
 
@@ -41,9 +45,11 @@ Si des erreurs d'analyse apparaissent, développez les détails de l'erreur pour
 [[pause-scanning]]
 == Suspendre l’analyse
 
+Interrompez temporairement l'analyse d'un système lorsque vous ne souhaitez pas qu'AI Data Engine l'analyse. Le système reste connecté et vous pouvez reprendre l'analyse ultérieurement.
+
 .Étapes
-. Dans l’interface utilisateur de AI Data Engine, sélectionnez *Configuration*.
-. Dans l'onglet *Systèmes analysés*, repérez le système que vous souhaitez mettre en pause.
+. Dans l'interface utilisateur de AI Data Engine, sélectionnez *Sources de données*.
+. Repérez le système que vous souhaitez mettre en pause.
 . Sélectionnez la ligne du système pour ouvrir la vue détaillée.
 . Sélectionnez *Pause*.
 
@@ -53,9 +59,11 @@ Si des erreurs d'analyse apparaissent, développez les détails de l'erreur pour
 [[resume-scanning]]
 == Reprendre la numérisation
 
+Reprenez l'analyse lorsque vous souhaitez qu'AI Data Engine analyse de nouveau un système mis en pause.
+
 .Étapes
-. Dans l’interface utilisateur de AI Data Engine, sélectionnez *Configuration*.
-. Dans l’onglet *Systèmes analysés*, repérez le système en pause.
+. Dans l'interface utilisateur de AI Data Engine, sélectionnez *Sources de données*.
+. Repérez le système en pause.
 . Sélectionnez la ligne du système pour ouvrir la vue détaillée.
 . Sélectionnez *Resume*.
 
@@ -65,11 +73,11 @@ Si des erreurs d'analyse apparaissent, développez les détails de l'erreur pour
 [[scan-all-data-resources]]
 == Analyser toutes les ressources de données
 
-Déclenchez une analyse immédiate de toutes les ressources de données d'un système. Utilisez cette fonction pour actualiser les métadonnées après une modification importante des données.
+Actualisez les métadonnées du système après des modifications importantes des données afin que votre analyse reflète les données mises à jour. Utilisez cette action pour demander une analyse immédiate de toutes les ressources de données du système.
 
 .Étapes
-. Dans l’interface utilisateur de AI Data Engine, sélectionnez *Configuration*.
-. Dans l'onglet *Systèmes analysés*, repérez le système que vous souhaitez analyser.
+. Dans l'interface utilisateur de AI Data Engine, sélectionnez *Sources de données*.
+. Localisez le système que vous souhaitez analyser.
 . Sélectionnez le menu Actions à côté du système.
 . Sélectionnez *Analyser tous les volumes* (il existe une option équivalente dans le menu Actions pour les partages et les compartiments).
 
@@ -79,11 +87,11 @@ Déclenchez une analyse immédiate de toutes les ressources de données d'un sys
 [[retry-failed-scans]]
 == Réessayer les analyses ayant échoué
 
-Remettez en file d'attente les ressources de données qui sont dans un état d'échec ou d'erreur. Résolvez d'abord la cause première, comme un problème d'identifiant, une erreur réseau ou un problème d'autorisation, avant de réessayer.
+Rétablissez la couverture d'analyse pour les ressources qui n'ont pas pu être analysées correctement. Commencez par résoudre la cause de l'échec, comme un problème d'identifiant, une erreur réseau ou un problème d'autorisation, puis relancez les analyses ayant échoué.
 
 .Étapes
-. Dans l’interface utilisateur de AI Data Engine, sélectionnez *Configuration*.
-. Dans l’onglet *Systèmes analysés*, repérez le système dont l’analyse a échoué.
+. Dans l'interface utilisateur de AI Data Engine, sélectionnez *Sources de données*.
+. Localisez le système dont les analyses ont échoué.
 . Sélectionnez le menu Actions à côté du système.
 . Sélectionnez *Réessayer toutes les analyses*.
 
@@ -93,11 +101,14 @@ Remettez en file d'attente les ressources de données qui sont dans un état d'�
 [[edit-cifs-credentials]]
 == Modifier les identifiants CIFS
 
-Mettez à jour les identifiants qu’AI Data Engine utilise pour s’authentifier auprès des partages SMB/CIFS.
+Maintenir ou rétablir l'accès aux partages SMB lorsque les identifiants du compte d'analyse changent ou que l'authentification échoue. Mettre à jour les identifiants SMB (CIFS) qu'AI Data Engine utilise pour s'authentifier auprès des partages.
+
+
+NOTE: Si le partage utilise l'authentification Kerberos, AI Data Engine s'authentifie avec un ticket provenant du fichier keytab, et aucun mot de passe n'est stocké dans la source de données. Reportez-vous à link:../administer/configure-kerberos-smb.html["Authentification Kerberos pour les partages SMB/CIFS dans AI Data Engine"].
 
 .Étapes
-. Dans l’interface utilisateur de AI Data Engine, sélectionnez *Configuration*.
-. Dans l'onglet *Systèmes analysés*, repérez le système SMB/CIFS.
+. Dans l'interface utilisateur de AI Data Engine, sélectionnez *Sources de données*.
+. Localisez le système SMB.
 . Sélectionnez la ligne du système pour ouvrir la vue détaillée.
 . Sélectionnez *Modifier les identifiants CIFS*.
 . Saisissez le nom d'utilisateur et le mot de passe mis à jour, puis sélectionnez *Enregistrer*.
@@ -108,11 +119,11 @@ Mettez à jour les identifiants qu’AI Data Engine utilise pour s’authentifie
 [[enable-or-disable-access-to-dp-volumes]]
 == Activer ou désactiver l'accès aux volumes DP
 
-Les volumes de protection des données (DP) sont des volumes de destination NetApp SnapMirror. Par défaut, AI Data Engine n'analyse pas les volumes DP. Vous pouvez activer ou désactiver l'accès aux volumes DP pour chaque système.
+Incluez ou excluez les données répliquées de la couverture de votre analyse en activant ou en désactivant l'accès aux volumes de protection des données (DP). Les volumes DP sont des volumes de destination NetApp SnapMirror, et AI Data Engine ne les analyse pas par défaut. Vous pouvez activer ou désactiver l'accès pour chaque système.
 
 .Étapes
-. Dans l’interface utilisateur de AI Data Engine, sélectionnez *Configuration*.
-. Dans l’onglet *Systèmes analysés*, localisez le système.
+. Dans l'interface utilisateur de AI Data Engine, sélectionnez *Sources de données*.
+. Localisez le système.
 . Sélectionnez la ligne du système pour ouvrir la vue détaillée.
 . Sélectionnez *Activer l'accès aux volumes DP* ou *Désactiver l'accès aux volumes DP*.
 
@@ -122,11 +133,11 @@ Les volumes de protection des données (DP) sont des volumes de destination NetA
 [[enable-or-disable-scanning-of-specific-shares-buckets-or-volumes]]
 == Activer ou désactiver l’analyse de partages, de compartiments ou de volumes spécifiques
 
-Après avoir connecté et analysé une source de données, vous pouvez activer ou désactiver l'analyse pour des volumes ou des partages individuels sans reconfigurer l'ensemble du système. Utilisez cette fonctionnalité pour affiner le périmètre d'analyse après la configuration initiale. Par exemple, vous pouvez exclure les volumes contenant des données que vous n'avez pas besoin d'analyser, ou ajouter des volumes qui n'étaient pas sélectionnés ou disponibles lors de l'analyse initiale.
+Limitez l'analyse aux ressources de données que vous devez analyser sans reconfigurer l'ensemble du système. Activez l'analyse des ressources non sélectionnées ou indisponibles lors de la configuration initiale et désactivez-la pour les volumes, partages ou compartiments que vous n'avez pas besoin d'analyser.
 
 .Étapes
-. Dans l’interface utilisateur de AI Data Engine, sélectionnez *Configuration*.
-. Dans l'onglet *Systèmes analysés*, repérez le système que vous souhaitez mettre à jour.
+. Dans l'interface utilisateur de AI Data Engine, sélectionnez *Sources de données*.
+. Localisez le système que vous souhaitez mettre à jour.
 . Sélectionnez *Afficher les détails* dans la ligne du système.
 . Dans la liste des ressources de données, repérez le volume, le compartiment ou le partage que vous souhaitez modifier.
 . Utilisez le bouton *Scanning* pour activer ou désactiver l’analyse de cette ressource.
@@ -137,11 +148,11 @@ Après avoir connecté et analysé une source de données, vous pouvez activer o
 [[deactivate-ai-data-engine-for-a-system]]
 == Désactiver AI Data Engine pour un système
 
-La désactivation d'un système interrompt toute analyse et le retire de la couverture d’analyse active. La configuration du système est conservée et vous pouvez le réactiver à tout moment en sélectionnant *Activate scans* sur la ligne du système.
+Retirez un système de la couverture d’analyse active lorsque vous n’avez plus besoin que AI Data Engine l’analyse. La désactivation d’un système interrompt toute analyse et préserve sa configuration. Pour inclure à nouveau le système, sélectionnez *Activer les analyses* sur la ligne du système.
 
 .Étapes
-. Dans l’interface utilisateur de AI Data Engine, sélectionnez *Configuration*.
-. Dans l'onglet *Systèmes analysés*, repérez le système que vous souhaitez désactiver.
+. Dans l'interface utilisateur de AI Data Engine, sélectionnez *Sources de données*.
+. Repérez le système que vous souhaitez désactiver.
 . Sélectionnez le menu Actions à côté du système.
 . Sélectionnez *Désactiver AI Data Engine*.
 
@@ -152,6 +163,6 @@ La désactivation d'un système interrompt toute analyse et le retire de la couv
 == Informations connexes
 
 * link:connect-data-source.html["Connectez une source de données"]
-* link:monitor-scanning-health.html["Surveiller l'état de l'analyse"]
+* link:../administer/monitor-deployment-health.html["Surveiller l'état du déploiement et examiner les problèmes"]
 * link:../investigate/understand-dashboard.html["Évaluer l'utilisation du stockage depuis le tableau de bord"]
 

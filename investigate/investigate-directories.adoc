@@ -13,8 +13,12 @@ summary: Auditez les autorisations au niveau des répertoires sur l’ensemble d
 [role="lead"]
 Lorsque vous devez identifier les répertoires exposés à un plus grand nombre d’utilisateurs que prévu, filtrez par autorisations afin de trouver les dossiers ouverts à l’ensemble de l’organisation. Par exemple, un administrateur de sécurité qui voit des répertoires exposés signalés sur le tableau de bord peut trouver tous les répertoires avec un accès à l’échelle de l’organisation, vérifier qui détient les autorisations de lecture et d’écriture, et créer une politique pour surveiller les nouvelles expositions après chaque analyse.
 
-.Avant de commencer
-* Au moins une source de données doit être connectée et en cours d'analyse. Reportez-vous à link:../data-sources/connect-data-source.html["Connectez une source de données"].
+
+
+[[before-you-begin]]
+== Avant de commencer
+
+* Vous avez connecté au moins une source de données, et une analyse est en cours. Consultez link:../data-sources/connect-data-source.html["Connectez une source de données"].
 
 
 
@@ -22,7 +26,7 @@ Lorsque vous devez identifier les répertoires exposés à un plus grand nombre 
 [[find-broadly-accessible-directories]]
 == Trouver des répertoires largement accessibles
 
-Utilisez des filtres d’autorisation pour identifier les répertoires ouverts au-delà du public visé.
+Recherchez les répertoires accessibles à un public plus large que prévu en filtrant par autorisations.
 
 .Étapes
 . Dans l’interface utilisateur de AI Data Engine, sélectionnez *Investigation*.
@@ -37,14 +41,12 @@ Le tableau des résultats se met à jour pour afficher les répertoires correspo
 
 
 
-Pour obtenir la liste complète des filtres disponibles, reportez-vous à link:use-filters.html["Utiliser les filtres"].
-
 
 
 [[review-directory-permissions]]
 == Vérifier les autorisations du répertoire
 
-Sélectionnez une ligne de répertoire pour ouvrir le panneau de détails et consulter qui y a accès.
+Vérifiez qui a accès à un répertoire et si cet accès est intentionnel. Sélectionnez une ligne de répertoire pour ouvrir le panneau de détails.
 
 Le panneau de détails affiche le type de répertoire, le système, le propriétaire du répertoire et un résumé des autorisations (par exemple, « Ouvert à l'organisation »). Sélectionnez *Afficher les autorisations* pour consulter le détail des droits de lecture et d'écriture de chaque utilisateur ou groupe ayant accès au répertoire.
 
@@ -58,9 +60,11 @@ Utilisez ces informations pour confirmer si le niveau d'accès est intentionnel 
 Après avoir filtré pour identifier les répertoires largement accessibles, enregistrez les critères en tant que politique afin de surveiller les nouvelles expositions après chaque cycle d'analyse.
 
 .Étapes
-. Une fois vos filtres d'autorisation appliqués, sélectionnez *Créer une stratégie* dans la barre d'outils des filtres.
+. Après avoir appliqué vos filtres d'autorisation, sélectionnez *Créer une stratégie* dans la barre d'outils des filtres.
 . Remplissez le formulaire de police d'assurance. Reportez-vous à link:../policies/create-policy.html["Créer une stratégie"].
 
+
+Pour contrôler si AI Data Engine analyse les autorisations, reportez-vous à link:../administer/configure-settings.html["Configurer les seuils de classification des données et l’analyse des accès"].
 
 Pour télécharger les résultats filtrés depuis l’onglet Répertoires, sélectionnez image:icon_download_file.png["Télécharger"].
 
@@ -69,8 +73,8 @@ Pour télécharger les résultats filtrés depuis l’onglet Répertoires, séle
 [[related-information]]
 == Informations connexes
 
-* link:use-filters.html["Utiliser les filtres"]
 * link:../policies/create-policy.html["Créer une stratégie"]
+* link:../administer/configure-settings.html["Configurer les seuils de classification des données et l’analyse des accès"]
 * link:../administer/manage-users-roles.html["Gérer les utilisateurs et les rôles"]
 * link:understand-dashboard.html["Évaluer l'utilisation du stockage depuis le tableau de bord"]
 
