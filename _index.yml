@@ -25,7 +25,7 @@ indexpage:
     - title: Explorez les flux de travail d’optimisation du stockage
       url: "/get-started/storage-optimization-workflows.html"
     - title: Quoi de neuf
-      url: "/release-notes/whats-new.html"
+      url: "/whats-new.html"
     - title: Limitations connues
       url: "/release-notes/known-limitations.html"
   - title: Déployer

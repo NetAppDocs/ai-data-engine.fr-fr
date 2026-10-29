@@ -67,7 +67,7 @@ Les opérations sur les étiquettes MCP sont limitées:: Les clients d'IA ne peu
 [[related-information]]
 == Informations connexes
 
-* link:whats-new.html["Quoi de neuf"]
+* link:../whats-new.html["Quoi de neuf"]
 * link:../deploy/deployment-overview.html["Aperçu du déploiement"]
 * link:../investigate/take-actions.html["Agissez sur vos données"]
 * link:../mcp/learn-about-mcp.html["Découvrez l'accès gouverné à l'IA"]
