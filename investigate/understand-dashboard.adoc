@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: investigate/understand-dashboard.html 
-keywords: dashboard, overview, reclaimable storage, cold data, stale data, storage health, capacity risk, data owners, investigate, access exposure, open permissions, structured data, duplicates, file types 
+keywords: dashboard, overview, reclaimable storage, cold data, stale data, storage health, capacity risk, data owners, investigate, permissions, open permissions, structured data, duplicates, file types 
 summary: 'Évaluez l"état du stockage dans votre environnement, identifiez où se concentre le stockage potentiellement récupérable, examinez les répertoires avec des autorisations ouvertes et des données structurées, et décidez quels systèmes ou propriétaires de données examiner en premier.' 
 ---
 = Évaluez l'état du stockage grâce au tableau de bord AI Data Engine
@@ -13,7 +13,9 @@ summary: 'Évaluez l"état du stockage dans votre environnement, identifiez où 
 [role="lead"]
 Avant de décider des éléments à examiner, il est essentiel de comprendre l'état de votre stockage. Quel volume de stockage atteint les seuils de classification « froid » et « obsolète » de votre organisation, et quels systèmes ou responsables détiennent le plus de données dans ces catégories ? Par exemple, un administrateur de stockage qui répond à une alerte de capacité peut constater qu'une grande partie du stockage analysé contient des données froides, puis examiner en détail le système ayant le plus d'impact afin de commencer immédiatement l'investigation.
 
-Dans NetApp Console, sélectionnez *AI data hub* > *AI Data Engine*. Le tableau de bord s'ouvre par défaut. Le tableau de bord organise ses informations en trois onglets : *Optimisation du stockage*, *Exposition des accès* et *Données structurées*.
+Dans NetApp Console, sélectionnez *AI data hub* > *AI Data Engine*. Le tableau de bord s'ouvre par défaut. Le tableau de bord organise ses informations en trois onglets : *Optimisation du stockage*, *Permissions* et *Données structurées*.
+
+image::aide_mo_ga_overview_page.png[Présentation du tableau de bord AI Data Engine]
 
 
 
@@ -45,7 +47,7 @@ Trouvez où vous pouvez récupérer le plus d'espace de stockage. L'onglet *Stor
 * _Stockage actif versus stockage récupérable_ : Indique la proportion de données actives par rapport aux données inactives et obsolètes sur l’ensemble des ressources analysées. Une forte proportion de données inactives, obsolètes ou dupliquées peut révéler une importante opportunité d’optimisation du stockage.
 * _Principales ressources de données par capacité de stockage récupérable_: Affiche les ressources de données ayant la plus grande capacité récupérable.
 * _Principaux consommateurs par espace de stockage récupérable_: Affiche les propriétaires de données, leur espace de stockage récupérable et le nombre de leurs fichiers.
-* _Répartition des tailles dupliquées_ : Indique comment les données dupliquées sont réparties selon les plages de tailles.
+* _Répartition de la taille des données dupliquées_: Indique comment les données dupliquées sont réparties selon les plages de taille.
 * _Âge des actifs_ : Affiche les éléments par ancienneté. Utilisez le menu déroulant pour sélectionner le critère d’horodatage du graphique.
 * _Types de fichiers les plus courants_: Affiche les types de fichiers les plus fréquents.
 
@@ -58,10 +60,10 @@ Utilisez le panneau de synthèse et ces graphiques pour identifier et hiérarchi
 
 
 
-[[review-access-exposure]]
-== Examiner l’exposition des accès
+[[review-permissions]]
+== Vérifier les autorisations
 
-Identifiez les répertoires à prioriser pour une vérification des autorisations. L'onglet *Exposition de l'accès* affiche le graphique _Répertoires avec des autorisations ouvertes_, qui répertorie les chemins des répertoires et le nombre de fichiers qu'ils contiennent. Pour voir ces répertoires en détail, reportez-vous à link:investigate-directories.html["Examiner les répertoires"]. Pour contrôler si AI Data Engine analyse les autorisations, reportez-vous à link:../administer/configure-settings.html["Configurer les seuils de classification des données et l’analyse des accès"].
+Identifiez les répertoires à prioriser pour une vérification des permissions. L'onglet *Permissions* affiche le graphique _Répertoires avec permissions ouvertes_, qui répertorie les chemins d'accès des répertoires et leur nombre de fichiers. Pour consulter ces répertoires en détail, reportez-vous à link:investigate-directories.html["Examiner les répertoires"]. Pour contrôler si AI Data Engine analyse les permissions, reportez-vous à link:../administer/configure-settings.html["Configurer les seuils de classification des données et l’analyse des accès"].
 
 
 
@@ -77,9 +79,9 @@ Identifiez les schémas et les tables présents dans vos données analysées et 
 
 Lorsque vous avez identifié une ressource ou un propriétaire méritant une analyse, utilisez les tableaux de l'onglet *Optimisation du stockage* pour accéder directement aux détails.
 
-Le tableau « Top data resources by reclaimable storage » répertorie vos ressources de stockage analysées, classées selon la proportion de données dupliquées ou qui atteignent les seuils de données froides et obsolètes définis par votre organisation. Sélectionnez une ligne pour ouvrir la vue Investigation filtrée sur cette ressource. À partir de là, utilisez l’onglet link:investigate-unstructured.html["Non structuré"] pour identifier les fichiers froids ou obsolètes, ou l’onglet link:investigate-directories.html["Répertoires"] pour auditer l’exposition des autorisations.
+Le tableau « Principales ressources de données par stockage récupérable » répertorie vos ressources de stockage analysées, classées selon la proportion de données dupliquées ou atteignant les seuils de données obsolètes et froides définis par votre organisation. Utilisez l’onglet link:investigate-unstructured.html["Non structuré"] pour identifier les fichiers obsolètes ou froids, ou l’onglet link:investigate-directories.html["Répertoires"] pour auditer l’exposition des autorisations.
 
-Le tableau _Principaux consommateurs de stockage récupérable_ indique quels propriétaires de données détiennent des données potentiellement récupérables. Sélectionnez une ligne pour ouvrir la link:investigate-unstructured.html["Enquête"]vue filtrée sur les fichiers de ce propriétaire. Vous pourrez ensuite consulter les résultats, agir en conséquence ou les enregistrer en tant que stratégie.
+Le tableau « Principaux consommateurs par stockage récupérable » indique quels propriétaires de données détiennent des données potentiellement récupérables. Sélectionnez « Analyser » pour ouvrir la link:investigate-unstructured.html["Enquête"] vue filtrée sur les fichiers de ce propriétaire. À partir de là, vous pouvez consulter les résultats, agir sur ceux-ci ou les enregistrer en tant que stratégie.
 
 La consultation du tableau de bord n'archive ni ne supprime les données et ne modifie pas les autorisations d'accès aux répertoires.
 

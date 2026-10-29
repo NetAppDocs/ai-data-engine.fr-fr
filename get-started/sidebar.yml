@@ -8,5 +8,3 @@ entries:
   url: "/get-started/architecture.html"
 - title: Démarrage rapide
   url: "/get-started/quick-start.html"
-- title: Explorez les flux de travail d’optimisation du stockage
-  url: "/get-started/storage-optimization-workflows.html"

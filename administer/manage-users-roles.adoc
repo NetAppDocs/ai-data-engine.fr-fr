@@ -94,7 +94,8 @@ NetApp Console rôles contrôlent qui peut configurer l'accès gouverné à l'IA
 Vous attribuez des rôles dans NetApp Console, et non dans AI Data Engine lui-même.
 
 .Étapes
-. Depuis NetApp Console, accédez à *Members*.
+. Dans NetApp Console, sélectionnez *Administration > Identité et accès*.
+. Accédez à *Members*.
 . Effectuez l'une des opérations suivantes :
 +
 ** Pour ajouter un nouvel utilisateur, sélectionnez *Add user* et saisissez l'adresse e-mail de l'utilisateur.
@@ -102,8 +103,8 @@ Vous attribuez des rôles dans NetApp Console, et non dans AI Data Engine lui-m�
 
 
 . Sélectionnez l'organisation, le dossier ou le projet, puis choisissez la catégorie *Data Service*.
-. Attribuez le rôle *AI Data Engine administrator* ou *AI Data Engine viewer*.
-. Enregistrez vos modifications.
+. Attribuez le rôle d’*administrateur de AI Data Engine* ou de *lecteur de AI Data Engine*.
+. Ajoutez le nouveau rôle.
 
 
 L'utilisateur reçoit une invitation par e-mail et peut accéder à AI Data Engine après l'avoir acceptée.

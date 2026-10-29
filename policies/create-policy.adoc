@@ -57,7 +57,7 @@ Examinez le tableau des résultats pour confirmer que l’ensemble de filtres ca
 . Pour associer une action, sélectionnez l'une des options suivantes sous *Action* :
 +
 ** *Surveillance uniquement (aucune action)* (par défaut) : Enregistre la stratégie comme condition de surveillance uniquement.
-** *Envoyer une notification par courriel* : envoie une notification par courriel au destinataire que vous spécifiez.
+** *Envoyer une notification par e-mail*: Envoie une notification par e-mail aux destinataires que vous spécifiez et vous permet de configurer les intervalles de notification.
 ** *Supprimer définitivement*: Ne nécessite aucune saisie supplémentaire.
 +
 
@@ -65,7 +65,7 @@ CAUTION: L'action « Supprimer définitivement » supprime automatiquement et 
 
 
 
-. Sélectionnez *Créer*.
+. Sélectionnez *Enregistrer*.
 
 
 .Résultat
@@ -85,8 +85,8 @@ L'exemple suivant crée une stratégie qui envoie une notification par e-mail lo
 
 . Sélectionnez *Créer une politique*.
 . Saisissez le nom de la stratégie : *Cold Files — Unaccessed 1 Year*.
-. Sélectionnez l'action *Envoyer une notification par e-mail* et saisissez l'adresse e-mail du destinataire.
-. Sélectionnez *Créer*.
+. Sélectionnez l'action *Envoyer une notification par e-mail*, sélectionnez l'intervalle de notification et saisissez l'adresse e-mail du destinataire.
+. Sélectionnez *Enregistrer*.
 
 
 

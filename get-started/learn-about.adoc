@@ -80,5 +80,5 @@ AI Data Engine analyse les sources de données prises en charge que vous connect
 * link:architecture.html["Architecture de l'AI Data Engine"]
 * link:quick-start.html["Démarrage rapide"]
 * link:../mcp/learn-about-mcp.html["Découvrez l'accès gouverné à l'IA"]
-* link:storage-optimization-workflows.html["Explorez les flux de travail d’optimisation du stockage"]
+* link:../investigate/storage-optimization-workflows.html["Explorez les flux de travail d’optimisation du stockage"]
 

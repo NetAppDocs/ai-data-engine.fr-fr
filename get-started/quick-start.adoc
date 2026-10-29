@@ -15,7 +15,7 @@ Mettez AI Data Engine (AIDE) en service en déployant le service, en connectant 
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Un"] link:../deploy/aide-requirements.html["Examiner les exigences et sélectionner un type de déploiement"]
 [role="quick-margin-para"]
-Examinez les exigences et link:../deploy/deployment-overview.html["Découvrez les types de déploiement"] décidez s'il convient d'installer un déploiement AIDE à nœud unique ou à plusieurs nœuds.
+Examinez les exigences et link:../deploy/deployment-overview.html["Découvrez les types de déploiement"] pour décider s’il convient d’installer un déploiement AIDE à nœud unique ou à nœuds multiples.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Deux"] link:../deploy/deployment-overview.html["Déployer AI Data Engine"]
 [role="quick-margin-para"]

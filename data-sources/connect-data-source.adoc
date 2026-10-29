@@ -11,14 +11,14 @@ summary: Connectez les sources de données à AI Data Engine et configurez les r
 
 
 [role="lead"]
-Connectez les sources de données que vous souhaitez faire analyser par AI Data Engine (AIDE) et choisissez lesquelles de leurs ressources de données analyser. AI Data Engine analyse les sources de données connectées pour collecter les métadonnées ; la procédure de connexion dépend du type de source.
+Connectez les sources de données que vous souhaitez faire analyser par AI Data Engine (AIDE), et choisissez lesquelles de leurs ressources de données analyser. AI Data Engine analyse les sources de données connectées pour collecter les métadonnées, et la procédure de connexion dépend du type de source. Vous effectuez ces tâches dans NetApp Console.
 
 
 
 [[before-you-begin]]
 == Avant de commencer
 
-* Vous devez disposer des privilèges d'_AI Data Engine administrator_ pour vous connecter et configurer les sources de données.
+* Vous devez disposer du rôle d'administrateur _AI Data Engine_ dans NetApp Console pour vous connecter et configurer les sources de données.
 * Pour les systèmes connectés via la découverte de NetApp Console, utilisez un agent Console pour détecter les systèmes de stockage dans NetApp Console avant de les ajouter à AI Data Engine. Cela s'applique à tous les types de stockage pris en charge, notamment les clusters ONTAP sur site, Cloud Volumes ONTAP, Amazon FSx for NetApp ONTAP, Google Cloud NetApp Volumes et Azure NetApp Files. Pour les clusters ONTAP sur site, reportez-vous à link:https://docs.netapp.com/us-en/storage-management-ontap-onprem/task-discovering-ontap.html["Découvrez les clusters ONTAP sur site"] dans la documentation de NetApp Console. La découverte directe n'active pas les services de données tels qu'AI Data Engine.
 * Vérifiez que les connexions réseau nécessaires à AI Data Engine pour accéder à vos sources de données sont ouvertes. Consultez link:../deploy/aide-requirements.html["Exigences relatives à AI Data Engine"].
 * Pour analyser les partages SMB/CIFS avec l'authentification Kerberos, veuillez d'abord suivre la procédure correspondant à votre type de déploiement dans link:../administer/configure-kerberos-smb.html["Authentification Kerberos pour les partages SMB/CIFS dans AI Data Engine"].

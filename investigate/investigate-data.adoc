@@ -13,6 +13,8 @@ summary: 'Utilisez la vue Investigation pour explorer le stockage basé sur des 
 [role="lead"]
 Lorsque vous devez comprendre ce qui consomme de l'espace de stockage, identifier les tables de base de données qui croissent de manière incontrôlée ou trouver les répertoires dont l'accès est trop permissif, utilisez des filtres de métadonnées pour examiner vos données sur tous les systèmes connectés.
 
+image::aide_mo_ga_investigation_page.png[Vue d’investigation de AI Data Engine]
+
 
 
 [[choose-a-starting-point]]
@@ -20,7 +22,7 @@ Lorsque vous devez comprendre ce qui consomme de l'espace de stockage, identifie
 
 Sélectionnez *Investigation* dans la navigation de gauche pour ouvrir la vue. Vous pouvez également ouvrir la vue Investigation à partir du tableau de bord en sélectionnant *Investigate* dans le tableau _Top data resources by reclaimable storage_, ce qui applique automatiquement un filtre à cette ressource.
 
-La section *Investigation* est organisée en trois onglets. Sélectionnez l'onglet correspondant au type de données que vous examinez.
+*Investigation* est organisé en trois onglets : *Non structuré*, *Répertoires* et *Structuré*. Sélectionnez l’onglet correspondant au type de données que vous examinez.
 
 [cols="1,2,1"]
 |===
@@ -30,12 +32,12 @@ La section *Investigation* est organisée en trois onglets. Sélectionnez l'ongl
 | *Non structuré* | Recherchez les données basées sur des fichiers froides, obsolètes ou dupliquées sur les volumes NFS et SMB | link:investigate-unstructured.html["Analysez les données non structurées"] 
 
 
-| *Structuré* | Identifier les tables de base de données surdimensionnées ou inutilisées qui consomment de l'espace de stockage | link:investigate-structured.html["Analyser les données structurées"] 
-
-
 | *Répertoires* | Vérifier les autorisations au niveau des répertoires et identifier les chemins largement accessibles | link:investigate-directories.html["Examiner les répertoires"] 
+
+
+| *Structuré* | Identifier les tables de base de données surdimensionnées ou inutilisées qui consomment de l'espace de stockage | link:investigate-structured.html["Analyser les données structurées"] 
 |===
-Le nombre total et la taille totale affichés en haut de la page sont mis à jour pour refléter l'onglet actif (par exemple, « Unstructured (400M) | 5.7 PiB »).
+Chaque étiquette d'onglet affiche un résumé des éléments de ce type (par exemple, « Non structuré (30.4M) »).
 
 
 

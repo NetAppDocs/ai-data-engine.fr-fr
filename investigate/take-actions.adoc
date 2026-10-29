@@ -14,7 +14,7 @@ summary: 'Agissez sur les fichiers que vous avez identifiés comme inactifs, obs
 Dans AI Data Engine (AIDE), vous pouvez appliquer les politiques de cycle de vie des données de votre organisation en archivant, copiant, étiquetant ou supprimant les fichiers que vous avez identifiés à l’aide de vos filtres. Par exemple, un administrateur du stockage qui filtre pour trouver des téraoctets de snapshots de VM auxquels personne n’a accédé depuis plus d’un an peut les archiver en masse sur un partage de stockage à froid ou les supprimer, selon les exigences de conservation et les politiques de l’entreprise.
 
 .À propos de cette tâche
-Pour agir, sélectionnez un ou plusieurs éléments dans le tableau des résultats d’investigation à l’aide des cases à cocher. La barre d’outils d’action s’active avec quatre options : *Supprimer*, *Archiver*, *Copier* et *Étiqueter*. Pour supprimer les copies en double d’un fichier, utilisez *Nettoyer les doublons*. Reportez-vous à <<Examiner et nettoyer les fichiers en double>>.
+Pour agir, sélectionnez un ou plusieurs éléments dans le tableau des résultats de l’investigation à l’aide des cases à cocher. La barre d’outils des actions s’active avec quatre options : *Supprimer*, *Copier*, *Archiver* et *Étiqueter*. Pour supprimer les copies en double d’un fichier, utilisez *Nettoyer les doublons*. Reportez-vous à <<Examiner et nettoyer les fichiers en double>>.
 
 Les actions dont vous disposez dépendent du rôle qui vous est attribué :
 
@@ -23,16 +23,16 @@ Les actions dont vous disposez dépendent du rôle qui vous est attribué :
 | Action | Administrateur AI Data Engine | Visionneuse AI Data Engine 
 
 
-| Balise | Oui | Oui 
-
-
-| Archive | Oui | - 
+| Supprimer | Oui | - 
 
 
 | Copier | Oui | - 
 
 
-| Supprimer | Oui | - 
+| Archive | Oui | - 
+
+
+| Balise | Oui | Oui 
 
 
 | Supprimer les doublons | Oui | - 
@@ -51,16 +51,16 @@ Choisissez une action en fonction de votre degré de certitude concernant les do
 | Action | Quand l’utiliser 
 
 
-| Balise | Vous avez besoin de plus de temps, ou de vous coordonner avec une autre équipe, avant de procéder à l'archivage ou à la suppression. Le système d'étiquetage permet de suivre les fichiers sans en modifier l'emplacement. 
-
-
-| Archive | Ces données peuvent encore avoir de la valeur, mais elles n'ont pas leur place dans le stockage principal. L'archivage les déplace vers une destination moins coûteuse tout en les gardant récupérables. 
+| Supprimer | Ces données ne sont plus nécessaires et ne sont soumises à aucune obligation de conservation. La suppression est définitive, utilisez donc cette option uniquement si vous en êtes sûr. 
 
 
 | Copier | Les données doivent exister dans un second emplacement, par exemple à des fins de sauvegarde ou de migration des données. La copie conserve l'original en place. Vous pouvez copier vers un dossier NFS ou SMB, créer un volume FlexClone filtré, ou transférer des éléments avec NetApp Copy and Sync. 
 
 
-| Supprimer | Ces données ne sont plus nécessaires et ne sont soumises à aucune obligation de conservation. La suppression est définitive, utilisez donc cette option uniquement si vous en êtes sûr. 
+| Archive | Ces données peuvent encore avoir de la valeur, mais elles n'ont pas leur place dans le stockage principal. L'archivage les déplace vers une destination moins coûteuse tout en les gardant récupérables. 
+
+
+| Balise | Vous avez besoin de plus de temps, ou de vous coordonner avec une autre équipe, avant de procéder à l'archivage ou à la suppression. Le système d'étiquetage permet de suivre les fichiers sans en modifier l'emplacement. 
 
 
 | Supprimer les doublons | Des copies identiques d'un fichier existent à plusieurs emplacements et vous souhaitez n'en conserver qu'une. Vous pouvez étiqueter, archiver ou supprimer les copies redondantes tout en conservant une copie. La suppression des doublons est définitive. Reportez-vous à <<Examiner et nettoyer les fichiers en double>>. 
@@ -69,36 +69,100 @@ Lorsque des données peuvent encore avoir de la valeur ou nécessiter un examen 
 
 
 
-[[archive-files]]
-== Fichiers d'archive
+[[delete-files]]
+== Supprimer les fichiers
 
-Déplacez les fichiers qui n’ont pas leur place dans le stockage principal vers une destination de stockage à froid tout en les laissant récupérables. Vous pouvez, si vous le souhaitez, laisser un fichier de repère à l’emplacement d’origine afin que les utilisateurs puissent comprendre pourquoi un fichier a été déplacé.
-
-
-CAUTION: La copie ou l'archivage de fichiers peut modifier les autorisations, le propriétaire, les informations de groupe et l'horodatage de la destination. Les transferts interprotocoles peuvent considérablement étendre l'accès. Avant de transférer des données sensibles, vérifiez les paramètres de sécurité de la destination et contrôlez les autorisations par la suite.
+Supprimez définitivement les fichiers dont vous n'avez plus besoin et qui ne sont soumis à aucune obligation de conservation.
 
 
-NOTE: Les informations d'identification que vous fournissez pour une destination SMB sont distinctes de l'intégration Active Directory. Pour afficher les noms d'utilisateur et les autorisations dans AI Data Engine, reportez-vous à link:../administer/configure-settings.html["Configurer les seuils de classification des données et l’analyse des accès"].
+CAUTION: La suppression est définitive et ne peut pas être annulée. Cette action supprime les fichiers sources même s'ils contiennent des données actives.
 
 .Avant de commencer
 * Vous devez posséder le rôle d’administrateur d’AI Data Engine.
 
 
 .Étapes
-. Dans la vue Investigation, sélectionnez les fichiers que vous souhaitez archiver.
-. Sélectionnez *Archive*.
-. Dans la boîte de dialogue Archiver, sélectionnez le protocole du volume de destination :
+. Dans la vue Investigation, sélectionnez les fichiers que vous souhaitez supprimer.
+. Sélectionnez *Delete*.
+. Dans la boîte de dialogue Supprimer, tapez *permanently delete* dans le champ de confirmation.
+. Sélectionnez *Delete*.
+
+
+.Résultat
+Les fichiers sélectionnés sont définitivement supprimés du stockage.
+
+
+
+[[investigate-and-clean-up-duplicate-files]]
+== Examiner et nettoyer les fichiers en double
+
+Recherchez les copies en double d'un fichier et supprimez celles qui sont redondantes. Examinez les métadonnées et l'emplacement des copies, puis marquez les doublons pour vérification, archivage ou suppression définitive, tout en conservant une copie.
+
+.Avant de commencer
+* Vous devez posséder le rôle d’administrateur d’AI Data Engine.
+
+
+.Étapes
+. Sélectionnez *Investigation* > *Unstructured*.
 +
-** Pour *NFS*, saisissez le chemin du dossier de destination au format `hostname:/path/to/destination`.
-** Pour *SMB*, saisissez le chemin du dossier de destination SMB au format `\\Hostname\share_name`. Sélectionnez la méthode d'authentification. Pour Kerberos, utilisez le FQDN de l'hôte et laissez les informations d'identification vides. Reportez-vous à link:../administer/configure-kerberos-smb.html["Authentification Kerberos pour les partages SMB/CIFS dans AI Data Engine"]. Pour les autres méthodes, fournissez les informations d'identification Active Directory : saisissez le nom d'utilisateur au format `domain\user` ou `user@domain`, puis saisissez le mot de passe.
+Le tableau affiche les noms de fichiers, leurs tailles, leurs propriétaires, les systèmes auxquels ils appartiennent et leurs étiquettes.
 
-
-. Pour créer un fichier de fil d'Ariane à l'emplacement d'origine, activez *Leave breadcrumb*.
+. Facultatif : sélectionnez *Ajouter un filtre* pour affiner la liste des fichiers.
+. Sélectionnez un nom de fichier pour ouvrir ses détails.
 +
-Un fichier de fil d'Ariane aide les utilisateurs à comprendre pourquoi un fichier a été déplacé.
+Vérifiez le système, le référentiel de stockage, le chemin d'accès, la taille, les horodatages, les accès et le propriétaire du fichier. Le champ *Doublons* affiche le nombre de copies identiques.
 
-. Sélectionnez *Fichier d'archive*.
+. À côté de *Doublons*, sélectionnez *Afficher les détails*.
++
+La vue Investigation applique un filtre *Doublons* qui inclut les fichiers en double et un filtre *Hachage de fichier* qui correspond au fichier sélectionné.
 
+. Examinez les fichiers correspondants et leur emplacement.
+. Sélectionnez les fichiers que vous souhaitez nettoyer.
++
+Vérifiez le nombre d'*éléments sélectionnés*.
+
+. Sélectionnez *Nettoyer les doublons*.
+. Examinez le nombre estimé de fichiers correspondant aux filtres actuels et présentant des copies en double.
++
+
+NOTE: Ce nombre est une estimation. Les doublons exacts sont recalculés lors de l'exécution de l'action, et seuls les fichiers confirmés comme identiques sont concernés.
+
+. Décidez comment gérer les doublons :
++
+** Identifiez les doublons pour vérification :
++
+... Sous *Action*, sélectionnez *Tag*.
+... Sélectionnez *Ajouter*, puis choisissez l'étiquette à appliquer. Répétez l'opération pour ajouter d'autres étiquettes.
+... Sélectionnez *Soumettre*.
+
+
+** Archivez les doublons sur un volume de destination :
++
+... Sous *Action*, sélectionnez *Archiver*.
+... Dans *À l'emplacement d'origine*, sélectionnez *Retirer proprement* ou *Laisser un fil d'Ariane*.
+... Sélectionnez le protocole du volume de destination. Pour *NFS*, saisissez le chemin du dossier de destination au format `Hostname:/SHAREPATH`. Pour *SMB*, saisissez le chemin du dossier de destination, puis sélectionnez l’authentification *Kerberos* ou *NTLM*. Pour *NTLM*, saisissez votre nom d’utilisateur Active Directory et votre mot de passe.
+... Sélectionnez *Soumettre*.
+
+
+** Supprimez les doublons et conservez-en une seule copie :
++
+
+CAUTION: La suppression est définitive et ne peut pas être annulée.
+
++
+... Sous *Action*, sélectionnez *Supprimer*.
+... Sous *Conserver une copie avec*, sélectionnez *Dernier accès*, *Dernière modification* ou *Créé*.
+... Dans *À l'emplacement d'origine*, sélectionnez *Retirer proprement* ou *Laisser un fil d'Ariane*.
+... Sélectionnez *Soumettre*.
+... Dans la boîte de dialogue *Supprimer les copies en double*, vérifiez le nombre de fichiers à supprimer et les informations concernant la conservation d'une copie.
+... Saisissez `permanently delete`, puis sélectionnez *Supprimer*.
+
+
+
+
+
+
+Pour quitter sans soumettre une action, sélectionnez *Annuler*.
 
 
 
@@ -197,101 +261,36 @@ Vérifiez que tous les éléments sélectionnés appartiennent au même référe
 
 
 
-[[delete-files]]
-== Supprimer les fichiers
+[[archive-files]]
+== Fichiers d'archive
 
-Supprimez définitivement les fichiers dont vous n'avez plus besoin et qui ne sont soumis à aucune obligation de conservation.
-
-
-CAUTION: La suppression est définitive et ne peut pas être annulée. Cette action supprime les fichiers sources même s'ils contiennent des données actives.
-
-.Avant de commencer
-* Vous devez posséder le rôle d’administrateur d’AI Data Engine.
+Déplacez les fichiers qui n’ont pas leur place dans le stockage principal vers une destination de stockage à froid tout en les laissant récupérables. Vous pouvez, si vous le souhaitez, laisser un fichier de repère à l’emplacement d’origine afin que les utilisateurs puissent comprendre pourquoi un fichier a été déplacé.
 
 
-.Étapes
-. Dans la vue Investigation, sélectionnez les fichiers que vous souhaitez supprimer.
-. Sélectionnez *Delete*.
-. Dans la boîte de dialogue Supprimer, tapez *permanently delete* dans le champ de confirmation.
-. Sélectionnez *Delete*.
+CAUTION: La copie ou l'archivage de fichiers peut modifier les autorisations, le propriétaire, les informations de groupe et l'horodatage de la destination. Les transferts interprotocoles peuvent considérablement étendre l'accès. Avant de transférer des données sensibles, vérifiez les paramètres de sécurité de la destination et contrôlez les autorisations par la suite.
 
 
-.Résultat
-Les fichiers sélectionnés sont définitivement supprimés du stockage.
-
-
-
-[[investigate-and-clean-up-duplicate-files]]
-== Examiner et nettoyer les fichiers en double
-
-Recherchez les copies en double d'un fichier et supprimez celles qui sont redondantes. Examinez les métadonnées et l'emplacement des copies, puis marquez les doublons pour vérification, archivage ou suppression définitive, tout en conservant une copie.
+NOTE: Les informations d'identification que vous fournissez pour une destination SMB sont distinctes de l'intégration Active Directory. Pour afficher les noms d'utilisateur et les autorisations dans AI Data Engine, reportez-vous à link:../administer/configure-settings.html["Configurer les seuils de classification des données et l’analyse des accès"].
 
 .Avant de commencer
 * Vous devez posséder le rôle d’administrateur d’AI Data Engine.
 
 
 .Étapes
-. Dans NetApp Console, accédez à *AI data hub* > *AI Data Engine*.
-. Sélectionnez *Investigation* > *Unstructured*.
+. Dans la vue Investigation, sélectionnez les fichiers que vous souhaitez archiver.
+. Sélectionnez *Archive*.
+. Dans la boîte de dialogue Archiver, sélectionnez le protocole du volume de destination :
 +
-Le tableau affiche les noms de fichiers, leurs tailles, leurs propriétaires, les systèmes auxquels ils appartiennent et leurs étiquettes.
+** Pour *NFS*, saisissez le chemin du dossier de destination au format `hostname:/path/to/destination`.
+** Pour *SMB*, saisissez le chemin du dossier de destination SMB au format `\\Hostname\share_name`. Sélectionnez la méthode d'authentification. Pour Kerberos, utilisez le FQDN de l'hôte et laissez les informations d'identification vides. Reportez-vous à link:../administer/configure-kerberos-smb.html["Authentification Kerberos pour les partages SMB/CIFS dans AI Data Engine"]. Pour les autres méthodes, fournissez les informations d'identification Active Directory : saisissez le nom d'utilisateur au format `domain\user` ou `user@domain`, puis saisissez le mot de passe.
 
-. Facultatif : sélectionnez *Ajouter un filtre* pour affiner la liste des fichiers.
-. Sélectionnez un nom de fichier pour ouvrir ses détails.
+
+. Pour créer un fichier de fil d'Ariane à l'emplacement d'origine, activez *Leave breadcrumb*.
 +
-Vérifiez le système, le référentiel de stockage, le chemin d'accès, la taille, les horodatages, les accès et le propriétaire du fichier. Le champ *Doublons* affiche le nombre de copies identiques.
+Un fichier de fil d'Ariane aide les utilisateurs à comprendre pourquoi un fichier a été déplacé.
 
-. À côté de *Doublons*, sélectionnez *Afficher les détails*.
-+
-La vue Investigation applique un filtre *Doublons* qui inclut les fichiers en double et un filtre *Hachage de fichier* qui correspond au fichier sélectionné.
+. Sélectionnez *Fichier d'archive*.
 
-. Examinez les fichiers correspondants et leur emplacement.
-. Sélectionnez les fichiers que vous souhaitez nettoyer.
-+
-Vérifiez le nombre d'*éléments sélectionnés*.
-
-. Sélectionnez *Nettoyer les doublons*.
-. Examinez le nombre estimé de fichiers correspondant aux filtres actuels et présentant des copies en double.
-+
-
-NOTE: Ce nombre est une estimation. Les doublons exacts sont recalculés lors de l'exécution de l'action, et seuls les fichiers confirmés comme identiques sont concernés.
-
-. Décidez comment gérer les doublons :
-+
-** Identifiez les doublons pour vérification :
-+
-... Sous *Action*, sélectionnez *Tag*.
-... Sélectionnez *Ajouter*, puis choisissez l'étiquette à appliquer. Répétez l'opération pour ajouter d'autres étiquettes.
-... Sélectionnez *Soumettre*.
-
-
-** Archivez les doublons sur un volume de destination :
-+
-... Sous *Action*, sélectionnez *Archiver*.
-... Dans *À l'emplacement d'origine*, sélectionnez *Retirer proprement* ou *Laisser un fil d'Ariane*.
-... Sélectionnez le protocole du volume de destination. Pour *NFS*, saisissez le chemin du dossier de destination au format `Hostname:/SHAREPATH`. Pour *SMB*, saisissez le chemin du dossier de destination, puis sélectionnez l’authentification *Kerberos* ou *NTLM*. Pour *NTLM*, saisissez votre nom d’utilisateur Active Directory et votre mot de passe.
-... Sélectionnez *Soumettre*.
-
-
-** Supprimez les doublons et conservez-en une seule copie :
-+
-
-CAUTION: La suppression est définitive et ne peut pas être annulée.
-
-+
-... Sous *Action*, sélectionnez *Supprimer*.
-... Sous *Conserver une copie avec*, sélectionnez *Dernier accès*, *Dernière modification* ou *Créé*.
-... Dans *À l'emplacement d'origine*, sélectionnez *Retirer proprement* ou *Laisser un fil d'Ariane*.
-... Sélectionnez *Soumettre*.
-... Dans la boîte de dialogue *Supprimer les copies en double*, vérifiez le nombre de fichiers à supprimer et les informations concernant la conservation d'une copie.
-... Saisissez `permanently delete`, puis sélectionnez *Supprimer*.
-
-
-
-
-
-
-Pour quitter sans soumettre une action, sélectionnez *Annuler*.
 
 
 

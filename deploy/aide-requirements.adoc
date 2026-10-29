@@ -471,6 +471,4 @@ Pour trouver la version active de AI Data Engine et les informations de contact 
 * link:deployment-overview.html["Aperçu du déploiement d'AIDE"]
 * link:single-node-prerequisites.html["Prérequis pour le déploiement d'un nœud unique AIDE"]
 * link:multi-node-prerequisites.html["Prérequis pour le déploiement multi-nœuds d'AIDE"]
-* link:deploy-aide-single-node.html["Déployer AI Data Engine en tant que déploiement mononœud"]
-* link:deploy-aide-multi-node.html["Déployer AI Data Engine en déploiement multinœud"]
 

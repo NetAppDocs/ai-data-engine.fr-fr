@@ -13,6 +13,8 @@ summary: 'Définissez les fichiers que AI Data Engine classe comme données froi
 [role="lead"]
 Les seuils de données froides et obsolètes vous aident à trouver le stockage que vous pouvez optimiser à l’aide de AI Data Engine (AIDE). L’analyse des permissions et l’intégration Active Directory vous aident à détecter et à comprendre les risques d’accès. Définissez-les de manière à correspondre aux politiques de classification, de conservation et d’accès aux données de votre organisation.
 
+image::aide_mo_ga_configuration_page.png[Paramètres généraux d’AI Data Engine]
+
 
 
 [[before-you-begin]]
@@ -102,8 +104,7 @@ Pour connaître les prérequis et les étapes, reportez-vous à link:configure-a
 * link:../investigate/understand-dashboard.html["Découvrez le tableau de bord AI Data Engine"]
 * link:../investigate/investigate-directories.html["Examiner les répertoires"]
 * link:../investigate/investigate-unstructured.html["Analysez les données non structurées"]
-* link:../get-started/storage-optimization-workflows.html["Explorez les flux de travail d’optimisation du stockage"]
-* link:../deploy/aide-requirements.html["exigences AIDE"]
+* link:../investigate/storage-optimization-workflows.html["Explorez les flux de travail d’optimisation du stockage"]
 * link:manage-users-roles.html["Gérer les utilisateurs et les rôles"]
 * link:configure-ad-nfs.html["Configurer le mappage d'identité Active Directory pour NFS"]
 

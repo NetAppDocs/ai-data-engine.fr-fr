@@ -107,6 +107,6 @@ Pour télécharger les résultats filtrés depuis l’onglet Non structuré, sé
 * link:take-actions.html["Agissez sur vos données"]
 * link:../policies/create-policy.html["Créer une stratégie"]
 * link:../administer/configure-settings.html["Configurer les seuils de classification des données et l’analyse des accès"]
-* link:../get-started/storage-optimization-workflows.html["Explorez les flux de travail d’optimisation du stockage"]
+* link:storage-optimization-workflows.html["Explorez les flux de travail d’optimisation du stockage"]
 * link:understand-dashboard.html["Évaluer l'utilisation du stockage depuis le tableau de bord"]
 
