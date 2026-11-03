@@ -22,7 +22,6 @@ Les déploiements à nœud unique et à nœuds multiples sont indépendants:: Un
 La prise en charge des proxies est limitée:: Vous pouvez déployer AI Data Engine avec un proxy forward, mais les fonctionnalités de proxy suivantes ne sont pas prises en charge :
 +
 --
-* Les proxys d’inspection TLS, qui déchiffrent et signent à nouveau le trafic HTTPS avec une autorité de certification personnalisée.
 * Authentification NTLM, Kerberos ou par certificat client auprès du proxy. N'utilisez aucune authentification ou l'authentification de base.
 * Proxys SOCKS.
 * Configuration automatique du proxy (fichier PAC ou WPAD). Indiquez directement à l'installateur l'hôte et le port du proxy.

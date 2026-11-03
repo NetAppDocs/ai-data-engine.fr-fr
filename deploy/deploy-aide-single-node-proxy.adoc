@@ -38,6 +38,7 @@ Pour connaître les types de proxy pris en charge et la référence complète de
 * Vous avez configuré votre proxy pour autoriser les points de terminaison dans link:aide-requirements.html#outbound-internet-access["Accès Internet sortant"].
 * Vous connaissez l'hôte, le port et le schéma du proxy (`http` ou `https`). Si le proxy requiert une authentification, vous connaissez également le nom d'utilisateur et le mot de passe.
 * Si vous utilisez un proxy HTTPS avec un certificat signé de manière privée, vous disposez du certificat d’autorité de certification sous forme de fichier PEM, ou d’un répertoire plat de `.crt` et `.pem` fichiers sur l’hôte cible.
+* Si vous utilisez un proxy qui inspecte TLS, vous devez disposer du certificat de l’autorité de certification d’inspection au même format sur l’hôte cible. Le programme d’installation en a besoin.
 
 
 
@@ -48,14 +49,14 @@ NOTE: Utilisez le programme d'installation uniquement pour la première installa
 [[what-the-installer-configures]]
 == Ce que configure le programme d'installation
 
-Dans un déploiement à nœud unique, AI Data Engine est propriétaire de la machine virtuelle sur laquelle il est installé. Le programme d'installation configure l'environnement d'exécution k3s et AI Data Engine pour le proxy. Il ne modifie pas la configuration du proxy de l'hôte, notamment les gestionnaires de paquets du système d'exploitation. Le programme d'installation effectue les opérations suivantes :
+Dans un déploiement à nœud unique, AI Data Engine est propriétaire de la VM sur laquelle il est installé. Le programme d'installation configure l'environnement d'exécution k3s et AI Data Engine pour le proxy. Il ne modifie pas la configuration du proxy des autres logiciels de l'hôte, tels que les gestionnaires de paquets du système d'exploitation. Le programme d'installation effectue les opérations suivantes :
 
 * Téléchargez le script d'installation et le binaire de k3s via le proxy. Ne configure pas de proxy à l'échelle du système pour k3s ou kubelet.
 * Configure l'environnement d'exécution de conteneurs k3s pour récupérer les images via le proxy.
-* Ajoute le certificat d’autorité de certification que vous fournissez avec `--proxy-ca-cert` au magasin de confiance de AI Data Engine.
+* Ajoute le certificat d’autorité de certification que vous fournissez avec `--proxy-ca-cert` au magasin de certificats de confiance de l’hôte et au magasin de certificats de confiance de AI Data Engine.
 
 
-Vous ne configurez ni l'environnement d'exécution du conteneur k3s ni le magasin de certificats de confiance.
+Vous ne configurez pas l'environnement d'exécution des conteneurs k3s. Vous fournissez le certificat de l'autorité de certification, et le programme d'installation l'ajoute aux magasins de confiance.
 
 
 
@@ -206,10 +207,10 @@ Lorsque vous exécutez la commande d’installation dans un terminal sans `--pro
 | Port du proxy | Saisissez le port du proxy. La valeur par défaut est `443` pour HTTPS et `80` pour HTTP. 
 
 
-| Type de proxy | Appuyez sur Entrée pour accepter la valeur par défaut. 
+| Type de proxy | Saisissez  `r` pour un proxy de transfert standard, ou  `t` pour un proxy inspectant le protocole TLS. Appuyez sur Entrée pour accepter la valeur par défaut,  `r`. 
 
 
-| Certificat d’autorité de certification pour le certificat propre du proxy (HTTPS uniquement, facultatif) | Saisissez le chemin d'accès vers le fichier CA ou le répertoire. Appuyez sur Entrée si le certificat proxy a été signé par une autorité de certification publique. 
+| Certificat d’autorité de certification pour le certificat propre du proxy (HTTPS uniquement, facultatif) | Saisissez le chemin d'accès au fichier ou au répertoire de l'autorité de certification. Appuyez sur Entrée si le certificat du proxy a été signé par une autorité de certification publique. Pour un proxy avec inspection TLS, saisissez le chemin d'accès au certificat requis de l'autorité de certification d'inspection. 
 
 
 | Le proxy requiert-il un nom d'utilisateur et un mot de passe ? (o/N) | Si oui, saisissez le nom d'utilisateur, puis saisissez le mot de passe à deux reprises. Le programme d'installation n'affiche pas le mot de passe. 
@@ -248,6 +249,15 @@ Si la commande contient `--no-proxy`, supprimez-la. Conservez tous les autres pa
 --proxy-port 8443 \
 --proxy-scheme https \
 --proxy-ca-cert /root/proxy-ca.pem
+----
+.proxy d'inspection TLS
+[source, bash]
+----
+--proxy-host proxy.example.com \
+--proxy-port 3128 \
+--proxy-scheme http \
+--proxy-type t \
+--proxy-ca-cert /root/inspection-ca.pem
 ----
 * Si votre proxy ne nécessite pas d'authentification, omettez  `--proxy-user` et  `--proxy-password-file`.
 * Si vous spécifiez `--proxy-user` without `--proxy-password-file`, le programme d'installation vous demande le mot de passe lorsque vous l'exécutez depuis un terminal.
