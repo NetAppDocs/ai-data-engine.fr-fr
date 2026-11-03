@@ -228,19 +228,18 @@ Ces tailles correspondent à des configurations de base recommandées, optimisé
 | Taille | vCPU | RAM | Disque | IOPS de stockage | Débit de stockage | Réseau | Nombre approximatif de fichiers 
 
 
-| Petit | 16 | 64 GB | 500 Go | 8 000 | 1 000 Mo/s | 1 GbE | 200 millions 
+| Petit | 16 | 64 GB | 565 Go ^1^ | 8 000 | 1 000 Mo/s | 1 GbE | 200 millions 
 
 
-| Moyen | 32 | 128 GB | 2 To | 12 000 | 1 500 Mo/s | 1 GbE | 1 milliard 
+| Moyen | 32 | 128 GB | 2 065 Go ^1^ | 12 000 | 1 500 Mo/s | 1 GbE | 1 milliard 
 
 
-| Grand | 96 | 192 GB | 6 To | 16 000 | 2 000 Mo/s | 10 GbE | 3 milliards 
+| Grand | 96 | 192 GB | 6 065 Go ^1^ | 16 000 | 2 000 Mo/s | 10 GbE | 3 milliards 
 |===
+^1^ La valeur du disque correspond à l’espace libre minimal requis lorsque le système d’exploitation, l’environnement d’exécution k3s et les données AIDE partagent un seul disque. Elle inclut 65 Go pour le système d’exploitation, k3s, kubelet et les journaux, plus le volume de données AIDE (500 Go pour Small, 2 000 Go pour Medium et 6 000 Go pour Large). Si ces composants se trouvent sur des disques distincts, consultez link:single-node-prerequisites.html#single-node-disk-space["espace disque dans les prérequis pour un nœud unique"].
 
-NOTE: Un SSD NVMe ou un autre système de stockage à semi-conducteurs est recommandé pour toutes les tailles de déploiement. Les valeurs de disque indiquées dans ce tableau correspondent uniquement au stockage du volume de données AIDE. Si le système d'exploitation, l'environnement d'exécution k3s et les données AIDE partagent un seul disque, ajoutez environ 65 Go à la valeur de disque correspondant à la taille choisie. Par exemple, un déploiement Small sur un seul disque nécessite environ 565 Go au total.
 
-
-NOTE: Utilisez le stockage bloc, et non NFS, pour le volume de données AIDE dans un déploiement à nœud unique. Le stockage basé sur NFS peut entraîner des performances insuffisantes.
+NOTE: Un SSD NVMe ou un autre système de stockage à semi-conducteurs est recommandé pour toutes les tailles de déploiement. Utilisez le stockage bloc, et non NFS, pour le volume de données AIDE dans un déploiement à nœud unique. Le stockage basé sur NFS peut entraîner des performances insuffisantes.
 
 
 

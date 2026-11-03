@@ -56,7 +56,7 @@ Un déploiement multi-nœuds AIDE est disponible en trois tailles — Petite, Mo
 | Calcul | 16 à 96 vCPU, 64 à 192 Go de RAM | 32 à 64 vCPU, 128 à 256 Go de RAM par nœud 
 
 
-| Stockage | stockage bloc SSD de 500 GB à 6 TB, 8 000 à 16 000 IOPS, débit de 1 000 à 2 000 Mo/s | Capacité totale du cluster de 4 à 24 To, 8 000 à 16 000 IOPS par nœud, débit de 1 000 à 2 000 Mo/s par nœud 
+| Stockage | stockage bloc SSD de 565 GB à 6 065 GB, 8 000 à 16 000 IOPS, débit de 1 000 à 2 000 Mo/s | Capacité totale du cluster de 4 à 24 To, 8 000 à 16 000 IOPS par nœud, débit de 1 000 à 2 000 Mo/s par nœud 
 
 
 | Réseau | 1 GbE (10 GbE recommandé pour Large) | 1 à 10 GbE 
